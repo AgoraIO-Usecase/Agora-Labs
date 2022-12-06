@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Agora API Example</string>
+    <string name="channel_id">频道ID</string>
+    <string name="join">加入</string>
+    <string name="leave">离开</string>
+    <string name="earpiece">听筒</string>
+    <string name="speaker">扬声器</string>
+    <string name="openmicrophone">打开麦克风</string>
+    <string name="closemicrophone">关闭麦克风</string>
+    <string name="resolution">分辨率</string>
+    <string name="framerate">帧率</string>
+    <string name="video_orientation">视频朝向</string>
+
+
+    <string name="setting">设置</string>
+    <string name="sdkversion">SDK版本</string>
+    <string name="sdkversion1">V%s</string>
+    <string name="enable_publish">开启连麦</string>
+    <string name="disnable_publish">关闭连麦</string>
+    <string name="enable_low_latency">开启极速直播</string>
+    <string name="disable_low_latency">关闭极速直播</string>
+    <string name="next">下一步</string>
+
+    <string name="item_joinaudio">音频互动直播</string>
+    <string name="item_joinvideo">视频互动直播</string>
+    <string name="item_joinvideo_by_token">视频互动直播(Token验证)</string>
+    <string name="item_livestreaming">RTC实时直播</string>
+
+    <string name="joinchannelaudio">此示例演示了如何使用SDK加入频道进行纯语音通话的功能。</string>
+    <string name="joinchannelvideo">此示例演示了如何使用SDK加入频道进行音视频通话的功能。</string>
+    <string name="joinchannelvideoByToken">此示例演示了如何使用SDK加入带token的频道进行音视频通话的功能。</string>
+    <string name="livestreaming">此示例演示了如何使用极速直播功能再音视频通话中进行连麦。</string>
+
+    <string name="switch_camera">切换摄像头</string>
+
+    <string name="remote_screenshot">远端截图</string>
+    <string name="remote_screenshot_tip">当前没有远端用户，请加入频道并等待远端用户加入</string>
+    <string name="area">区域</string>
+    <string name="watermark">水印</string>
+    <string name="low_stream">小流</string>
+    <string name="float_window_confirm_dialog_msg">您的手机没有授予悬浮窗权限，请开启后再试</string>
+    <string name="float_window_confirm_dialog_confirm">现在去开启</string>
+    <string name="float_window_confirm_dialog_cancel">暂不开启</string>
+    <string name="token_invalid">Token不存在</string>
+    <string name="token_expired">Token已过期</string>
+    <string name="open_in_browser">在默认浏览器打开</string>
+    <string name="refresh">刷新</string>
+    <string name="save">保存</string>
+    <string name="app_id_empty">AppID为空！</string>
+</resources>

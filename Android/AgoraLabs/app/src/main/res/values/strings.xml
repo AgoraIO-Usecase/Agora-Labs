@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">AgoraLabs</string>
+    <string name="channel_id">Channel ID</string>
+    <string name="token" translatable="false">Token</string>
+    <string name="app_id" translatable="false">App ID</string>
+    <string name="join">Join</string>
+    <string name="leave">Leave</string>
+    <string name="earpiece">Earpiece</string>
+    <string name="speaker">Speaker</string>
+    <string name="openmicrophone">OpenMicrophone</string>
+    <string name="closemicrophone">CloseMicrophone</string>
+    <string name="resolution">Resolution</string>
+    <string name="framerate">Frame Rate</string>
+    <string name="video_orientation">Video Orientation</string>
+
+    <string name="chanel_support_char" translatable="false">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890 !#$%()+-:;&lt;=.>?@[]^_{}|~,&amp;</string>
+
+    <string name="setting">Setting</string>
+    <string name="sdkversion">SDK Version</string>
+    <string name="sdkversion1">V%s</string>
+    <string name="enable_publish">Start Co-host</string>
+    <string name="disnable_publish">Stop Co-host</string>
+    <string name="enable_low_latency">Enable Ultra Low Latency</string>
+    <string name="disable_low_latency">Disable Ultra Low Latency</string>
+    <string name="next">Next Step</string>
+
+    <string name="item_joinaudio">Live Interactive Audio Streaming</string>
+    <string name="item_joinvideo">Live Interactive Video Streaming</string>
+    <string name="item_joinvideo_by_token">Live Interactive Video Streaming(Token Verify)</string>
+
+    <string name="item_livestreaming">RTC Live Streaming</string>
+
+    <string name="joinchannelaudio">This example demonstrates how to use the SDK to join channels for voice only calls.</string>
+    <string name="joinchannelvideo">This example demonstrates how to use the SDK to join channels for audio and video calls.</string>
+    <string name="joinchannelvideoByToken">This example demonstrates how to use the SDK to join channels by token for audio and video calls.</string>
+    <string name="livestreaming">This example demonstrates how to use live streaming api to switch client role in channel.</string>
+
+    <string name="switch_camera">Switch Camera</string>
+
+    <string name="remote_screenshot">Remote screenshot</string>
+    <string name="remote_screenshot_tip">There is not remote user, please join channel and wait for remote user joining.</string>
+
+    <string name="area">Area</string>
+    <string name="watermark">Watermark</string>
+    <string name="low_stream">Low Stream</string>
+    <string name="float_window_confirm_dialog_msg">Your mobile phone does not grant the permission of the floating window, please turn it on and try again</string>
+    <string name="float_window_confirm_dialog_confirm">Open Now</string>
+    <string name="float_window_confirm_dialog_cancel">Not Now</string>
+    <string name="token_invalid">The token is invalid.</string>
+    <string name="token_expired">The token is expired.</string>
+    <string name="open_in_browser">Open in default browser</string>
+    <string name="refresh">Refresh</string>
+    <string name="save">Save</string>
+    <string name="app_id_empty">The App ID is empty!</string>
+</resources>
