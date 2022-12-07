@@ -19,6 +19,39 @@ typealias MainFont = Font.HelveticaNeue
 
 extension String {
     var localized: String { NSLocalizedString(self, comment: "") }
+    
+    var removeAllSapce: String {
+        return self.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
+    }
+    
+    func hexColor(alpha: CGFloat = 1.0) -> UIColor {
+        
+        var red: UInt64 = 0, green: UInt64 = 0, blue: UInt64 = 0
+        var hex = self
+        if hex.hasPrefix("0x") || hex.hasPrefix("0X") {
+            hex = String(hex[hex.index(hex.startIndex, offsetBy: 2)...])
+        } else if hex.hasPrefix("#") {
+            hex = String(hex[hex.index(hex.startIndex, offsetBy: 1)...])
+        }
+        if hex.count < 6 {
+            for _ in 0..<6-hex.count {
+                hex += "0"
+            }
+        }
+        Scanner(string: String(hex[..<hex.index(hex.startIndex, offsetBy: 2)])).scanHexInt64(&red)
+        Scanner(string: String(hex[hex.index(hex.startIndex, offsetBy: 2)..<hex.index(hex.startIndex, offsetBy: 4)])).scanHexInt64(&green)
+        Scanner(string: String(hex[hex.index(startIndex, offsetBy: 4)...])).scanHexInt64(&blue)
+        return UIColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: alpha)
+    }
+}
+
+//平方-简-中黑体 和大小
+func FontPFMediumSize(_ fontSize:CGFloat) -> UIFont {
+    return UIFont.init(name: "PingFangSC-Medium", size: fontSize)!
+}
+//平方-简-标准字体 和大小
+func FontPFRegularSize(_ fontSize:CGFloat) -> UIFont {
+    return UIFont.init(name: "PingFangSC-Regular", size: fontSize)!
 }
 
 enum Font {

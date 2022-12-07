@@ -24,7 +24,6 @@
 		03BEED0B251C4446005E78F4 /* audiomixing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03BEED0A251C4446005E78F4 /* audiomixing.mp3 */; };
 		03BEED0D251CAB9C005E78F4 /* audioeffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03BEED0C251CAB9C005E78F4 /* audioeffect.mp3 */; };
 		03D13BD02448758900B599B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D13BCF2448758900B599B3 /* AppDelegate.swift */; };
-		03D13BD42448758900B599B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D13BD32448758900B599B3 /* ViewController.swift */; };
 		03D13BD72448758900B599B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03D13BD52448758900B599B3 /* Main.storyboard */; };
 		03D13BD92448758B00B599B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03D13BD82448758B00B599B3 /* Assets.xcassets */; };
 		03D13BDC2448758B00B599B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03D13BDA2448758B00B599B3 /* LaunchScreen.storyboard */; };
@@ -41,6 +40,22 @@
 		8BC751D5273E502700552265 /* LiveStreaming.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BC751D0273E502700552265 /* LiveStreaming.strings */; };
 		8BC751D6273E502700552265 /* LiveStreaming.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BC751D2273E502700552265 /* LiveStreaming.storyboard */; };
 		8BC751D7273E502700552265 /* LiveStreaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC751D4273E502700552265 /* LiveStreaming.swift */; };
+		A6D88CF6293DE2A000806419 /* AGViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D88CF2293DE2A000806419 /* AGViewControllerCell.swift */; };
+		A6D88CF7293DE2A000806419 /* AGViewControllerHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D88CF3293DE2A000806419 /* AGViewControllerHead.swift */; };
+		A6D88CF8293DE2A000806419 /* AGBasisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D88CF5293DE2A000806419 /* AGBasisViewController.swift */; };
+		A6D88CFA293DF28A00806419 /* AGHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D88CF9293DF28A00806419 /* AGHUD.swift */; };
+		A6D88CFC293EE8B400806419 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D88CFB293EE8B400806419 /* ViewController.swift */; };
+		A6D88D01293F1B8600806419 /* VirtualBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D88D00293F1B8600806419 /* VirtualBackground.swift */; };
+		A6D88D03293F1B9500806419 /* VirtualBackground.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6D88D02293F1B9500806419 /* VirtualBackground.storyboard */; };
+		A6D88D05293F422500806419 /* VirtualBackground+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D88D04293F422500806419 /* VirtualBackground+UI.swift */; };
+		A6D88D07293F44B900806419 /* Uiew+Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D88D06293F44B900806419 /* Uiew+Tap.swift */; };
+		A6D88D09293F52B600806419 /* AGViewSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D88D08293F52B600806419 /* AGViewSubCell.swift */; };
+		A6D88D8F294074E000806419 /* bg3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A6D88D89294074E000806419 /* bg3.jpeg */; };
+		A6D88D90294074E000806419 /* bg2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A6D88D8A294074E000806419 /* bg2.jpeg */; };
+		A6D88D91294074E000806419 /* bg4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A6D88D8B294074E000806419 /* bg4.jpeg */; };
+		A6D88D92294074E000806419 /* bg1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A6D88D8C294074E000806419 /* bg1.jpeg */; };
+		A6D88D93294074E000806419 /* add.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A6D88D8D294074E000806419 /* add.jpeg */; };
+		A6D88D94294074E000806419 /* bg0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A6D88D8E294074E000806419 /* bg0.jpeg */; };
 		A7847F922458062900469187 /* StatisticsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7847F912458062900469187 /* StatisticsInfo.swift */; };
 		A7847F942458089E00469187 /* AgoraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7847F932458089E00469187 /* AgoraExtension.swift */; };
 		A7BD7660247CC6920062A6B3 /* UITypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BD765F247CC6920062A6B3 /* UITypeAlias.swift */; };
@@ -145,7 +160,6 @@
 		03BEED0C251CAB9C005E78F4 /* audioeffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audioeffect.mp3; sourceTree = "<group>"; };
 		03D13BCC2448758900B599B3 /* AgoraLabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgoraLabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03D13BCF2448758900B599B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		03D13BD32448758900B599B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		03D13BD62448758900B599B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03D13BD82448758B00B599B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03D13BDB2448758B00B599B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -216,6 +230,22 @@
 		92577CFC05C5519F5AF5591C /* Pods-audioFilter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-audioFilter.release.xcconfig"; path = "Target Support Files/Pods-audioFilter/Pods-audioFilter.release.xcconfig"; sourceTree = "<group>"; };
 		92EACE913B50B28F1588FE03 /* Pods-Agora-ScreenShare-Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agora-ScreenShare-Extension.release.xcconfig"; path = "Target Support Files/Pods-Agora-ScreenShare-Extension/Pods-Agora-ScreenShare-Extension.release.xcconfig"; sourceTree = "<group>"; };
 		97FD759191CA9CEEF6BC40F1 /* Pods_AgoraLabs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgoraLabs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6D88CF2293DE2A000806419 /* AGViewControllerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGViewControllerCell.swift; sourceTree = "<group>"; };
+		A6D88CF3293DE2A000806419 /* AGViewControllerHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGViewControllerHead.swift; sourceTree = "<group>"; };
+		A6D88CF5293DE2A000806419 /* AGBasisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGBasisViewController.swift; sourceTree = "<group>"; };
+		A6D88CF9293DF28A00806419 /* AGHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGHUD.swift; sourceTree = "<group>"; };
+		A6D88CFB293EE8B400806419 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A6D88D00293F1B8600806419 /* VirtualBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualBackground.swift; sourceTree = "<group>"; };
+		A6D88D02293F1B9500806419 /* VirtualBackground.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VirtualBackground.storyboard; sourceTree = "<group>"; };
+		A6D88D04293F422500806419 /* VirtualBackground+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VirtualBackground+UI.swift"; sourceTree = "<group>"; };
+		A6D88D06293F44B900806419 /* Uiew+Tap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Uiew+Tap.swift"; sourceTree = "<group>"; };
+		A6D88D08293F52B600806419 /* AGViewSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGViewSubCell.swift; sourceTree = "<group>"; };
+		A6D88D89294074E000806419 /* bg3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg3.jpeg; sourceTree = "<group>"; };
+		A6D88D8A294074E000806419 /* bg2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg2.jpeg; sourceTree = "<group>"; };
+		A6D88D8B294074E000806419 /* bg4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg4.jpeg; sourceTree = "<group>"; };
+		A6D88D8C294074E000806419 /* bg1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg1.jpeg; sourceTree = "<group>"; };
+		A6D88D8D294074E000806419 /* add.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = add.jpeg; sourceTree = "<group>"; };
+		A6D88D8E294074E000806419 /* bg0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg0.jpeg; sourceTree = "<group>"; };
 		A7847F912458062900469187 /* StatisticsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsInfo.swift; sourceTree = "<group>"; };
 		A7847F932458089E00469187 /* AgoraExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraExtension.swift; sourceTree = "<group>"; };
 		A7BD765F247CC6920062A6B3 /* UITypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITypeAlias.swift; sourceTree = "<group>"; };
@@ -466,6 +496,7 @@
 		03BEED09251C4446005E78F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A6D88D88294074E000806419 /* images */,
 				8B349FE22681E2CE007247F2 /* agora-logo.png */,
 				576CA80925A9CC3A0091520B /* output.raw */,
 				03414B5425546DEC00AB114D /* frames0.yuv */,
@@ -500,7 +531,7 @@
 				8BAEA7B426C253FC0006B0F1 /* AgoraLabs.entitlements */,
 				03D13BD52448758900B599B3 /* Main.storyboard */,
 				A7CA48C224553CF600507435 /* Popover.storyboard */,
-				03D13BD32448758900B599B3 /* ViewController.swift */,
+				A6D88CFB293EE8B400806419 /* ViewController.swift */,
 				03DF1D7324CFBBBA00DF7151 /* AgoraLabs-Bridging-Header.h */,
 				03BCEC4C244932E000ED7177 /* Examples */,
 				03D13BFF24488F1E00B599B3 /* Common */,
@@ -513,6 +544,8 @@
 		03D13BFF24488F1E00B599B3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A6D88CF1293DE2A000806419 /* View */,
+				A6D88CF4293DE2A000806419 /* ViewController */,
 				7F930837293DA89C00D3F00B /* VideoView.swift */,
 				7F930838293DA89C00D3F00B /* VideoView.xib */,
 				E74877B528A23B8B00CA2F58 /* NetworkManager */,
@@ -530,6 +563,7 @@
 				03F8733124C8696600EDB1A3 /* EntryViewController.swift */,
 				0339BE63251DCA3B007D4FDD /* GlobalSettings.swift */,
 				E721600E28D3314B006431BD /* AlertManager.swift */,
+				A6D88CF9293DF28A00806419 /* AGHUD.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -656,6 +690,48 @@
 			path = FusionCDN;
 			sourceTree = "<group>";
 		};
+		A6D88CF1293DE2A000806419 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A6D88D08293F52B600806419 /* AGViewSubCell.swift */,
+				A6D88CF2293DE2A000806419 /* AGViewControllerCell.swift */,
+				A6D88CF3293DE2A000806419 /* AGViewControllerHead.swift */,
+				A6D88D06293F44B900806419 /* Uiew+Tap.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A6D88CF4293DE2A000806419 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A6D88CF5293DE2A000806419 /* AGBasisViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A6D88CFF293F1B1700806419 /* VirtualBackground */ = {
+			isa = PBXGroup;
+			children = (
+				A6D88D00293F1B8600806419 /* VirtualBackground.swift */,
+				A6D88D04293F422500806419 /* VirtualBackground+UI.swift */,
+				A6D88D02293F1B9500806419 /* VirtualBackground.storyboard */,
+			);
+			path = VirtualBackground;
+			sourceTree = "<group>";
+		};
+		A6D88D88294074E000806419 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A6D88D89294074E000806419 /* bg3.jpeg */,
+				A6D88D8A294074E000806419 /* bg2.jpeg */,
+				A6D88D8B294074E000806419 /* bg4.jpeg */,
+				A6D88D8C294074E000806419 /* bg1.jpeg */,
+				A6D88D8D294074E000806419 /* add.jpeg */,
+				A6D88D8E294074E000806419 /* bg0.jpeg */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		A75A56D324A0603000D0089E /* Basic */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +750,7 @@
 				8B5E5B4E274CB6640040E97D /* RhythmPlayer */,
 				8BC751D8273E578D00552265 /* VideoProcess */,
 				8BC751CF273E502700552265 /* LiveStreaming */,
+				A6D88CFF293F1B1700806419 /* VirtualBackground */,
 				8BA5458E26AFEC8D00ED4295 /* SimpleFilter */,
 				5744CE0225BA99FF0099AB66 /* VideoChat */,
 				576EA54025AC32C8000B3D79 /* CustomPcmAudioSource */,
@@ -838,19 +915,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D88D03293F1B9500806419 /* VirtualBackground.storyboard in Resources */,
 				03BEED0B251C4446005E78F4 /* audiomixing.mp3 in Resources */,
 				8BC751D6273E502700552265 /* LiveStreaming.storyboard in Resources */,
 				033A9F2A252D737900BC26E1 /* Localizable.strings in Resources */,
+				A6D88D8F294074E000806419 /* bg3.jpeg in Resources */,
+				A6D88D94294074E000806419 /* bg0.jpeg in Resources */,
 				03BEED0D251CAB9C005E78F4 /* audioeffect.mp3 in Resources */,
 				A7CA48C424553CF700507435 /* Popover.storyboard in Resources */,
 				03D13BDC2448758B00B599B3 /* LaunchScreen.storyboard in Resources */,
+				A6D88D91294074E000806419 /* bg4.jpeg in Resources */,
 				E728B85C28B8971200674A4A /* sample.yuv in Resources */,
+				A6D88D92294074E000806419 /* bg1.jpeg in Resources */,
 				7F93083A293DA89C00D3F00B /* VideoView.xib in Resources */,
+				A6D88D93294074E000806419 /* add.jpeg in Resources */,
 				8BC751D5273E502700552265 /* LiveStreaming.strings in Resources */,
 				8B349FE32681E2CE007247F2 /* agora-logo.png in Resources */,
 				033A9F23252D70E400BC26E1 /* JoinChannelVideo.storyboard in Resources */,
 				03414B5525546DEC00AB114D /* frames0.yuv in Resources */,
 				576CA80A25A9CC3A0091520B /* output.raw in Resources */,
+				A6D88D90294074E000806419 /* bg2.jpeg in Resources */,
 				033A9F30252D860100BC26E1 /* JoinChannelAudio.storyboard in Resources */,
 				03D13BD92448758B00B599B3 /* Assets.xcassets in Resources */,
 				E728B85128B60D5B00674A4A /* VideoViewSampleBufferDisplayView.xib in Resources */,
@@ -907,11 +991,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D88CF7293DE2A000806419 /* AGViewControllerHead.swift in Sources */,
 				036CBA47251990B400D74FAD /* AgoraCustomEncryption.h in Sources */,
-				03D13BD42448758900B599B3 /* ViewController.swift in Sources */,
 				03F8733224C8696600EDB1A3 /* EntryViewController.swift in Sources */,
 				0371D8AE250B4A2C00C0DD61 /* JoinChannelAudio.swift in Sources */,
+				A6D88CF6293DE2A000806419 /* AGViewControllerCell.swift in Sources */,
 				8B333DA9267B4BC3002A3785 /* SettingsCells.swift in Sources */,
+				A6D88D09293F52B600806419 /* AGViewSubCell.swift in Sources */,
 				576EA59025AEDD3C000B3D79 /* (null) in Sources */,
 				0339BE64251DCA3B007D4FDD /* GlobalSettings.swift in Sources */,
 				8407E0942472320800AC5DE8 /* (null) in Sources */,
@@ -919,21 +1005,27 @@
 				8BC751D7273E502700552265 /* LiveStreaming.swift in Sources */,
 				E721600F28D3314B006431BD /* AlertManager.swift in Sources */,
 				036C42BF24D5853200A59000 /* AgoraMediaRawData.m in Sources */,
+				A6D88CFC293EE8B400806419 /* ViewController.swift in Sources */,
 				0318857924CD667A00C699EB /* SettingsViewController.swift in Sources */,
 				036C42BE24D5853200A59000 /* AgoraMediaDataPlugin.mm in Sources */,
 				A7BD7660247CC6920062A6B3 /* UITypeAlias.swift in Sources */,
 				7F930839293DA89C00D3F00B /* VideoView.swift in Sources */,
+				A6D88D05293F422500806419 /* VirtualBackground+UI.swift in Sources */,
+				A6D88CF8293DE2A000806419 /* AGBasisViewController.swift in Sources */,
 				67B8C7B52805757200195106 /* MediaUtils.m in Sources */,
 				03D13C0124488F1F00B599B3 /* KeyCenter.swift in Sources */,
 				E74877B728A23B8B00CA2F58 /* NetworkManager.swift in Sources */,
 				03D13BD02448758900B599B3 /* AppDelegate.swift in Sources */,
 				0385768225224A88003C369A /* JoinChannelVideo.swift in Sources */,
 				A7847F922458062900469187 /* StatisticsInfo.swift in Sources */,
+				A6D88D01293F1B8600806419 /* VirtualBackground.swift in Sources */,
 				03BCEC762449EB5000ED7177 /* LogViewController.swift in Sources */,
 				E74877CA28A2611C00CA2F58 /* ToastView.swift in Sources */,
 				A7847F942458089E00469187 /* AgoraExtension.swift in Sources */,
 				E74877BA28A23C1400CA2F58 /* JSONObject.swift in Sources */,
+				A6D88D07293F44B900806419 /* Uiew+Tap.swift in Sources */,
 				03BCEC50244938C500ED7177 /* BaseViewController.swift in Sources */,
+				A6D88CFA293DF28A00806419 /* AGHUD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1426,14 +1518,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = GM72UGLGZW;
+				DEVELOPMENT_TEAM = PSLY6TJJC8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgoraLabs",
 				);
 				INFOPLIST_FILE = AgoraLabs/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1500,14 +1592,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = GM72UGLGZW;
+				DEVELOPMENT_TEAM = PSLY6TJJC8;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgoraLabs",
 				);
 				INFOPLIST_FILE = AgoraLabs/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

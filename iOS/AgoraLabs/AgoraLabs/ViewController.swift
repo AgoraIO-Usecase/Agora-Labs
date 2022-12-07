@@ -1,13 +1,14 @@
 //
 //  ViewController.swift
-//  APIExample
+//  AgoraLabs
 //
-//  Created by 张乾泽 on 2020/4/16.
-//  Copyright © 2020 Agora Corp. All rights reserved.
+//  Created by LiaoChenliang on 2022/12/6.
+//  Copyright © 2022 Agora Corp. All rights reserved.
 //
 
 import UIKit
-import Floaty
+import JXSegmentedView
+import FDFullscreenPopGesture
 
 struct MenuSection {
     var name: String
@@ -22,105 +23,171 @@ struct MenuItem {
     var note: String = ""
 }
 
-class ViewController: AGViewController {
-    var menus:[MenuSection] = [
-        MenuSection(name: "Basic", rows: [
-            MenuItem(name: "Join a channel (Video)".localized, storyboard: "JoinChannelVideo", controller: ""),
-            MenuItem(name: "Join a channel (Audio)".localized, storyboard: "JoinChannelAudio", controller: "")
-        ]),
-        MenuSection(name: "Anvanced", rows: [
-//            MenuItem(name: "Group Video Chat".localized, storyboard: "VideoChat", controller: "VideoChat"),
-            MenuItem(name: "Live Streaming".localized, storyboard: "LiveStreaming", controller: "LiveStreaming")
-        ]),
+class ViewController: UIViewController {
+
+    private let titles: [String] =  [
+        "Video".localized,
+        "Audio".localized,
+        "Network".localized,
+        "Algorithms".localized
     ]
+    
+    private let demoMap:[[[String:Any]]] = [
+        [
+            [
+                "key":"Effects",
+                "content":[
+                    "Virtual Background",
+                    "Beautify Filter"
+                ]
+            ],
+            [
+                "key":"Image Quality",
+                "content":[
+                    "Reduce Noise",
+                    "Dim Environment",
+                    "Sharpen",
+                    "Enance Saturation",
+                    "PVC",
+                    "ROI",
+                    "Resolution",
+                    "Image",
+                    "HDR"
+                ]
+            ]
+        ],
+        [
+           [
+               "key":"",
+               "content":[
+                   "Noise Suppression",
+                   "AI AEC",
+                   "Spacial Audio",
+                   "Speach to Text"
+               ]
+           ]
+       ],
+        [
+            [
+                "key":"",
+                "content":[
+                    "Multipath",
+                    "Weak Net"
+                ]
+            ]
+        ],
+        [
+            [
+                "key":"",
+                "content":[
+                    "Facial Capture",
+                    "Motion Capture",
+                    "Avatar"
+                ]
+            ]
+        ]
+    ]
+    
+    private var segmentedDataSource: JXSegmentedTitleDataSource!
+    private var segmentedView: JXSegmentedView!
+    private var contentScrollView: UIScrollView!
+    private var listVCArray = [AGViewController]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        Floaty.global.button.addItem(title: "Send Logs", handler: {item in
-            LogUtils.writeAppLogsToDisk()
-            let activity = UIActivityViewController(activityItems: [NSURL(fileURLWithPath: LogUtils.logFolder(), isDirectory: true)], applicationActivities: nil)
-            activity.modalPresentationStyle = .popover
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                activity.popoverPresentationController?.sourceView = Floaty.global.button
-            }
-            self.present(activity, animated: true, completion: nil)
-        })
         
-        Floaty.global.button.addItem(title: "Clean Up", handler: {item in
-            LogUtils.cleanUp()
-        })
-        Floaty.global.button.isDraggable = true
-        Floaty.global.show()
-    }
-    
-    @IBAction func onSettings(_ sender:UIBarButtonItem) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let settingsViewController = storyBoard.instantiateViewController(withIdentifier: "settings") as? SettingsViewController else { return }
+        view.backgroundColor = "#eff4ff".hexColor()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.fd_prefersNavigationBarHidden = true
         
-        settingsViewController.settingsDelegate = self
-        settingsViewController.sectionNames = ["Video Configurations","Metadata"]
-        settingsViewController.sections = [
-            [
-                SettingsSelectParam(key: "resolution", label:"Resolution".localized, settingItem: GlobalSettings.shared.getSetting(key: "resolution")!, context: self),
-                SettingsSelectParam(key: "fps", label:"Frame Rate".localized, settingItem: GlobalSettings.shared.getSetting(key: "fps")!, context: self),
-                SettingsSelectParam(key: "orientation", label:"Orientation".localized, settingItem: GlobalSettings.shared.getSetting(key: "orientation")!, context: self),
-                SettingsSelectParam(key: "role", label:"Pick Role".localized, settingItem: GlobalSettings.shared.getSetting(key: "role")!, context: self)
-            ],
-            [SettingsLabelParam(key: "sdk_ver", label: "SDK Version", value: "\(AgoraRtcEngineKit.getSdkVersion())")]
-        ]
-        self.navigationController?.pushViewController(settingsViewController, animated: true)
-    }
-}
+        segmentedView = JXSegmentedView()
+        
+        segmentedDataSource = JXSegmentedTitleDataSource()
+        segmentedDataSource.isTitleColorGradientEnabled = true
+        segmentedDataSource.titleSelectedColor = "#ffffff".hexColor()
+        segmentedDataSource.titleNormalColor = SCREEN_TEXT_COLOR.hexColor(alpha: 0.6)
+        segmentedDataSource.titleNormalFont = UIFont.systemFont(ofSize: 15)
+        segmentedView.dataSource = segmentedDataSource
+        
+        let indicator = JXSegmentedIndicatorBackgroundView()
+        indicator.clipsToBounds = true
+        indicator.indicatorHeight = 36
+        let gradientView = JXSegmentedComponetGradientView()
+        gradientView.gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+        gradientView.gradientLayer.colors = ["#91E2FF".hexColor().cgColor, "#2787FF".hexColor().cgColor]
+        gradientView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        indicator.addSubview(gradientView)
+        segmentedView.indicators = [indicator]
+        view.addSubview(segmentedView)
 
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menus[section].rows.count
+        contentScrollView = UIScrollView()
+        contentScrollView.isPagingEnabled = true
+        contentScrollView.showsVerticalScrollIndicator = false
+        contentScrollView.showsHorizontalScrollIndicator = false
+        contentScrollView.scrollsToTop = false
+        contentScrollView.bounces = false
+        contentScrollView.contentInsetAdjustmentBehavior = .never
+        view.addSubview(contentScrollView)
+        
+        segmentedView.contentScrollView = contentScrollView
+
+        reloadData()
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return menus.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return menus[section].name
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "menuCell"
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-        if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
+    @objc func reloadData() {
+        segmentedDataSource.titles = self.titles
+        segmentedView.defaultSelectedIndex = 0
+        segmentedView.reloadData()
+        
+        for vc in listVCArray {
+            vc.view.removeFromSuperview()
         }
-        cell?.textLabel?.text = menus[indexPath.section].rows[indexPath.row].name
-        return cell!
+        listVCArray.removeAll()
+        
+        for index in 0..<segmentedDataSource.titles.count {
+            let vc = AGBasisViewController()
+            vc.pageIndex = index
+            vc.delegate = self
+            vc.dataList = demoMap[index]
+            contentScrollView.addSubview(vc.view)
+            listVCArray.append(vc)
+        }
+        
+        view.setNeedsLayout()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        segmentedView.frame = CGRect(x: 0, y: SCREEN_STATUS_HEIGHT, width: view.bounds.size.width, height: SCREEN_HEAD_HEIGHT)
+        contentScrollView.frame = CGRect(x: 0, y: SCREEN_HEAD_HEIGHT+SCREEN_STATUS_HEIGHT, width: view.bounds.size.width, height: view.bounds.size.height - SCREEN_HEAD_HEIGHT - SCREEN_STATUS_HEIGHT)
+        contentScrollView.contentSize = CGSize(width: contentScrollView.bounds.size.width*CGFloat(segmentedDataSource.dataSource.count), height: contentScrollView.bounds.size.height)
+        for (index, vc) in listVCArray.enumerated() {
+            vc.view.frame = CGRect(x: contentScrollView.bounds.size.width*CGFloat(index), y: 0, width: contentScrollView.bounds.size.width, height: contentScrollView.bounds.size.height)
+        }
+    }
+    
 }
 
-extension ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let menuItem = menus[indexPath.section].rows[indexPath.row]
-        let storyBoard: UIStoryboard = UIStoryboard(name: menuItem.storyboard, bundle: nil)
-        
-        if(menuItem.storyboard == "Main") {
-            guard let entryViewController = storyBoard.instantiateViewController(withIdentifier: menuItem.entry) as? EntryViewController else { return }
-            
-            entryViewController.nextVCIdentifier = menuItem.controller
-            entryViewController.title = menuItem.name
-            entryViewController.note = menuItem.note
+extension ViewController: AGViewDelegate{
+    func collectionViewClick(page: Int, indexPath: IndexPath) {
+        guard let dataList = demoMap[page][indexPath.section]["content"] as? [String] else { return }
+        let name = dataList[indexPath.row]
+        if name == "Virtual Background" {
+            let menuItem =  MenuItem(name: name, storyboard: name.removeAllSapce, controller: name.removeAllSapce)
+            let storyBoard: UIStoryboard = UIStoryboard(name: menuItem.storyboard, bundle: nil)
+            let entryViewController:UIViewController = storyBoard.instantiateViewController(withIdentifier: menuItem.storyboard)
+            entryViewController.fd_prefersNavigationBarHidden = false
+            entryViewController.fd_interactivePopDisabled = false
             self.navigationController?.pushViewController(entryViewController, animated: true)
-        } else {
-            let entryViewController:UIViewController = storyBoard.instantiateViewController(withIdentifier: menuItem.entry)
-            self.navigationController?.pushViewController(entryViewController, animated: true)
+
+        }else{
+            AGHUD.showInfo(info: "该功能暂不支持，敬请期待")
         }
     }
 }
 
-extension ViewController: SettingsViewControllerDelegate {
-    func didChangeValue(type: String, key: String, value: Any) {
-        if(type == "SettingsSelectCell") {
-            guard let setting = value as? SettingItem else {return}
-            LogUtils.log(message: "select \(setting.selectedOption().label) for \(key)", level: .info)
-        }
-    }
-}

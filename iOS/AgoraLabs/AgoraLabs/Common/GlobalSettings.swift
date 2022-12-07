@@ -9,6 +9,28 @@
 import Foundation
 import AgoraRtcKit
 
+var SCREEN_STATUS_HEIGHT:CGFloat {
+    var statusBarHeight: CGFloat = 0
+    if #available(iOS 13.0, *) {
+        let scene = UIApplication.shared.connectedScenes.first
+        guard let windowScene = scene as? UIWindowScene else { return 0 }
+        guard let statusBarManager = windowScene.statusBarManager else { return 0 }
+        statusBarHeight = statusBarManager.statusBarFrame.height
+    } else {
+        statusBarHeight = UIApplication.shared.statusBarFrame.height
+    }
+    return statusBarHeight
+}
+
+let SCREEN_WIDTH = UIScreen.main.bounds.size.width
+
+let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
+
+let SCREEN_HEAD_HEIGHT = 50.0
+
+let SCREEN_TEXT_COLOR = "#0A3D7B"
+
+let SCREEN_CCC_COLOR = "#cccccc"
 
 let SCREEN_SHARE_UID_MIN:UInt = 501
 let SCREEN_SHARE_UID_MAX:UInt = 1000
@@ -18,6 +40,8 @@ let SCREEN_SHARE_BROADCASTER_UID_MAX:UInt = 2000
 let SCREEN_SHARE_UID = UInt.random(in: SCREEN_SHARE_UID_MIN...SCREEN_SHARE_UID_MAX)
 let SCREEN_SHARE_BROADCASTER_UID = UInt.random(in: SCREEN_SHARE_BROADCASTER_UID_MIN...SCREEN_SHARE_BROADCASTER_UID_MAX)
 //let SCREEN_SHARE_BROADCASTER_UID = 2000 // As per app group didn't enable in this demo, harded code screen share broadcaster uid
+
+
 
 struct SettingItemOption {
     var idx: Int

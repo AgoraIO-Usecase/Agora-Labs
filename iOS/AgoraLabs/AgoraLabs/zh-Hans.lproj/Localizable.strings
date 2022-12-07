@@ -107,7 +107,7 @@
 "This app requires world tracking, which is available only on iOS devices with the A9 processor or later." = "AR功能仅在内置A9处理器后的iOS机型支持";
 "Move Camera to find a planar\n(Shown as Red Rectangle)" = "移动相机以找到一个平面\n(以红色方块显示)";
 "Tap to place remote video canvas" = "点击屏幕以放置视频画布";
-"Resolution" = "分辨率";
+//"Resolution" = "分辨率";
 "Frame Rate" = "帧率";
 "Orientation" = "视频朝向";
 "Broadcaster" = "主播";
@@ -130,3 +130,43 @@
 "remote user has not joined, and cannot take a screenshot" = "远端用户未加入, 无法截图";
 "Screenshot successful" = "截图成功";
 "Picture In Picture(require iOS15)" = "画中画(iOS15支持)";
+
+
+"Video"="视频";
+"Audio"="音频";
+"Network"="网络优化";
+"Algorithms"="基础算法";
+"Effects"="特效";
+"Virtual Background"="虚拟背景";
+"Beautify Filter"="美颜";
+"Image Quality"="画质";
+"Reduce Noise"="降噪";
+"Dim Environment"="暗光";
+"Sharpen"="自适应锐化";
+"Enance Saturation"="色彩增强";
+"PVC"="感知视频编码";
+"ROI"="感兴趣区域算法";
+"Resolution"="超分";
+"Image"=" 超级画质";
+"HDR"="HDR";
+
+"Noise Suppression"="Al降噪";
+"AI AEC"="Al 声学回声消除";
+"Spacial Audio"="空间音频";
+"Speach to Text"="语音转写";
+
+"Multipath"="多链路聚合传播";
+"Weak Net"="抗弱网机制";
+
+"Facial Capture"="面部捕捉";
+"Motion Capture"="动作捕捉";
+"Avatar"="语音驱动";
+
+"Original Image"="原图";
+"Background Blur"="背景虚化";
+"Split Green Screen"="绿幕分割";
+"Video Background"="动态背景";
+"Gathering Mode"="会聚模式";
+"Customize Image"="自定义";
+"Scenery Image"="风景";
+"Meeting Image"="会议室";
