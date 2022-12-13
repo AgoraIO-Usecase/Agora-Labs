@@ -131,7 +131,7 @@
 "Screenshot successful" = "截图成功";
 "Picture In Picture(require iOS15)" = "画中画(iOS15支持)";
 
-
+"Stay Tuned"="敬请期待";
 "Video"="视频";
 "Audio"="音频";
 "Network"="网络优化";
@@ -170,3 +170,53 @@
 "Customize Image"="自定义";
 "Scenery Image"="风景";
 "Meeting Image"="会议室";
+
+"low"="低";
+"medium"="中";
+"high"="高";
+
+
+"yuantu" = "原图";
+"mopi" = "磨皮";
+"meibai" = "美白";
+"hongrun" = "红润";
+"shoulian" = "瘦脸";
+"dayan" = "大眼";
+"quheiyanquan" = "去黑眼圈";
+"meiya" = "美牙";
+"qufalingwen" = "去法令纹";
+
+"qiangdu" = "强度";
+
+"meifu" = "美肤";
+"weizhengxing" = "微整形";
+"fenggezhuang" = "风格妆";
+"tiezhi" = "贴纸";
+"meizhuang" = "美妆";
+
+"zhailian" = "窄脸";
+"ruihua" = "锐化";
+"kouhong" = "口红";
+"saihong" = "腮红";
+"xiurong" = "修容";
+"jiemao" = "睫毛";
+"meimao" = "眉毛";
+"meitong" = "美瞳";
+
+
+//百度翻译部分
+"quangu" = "颧骨";
+"xiahe" = "下颌";
+"yanjing" = "眼睛";
+"bizi" = "鼻子";
+"zuiba" = "嘴巴";
+
+"Faceunity"="相芯";
+"Agora"="声网";
+"Volcengine"="火山引擎";
+
+"skinCare"="美肤";
+"microShap"="微整形";
+"oneKeyDress"="风格妆";
+"sticker"="贴纸";
+"dressUp"="美妆";

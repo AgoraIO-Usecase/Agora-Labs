@@ -132,6 +132,27 @@ extension UIView {
         self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0).isActive = true
 
     }
+    
+    func colorGradient(color0:UIColor,color1:UIColor,point0:CGPoint,point1:CGPoint)  {
+        self.layoutIfNeeded()
+        let gradient = CAGradientLayer()
+        let colors = [color0.cgColor, color1.cgColor]
+        gradient.startPoint = point0
+        gradient.endPoint = point1
+        gradient.colors = colors.compactMap { $0 }
+        gradient.locations = [NSNumber(value: 0.0), NSNumber(value: 1.0)]
+        gradient.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height)
+        self.layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func rectCorner(corner: UIRectCorner, radii: CGSize){
+        self.layoutIfNeeded()
+        let maskPath = UIBezierPath.init(roundedRect: self.bounds, byRoundingCorners: corner, cornerRadii: radii)
+        let maskLayer = CAShapeLayer.init()
+        maskLayer.frame = self.bounds
+        maskLayer.path = maskPath.cgPath
+        self.layer.mask = maskLayer
+    }
 }
 
 //MARK: - Color
@@ -151,6 +172,10 @@ extension AGColor {
                   green: transform(hex, offset: 8),
                   blue: transform(hex),
                   alpha: alpha)
+    }
+    
+    func setRgba(_ r:CGFloat,_ g:CGFloat,_ b:CGFloat,_ a:CGFloat)-> AGColor {
+        return AGColor.init(red: r/255, green: g/255,  blue:b/255, alpha: a)
     }
     
     func rgbValue() -> (red: CGFloat, green: CGFloat, blue: CGFloat) {

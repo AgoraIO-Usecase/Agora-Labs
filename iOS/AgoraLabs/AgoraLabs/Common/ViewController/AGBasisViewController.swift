@@ -18,6 +18,7 @@ class AGBasisViewController: BaseViewController{
     
     public var pageIndex = 0
     public var dataList = [[String:Any]]()
+    public var doneMap = [String]()
     
     private let AGViewControllerCellID = "AGViewControllerCell"
     private let AGViewControllerHeadID = "AGViewControllerHead"
@@ -101,8 +102,10 @@ extension AGBasisViewController: UICollectionViewDataSource, UICollectionViewDel
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AGViewControllerCellID, for: indexPath)
         if let _cell = cell as? AGViewControllerCell {
             let contentList = dataList[indexPath.section]["content"] as? [String]
-            _cell.titleLab.text = contentList?[indexPath.row].localized
+            let name = contentList?[indexPath.row] ?? ""
+            _cell.titleLab.text = name.localized
             _cell.icon.image = UIImage(named: contentList?[indexPath.row].removeAllSapce ?? "")
+            _cell.stayTuned.isHidden = doneMap.contains(name)
         }
         return cell
     }

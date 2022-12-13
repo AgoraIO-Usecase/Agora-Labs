@@ -12,10 +12,11 @@ class SubCellModel {
     var tag:Int = 0
     var value:Any?
     var open:Bool = false
-    var subView:SubCellView?
-    init(name:String,tag:Int,bgImageName:String = "") {
+    var subView:UIView?
+    init(name:String,tag:Int,value:Any = "",bgImageName:String = "") {
         self.name = name
         self.tag = tag
+        self.value = value
         self.bgImageName = bgImageName
     }
 }
@@ -95,7 +96,7 @@ class SubCellView: UIView {
         }
     }
         
-    func setup(model:SubCellModel) {
+    func setupSubCellModel(_ model:SubCellModel) {
         titleLab.text = model.name.localized
         if model.bgImageName == "" {
             iconImage.isHidden = false
@@ -116,4 +117,47 @@ class SubCellView: UIView {
         }
     }
     
+    
+    func setupBeautyFuncModel(_ model:BeautyFuncModel?) {
+        titleLab.text = model?.abilityName.localized
+        iconImage.image = UIImage(named: model?.abilityIcon ?? "")
+        iconImage.isHidden = false
+        if model?.isSelected == true {
+            iconView.borderWidth = 2
+            iconView.borderColor = UIColor(hex: "91E2FF").cgColor
+            self.alpha = 1
+        }else{
+            iconView.borderWidth = 1
+            iconView.borderColor = UIColor(hex: "ffffff", alpha: 0.16).cgColor
+            self.alpha = 0.6
+        }
+    }
+    
+}
+
+class SubButton: UIButton {
+    override var isSelected: Bool{
+        didSet{
+            if isSelected {
+                self.borderWidth = 2
+                self.borderColor = UIColor(hex: "91E2FF").cgColor
+                self.alpha = 1
+            }else{
+                self.borderWidth = 1
+                self.borderColor = UIColor(hex: "ffffff", alpha: 0.16).cgColor
+                self.alpha = 0.6
+            }
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.borderWidth = 1
+        self.borderColor = UIColor(hex: "ffffff", alpha: 0.16).cgColor
+        self.alpha = 0.6
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

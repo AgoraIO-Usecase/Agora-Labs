@@ -22,6 +22,31 @@ var SCREEN_STATUS_HEIGHT:CGFloat {
     return statusBarHeight
 }
 
+/// 底部安全区高度
+var SCREEN_BOTTOM_HEIGHT:CGFloat {
+    if #available(iOS 13.0, *) {
+        let scene = UIApplication.shared.connectedScenes.first
+        guard let windowScene = scene as? UIWindowScene else { return 0 }
+        guard let window = windowScene.windows.first else { return 0 }
+        return window.safeAreaInsets.bottom
+    } else if #available(iOS 11.0, *) {
+        guard let window = UIApplication.shared.windows.first else { return 0 }
+        return window.safeAreaInsets.bottom
+    }
+    return 0;
+}
+
+/// 导航栏高度
+var SCREEN_NAV_HEIGHT:CGFloat {
+    return 44.0
+}
+
+/// 状态栏+导航栏的高度
+var SCREEN_NAV_FULL_HEIGHT:CGFloat {
+    return SCREEN_NAV_HEIGHT + SCREEN_STATUS_HEIGHT
+}
+
+
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
@@ -31,6 +56,12 @@ let SCREEN_HEAD_HEIGHT = 50.0
 let SCREEN_TEXT_COLOR = "#0A3D7B"
 
 let SCREEN_CCC_COLOR = "#cccccc"
+
+let SCREEN_MASK_COLOR = "#2a2a3b"
+
+let SCREEN_FFF_COLOR = "#ffffff"
+
+let SCREEN_PIXEL = 1.0 / UIScreen.main.scale
 
 let SCREEN_SHARE_UID_MIN:UInt = 501
 let SCREEN_SHARE_UID_MAX:UInt = 1000

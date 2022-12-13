@@ -1,0 +1,55 @@
+/* 
+  Localization.strings
+  APIExample
+
+  Created by 张乾泽 on 2020/10/7.
+  Copyright © 2020 Agora Corp. All rights reserved.
+*/
+
+
+//相芯美颜面板
+"yuantu" = "Original Image";
+"mopi" = "Fine Blur";
+"meibai" = "Whiten";
+"hongrun" = "Ruddy";
+"shoulian" = "Cheek Thin";
+"dayan" = "Eye Enlarge";
+"quheiyanquan" = "Circles";
+"meiya" = "Tooth Whiten";
+"qufalingwen" = "Wrinkles";
+
+"qiangdu" = "Strength";
+
+"meifu" = "Skin";
+"weizhengxing" = "Reshape";
+"fenggezhuang" = "MakeupStyle";
+"tiezhi" = "Stickers";
+"meizhuang" = "Makeup";
+
+"zhailian" = "Narrow Face";
+"ruihua" = "Sharpen";
+"kouhong" = "Lipstick";
+"saihong" = "Blusher";
+"xiurong" = "Contour";
+"jiemao" = "Eyelash";
+"meimao" = "Eyebrows";
+"meitong" = "Pupil";
+
+//百度翻译部分
+"quangu" = "Cheekbones";
+"xiahe" = "Mandible";
+"yanjing" = "Eye";
+"bizi" = "Nose";
+"zuiba" = "Mouth";
+
+"Faceunity"="Faceunity";
+"Agora"="Agora";
+"Volcengine"="Volcengine";
+
+"skinCare"="SKIN";
+"microShap"="RESHAPE";
+"oneKeyDress"="MAKEUP";
+"sticker"="STICKERA";
+"dressUp"="DRESSUP";
+
+"Stay Tuned"="Stay Tuned";

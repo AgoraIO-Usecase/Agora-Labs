@@ -15,5 +15,7 @@ target 'AgoraLabs' do
   pod 'SVProgressHUD', '2.2.5'
   pod 'FDFullscreenPopGesture', '1.1'
   pod 'ZLPhotoBrowser','4.3.1'
+  pod 'ASValueTrackingSlider', :git => 'https://github.com/liaochenliang/ASValueTrackingSlider.git'
+  pod 'YYCategories','1.0.4'
 end
 

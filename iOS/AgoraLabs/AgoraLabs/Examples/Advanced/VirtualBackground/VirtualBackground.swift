@@ -10,10 +10,12 @@ import UIKit
 
 class VirtualBackground: BaseViewController {
     
+    var currentModel:SubCellModel?
+    
     let originalModel = SubCellModel(name: "Original Image",tag: -1)
     
     let itemModelList:[SubCellModel] = [
-        SubCellModel(name: "Background Blur",tag: 0),
+        SubCellModel(name: "Background Blur",tag: 0,value: 1),
         SubCellModel(name: "Split Green Screen",tag: 1),
         SubCellModel(name: "Scenery Image",tag: 2, bgImageName: "Image1"),
         SubCellModel(name: "Meeting Image",tag: 3, bgImageName: "Image2"),
@@ -22,9 +24,10 @@ class VirtualBackground: BaseViewController {
 //        SubCellModel(name: "Gathering Mode",tag: 6)
     ]
     
-    var agoraKit: AgoraRtcEngineKit!
+    var blurSlider:UISlider?
     
     var localVideoView:UIView?
+    var agoraKit: AgoraRtcEngineKit!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,10 +83,6 @@ class VirtualBackground: BaseViewController {
         // 2. If app certificate is turned on at dashboard, token is needed
         // when joining channel. The channel name and uid used to calculate
         // the token has to match the ones used for channel join
-        let option = AgoraRtcChannelMediaOptions()
-        option.publishCameraTrack = true
-        option.publishMicrophoneTrack = true
-        option.clientRoleType = GlobalSettings.shared.getUserRole()
         
     }
     
@@ -98,10 +97,6 @@ class VirtualBackground: BaseViewController {
     
     //点击原图 取消背景设置
     func originalViewClick() {
-        for item in itemModelList {
-            item.open =  false
-            item.subView?.setup(model: item)
-        }
         self.closeVirtualBackground()
     }
     
@@ -113,7 +108,7 @@ class VirtualBackground: BaseViewController {
         }
         
         if model.name == "Background Blur" {
-            self.setupBackgroundBlur(value: 2)
+            self.setupBackgroundBlur(value: model.value as! Int)
         }else if model.name == "Split Green Screen" {
             self.setVirtualColorBackground(hexString:"00FF00")
         }else if model.name == "Scenery Image" {
@@ -130,12 +125,8 @@ class VirtualBackground: BaseViewController {
             self.closeVirtualBackground()
             AGHUD.showInfo(info: "敬请期待")
         }else if model.name == "Gathering Mode" {
-            if let path = Bundle.main.path(forResource: "bg4", ofType: "jpeg") {
-                self.setVirtualImgBackground(imagePath: path)
-            }else{
-                self.closeVirtualBackground()
-                AGHUD.showInfo(info: "敬请期待")
-            }
+            self.closeVirtualBackground()
+            AGHUD.showInfo(info: "敬请期待")
         }
         
     }

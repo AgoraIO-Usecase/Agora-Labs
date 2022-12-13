@@ -88,6 +88,8 @@ class ViewController: UIViewController {
         ]
     ]
     
+    var doneMap = ["Virtual Background","Beautify Filter"]
+    
     private var segmentedDataSource: JXSegmentedTitleDataSource!
     private var segmentedView: JXSegmentedView!
     private var contentScrollView: UIScrollView!
@@ -108,7 +110,7 @@ class ViewController: UIViewController {
         
         segmentedDataSource = JXSegmentedTitleDataSource()
         segmentedDataSource.isTitleColorGradientEnabled = true
-        segmentedDataSource.titleSelectedColor = "#ffffff".hexColor()
+        segmentedDataSource.titleSelectedColor = SCREEN_FFF_COLOR.hexColor()
         segmentedDataSource.titleNormalColor = SCREEN_TEXT_COLOR.hexColor(alpha: 0.6)
         segmentedDataSource.titleNormalFont = UIFont.systemFont(ofSize: 15)
         segmentedView.dataSource = segmentedDataSource
@@ -153,6 +155,7 @@ class ViewController: UIViewController {
             vc.pageIndex = index
             vc.delegate = self
             vc.dataList = demoMap[index]
+            vc.doneMap = doneMap
             contentScrollView.addSubview(vc.view)
             listVCArray.append(vc)
         }
@@ -177,12 +180,12 @@ extension ViewController: AGViewDelegate{
     func collectionViewClick(page: Int, indexPath: IndexPath) {
         guard let dataList = demoMap[page][indexPath.section]["content"] as? [String] else { return }
         let name = dataList[indexPath.row]
-        if name == "Virtual Background" {
+        if doneMap.contains(name) {
             let menuItem =  MenuItem(name: name, storyboard: name.removeAllSapce, controller: name.removeAllSapce)
             let storyBoard: UIStoryboard = UIStoryboard(name: menuItem.storyboard, bundle: nil)
             let entryViewController:UIViewController = storyBoard.instantiateViewController(withIdentifier: menuItem.storyboard)
             entryViewController.fd_prefersNavigationBarHidden = false
-            entryViewController.fd_interactivePopDisabled = false
+            entryViewController.fd_interactivePopDisabled = true
             self.navigationController?.pushViewController(entryViewController, animated: true)
 
         }else{

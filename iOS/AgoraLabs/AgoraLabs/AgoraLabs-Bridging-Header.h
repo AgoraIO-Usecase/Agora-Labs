@@ -8,3 +8,7 @@
 #import <AgoraReplayKitExtension/AgoraReplayKitExtension.h>
 #import "MediaUtils.h"
 
+#import "virtualTools.h"
+#import "authpack.h"
+#import "BDResourceHelper.h"
+#import <YYCategories/YYCategories.h>
