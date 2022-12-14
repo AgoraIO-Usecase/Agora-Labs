@@ -62,7 +62,7 @@ extension VirtualBackground {
         self.view.addSubview(bottomView)
         bottomView.snp.makeConstraints { make in
             make.bottom.left.right.equalToSuperview()
-            make.height.equalTo(self.view.safeAreaInsets.bottom+118)
+            make.height.equalTo(SCREEN_BOTTOM_HEIGHT+118)
         }
         
         
@@ -71,7 +71,7 @@ extension VirtualBackground {
         subView.setupSubCellModel(originalModel)
         bottomView.addSubview(subView)
         subView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(24)
             make.left.equalToSuperview().offset(4)
             make.size.equalTo(CGSize(width: 72, height: 70))
         }

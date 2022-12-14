@@ -158,7 +158,6 @@ extension BeautifyFilter{
         self.setEnableVolcUnity(isEnabled: false)
         self.setEnableFaceUnity(isEnabled: true)
         
-
         bottomView?.snp.updateConstraints({ make in
             make.height.equalTo(SCREEN_BOTTOM_HEIGHT+118)
         })
@@ -174,7 +173,7 @@ extension BeautifyFilter{
         subView.setupBeautyFuncModel(oldDataBe)
         bottomContentView.addSubview(subView)
         subView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(24)
             make.left.equalToSuperview().offset(4)
             make.size.equalTo(CGSize(width: 72, height: 70))
         }
@@ -350,7 +349,7 @@ extension BeautifyFilter:JXSegmentedViewDelegate{
         subView.setupBeautyFuncModel(oldDataBe)
         bottomContentView.addSubview(subView)
         subView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(24)
             make.left.equalToSuperview().offset(4)
             make.size.equalTo(CGSize(width: 72, height: 70))
         }

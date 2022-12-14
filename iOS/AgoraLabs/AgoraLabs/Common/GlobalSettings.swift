@@ -61,6 +61,8 @@ let SCREEN_MASK_COLOR = "#2a2a3b"
 
 let SCREEN_FFF_COLOR = "#ffffff"
 
+let SCREEN_RECT_CORNER = 12
+
 let SCREEN_PIXEL = 1.0 / UIScreen.main.scale
 
 let SCREEN_SHARE_UID_MIN:UInt = 501

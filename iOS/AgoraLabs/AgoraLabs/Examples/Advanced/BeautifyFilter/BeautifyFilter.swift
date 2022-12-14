@@ -21,7 +21,7 @@ class BeautifyFilter: UIViewController {
     var oldDataBe = BeautyFuncModel()
     //相芯美颜内容
     var dataBeArr = [BeautyFuncModel]()
-    //字节美颜内容
+    //火山美颜内容
     var dataBDDic = [[BeautyFuncModel]]()
     var dressSourceArr = [String]()
     var oneKeySourceArr = [String]()
@@ -150,7 +150,6 @@ extension BeautifyFilter{
                 self.cancelAgoraBeautyEffect()
             }
         }
-        
     }
 }
 
@@ -206,7 +205,6 @@ extension BeautifyFilter{
             agoraKit.enableExtension(withVendor: "FaceUnity", extension:"Effect", enabled: isEnabled)
             print("相芯美颜状态 = \(isEnabled)")
         }
-        
     }
     
     //设置相芯-美形参数
