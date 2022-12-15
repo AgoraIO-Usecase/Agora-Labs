@@ -52,4 +52,42 @@
     <string name="refresh">Refresh</string>
     <string name="save">Save</string>
     <string name="app_id_empty">The App ID is empty!</string>
+    <string name="ORIENTATION_MODE_ADAPTIVE" translatable="false">ORIENTATION_MODE_ADAPTIVE</string>
+    <string name="ORIENTATION_MODE_FIXED_LANDSCAPE" translatable="false">ORIENTATION_MODE_FIXED_LANDSCAPE</string>
+    <string name="ORIENTATION_MODE_FIXED_PORTRAIT" translatable="false">ORIENTATION_MODE_FIXED_PORTRAIT</string>
+
+    <string name="special_effect">Special effect</string>
+    <string name="virtul_bg">Virtual background</string>
+    <string name="beauty">Beauty</string>
+    <string name="denoise">Denoise</string>
+    <string name="light_dark">Light dark</string>
+    <string name="adaptive_sharpen">Adaptive sharpen</string>
+    <string name="color_enhance">Color enhance</string>
+    <string name="pvc">PVC</string>
+    <string name="roi">ROI</string>
+    <string name="super_res">super resolution</string>
+    <string name="super_quality">super quality</string>
+    <string name="hdr">HDR</string>
+
+    <string name="ai_noise_reduction">AI noise reduction</string>
+    <string name="ai_echo_cancellation">AI echo_cancellation</string>
+    <string name="spacial_audio">Spacial audio</string>
+    <string name="stt">STT</string>
+    <string name="multi_link">Multi-link</string>
+    <string name="anti_weak_network">Anti-weak network</string>
+    <string name="face_capture">Face capture</string>
+    <string name="motion_capture">Motion capture</string>
+    <string name="voice_drive">Voice drive</string>
+    <string name="tab_video">Video</string>
+    <string name="tab_audio">Audio</string>
+    <string name="tab_net_optimize">Net optimize</string>
+    <string name="tab_algorithmic">Algorithmic</string>
+    <string name="stay_tuned">Stay Tuned</string>
+
+    <string name="original_image">Original Image</string>
+    <string name="background_blur">Background Blur</string>
+    <string name="split_green_screen">Split Green Screen</string>
+    <string name="landscape">Landscape</string>
+    <string name="meeting_room">Meeting room</string>
+    <string name="customize">Customize</string>
 </resources>

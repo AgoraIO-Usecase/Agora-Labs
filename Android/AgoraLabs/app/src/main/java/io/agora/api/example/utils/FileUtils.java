@@ -2,6 +2,9 @@ package io.agora.api.example.utils;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 
 import java.io.File;
@@ -95,6 +98,28 @@ public class FileUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getRealPath( Context context,Uri uri ) {
+        String fileName = null;
+        if (uri != null) {
+            if (uri.getScheme().toString().compareTo("content") == 0) {
+                Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    try {
+                        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                        fileName = cursor.getString(column_index);
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                    } finally {
+                        cursor.close();
+                    }
+                }
+            } else if (uri.getScheme().compareTo("file") == 0) {
+                fileName = uri.getPath();
+            }
+        }
+        return fileName;
     }
 
 }
