@@ -156,8 +156,8 @@ extension VirtualBackground {
   
     private func itemViewClick(index:Int) {
         
-        self.blurSlider?.isHidden = index != 0
         if index == -1 {
+            //原图
             self.currentModel = self.originalModel
             for item in itemModelList {
                 item.open =  false
@@ -165,16 +165,25 @@ extension VirtualBackground {
             }
             UINotificationFeedbackGenerator().notificationOccurred(.success)
             self.originalViewClick()
-        }else{
+        }else if index == 1 {
+            //绿幕分割
+            let model:SubCellModel = self.itemModelList[index]
+            guard let itemView = model.subView as? SubCellView  else { return  }
+            model.open = !model.open
+            itemView.setupSubCellModel(model)
+            self.greenScreenState(model: model)
+        }else {
             let model:SubCellModel = self.itemModelList[index]
             self.currentModel = model
             for item in itemModelList {
+                guard let itemView = item.subView as? SubCellView  else { return  }
+                if item.tag == 1 { continue }
                 if item.tag == model.tag {
                     item.open = !item.open
-                    if let itemView = item.subView as? SubCellView { itemView.setupSubCellModel(item) }
-                }else {
+                    itemView.setupSubCellModel(item)
+                }else  {
                     item.open = false
-                    if let itemView = item.subView as? SubCellView { itemView.setupSubCellModel(item) }
+                    itemView.setupSubCellModel(item)
                 }
             }
             if model.tag == 4 {
@@ -183,6 +192,7 @@ extension VirtualBackground {
                 self.itemViewClick(model: model)
             }
         }
+        self.blurSlider?.isHidden = itemModelList.first?.open == false
     }
 }
 

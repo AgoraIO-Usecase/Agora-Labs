@@ -40,6 +40,7 @@
 		8BC751D5273E502700552265 /* LiveStreaming.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BC751D0273E502700552265 /* LiveStreaming.strings */; };
 		8BC751D6273E502700552265 /* LiveStreaming.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BC751D2273E502700552265 /* LiveStreaming.storyboard */; };
 		8BC751D7273E502700552265 /* LiveStreaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC751D4273E502700552265 /* LiveStreaming.swift */; };
+		A690E4B5294AC9E90058D196 /* launch_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A690E4B4294AC9E90058D196 /* launch_logo.png */; };
 		A6C5B17D2941C7F90071FFBF /* BeautifyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */; };
 		A6C5B17F2941C8C70071FFBF /* BeautifyFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C5B17E2941C8C70071FFBF /* BeautifyFilter.storyboard */; };
 		A6C5B1812941C9630071FFBF /* BeautifyFilter+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B1802941C9630071FFBF /* BeautifyFilter+UI.swift */; };
@@ -419,6 +420,7 @@
 		92577CFC05C5519F5AF5591C /* Pods-audioFilter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-audioFilter.release.xcconfig"; path = "Target Support Files/Pods-audioFilter/Pods-audioFilter.release.xcconfig"; sourceTree = "<group>"; };
 		92EACE913B50B28F1588FE03 /* Pods-Agora-ScreenShare-Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agora-ScreenShare-Extension.release.xcconfig"; path = "Target Support Files/Pods-Agora-ScreenShare-Extension/Pods-Agora-ScreenShare-Extension.release.xcconfig"; sourceTree = "<group>"; };
 		97FD759191CA9CEEF6BC40F1 /* Pods_AgoraLabs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgoraLabs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A690E4B4294AC9E90058D196 /* launch_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_logo.png; sourceTree = "<group>"; };
 		A6A7BA49294320A6006A8CBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyFilter.swift; sourceTree = "<group>"; };
 		A6C5B17E2941C8C70071FFBF /* BeautifyFilter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BeautifyFilter.storyboard; sourceTree = "<group>"; };
@@ -1521,6 +1523,7 @@
 				03D13BDD2448758B00B599B3 /* Info.plist */,
 				03D13BCF2448758900B599B3 /* AppDelegate.swift */,
 				03D13BD82448758B00B599B3 /* Assets.xcassets */,
+				A690E4B4294AC9E90058D196 /* launch_logo.png */,
 				03D13BDA2448758B00B599B3 /* LaunchScreen.storyboard */,
 				033A9F2C252D737900BC26E1 /* Localizable.strings */,
 			);
@@ -1806,6 +1809,7 @@
 				A6C5B29B2941EDEB0071FFBF /* mu_style_highlight_02.bundle in Resources */,
 				A6C5B2AF2941EDEB0071FFBF /* ctrl_flower.bundle in Resources */,
 				A6C5B2962941EDEB0071FFBF /* mu_style_eyelash_05.bundle in Resources */,
+				A690E4B5294AC9E90058D196 /* launch_logo.png in Resources */,
 				A6C5B2AE2941EDEB0071FFBF /* ssd_thread_thumb.bundle in Resources */,
 				A6C5B2662941EDEB0071FFBF /* hashiqi_Animoji.bundle in Resources */,
 				A6C5B2DB2941EDEB0071FFBF /* expression_type.bundle in Resources */,
@@ -2422,9 +2426,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = PSLY6TJJC8;
 				ENABLE_BITCODE = NO;
@@ -2439,7 +2443,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2481,7 +2485,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.labs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = medialab;
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraLabs/AgoraLabs-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2497,10 +2501,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = PSLY6TJJC8;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YS397FG5PA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2513,7 +2517,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2555,7 +2559,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.labs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "AgoraLabs Distribution";
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraLabs/AgoraLabs-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
