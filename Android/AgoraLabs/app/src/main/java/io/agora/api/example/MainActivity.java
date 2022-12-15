@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnLi
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     }
 
+
     @Override
     public boolean onSupportNavigateUp() {
         getOnBackPressedDispatcher().onBackPressed();

@@ -53,4 +53,9 @@
         <item>FRAME_RATE_FPS_24</item>
         <item>FRAME_RATE_FPS_30</item>
     </string-array>
+    <string-array name="blur_degree">
+        <item>L</item>
+        <item>M</item>
+        <item>H</item>
+    </string-array>
 </resources>

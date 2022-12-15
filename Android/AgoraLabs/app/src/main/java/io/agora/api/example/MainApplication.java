@@ -2,6 +2,7 @@ package io.agora.api.example;
 
 import android.app.Application;
 
+import io.agora.api.example.helper.ResourceHelper;
 import java.lang.annotation.Annotation;
 import java.util.Set;
 
@@ -18,6 +19,11 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initExamples();
+        initResource();
+    }
+
+    private void initResource(){
+        ResourceHelper.getInstance(this).copyResource();
     }
 
     private void initExamples() {
