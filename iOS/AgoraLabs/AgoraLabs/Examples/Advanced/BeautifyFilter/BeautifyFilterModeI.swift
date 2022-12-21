@@ -33,7 +33,7 @@ class BeautyFuncModel: BaseModel {
     
     var paramModel = BeautyParamModel()
     
-    class func dataBe() -> BeautyFuncModel {
+    class func originalData() -> BeautyFuncModel {
         let tempModel = BeautyFuncModel()
         tempModel.abilityName = "yuantu".localized
         tempModel.abilityIcon = "yuantu"
@@ -43,7 +43,7 @@ class BeautyFuncModel: BaseModel {
         return tempModel
     }
     
-    class func loadData() -> [BeautyFuncModel] {
+    class func loadFaceData() -> [BeautyFuncModel] {
          
          var dataArr = [BeautyFuncModel]()
         
@@ -136,7 +136,7 @@ class BeautyFuncModel: BaseModel {
         return tempModel
     }
     
-    class func loadByteDanceDataDic() -> [[BeautyFuncModel]]{
+    class func loadVolcData() -> [[BeautyFuncModel]]{
         
         var dataArr = [BeautyFuncModel]()
         

@@ -18,11 +18,11 @@ class BeautifyFilter: UIViewController {
         SubCellModel(name: "Volcengine",tag: 2)
     ]
     //原图
-    var oldDataBe = BeautyFuncModel()
+    var originalData = BeautyFuncModel()
     //相芯美颜内容
-    var dataBeArr = [BeautyFuncModel]()
+    var faceDataArr = [BeautyFuncModel]()
     //火山美颜内容
-    var dataBDDic = [[BeautyFuncModel]]()
+    var volcDataArr = [[BeautyFuncModel]]()
     var dressSourceArr = [String]()
     var oneKeySourceArr = [String]()
     
@@ -45,20 +45,20 @@ class BeautifyFilter: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //初始化-美颜数据模型
-        self.oldDataBe = BeautyFuncModel.dataBe()
-        self.dataBeArr = BeautyFuncModel.loadData()
-        self.dataBDDic = BeautyFuncModel.loadByteDanceDataDic()
+        self.originalData = BeautyFuncModel.originalData()
+        self.faceDataArr = BeautyFuncModel.loadFaceData()
+        self.volcDataArr = BeautyFuncModel.loadVolcData()
         //初始化-UI
         self.setupUI()
         //初始化-AgoraRtcEngineKit
-        self.setupData()
+        self.setupAgoraRtcEngine()
         //初始化-相芯SDK
         self.setupFaceUnityBeauty()
         //初始化-火山SDK
         self.setupByteDanceBeauty()
     }
     
-    func setupData() {
+    func setupAgoraRtcEngine() {
         
         // set up agora instance when view loadedlet config = AgoraRtcEngineConfig()
         // set up agora instance when view loade

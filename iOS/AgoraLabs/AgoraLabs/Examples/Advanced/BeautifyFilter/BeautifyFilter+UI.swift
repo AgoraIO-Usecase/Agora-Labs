@@ -127,8 +127,8 @@ extension BeautifyFilter {
         self.setEnableFaceUnity(isEnabled: false)
         self.setEnableVolcUnity(isEnabled: false)
 
-        self.dataBeArr.forEach({$0.isSelected = false})
-        self.dataBDDic.forEach({$0.forEach({$0.isSelected = false})})
+        self.faceDataArr.forEach({$0.isSelected = false})
+        self.volcDataArr.forEach({$0.forEach({$0.isSelected = false})})
     }
     
     //点击美颜滤镜
@@ -169,8 +169,8 @@ extension BeautifyFilter{
         }
         
         let subView = SubCellView()
-        oldDataBe.subView = subView
-        subView.setupBeautyFuncModel(oldDataBe)
+        originalData.subView = subView
+        subView.setupBeautyFuncModel(originalData)
         bottomContentView.addSubview(subView)
         subView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(24)
@@ -194,11 +194,11 @@ extension BeautifyFilter{
         scrollView.addSubview(contentV)
         contentV.snp.makeConstraints { (make) in
             make.left.right.top.bottom.height.equalToSuperview()
-            make.width.equalTo(80*dataBeArr.count)
+            make.width.equalTo(80*faceDataArr.count)
         }
         
-        for i in 0..<dataBeArr.count {
-            let itemModel = dataBeArr[i]
+        for i in 0..<faceDataArr.count {
+            let itemModel = faceDataArr[i]
             let itemView = SubCellView()
             itemModel.subView = itemView
             itemModel.tag = i
@@ -233,7 +233,7 @@ extension BeautifyFilter{
     
     func faceUnityItemViewClick(index:Int)  {
         if index == -1 {
-            for item in dataBeArr {
+            for item in faceDataArr {
                 item.isSelected =  false
                 if let itemView = item.subView as? SubCellView { itemView.setupBeautyFuncModel(item) }
             }
@@ -245,8 +245,8 @@ extension BeautifyFilter{
     }
     
     func setupfaceUnityItem(index:Int)  {
-        self.curSelectModel = self.dataBeArr[index]
-        for item in dataBeArr {
+        self.curSelectModel = self.faceDataArr[index]
+        for item in faceDataArr {
             if item.tag == self.curSelectModel?.tag {
                 item.isSelected = true
                 self.curSlider?.isHidden = false
@@ -304,7 +304,7 @@ extension BeautifyFilter:JXSegmentedViewDelegate{
         }
         
         segmentedDataSource = JXSegmentedTitleDataSource()
-        let funcKey = self.dataBDDic.compactMap({$0.first?.paramModel.funcKey.localized})
+        let funcKey = self.volcDataArr.compactMap({$0.first?.paramModel.funcKey.localized})
         segmentedDataSource.titles = funcKey
         segmentedDataSource.itemSpacing = 16+8
         segmentedDataSource.titleSelectedColor = SCREEN_FFF_COLOR.hexColor()
@@ -343,10 +343,10 @@ extension BeautifyFilter:JXSegmentedViewDelegate{
     func setupTabBottomContentView(_ bottomContentView:UIView,_ tabIndex:Int) {
         
         bottomContentView.removeAllSubviews()
-        let dataBDDicArr = dataBDDic[tabIndex]
+        let dataBDDicArr = volcDataArr[tabIndex]
         let subView = SubCellView()
-        oldDataBe.subView = subView
-        subView.setupBeautyFuncModel(oldDataBe)
+        originalData.subView = subView
+        subView.setupBeautyFuncModel(originalData)
         bottomContentView.addSubview(subView)
         subView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(24)
@@ -409,7 +409,7 @@ extension BeautifyFilter:JXSegmentedViewDelegate{
     }
     
     func volcUnityItemViewClick(index:Int)  {
-        let dataBDDicArr = self.dataBDDic[self.segmentedView.selectedIndex]
+        let dataBDDicArr = self.volcDataArr[self.segmentedView.selectedIndex]
         if index == -1 {
             for item in dataBDDicArr {
                 item.isSelected =  false
@@ -423,7 +423,7 @@ extension BeautifyFilter:JXSegmentedViewDelegate{
     }
     
     func setupVolcUnityItem(index:Int)  {
-        let dataBDDicArr = self.dataBDDic[self.segmentedView.selectedIndex]
+        let dataBDDicArr = self.volcDataArr[self.segmentedView.selectedIndex]
         self.curSelectModel = dataBDDicArr[index]
         for item in dataBDDicArr {
             if item.tag == self.curSelectModel?.tag {
@@ -456,8 +456,8 @@ extension BeautifyFilter:JXSegmentedViewDelegate{
     
     func setupVolcUnityOriginalClick()  {
         self.curSlider?.isHidden = true
-        self.dataBeArr.forEach({$0.isSelected = false})
-        self.dataBDDic.forEach({$0.forEach({$0.isSelected = false})})
+        self.faceDataArr.forEach({$0.isSelected = false})
+        self.volcDataArr.forEach({$0.forEach({$0.isSelected = false})})
         self.setEnableVolcUnity(isEnabled: false)
     }
     

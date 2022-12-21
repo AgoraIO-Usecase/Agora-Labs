@@ -32,10 +32,10 @@ class VirtualBackground: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        self.setupData()
+        self.setupAgoraRtcEngine()
     }
     
-    func setupData() {
+    func setupAgoraRtcEngine() {
         
         // set up agora instance when view loadedlet config = AgoraRtcEngineConfig()
         // set up agora instance when view loaded
