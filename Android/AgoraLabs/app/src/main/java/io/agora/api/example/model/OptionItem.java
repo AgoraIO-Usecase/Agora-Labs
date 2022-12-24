@@ -1,11 +1,13 @@
 package io.agora.api.example.model;
 
-public class MenuItem {
+public class OptionItem {
+
     private int id;
     private int imgRes;
     private int titleRes;
+    private boolean selected=false;
 
-    public MenuItem(int id, int imgRes, int titleRes) {
+    public OptionItem(int id, int imgRes, int titleRes) {
         this.id = id;
         this.imgRes = imgRes;
         this.titleRes = titleRes;
@@ -33,5 +35,13 @@ public class MenuItem {
 
     public void setTitleRes(int titleRes) {
         this.titleRes = titleRes;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

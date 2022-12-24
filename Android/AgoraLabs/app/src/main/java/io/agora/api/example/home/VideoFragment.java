@@ -45,6 +45,9 @@ public class VideoFragment extends BaseListFragment {
         if(feature.getId()==ID_VIRTUAL_BG){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_virtual_bg);
+        }else if(feature.getId()==ID_BEAUTY){
+            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+            navController.navigate(R.id.action_homeFragment_to_beauty);
         }
     }
 }

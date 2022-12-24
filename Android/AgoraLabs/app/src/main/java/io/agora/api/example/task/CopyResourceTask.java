@@ -3,7 +3,9 @@ package io.agora.api.example.task;
 import android.content.Context;
 import android.os.AsyncTask;
 import io.agora.api.example.utils.FileUtils;
+import io.agora.api.example.utils.ResourceUtils;
 import java.io.File;
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 public class CopyResourceTask extends AsyncTask<Void,Void,Boolean> {
@@ -31,6 +33,9 @@ public class CopyResourceTask extends AsyncTask<Void,Void,Boolean> {
             deleteFile(dir);
         }
         FileUtils.copyFilesFromAssets(context, "blur", context.getExternalFilesDir("blur").toString());
+        FileUtils.copyFilesFromAssets(context,"faceunity",context.getExternalFilesDir("assets")+"/faceunity");
+        FileUtils.copyFilesFromAssets(context,"bytedance",context.getExternalFilesDir("assets")+"/bytedance");
+
         return true;
     }
 
