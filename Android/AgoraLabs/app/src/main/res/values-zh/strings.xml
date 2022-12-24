@@ -84,4 +84,69 @@
     <string name="landscape">风景</string>
     <string name="meeting_room">会议室</string>
     <string name="customize">自定义</string>
+
+    <string name="beauty_sdk_xiangxin">相芯</string>
+    <string name="beauty_sdk_agora">声网</string>
+    <string name="beauty_sdk_volc">火山引擎</string>
+
+    <string name="beauty_skin">美肤</string>
+    <string name="micro_plastic">微整形</string>
+    <string name="style_makeup">风格妆</string>
+    <string name="sticker">贴纸</string>
+    <string name="makeups">美妆</string>
+
+    <string name="sharpen">锐化</string>
+    <string name="buffing">磨皮</string>
+    <string name="whiten">美白</string>
+    <string name="ruddy">红润</string>
+    <string name="thin_face">瘦脸</string>
+    <string name="big_eye">大眼</string>
+    <string name="remove_dark_circles">去黑眼圈</string>
+    <string name="beauty_tooth">美牙</string>
+    <string name="nasolabial_folds">去法令纹</string>
+    <string name="narrow_face">窄脸</string>
+    <string name="cheekbone">颧骨</string>
+    <string name="lower_jaw">下颌</string>
+    <string name="eye">眼晴</string>
+    <string name="nose">鼻子</string>
+    <string name="mouth">嘴巴</string>
+    <string name="love_beans">爱豆</string>
+    <string name="white_tea">白茶</string>
+    <string name="white">白皙</string>
+    <string name="glacier">冰川</string>
+    <string name="core">C位</string>
+    <string name="broken_eyebrow">断眉</string>
+    <string name="korean">韩系</string>
+    <string name="no_cubs">没有小熊</string>
+    <string name="warm_man">暖男</string>
+    <string name="occident">欧美</string>
+    <string name="look">气色</string>
+    <string name="profound">深邃</string>
+    <string name="sweet">甜美</string>
+    <string name="warmth">温暖</string>
+    <string name="grace">优雅</string>
+    <string name="vitality">元气</string>
+    <string name="texture">质感</string>
+    <string name="babe">贝贝</string>
+    <string name="confession_tanabata">表白七夕</string>
+    <string name="dirt_girl">吃土少女</string>
+    <string name="electric_guitar">电吉它</string>
+    <string name="princess_mask">公主面具</string>
+    <string name="black_cat_glasses">黑猫眼镜</string>
+    <string name="mask">假面</string>
+    <string name="luck_cat">招财猫</string>
+    <string name="good_mood">美好心情</string>
+    <string name="dinosaur_test">恐龙测试</string>
+    <string name="gentleman">绅士</string>
+    <string name="dancing_turkey">跳舞火鸡</string>
+    <string name="pig_head_pig_ears">猪头猪耳</string>
+    <string name="purple_charm">紫色魅惑</string>
+    <string name="lip_stick">口红</string>
+    <string name="blush">腮红</string>
+    <string name="trimming">修容</string>
+    <string name="eyelash">睫毛</string>
+    <string name="eyebrow">眉毛</string>
+    <string name="circle_lenses">美瞳</string>
+
+
 </resources>

@@ -11,7 +11,9 @@
         <action
             android:id="@+id/action_homeFragment_to_virtual_bg"
             app:destination="@id/virtualBG" />
-
+        <action
+            android:id="@+id/action_homeFragment_to_beauty"
+            app:destination="@id/Beauty" />
     </fragment>
 
     <fragment
@@ -19,6 +21,11 @@
         android:name="io.agora.api.example.examples.video.VirtualBgFragment"
         android:label="@string/virtul_bg"
         tools:layout="@layout/fragment_virtual_bg" />
-
+    <fragment
+        android:id="@+id/Beauty"
+        android:name="io.agora.api.example.examples.video.BeautyFragment"
+        android:label="@string/beauty"
+        tools:layout="@layout/fragment_beauty"
+        />
 
 </navigation>

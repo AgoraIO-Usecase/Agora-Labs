@@ -7,5 +7,31 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="menu_item_icon_style">
+        <item name="android:layout_width">55dp</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:padding">@dimen/permission_dp_10</item>
+    </style>
+    <style name="menu_item_title_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/permission_dp_10</item>
+        <item name="android:textSize">@dimen/permission_sp_12</item>
+        <item name="android:textColor">#2effffff</item>
+    </style>
+    <style name="beauty_button_text_style">
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingLeft">@dimen/permission_dp_10</item>
+        <item name="android:paddingRight">@dimen/permission_dp_10</item>
+        <item name="android:background">@drawable/bg_rectangle</item>
+        <item name="android:layout_marginRight">@dimen/permission_dp_15</item>
+        <item name="android:layout_marginLeft">@dimen/permission_dp_15</item>
+        <item name="android:textColor">@color/beauty_text_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/permission_dp_15</item>
+    </style>
+
 
 </resources>

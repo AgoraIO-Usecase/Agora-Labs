@@ -1,5 +1,6 @@
 package io.agora.api.example.common.widget.indicator;
 
+import android.util.Log;
 import androidx.viewpager2.widget.ViewPager2;
 
 public class ViewPagerHelper {
@@ -7,17 +8,19 @@ public class ViewPagerHelper {
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                Log.d("AgoraLab","------onPageScrolled:"+position+" positionOffset:"+positionOffset+" positionOffsetPixels:"+positionOffsetPixels);
                 magicIndicator.onPageScrolled(position, positionOffset, positionOffsetPixels);
             }
 
             @Override public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                Log.d("AgoraLab","------onPageSelected:"+position);
                 magicIndicator.onPageSelected(position);
             }
 
             @Override public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
-                magicIndicator.onPageScrollStateChanged(state);
+                //magicIndicator.onPageScrollStateChanged(state);
             }
         });
     }

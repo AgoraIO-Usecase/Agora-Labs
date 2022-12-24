@@ -75,15 +75,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_ban"
-                android:padding="@dimen/permission_dp_5"
+                style="@style/menu_item_icon_style"
                 android:background="@drawable/bg_menu_item_normal"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/menu_text_default_color"
-                android:layout_marginTop="@dimen/permission_dp_10"
-                android:textSize="@dimen/permission_sp_12"
+                style="@style/menu_item_title_style"
                 android:text="@string/original_image"/>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
