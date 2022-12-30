@@ -10,26 +10,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import io.agora.api.example.App;
 import io.agora.api.example.R;
 import io.agora.api.example.common.adapter.MenuItemAdapter;
 import io.agora.api.example.common.adapter.OnItemClickListener;
 import io.agora.api.example.databinding.FragmentVirtualBgBinding;
-import io.agora.api.example.examples.BaseFeatureFragment;
-import io.agora.api.example.model.OptionItem;
+import io.agora.api.example.common.widget.slidingmenu.OptionItem;
 import io.agora.api.example.common.widget.bubbleseekbar.BubbleSeekBar;
 import io.agora.api.example.utils.FileUtils;
+import io.agora.api.example.utils.SPUtils;
+import io.agora.api.example.utils.SystemUtil;
+import io.agora.api.example.utils.ThreadUtils;
+import io.agora.rtc2.Constants;
+import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
+import io.agora.rtc2.RtcEngineConfig;
+import io.agora.rtc2.RtcEngineEx;
 import io.agora.rtc2.video.SegmentationProperty;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VirtualBackgroundSource;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
-public class VirtualBgFragment extends BaseFeatureFragment implements View.OnClickListener{
+public class VirtualBgFragment extends Fragment implements View.OnClickListener{
+    private final String TAG="AgoraLab";
+    protected RtcEngineEx rtcEngine;
+    protected int sceneMode= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
+
     private FragmentVirtualBgBinding binding;
     private final int ID_ORIGINAL=1;
     private final int ID_BACKGROUND_BLUR=2;
@@ -43,6 +56,7 @@ public class VirtualBgFragment extends BaseFeatureFragment implements View.OnCli
     private SegmentationProperty segmentationProperty=new SegmentationProperty();
     private boolean splitGreenEnabled=false;
     private List<OptionItem> selectedOptionItems =new ArrayList<>();
+
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
         @Nullable Bundle savedInstanceState) {
         binding=FragmentVirtualBgBinding.inflate(inflater,container,false);
@@ -165,6 +179,7 @@ public class VirtualBgFragment extends BaseFeatureFragment implements View.OnCli
         }
         rtcEngine.enableVirtualBackground(true,virtualBackgroundSource,segmentationProperty);
     }
+
     private void setVirtualImgBg(String path){
         virtualBackgroundSource.backgroundSourceType=VirtualBackgroundSource.BACKGROUND_IMG;
         virtualBackgroundSource.source=path;
@@ -187,7 +202,37 @@ public class VirtualBgFragment extends BaseFeatureFragment implements View.OnCli
 
     @Override public void onStart() {
         super.onStart();
+        initializeEngine();
         startPreview();
+        copyResource();
+    }
+
+    protected void initializeEngine() {
+        if(rtcEngine!=null){
+            return;
+        }
+        RtcEngineConfig config = new RtcEngineConfig();
+        config.mContext = getContext().getApplicationContext();
+        config.mAppId = getString(R.string.agora_app_id);
+        config.mChannelProfile = sceneMode;
+        config.mEventHandler = new IRtcEngineEventHandler() {
+        };
+        config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT);
+        config.mAreaCode = ((App)getActivity().getApplication()).getAreaCode();
+        try {
+            rtcEngine = (RtcEngineEx)RtcEngineEx.create(config);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override public void onDestroy() {
+        super.onDestroy();
+        rtcEngine.stopPreview();
+        if(rtcEngine!=null){
+            RtcEngineEx.destroy();
+            rtcEngine=null;
+        }
     }
 
 
@@ -216,5 +261,28 @@ public class VirtualBgFragment extends BaseFeatureFragment implements View.OnCli
         splitGreenEnabled=false;
         segmentationProperty.modelType = SegmentationProperty.SEG_MODEL_AI;
         setSelectedMenus(null);
+    }
+
+    public void copyResource() {
+        ThreadUtils.runOnNonUI(new Runnable() {
+            @Override public void run() {
+                if(!isResourceReady()){
+                    File file= getContext().getExternalFilesDir("blur");
+                    if(file.exists()){
+                        FileUtils.deleteFile(file);
+                    }
+                    FileUtils.copyFilesFromAssets(getContext().getApplicationContext(),"blur",getContext().getApplicationContext().getExternalFilesDir("blur").toString());
+                    SPUtils.getInstance(getContext(), "user").put("blur_resource", true);
+                    SPUtils.getInstance(getContext(), "user").put("versionCode", SystemUtil.getVersionCode(App.getInstance()));
+                }
+            }
+        });
+    }
+
+    public boolean isResourceReady() {
+        int versionCode=SystemUtil.getVersionCode(App.getInstance());
+        boolean resourceReady = SPUtils.getInstance(getContext(), "user").getBoolean("blur_resource", false);
+        int preVersioncode = SPUtils.getInstance(getContext(), "user").getInt("versionCode", 0);
+        return resourceReady && (versionCode == preVersioncode);
     }
 }

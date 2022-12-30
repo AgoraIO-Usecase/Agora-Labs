@@ -1,6 +1,5 @@
 package io.agora.api.example.common.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import io.agora.api.example.R;
-import io.agora.api.example.model.OptionItem;
+import io.agora.api.example.common.widget.slidingmenu.OptionItem;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,8 +73,6 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.VH> {
             return;
         }
         for(OptionItem item:data){
-            Log.d("AgoraLab","----setSelected---:"+item.getId());
-            Log.d("AgoraLab","----items.contains(item):"+(items.contains(item)));
             if(items.contains(item)){
                 item.setSelected(true);
             }else{

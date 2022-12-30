@@ -8,4 +8,5 @@
     <color name="menu_bg">#D9151325</color>
     <color name="menu_text_default_color">#2effffff</color>
     <color name="color_blue">#03A9F4</color>
+    <color name="color_grey">#4D18191B</color>
 </resources>

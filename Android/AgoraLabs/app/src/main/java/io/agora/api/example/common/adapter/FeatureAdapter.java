@@ -1,5 +1,6 @@
 package io.agora.api.example.common.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import io.agora.api.example.R;
-import io.agora.api.example.model.Feature;
+import io.agora.api.example.main.model.Feature;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class FeatureAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return null;
     }
 
-    @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Feature feature=data.get(holder.getAbsoluteAdapterPosition());
         if(holder instanceof TitleVH){
             ((TitleVH) holder).title.setText(feature.getTitleRes());
@@ -45,7 +46,7 @@ public class FeatureAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if(onItemClickListener!=null){
-                    onItemClickListener.onItemClick(v,data.get(position),position);
+                    onItemClickListener.onItemClick(v,data.get(holder.getAbsoluteAdapterPosition()),holder.getAbsoluteAdapterPosition());
                 }
             }
         });

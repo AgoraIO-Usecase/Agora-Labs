@@ -2,7 +2,7 @@ package io.agora.api.example.helper;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import io.agora.api.example.task.CopyResourceTask;
+import android.util.Log;
 import io.agora.api.example.utils.SPUtils;
 
 public class ResourceHelper implements CopyResourceTask.CopyResourceCallback {
@@ -50,14 +50,15 @@ public class ResourceHelper implements CopyResourceTask.CopyResourceCallback {
         return resourceReady && (versionCode == preVersioncode);
     }
 
-
+    private final String TAG="AgoraLab";
     @Override
     public void onStartTask() {
-
+        Log.d(TAG,"----onStartTask---");
     }
 
     @Override
     public void onEndTask(boolean result) {
+        Log.d(TAG,"---onEndTask---:"+result);
         if (result) {
             SPUtils.getInstance(context, "user").put("resource", true);
             SPUtils.getInstance(context, "user").put("versionCode", getVersionCode());

@@ -17,7 +17,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import io.agora.api.example.R;
 import io.agora.api.example.common.adapter.OnItemClickListener;
-import io.agora.api.example.common.widget.indicator.ViewPagerHelper;
 import io.agora.api.example.common.widget.indicator.buildins.navigator.Navigator;
 import io.agora.api.example.common.widget.indicator.buildins.navigator.abs.CommonNavigatorAdapter;
 import io.agora.api.example.common.widget.indicator.buildins.navigator.abs.IPagerIndicator;
@@ -26,9 +25,7 @@ import io.agora.api.example.common.widget.indicator.buildins.navigator.indicator
 import io.agora.api.example.common.widget.indicator.buildins.navigator.titles.ColorTransitionPagerTitleView;
 import io.agora.api.example.common.widget.indicator.buildins.navigator.titles.SimplePagerTitleView;
 import io.agora.api.example.databinding.SlidingMenuBinding;
-import io.agora.api.example.model.OptionItem;
 import io.agora.api.example.utils.UIUtil;
-import io.agora.rte.extension.faceunity.ExtensionManager;
 import java.util.ArrayList;
 import java.util.List;
 
