@@ -153,5 +153,15 @@
     <string name="eyelash">Eyelash</string>
     <string name="eyebrow">Eyebrow</string>
     <string name="circle_lenses">Circle lenses</string>
-
+    <string name="enable_pvc">Enable PVC</string>
+    <string name="resolutoion_360p" translatable="false">360p</string>
+    <string name="resolutoion_480p" translatable="false">480p</string>
+    <string name="resolutoion_540p" translatable="false">540p</string>
+    <string name="resolutoion_720p" translatable="false">720p</string>
+    <string name="original_video">Origin video</string>
+    <string name="bitrate">Bitrate: %d kbps</string>
+    <string name="pvc_enabled">PVC effect</string>
+    <string name="pvc_disabled">PVC Disabled</string>
+    <string name="feature_not_supported">This function is not supported at the moment, so stay tuned</string>
+    <string name="resource_preparing">Resources preparing, please wait</string>
 </resources>

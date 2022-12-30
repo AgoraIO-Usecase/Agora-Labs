@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Agora API Example</string>
+    <string name="app_name">AgoraLabs</string>
     <string name="channel_id">频道ID</string>
     <string name="join">加入</string>
     <string name="leave">离开</string>
@@ -147,6 +147,11 @@
     <string name="eyelash">睫毛</string>
     <string name="eyebrow">眉毛</string>
     <string name="circle_lenses">美瞳</string>
-
-
+    <string name="enable_pvc">启用感知视频编码</string>
+    <string name="original_video">原视频</string>
+    <string name="bitrate">码率: %d kbps</string>
+    <string name="pvc_enabled">PVC效果</string>
+    <string name="pvc_disabled">PVC未开启</string>
+    <string name="feature_not_supported">该功能暂不支持,敬请期待</string>
+    <string name="resource_preparing">资源准备中，请稍候</string>
 </resources>

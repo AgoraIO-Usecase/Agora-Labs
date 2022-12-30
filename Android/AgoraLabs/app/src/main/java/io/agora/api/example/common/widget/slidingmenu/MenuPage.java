@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import io.agora.api.example.R;
 import io.agora.api.example.common.adapter.MenuItemAdapter;
 import io.agora.api.example.common.adapter.OnItemClickListener;
-import io.agora.api.example.model.OptionItem;
 import io.agora.api.example.utils.UIUtil;
 import java.util.ArrayList;
 import java.util.List;

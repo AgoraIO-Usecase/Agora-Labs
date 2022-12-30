@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
+import android.util.Log;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class FileUtils {
-
+    private final static String TAG="AgoraLab";
     public static final String SEPARATOR = File.separator;
 
     public static void copyFilesFromAssets(Context context, String assetsPath, String storagePath) {
@@ -25,13 +26,11 @@ public class FileUtils {
         } else if (storagePath.endsWith(SEPARATOR)) {
             storagePath = storagePath.substring(0, storagePath.length() - 1);
         }
-
         if (TextUtils.isEmpty(assetsPath) || assetsPath.equals(SEPARATOR)) {
             assetsPath = "";
         } else if (assetsPath.endsWith(SEPARATOR)) {
             assetsPath = assetsPath.substring(0, assetsPath.length() - 1);
         }
-
         AssetManager assetManager = context.getAssets();
         try {
             File file = new File(storagePath);
@@ -49,6 +48,7 @@ public class FileUtils {
                     String[] childFileNames = assetManager.list(temp);
                     if (!TextUtils.isEmpty(temp) && childFileNames.length > 0) {//判断是文件还是文件夹：如果是文件夹
                         copyFilesFromAssets(context, temp, storagePath + SEPARATOR + fileName);
+
                     } else {
                         InputStream inputStream = assetManager.open(temp);
                         readInputStream(storagePath + SEPARATOR + fileName, inputStream);
@@ -73,10 +73,12 @@ public class FileUtils {
         try {
             if (!file.exists()) {
                 FileOutputStream fos = new FileOutputStream(file);
-                byte[] buffer = new byte[inputStream.available()];
-                int lenght = 0;
-                while ((lenght = inputStream.read(buffer)) != -1) {// 循环从输入流读取buffer字节
-                    fos.write(buffer, 0, lenght);
+                if(inputStream.available()>0) {
+                    byte[] buffer = new byte[inputStream.available()];
+                    int lenght = 0;
+                    while ((lenght = inputStream.read(buffer)) != -1) {// 循环从输入流读取buffer字节
+                        fos.write(buffer, 0, lenght);
+                    }
                 }
                 fos.flush();
                 fos.close();
@@ -109,6 +111,24 @@ public class FileUtils {
             }
         }
         return fileName;
+    }
+
+    public static void deleteFile(File file){
+        if (file == null || !file.exists()){
+            return;
+        }
+        File[] files = file.listFiles();
+        if(files==null||files.length<1){
+            return;
+        }
+        for (File f: files){
+            if (f.isDirectory()){
+                deleteFile(f);
+            }else {
+                f.delete();
+            }
+        }
+        file.delete();
     }
 
 }
