@@ -29,6 +29,9 @@ import io.agora.api.example.utils.UIUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import static io.agora.api.example.common.widget.indicator.buildins.navigator.indicators.LinePagerIndicator.MODE_EXACTLY;
+import static io.agora.api.example.common.widget.indicator.buildins.navigator.indicators.LinePagerIndicator.MODE_WRAP_CONTENT;
+
 public class MainFragment extends Fragment {
     private FragmentMainBinding binding;
     private List<Fragment> fragmentList;
@@ -88,10 +91,15 @@ public class MainFragment extends Fragment {
                 indicator.setLineHeight(lineHeight);
                 indicator.setRoundRadius(lineHeight / 2);
                 indicator.setYOffset(borderWidth);
+                indicator.setXOffset(0-UIUtil.dip2px(getContext(),10));
+                indicator.setMode(MODE_WRAP_CONTENT);
                 indicator.setColors(Color.parseColor("#2787FF"));
+                //indicator.setBackgroundResource(R.drawable.bg_rectangle_blue);
                 return indicator;
             }
         });
+       //commonNavigator.setAdjustMode(true);
+
         binding.indicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(binding.indicator, binding.viewpager);
     }

@@ -33,7 +33,7 @@ public class AutoDissmissDialog extends AppCompatDialog {
             @Override public void run() {
                 dismiss();
             }
-        },1000);
+        },3000);
     }
 
 }

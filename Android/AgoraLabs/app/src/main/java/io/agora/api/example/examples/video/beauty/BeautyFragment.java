@@ -24,6 +24,7 @@ import io.agora.api.example.utils.SPUtils;
 import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
 import io.agora.rtc2.Constants;
+import io.agora.rtc2.IMediaExtensionObserver;
 import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
@@ -39,7 +40,7 @@ import java.util.Map;
 
 import static io.agora.rtc2.video.BeautyOptions.LIGHTENING_CONTRAST_HIGH;
 
-public class BeautyFragment extends Fragment implements View.OnClickListener {
+public class BeautyFragment extends Fragment implements View.OnClickListener, IMediaExtensionObserver {
     private final String TAG="AgoraLab";
 
     protected RtcEngineEx rtcEngine;
@@ -47,17 +48,14 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
 
     private FragmentBeautyBinding binding;
     private MenuPage xiangxinMenu;
+    private MenuPage agoraMenu;
     private SlidingMenuLayout volcBeautyMenu;
     private Map<String,Integer> faceUnityMap=new HashMap<>();
     private FuRender fuRender;
     private VolcRender volcRender;
+    private AgoraRender agoraRender;
     private String KEY_FACEUNITY_RESOURCE="faceunity_resource";
     private String KEY_VOLC_RESOURCE="volc_resource";
-    private OnItemClickListener onItemClickListener=new OnItemClickListener() {
-        @Override public void onItemClick(View v, OptionItem optionItem, int position) {
-
-        }
-    };
 
     protected void initializeEngine() {
         if(rtcEngine!=null){
@@ -69,14 +67,20 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
         config.mChannelProfile = sceneMode;
         config.mEventHandler = new IRtcEngineEventHandler() {
         };
+        config.mExtensionObserver=this;
+        config.addExtension("AgoraFaceUnityExtension");
+        config.addExtension("AgoraByteDanceExtension");
         config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT);
         config.mAreaCode = ((App)getActivity().getApplication()).getAreaCode();
+        Log.d(TAG,"version:"+RtcEngine.getSdkVersion());
         try {
             rtcEngine = (RtcEngineEx)RtcEngineEx.create(config);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
+
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +107,8 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
                     fuRender.setCurrentProgress(progress);
                 }else if(binding.tvVolc.isSelected()){
                     volcRender.setCurrentProgress(progress);
+                }else if(binding.tvAgora.isSelected()){
+                    agoraRender.setCurrentProgress(progress);
                 }
 
             }
@@ -146,14 +152,16 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
             volcRender=new VolcRender(getContext().getApplicationContext(),rtcEngine);
             volcRender.initExtension();
         }
+        if(agoraRender==null){
+            agoraRender=new AgoraRender(getContext().getApplicationContext(),rtcEngine);
+        }
     }
 
     private  void enableExtension(boolean enabled) {
         ExtensionManager.getInstance(rtcEngine).initialize();
         rtcEngine.enableExtension("FaceUnity", "Effect", enabled);
-        //rtcEngine.enableExtension("ByteDance", "Effect", enabled);
         io.agora.rte.extension.bytedance.ExtensionManager.getInstance(rtcEngine).initialize(getContext());
-        //rtcEngine.enableExtension("ByteDance", "Effect", enabled);
+        rtcEngine.enableExtension("ByteDance", "Effect", enabled);
     }
 
     private void startPreview() {
@@ -162,9 +170,9 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
         rtcEngine.enableVideo();
         rtcEngine.setupLocalVideo(new VideoCanvas(localView, VideoCanvas.RENDER_MODE_HIDDEN, 100));
         rtcEngine.startPreview();
+        binding.videoContainer.removeAllViews();
         binding.videoContainer.addView(localView);
     }
-
 
     @Override public void onClick(View v) {
         if (v.getId() == R.id.iv_back) {
@@ -173,11 +181,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
             rtcEngine.switchCamera();
         } else if (v.getId() == R.id.tv_agora) {
             setSelectButton(v);
-            binding.seekbar.setVisibility(View.GONE);
-            binding.menuContainer.setVisibility(View.GONE);
-            fuRender.disableExtension();
-            volcRender.disableExtension();
-            setAgoraBeauty();
+            showAgoraMenu();
         } else if (v.getId() == R.id.tv_xiangxin) {
             setSelectButton(v);
             showXiangxinMenu();
@@ -187,25 +191,42 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-
-    private void setAgoraBeauty(){
-        BeautyOptions beautyOptions=new BeautyOptions();
-        beautyOptions.lighteningContrastLevel=LIGHTENING_CONTRAST_HIGH;
-        beautyOptions.lighteningLevel=0.8f;
-        beautyOptions.sharpnessLevel=0.3f;
-        beautyOptions.rednessLevel=0.5f;
-        beautyOptions.smoothnessLevel=0.7f;
-        rtcEngine.setBeautyEffectOptions(true,beautyOptions);
-    }
-
     private void setSelectButton(View button){
         binding.tvAgora.setSelected(button.getId()==R.id.tv_agora);
         binding.tvXiangxin.setSelected(button.getId()==R.id.tv_xiangxin);
         binding.tvVolc.setSelected(button.getId()==R.id.tv_volc);
     }
 
+    private void showAgoraMenu(){
+        fuRender.disableExtension();
+        volcRender.disableExtension();
+
+        binding.seekbar.setVisibility(View.GONE);
+        if(agoraMenu==null) {
+            agoraMenu = new MenuPage(getContext());
+            agoraMenu.addMenuItems(agoraRender.generatorOptionItems());
+            agoraMenu.addFixMenuItem(new OptionItem(-1, R.mipmap.ic_ban, R.string.original_image));
+            agoraMenu.setOnItemClickListener(new OnItemClickListener() {
+                @Override public void onItemClick(View v, OptionItem optionItem, int position) {
+                    agoraMenu.setSelected(optionItem);
+                    agoraRender.setSelectedID(optionItem.getId());
+                    if(optionItem.getId()==-1){
+                        agoraRender.disableExtension();
+                        binding.seekbar.setVisibility(View.GONE);
+                    }else{
+                        agoraRender.enableExtension();
+                        binding.seekbar.setVisibility(View.VISIBLE);
+                        binding.seekbar.setProgress(agoraRender.getCurrentProgress());
+                    }
+                }
+            });
+        }
+        binding.menuContainer.setVisibility(View.VISIBLE);
+        binding.menuContainer.removeAllViews();
+        binding.menuContainer.addView(agoraMenu);
+    }
+
     private void showXiangxinMenu() {
-        //initExtension();
 
         if(!isFuResourceReady()){
             Toast.makeText(getContext(),R.string.resource_preparing,Toast.LENGTH_SHORT).show();
@@ -213,6 +234,8 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
         }
         rtcEngine.setBeautyEffectOptions(false,new BeautyOptions());
         volcRender.disableExtension();
+
+        binding.seekbar.setVisibility(View.GONE);
         fuRender.enableExtension();
         fuRender.loadAIModels();
         fuRender.choiceComposer();
@@ -241,9 +264,6 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
         binding.menuContainer.addView(xiangxinMenu);
     }
 
-
-
-
     private void showVolcMenu() {
         if(!isVolcResourceReady()){
             Toast.makeText(getContext(),R.string.resource_preparing,Toast.LENGTH_SHORT).show();
@@ -251,6 +271,8 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
         }
         fuRender.disableExtension();
         rtcEngine.setBeautyEffectOptions(false,new BeautyOptions());
+
+        binding.seekbar.setVisibility(View.GONE);
         volcRender.enableExtension();
         if(volcBeautyMenu==null) {
             volcBeautyMenu=new SlidingMenuLayout(getContext());
@@ -300,7 +322,6 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
     public void copyResource() {
         ThreadUtils.runOnNonUI(new Runnable() {
             @Override public void run() {
-                Log.d(TAG,"---isFuResourceReady:"+isFuResourceReady());
                 if (!isFuResourceReady()) {
                     File file=new File(getContext().getExternalFilesDir("assets")+"/faceunity");
                     if(file.exists()){
@@ -310,7 +331,6 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
                     SPUtils.getInstance(getContext(), "user").put(KEY_FACEUNITY_RESOURCE, true);
                     SPUtils.getInstance(getContext(), "user").put("versionCode", SystemUtil.getVersionCode(App.getInstance()));
                 }
-                Log.d(TAG,"---isVolcResourceReady:"+isVolcResourceReady());
                 if(!isVolcResourceReady()){
                     File file=new File(getContext().getExternalFilesDir("assets")+"/bytedance");
                     if(file.exists()){
@@ -323,8 +343,6 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
-
-
 
     private boolean isFuResourceReady() {
         int versionCode= SystemUtil.getVersionCode(App.getInstance());
@@ -340,4 +358,19 @@ public class BeautyFragment extends Fragment implements View.OnClickListener {
         return resourceReady && (versionCode == preVersioncode);
     }
 
+    @Override public void onEvent(String provider, String extension, String key, String value) {
+        Log.d(TAG,"onEvent:"+provider+" extension:"+extension+" key"+key+" value"+value);
+    }
+
+    @Override public void onStarted(String provider, String extension) {
+        Log.d(TAG,"onStarted:"+provider+" extension:"+extension);
+    }
+
+    @Override public void onStopped(String provider, String extension) {
+        Log.d(TAG,"onStopped:"+provider+" extension:"+extension);
+    }
+
+    @Override public void onError(String provider, String extension, int error, String message) {
+        Log.d(TAG,"onError:"+provider+" extension:"+extension+" error:"+error+" message:"+message);
+    }
 }

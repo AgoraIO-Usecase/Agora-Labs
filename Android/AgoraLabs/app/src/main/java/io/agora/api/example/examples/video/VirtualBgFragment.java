@@ -170,7 +170,7 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
     }
 
     private void setSplitGreenScreen(boolean enabled){
-        virtualBackgroundSource.backgroundSourceType=VirtualBackgroundSource.BACKGROUND_COLOR;
+        //virtualBackgroundSource.backgroundSourceType=VirtualBackgroundSource.BACKGROUND_COLOR;
         if(enabled) {
             segmentationProperty.modelType = SegmentationProperty.SEG_MODEL_GREEN;
             segmentationProperty.greenCapacity = 0.8f;

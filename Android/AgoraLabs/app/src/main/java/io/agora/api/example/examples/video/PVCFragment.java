@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import io.agora.api.example.App;
 import io.agora.api.example.R;
+import io.agora.api.example.common.widget.PopWindow;
 import io.agora.api.example.common.widget.VideoFeatureMenu;
 import io.agora.api.example.databinding.FragmentPvcBinding;
 import io.agora.api.example.utils.ConstraintLayoutUtils;
@@ -61,6 +62,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
 
 
     private VideoEncoderConfiguration configuration;
+    private PopWindow popWindow;
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,35 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         initView();
     }
 
+    private void showLayoutPopWin(){
+        if(popWindow==null) {
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.video_layout_select, null);
+            View.OnClickListener listener = new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    if (v.getId() == R.id.iv_half) {
+                        curLayout = LAYOUT_HALF;
+                        binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
+                    } else if (v.getId() == R.id.iv_local_big) {
+                        curLayout = LAYOUT_LOCAL_BIG;
+                        binding.ivLayout.setImageResource(R.mipmap.ic_view_2);
+                    } else if (v.getId() == R.id.iv_local_small) {
+                        curLayout = LAYOUT_LOCAL_SMALL;
+                        binding.ivLayout.setImageResource(R.mipmap.ic_view_3);
+                    }
+                    updateLayout();
+                    popWindow.dissmiss();
+                }
+            };
+            view.findViewById(R.id.iv_half).setOnClickListener(listener);
+            view.findViewById(R.id.iv_local_big).setOnClickListener(listener);
+            view.findViewById(R.id.iv_local_small).setOnClickListener(listener);
+
+            popWindow = new PopWindow.PopupWindowBuilder(getContext())
+                .setView(view)
+                .create();
+        }
+        popWindow.showAsDropDown(binding.ivLayout,0,10);
+    }
     private void initView(){
         binding.ivBack.setOnClickListener(this);
         binding.ivLayout.setOnClickListener(this);
@@ -89,6 +120,12 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         binding.featureSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 pvcEnabled=isChecked;
+            }
+        });
+        binding.ivLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override public boolean onLongClick(View v) {
+                showLayoutPopWin();
+                return false;
             }
         });
 

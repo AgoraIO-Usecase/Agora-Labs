@@ -51,6 +51,7 @@
 
     
     <string name="special_effect">特效</string>
+    <string name="video_quality">画质</string>
     <string name="virtul_bg">虚拟背景</string>
     <string name="beauty">美颜</string>
     <string name="denoise">降噪</string>
@@ -85,7 +86,7 @@
     <string name="meeting_room">会议室</string>
     <string name="customize">自定义</string>
 
-    <string name="beauty_sdk_xiangxin">相芯</string>
+    <string name="beauty_sdk_xiangxin">相芯科技</string>
     <string name="beauty_sdk_agora">声网</string>
     <string name="beauty_sdk_volc">火山引擎</string>
 
@@ -147,6 +148,9 @@
     <string name="eyelash">睫毛</string>
     <string name="eyebrow">眉毛</string>
     <string name="circle_lenses">美瞳</string>
+
+    <string name="lighten">亮度</string>
+    <string name="contrast">对比度</string>
     <string name="enable_pvc">启用感知视频编码</string>
     <string name="original_video">原视频</string>
     <string name="bitrate">码率: %d kbps</string>

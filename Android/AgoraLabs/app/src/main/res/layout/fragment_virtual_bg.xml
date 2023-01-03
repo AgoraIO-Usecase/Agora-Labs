@@ -50,11 +50,13 @@
         android:layout_marginRight="@dimen/permission_dp_15"
         app:bsb_max="3"
         app:bsb_min="0"
+        app:bsb_section_count="2"
         android:visibility="gone"
         app:bsb_second_track_color="@color/color_blue"
         app:bsb_track_color="@color/white"
         app:bsb_track_size="3dp"
         app:bsb_bubble_color="@color/menu_bg"
+        app:bsb_seek_step_section="true"
         />
     <LinearLayout
         android:id="@+id/option_layout"
@@ -67,7 +69,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
         <LinearLayout
             android:id="@+id/option_original"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/option_item_width"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal">
