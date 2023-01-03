@@ -2,12 +2,10 @@ package io.agora.api.example;
 
 import android.app.Application;
 
-import io.agora.api.example.helper.ResourceHelper;
 import io.agora.rtc2.RtcEngineConfig;
 import java.lang.annotation.Annotation;
 import java.util.Set;
 
-import io.agora.api.example.utils.ClassUtils;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,9 +23,6 @@ public class App extends Application {
         return instance;
     }
 
-    public static void setInstance(App instance) {
-        App.instance = instance;
-    }
 
 
     public int getAreaCode() {

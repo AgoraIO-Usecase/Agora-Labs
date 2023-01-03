@@ -56,32 +56,33 @@
     <string name="ORIENTATION_MODE_FIXED_LANDSCAPE" translatable="false">ORIENTATION_MODE_FIXED_LANDSCAPE</string>
     <string name="ORIENTATION_MODE_FIXED_PORTRAIT" translatable="false">ORIENTATION_MODE_FIXED_PORTRAIT</string>
 
-    <string name="special_effect">Special effect</string>
-    <string name="virtul_bg">Virtual background</string>
-    <string name="beauty">Beauty</string>
-    <string name="denoise">Denoise</string>
-    <string name="light_dark">Light dark</string>
-    <string name="adaptive_sharpen">Adaptive sharpen</string>
-    <string name="color_enhance">Color enhance</string>
+    <string name="special_effect">Effects</string>
+    <string name="video_quality">Video Quality</string>
+    <string name="virtul_bg">Virtual Background</string>
+    <string name="beauty">Beauty Filter</string>
+    <string name="denoise">Reduce Noise</string>
+    <string name="light_dark">Dim Environment</string>
+    <string name="adaptive_sharpen">Sharpen</string>
+    <string name="color_enhance">Enance Saturation</string>
     <string name="pvc">PVC</string>
     <string name="roi">ROI</string>
-    <string name="super_res">super resolution</string>
-    <string name="super_quality">super quality</string>
+    <string name="super_res">Resolution</string>
+    <string name="super_quality">Image</string>
     <string name="hdr">HDR</string>
 
-    <string name="ai_noise_reduction">AI noise reduction</string>
-    <string name="ai_echo_cancellation">AI echo_cancellation</string>
+    <string name="ai_noise_reduction">Noise Suppression</string>
+    <string name="ai_echo_cancellation">AI AEC</string>
     <string name="spacial_audio">Spacial audio</string>
     <string name="stt">STT</string>
-    <string name="multi_link">Multi-link</string>
-    <string name="anti_weak_network">Anti-weak network</string>
-    <string name="face_capture">Face capture</string>
-    <string name="motion_capture">Motion capture</string>
-    <string name="voice_drive">Voice drive</string>
+    <string name="multi_link">Multipath</string>
+    <string name="anti_weak_network">Weak Net</string>
+    <string name="face_capture">Facial Capture</string>
+    <string name="motion_capture">Motion Capture</string>
+    <string name="voice_drive">Avatar</string>
     <string name="tab_video">Video</string>
     <string name="tab_audio">Audio</string>
-    <string name="tab_net_optimize">Net optimize</string>
-    <string name="tab_algorithmic">Algorithmic</string>
+    <string name="tab_net_optimize">Network</string>
+    <string name="tab_algorithmic">Algorithms</string>
     <string name="stay_tuned">Stay Tuned</string>
 
     <string name="original_image">Original Image</string>
@@ -91,9 +92,9 @@
     <string name="meeting_room">Meeting room</string>
     <string name="customize">Customize</string>
 
-    <string name="beauty_sdk_xiangxin">Xiangxin</string>
+    <string name="beauty_sdk_xiangxin">Faceunity Technology</string>
     <string name="beauty_sdk_agora">Agora</string>
-    <string name="beauty_sdk_volc">Volc</string>
+    <string name="beauty_sdk_volc">Volcano Engine</string>
 
     <string name="beauty_skin">Beauty skin</string>
     <string name="micro_plastic">Micro plastic</string>
@@ -153,6 +154,9 @@
     <string name="eyelash">Eyelash</string>
     <string name="eyebrow">Eyebrow</string>
     <string name="circle_lenses">Circle lenses</string>
+
+    <string name="lighten">Lighten</string>
+    <string name="contrast">Contrast</string>
     <string name="enable_pvc">Enable PVC</string>
     <string name="resolutoion_360p" translatable="false">360p</string>
     <string name="resolutoion_480p" translatable="false">480p</string>

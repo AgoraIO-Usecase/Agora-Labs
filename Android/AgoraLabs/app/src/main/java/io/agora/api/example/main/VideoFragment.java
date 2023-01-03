@@ -28,7 +28,7 @@ public class VideoFragment extends BaseListFragment {
         data.add(new Feature(-1,-1, R.string.special_effect));
         data.add(new Feature(ID_VIRTUAL_BG,R.mipmap.virtual_bg,R.string.virtul_bg,true));
         data.add(new Feature(ID_BEAUTY,R.mipmap.beauty,R.string.beauty,true));
-        data.add(new Feature(-1,-1,R.string.super_quality));
+        data.add(new Feature(-1,-1,R.string.video_quality));
         data.add(new Feature(ID_DENOISE,R.mipmap.noise,R.string.denoise));
         data.add(new Feature(ID_LIGHT_DARK,R.mipmap.light_dark,R.string.light_dark));
         data.add(new Feature(ID_SHARPEN,R.mipmap.sharpen,R.string.adaptive_sharpen));

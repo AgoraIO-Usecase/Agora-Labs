@@ -6,6 +6,7 @@ import io.agora.api.example.R;
 import io.agora.api.example.authpack;
 import io.agora.api.example.common.widget.slidingmenu.OptionItem;
 import io.agora.rtc2.RtcEngineEx;
+import io.agora.rte.extension.faceunity.ExtensionManager;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;

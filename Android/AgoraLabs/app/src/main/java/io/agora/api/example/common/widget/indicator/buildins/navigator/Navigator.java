@@ -2,6 +2,7 @@ package io.agora.api.example.common.widget.indicator.buildins.navigator;
 
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -136,8 +137,10 @@ public class Navigator extends FrameLayout implements IPagerNavigator, Navigator
                 if (adjustMode) {
                     lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
                     lp.weight = adapter.getTitleWeight(getContext(), i);
+                    lp.gravity= Gravity.CENTER;
                 } else {
                     lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+                    lp.gravity= Gravity.CENTER;
                 }
                 titleContainer.addView(view, lp);
             }

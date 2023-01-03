@@ -131,6 +131,7 @@ public class VolcRender {
     }
 
     private void setExtensionProperty(String key, String property) {
+        Log.d(TAG,"setExtensionProperty---key:"+key+" property:"+property);
         rtcEngine.setExtensionProperty("ByteDance", "Effect", key, property);
     }
 
@@ -143,10 +144,10 @@ public class VolcRender {
         data.add(beautySkinOptionItems);
         List<OptionItem> microPlasticOptionItems = new ArrayList<>();
         microPlasticOptionItems.add(new OptionItem(ID_VOLC_THIN_FACE, R.mipmap.ic_shoulian, R.string.thin_face));
-        microPlasticOptionItems.add(new OptionItem(ID_VOLC_NARROW_FACE, R.mipmap.ic_mopi, R.string.narrow_face));
-        microPlasticOptionItems.add(new OptionItem(ID_VOLC_CHEEKBONE, R.mipmap.ic_mopi, R.string.cheekbone));
-        microPlasticOptionItems.add(new OptionItem(ID_VOLC_LOWER_JAW, R.mipmap.ic_mopi, R.string.lower_jaw));
-        microPlasticOptionItems.add(new OptionItem(ID_VOLC_EYE, R.mipmap.ic_mopi, R.string.eye));
+        microPlasticOptionItems.add(new OptionItem(ID_VOLC_NARROW_FACE, R.mipmap.ic_zhailian, R.string.narrow_face));
+        microPlasticOptionItems.add(new OptionItem(ID_VOLC_CHEEKBONE, R.mipmap.ic_quangu, R.string.cheekbone));
+        microPlasticOptionItems.add(new OptionItem(ID_VOLC_LOWER_JAW, R.mipmap.ic_xiahe, R.string.lower_jaw));
+        microPlasticOptionItems.add(new OptionItem(ID_VOLC_EYE, R.mipmap.ic_eye, R.string.eye));
         microPlasticOptionItems.add(new OptionItem(ID_VOLC_NOSE, R.mipmap.ic_mopi, R.string.nose));
         microPlasticOptionItems.add(new OptionItem(ID_VOLC_MOUTH, R.mipmap.ic_mopi, R.string.mouth));
         data.add(microPlasticOptionItems);
@@ -188,11 +189,11 @@ public class VolcRender {
 
         List<OptionItem> makeups = new ArrayList<>();
 
-        makeups.add(new OptionItem(ID_VOLC_LIP_STICK, R.mipmap.ic_mopi, R.string.lip_stick));
+        makeups.add(new OptionItem(ID_VOLC_LIP_STICK, R.mipmap.ic_lip, R.string.lip_stick));
         makeups.add(new OptionItem(ID_VOLC_BLUSH, R.mipmap.ic_mopi, R.string.blush));
         makeups.add(new OptionItem(ID_VOLC_TRIMMING, R.mipmap.ic_mopi, R.string.trimming));
-        makeups.add(new OptionItem(ID_VOLC_EYELASH, R.mipmap.ic_mopi, R.string.eyelash));
-        makeups.add(new OptionItem(ID_VOLC_EYEBROW, R.mipmap.ic_mopi, R.string.eyebrow));
+        makeups.add(new OptionItem(ID_VOLC_EYELASH, R.mipmap.ic_eyelash, R.string.eyelash));
+        makeups.add(new OptionItem(ID_VOLC_EYEBROW, R.mipmap.ic_eyebrow, R.string.eyebrow));
         makeups.add(new OptionItem(ID_VOLC_CIRCLE_LENSES, R.mipmap.ic_mopi, R.string.circle_lenses));
         data.add(makeups);
         return data;
@@ -351,6 +352,11 @@ public class VolcRender {
         try {
             File destFile = context.getExternalFilesDir("assets");
             File strModelDir = new File(destFile, "bytedance/Resource/ComposeMakeup.bundle/ComposeMakeup/reshape_lite");
+
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.put(strModelDir.getAbsolutePath());
+            setExtensionProperty("bef_effect_ai_composer_set_nodes", jsonArray.toString());
+
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("nodePath",strModelDir.getAbsolutePath());
             jsonObject.put("nodeTag", name);
@@ -366,6 +372,12 @@ public class VolcRender {
         try {
             File destFile = context.getExternalFilesDir("assets");
             File strModelDir = new File(destFile, "bytedance/Resource/ComposeMakeup.bundle/ComposeMakeup/beauty_Android_lite");
+
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.put(strModelDir.getAbsolutePath());
+            setExtensionProperty("bef_effect_ai_composer_set_nodes", jsonArray.toString());
+
+
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("nodePath",strModelDir.getAbsolutePath());
             jsonObject.put("nodeTag", name);
