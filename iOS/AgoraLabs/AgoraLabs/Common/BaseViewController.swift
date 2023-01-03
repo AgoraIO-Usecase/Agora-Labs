@@ -10,7 +10,7 @@ import UIKit
 import AGEVideoLayout
 
 
-class BaseViewController: AGViewController {
+class BaseViewController: AGViewController,UIGestureRecognizerDelegate {
     var configs: [String:Any] = [:]
     override func viewDidLoad() {
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Show Log",
@@ -18,6 +18,11 @@ class BaseViewController: AGViewController {
 //                                                                 target: self,
 //                                                                 action: #selector(showLog))
         LogUtils.removeAll()
+        
+        
+        self.fd_interactivePopDisabled = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true;
     }
     
     @objc func showLog() {
