@@ -21,6 +21,9 @@ class BeautifyFilter: UIViewController {
     var originalData = BeautyFuncModel()
     //相芯美颜内容
     var faceDataArr = [BeautyFuncModel]()
+    //Agora美颜内容
+    var agoraDataArr = [BeautyFuncModel]()
+    var agoraBeautyOptions:AgoraBeautyOptions?
     //火山美颜内容
     var volcDataArr = [[BeautyFuncModel]]()
     var dressSourceArr = [String]()
@@ -45,9 +48,10 @@ class BeautifyFilter: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //初始化-美颜数据模型
-        self.originalData = BeautyFuncModel.originalData()
-        self.faceDataArr = BeautyFuncModel.loadFaceData()
-        self.volcDataArr = BeautyFuncModel.loadVolcData()
+        self.originalData   = BeautyFuncModel.originalData()
+        self.faceDataArr    = BeautyFuncModel.loadFaceData()
+        self.agoraDataArr   = BeautyFuncModel.loadAgoraData()
+        self.volcDataArr    = BeautyFuncModel.loadVolcData()
         //初始化-UI
         self.setupUI()
         //初始化-AgoraRtcEngineKit
@@ -123,15 +127,42 @@ class BeautifyFilter: UIViewController {
 
 // MARK: - 声网美颜
 extension BeautifyFilter{
+    
+    //设置相芯-美形参数
+    func setAgoraBeauty(_ model: BeautyFuncModel) {
+       
+        if model.paramModel.name == "lighteningLevel" {
+            self.agoraBeautyOptions?.lighteningLevel = Float(model.paramModel.value)
+        }else if model.paramModel.name == "smoothnessLevel" {
+            self.agoraBeautyOptions?.smoothnessLevel = Float(model.paramModel.value)
+        }else if model.paramModel.name == "rednessLevel" {
+            self.agoraBeautyOptions?.rednessLevel = Float(model.paramModel.value)
+        }else if model.paramModel.name == "sharpnessLevel" {
+            self.agoraBeautyOptions?.sharpnessLevel = Float(model.paramModel.value)
+        }else if model.paramModel.name == "lighteningContrastLevel" {
+            if model.paramModel.value < 1/3 {
+                self.agoraBeautyOptions?.lighteningContrastLevel = .low
+            }else if model.paramModel.value > 2/3 {
+                self.agoraBeautyOptions?.lighteningContrastLevel = .high
+            }else {
+                self.agoraBeautyOptions?.lighteningContrastLevel = .normal
+            }
+        }
+        agoraKit.setBeautyEffectOptions(true, options: self.agoraBeautyOptions)
+    }
+    
     //设置声网美颜效果
     private func setAgoraBeautyEffect() {
-        let beautyOptions = AgoraBeautyOptions()
-        beautyOptions.lighteningContrastLevel = .high //对比度
-        beautyOptions.lighteningLevel = 0.8 //美白程度，取值范围为 [0.0,1.0]
-        beautyOptions.smoothnessLevel = 0.7 //磨皮程度，取值范围为 [0.0,1.0]
-        beautyOptions.rednessLevel = 0.5    //红润度，取值范围为 [0.0,1.0]
-        beautyOptions.sharpnessLevel = 0.3  //锐化程度，取值范围为 [0.0,1.0]
-        agoraKit.setBeautyEffectOptions(true, options: beautyOptions)
+        if self.agoraBeautyOptions == nil {
+            let beautyOptions = AgoraBeautyOptions()
+            beautyOptions.lighteningContrastLevel = .high //对比度
+            beautyOptions.lighteningLevel = 0.8 //美白程度，取值范围为 [0.0,1.0]
+            beautyOptions.smoothnessLevel = 0.7 //磨皮程度，取值范围为 [0.0,1.0]
+            beautyOptions.rednessLevel = 0.5    //红润度，取值范围为 [0.0,1.0]
+            beautyOptions.sharpnessLevel = 0.3  //锐化程度，取值范围为 [0.0,1.0]
+            self.agoraBeautyOptions = beautyOptions
+        }
+        agoraKit.setBeautyEffectOptions(true, options: self.agoraBeautyOptions)
     }
     
     // 取消声网美颜效果

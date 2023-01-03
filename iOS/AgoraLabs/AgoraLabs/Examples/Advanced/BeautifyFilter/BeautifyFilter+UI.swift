@@ -111,14 +111,6 @@ extension BeautifyFilter {
             make.centerX.equalToSuperview()
         }
     }
-    
-    private func setupAgoraView()  {
-        self.bottomView?.isHidden = true
-        self.curSlider?.isHidden = true
-        self.setEnableAgoraBeauty(isEnabled: true)
-        self.setEnableFaceUnity(isEnabled: false)
-        self.setEnableVolcUnity(isEnabled: false)
-    }
         
     func closeBottomView()  {
         self.bottomView?.isHidden = true
@@ -266,6 +258,132 @@ extension BeautifyFilter{
     func setupfaceUnityOriginalClick()  {
         self.curSlider?.isHidden = true
         self.setEnableFaceUnity(isEnabled: false)
+    }
+}
+
+// MARK: - Agora美颜
+extension BeautifyFilter{
+    
+    private func setupAgoraView()  {
+
+        guard let _bottomView = self.bottomView else { return }
+        guard let _curSlider = self.curSlider else { return }
+        _curSlider.isHidden = false
+        _bottomView.isHidden = false
+        _bottomView.removeAllSubviews()
+        
+        self.setEnableVolcUnity(isEnabled: false)
+        self.setEnableFaceUnity(isEnabled: false)
+        self.setEnableAgoraBeauty(isEnabled: true)
+        
+        bottomView?.snp.updateConstraints({ make in
+            make.height.equalTo(SCREEN_BOTTOM_HEIGHT+118)
+        })
+        
+        let bottomContentView = UIView()
+        bottomView?.addSubview(bottomContentView)
+        bottomContentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        let subView = SubCellView()
+        originalData.subView = subView
+        subView.setupBeautyFuncModel(originalData)
+        bottomContentView.addSubview(subView)
+        subView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(24)
+            make.left.equalToSuperview().offset(4)
+            make.size.equalTo(CGSize(width: 72, height: 70))
+        }
+        subView.clickView {[weak self] sender in
+            self?.agoraItemViewClick(index: -1)
+        }
+        
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        bottomContentView.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.top.right.equalToSuperview()
+            make.left.equalTo(subView.snp.right)
+            make.height.equalTo(118)
+        }
+        
+        let contentV = UIView()
+        scrollView.addSubview(contentV)
+        contentV.snp.makeConstraints { (make) in
+            make.left.right.top.bottom.height.equalToSuperview()
+            make.width.equalTo(80*agoraDataArr.count)
+        }
+        
+        for i in 0..<agoraDataArr.count {
+            let itemModel = agoraDataArr[i]
+            let itemView = SubCellView()
+            itemModel.subView = itemView
+            itemModel.tag = i
+            itemView.tag = i
+            itemView.setupBeautyFuncModel(itemModel)
+            contentV.addSubview(itemView)
+            itemView.snp.makeConstraints { (make) in
+                make.centerY.equalToSuperview()
+                make.left.equalToSuperview().offset(i*(72+8)+8)
+                make.size.equalTo(CGSize(width: 72, height: 70))
+            }
+            itemView.clickView {[weak self] sender in
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+                self?.agoraItemViewClick(index: sender.tag)
+            }
+        }
+        
+        let maskView = UIView()
+        bottomContentView.addSubview(maskView)
+        maskView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.left.equalTo(subView.snp.right)
+            make.width.equalTo(16)
+        }
+    
+        let c0 = SCREEN_MASK_COLOR.hexColor().withAlphaComponent(0.0)
+        let c1 = SCREEN_MASK_COLOR.hexColor().withAlphaComponent(1)
+        maskView.colorGradient(color0: c0, color1: c1, point0: CGPoint(x: 1, y: 0.5), point1: CGPoint(x: 0, y: 0.5))
+        _bottomView.rectCorner(corner: [.topLeft,.topRight], radii:  CGSize(width: 12, height: 12))
+        self.curSlider?.isHidden = true
+    }
+    
+    func agoraItemViewClick(index:Int)  {
+        if index == -1 {
+            for item in agoraDataArr {
+                item.isSelected =  false
+                if let itemView = item.subView as? SubCellView { itemView.setupBeautyFuncModel(item) }
+            }
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            self.setupAgoraOriginalClick()
+        }else{
+            self.setupAgoraItem(index: index)
+        }
+    }
+    
+    func setupAgoraItem(index:Int)  {
+        self.curSelectModel = self.agoraDataArr[index]
+        for item in agoraDataArr {
+            if item.tag == self.curSelectModel?.tag {
+                item.isSelected = true
+                self.curSlider?.isHidden = false
+                if let itemView = item.subView as? SubCellView { itemView.setupBeautyFuncModel(item) }
+            }else {
+                item.isSelected = false
+                if let itemView = item.subView as? SubCellView { itemView.setupBeautyFuncModel(item) }
+            }
+        }
+        
+        let currentValue = self.curSelectModel?.paramModel.currentValue ?? 0
+        let exFactor = self.curSelectModel?.paramModel.exFactor ?? 1
+        self.curSlider?.value = Float(currentValue/exFactor)
+        self.setEnableAgoraBeauty(isEnabled: true)
+    }
+    
+    func setupAgoraOriginalClick()  {
+        self.curSlider?.isHidden = true
+        self.setEnableAgoraBeauty(isEnabled: false)
     }
 }
 
@@ -470,6 +588,7 @@ extension BeautifyFilter:JXSegmentedViewDelegate{
 
 // MARK: - ASValueTrackingSliderDataSource ASValueTrackingSliderDelegate
 extension BeautifyFilter:ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate{
+    
     func slider(_ slider: ASValueTrackingSlider!, stringForValue value: Float) -> String! {
         
         guard let _curSelectModel = self.curSelectModel else { return "" }
@@ -484,6 +603,13 @@ extension BeautifyFilter:ASValueTrackingSliderDataSource,ASValueTrackingSliderDe
             }else{
                 self.setFaceUnityBeauty(_curSelectModel)
             }
+        }else if self.curFilterIndex == 1 {
+            //Agora
+            let curSelectValue:CGFloat = CGFloat(value)
+            let exFactor = _curSelectModel.paramModel.exFactor
+            _curSelectModel.paramModel.value = curSelectValue*exFactor//乘以系数，系数默认为1
+            _curSelectModel.paramModel.currentValue = _curSelectModel.paramModel.value
+            self.setAgoraBeauty(_curSelectModel)
         }else if self.curFilterIndex == 2 {
             //火山
             let curSelectValue:CGFloat = CGFloat(value)

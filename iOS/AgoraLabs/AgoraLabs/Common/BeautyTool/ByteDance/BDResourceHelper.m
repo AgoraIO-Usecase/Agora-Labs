@@ -30,7 +30,7 @@ static NSString *BUNDLE = @"bundle";
   if ([self.delegate respondsToSelector:@selector(licenseName)]) {
     licenseName = [self.delegate licenseName];
   } else {
-    licenseName = @"agora_test_20220805_20230208_io.agora.demobox_4.2.3.licbag";
+    licenseName = @"agora_test_20220805_20230208_io.agora.labs_4.2.3.licbag";
   }
   if ([self.delegate respondsToSelector:@selector(licenseDirPath)]) {
     return [[self.delegate licenseDirPath] stringByAppendingString:licenseName];

@@ -546,6 +546,69 @@ class BeautyFuncModel: BaseModel {
         let tmpDic = [dataArr,dataArr1,dataArr2,dataArr3,dataArr4]
         return tmpDic
     }
+
+    class func loadAgoraData() -> [BeautyFuncModel] {
+         
+         var dataArr = [BeautyFuncModel]()
+        
+         for i in 1..<6 {
+             let tempModel = BeautyFuncModel()
+
+             if i == 0 {
+                 tempModel.abilityName = "yuantu".localized
+                 tempModel.abilityIcon = "yuantu"
+                 tempModel.abilityId = 101
+                 tempModel.paramModel.name = ""
+                 tempModel.paramModel.currentValue = 0
+             }
+             if i == 1 {
+                 tempModel.abilityName = "mopi".localized
+                 tempModel.abilityIcon = "mopi"
+                 tempModel.abilityId = 102
+                 tempModel.paramModel.name = "smoothnessLevel" //0.0-1
+                 tempModel.paramModel.currentValue = 0.7
+                 tempModel.paramModel.exFactor = 1
+             }
+             if i == 2 {
+                 tempModel.abilityName = "meibai".localized
+                 tempModel.abilityIcon = "meibai"
+                 tempModel.abilityId = 103
+                 tempModel.paramModel.name = "lighteningLevel" //0.0-1
+                 tempModel.paramModel.currentValue = 0.8
+                 tempModel.paramModel.exFactor = 1
+                
+             }
+             if i == 3 {
+                 tempModel.abilityName = "hongrun".localized
+                 tempModel.abilityIcon = "hongrun"
+                 tempModel.abilityId = 104
+                 tempModel.paramModel.name = "rednessLevel"  //取值范围 0.0-1
+                 tempModel.paramModel.currentValue = 0.5
+                 tempModel.paramModel.exFactor = 1
+                 
+             }
+             if i == 4 {
+                 tempModel.abilityName = "duibidu".localized
+                 tempModel.abilityIcon = "meibai"
+                 tempModel.abilityId = 105
+                 tempModel.paramModel.name = "lighteningContrastLevel" //默认0.0,
+                 tempModel.paramModel.currentValue = 0
+             }
+             if i == 5 {
+                 tempModel.abilityName = "ruihua".localized
+                 tempModel.abilityIcon = "mopi"
+                 tempModel.abilityId = 106
+                 tempModel.paramModel.name = "sharpnessLevel" //默认0.5,
+                 tempModel.paramModel.currentValue = 0.3
+             }
+            
+             dataArr.append(tempModel)
+
+         }
+        
+        return dataArr
+
+     }
 }
 
 class BeautyParamModel: BaseModel {
