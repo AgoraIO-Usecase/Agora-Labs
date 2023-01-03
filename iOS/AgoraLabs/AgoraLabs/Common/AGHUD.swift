@@ -9,7 +9,7 @@
 import Foundation
 import SVProgressHUD
 
-var dismissTime = 2
+var dismissTime = 3
 
 class AGHUD {
     

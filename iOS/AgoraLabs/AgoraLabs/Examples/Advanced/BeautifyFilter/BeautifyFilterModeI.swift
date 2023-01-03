@@ -186,42 +186,42 @@ class BeautyFuncModel: BaseModel {
             }
             if i == 1 {
                 tempModel.abilityName = "zhailian".localized
-                tempModel.abilityIcon = "dayan"
+                tempModel.abilityIcon = "zhailian"
                 tempModel.abilityId = 101
                 tempModel.paramModel.name = "Internal_Deform_CutFace"
                 tempModel.paramModel.currentValue = 0
             }
             if i == 2 {
                 tempModel.abilityName = "quangu".localized
-                tempModel.abilityIcon = "quheiyanquan"
+                tempModel.abilityIcon = "quangu"
                 tempModel.abilityId = 102
                 tempModel.paramModel.name = "Internal_Deform_Zoom_Cheekbone"
                 tempModel.paramModel.currentValue = 0
             }
             if i == 3 {
                 tempModel.abilityName = "xiahe".localized
-                tempModel.abilityIcon = "mopi"
+                tempModel.abilityIcon = "xiahe"
                 tempModel.abilityId = 103
                 tempModel.paramModel.name = "Internal_Deform_Zoom_Jawbone"
                 tempModel.paramModel.currentValue = 0
             }
             if i == 4 {
                 tempModel.abilityName = "yanjing".localized
-                tempModel.abilityIcon = "mopi"
+                tempModel.abilityIcon = "eye"
                 tempModel.abilityId = 104
                 tempModel.paramModel.name = "Internal_Deform_Eye"
                 tempModel.paramModel.currentValue = 0
             }
             if i == 5 {
                 tempModel.abilityName = "bizi".localized
-                tempModel.abilityIcon = "mopi"
+                tempModel.abilityIcon = "qufalingwen"
                 tempModel.abilityId = 105
                 tempModel.paramModel.name = "Internal_Deform_Nose"
                 tempModel.paramModel.currentValue = 0
             }
             if i == 6 {
                 tempModel.abilityName = "zuiba".localized
-                tempModel.abilityIcon = "mopi"
+                tempModel.abilityIcon = "lip"
                 tempModel.abilityId = 106
                 tempModel.paramModel.name = "Internal_Deform_ZoomMouth"
                 tempModel.paramModel.currentValue = 0
@@ -485,7 +485,7 @@ class BeautyFuncModel: BaseModel {
             
             if i == 0 {//👌
                 tempModel.abilityName = "kouhong".localized
-                tempModel.abilityIcon = "mopi"
+                tempModel.abilityIcon = "lip"
                 tempModel.abilityId = 100
                 tempModel.paramModel.name = "Internal_Makeup_Lips"
                 tempModel.paramModel.currentValue = 0
@@ -494,7 +494,7 @@ class BeautyFuncModel: BaseModel {
             
             if i == 1 {
                 tempModel.abilityName = "saihong".localized
-                tempModel.abilityIcon = "mopi"
+                tempModel.abilityIcon = "hongrun"
                 tempModel.abilityId = 101
                 tempModel.paramModel.name = "Internal_Makeup_Blusher"
                 tempModel.paramModel.currentValue = 0
@@ -512,7 +512,7 @@ class BeautyFuncModel: BaseModel {
             
             if i == 3 {//👌
                 tempModel.abilityName = "jiemao".localized
-                tempModel.abilityIcon = "mopi"
+                tempModel.abilityIcon = "eyelash"
                 tempModel.abilityId = 103
                 tempModel.paramModel.name = "Internal_Makeup_Eyelash"
                 tempModel.paramModel.currentValue = 0
@@ -521,7 +521,7 @@ class BeautyFuncModel: BaseModel {
             
             if i == 4 {
                 tempModel.abilityName = "meimao".localized
-                tempModel.abilityIcon = "mopi"
+                tempModel.abilityIcon = "eyebrow"
                 tempModel.abilityId = 104
                 tempModel.paramModel.name = "Internal_Makeup_Brow"
                 tempModel.paramModel.currentValue = 0
@@ -530,7 +530,7 @@ class BeautyFuncModel: BaseModel {
             
             if i == 5 {//👌
                 tempModel.abilityName = "meitong".localized
-                tempModel.abilityIcon = "mopi"
+                tempModel.abilityIcon = "eye"
                 tempModel.abilityId = 105
                 tempModel.paramModel.name = "Internal_Makeup_Pupil"
                 tempModel.paramModel.currentValue = 0
