@@ -1,88 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHeight_percent="0.5"
-        />
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/sub_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHeight_percent="0.5"/>
 
     <ImageView
         android:id="@+id/iv_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/permission_dp_10"
+        android:layout_marginTop="@dimen/permission_dp_10"
         android:src="@mipmap/ic_chevron_left"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/permission_dp_10"
-        android:layout_marginLeft="@dimen/permission_dp_10"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pvc"
-        android:textColor="@color/white"
-        android:textSize="@dimen/permission_sp_16"
-        app:layout_constraintLeft_toRightOf="@id/iv_back"
-        app:layout_constraintTop_toTopOf="@id/iv_back"
-        app:layout_constraintBottom_toBottomOf="@id/iv_back"
-        android:layout_marginLeft="@dimen/permission_dp_5"
-        android:gravity="center"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
     <ImageView
         android:id="@+id/iv_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/iv_switch_camera"
-        android:src="@mipmap/ic_view_1"
+        android:layout_marginRight="@dimen/permission_dp_10"
         android:layout_marginTop="@dimen/permission_dp_10"
-        android:layout_marginRight="@dimen/permission_dp_10"/>
+        android:src="@mipmap/ic_view_1"
+        app:layout_constraintRight_toLeftOf="@+id/iv_switch_camera"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iv_switch_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@mipmap/ic_camera_flip"
+        android:layout_marginRight="@dimen/permission_dp_10"
         android:layout_marginTop="@dimen/permission_dp_10"
-        android:layout_marginRight="@dimen/permission_dp_10"/>
-    <Switch
-        android:id="@+id/feature_switch"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="match_parent"
+        android:src="@mipmap/ic_camera_flip"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/option_menu"
-        android:background="@drawable/bg_rectangle_top"
-        android:text="@string/enable_pvc"
+        android:layout_marginLeft="@dimen/permission_dp_5"
+        android:gravity="center"
+        android:text="@string/pvc"
         android:textColor="@color/white"
-        android:padding="@dimen/permission_dp_10"
-        android:textSize="15sp"
-        />
-    <io.agora.api.example.common.widget.VideoFeatureMenu
-        android:id="@+id/option_menu"
+        android:textSize="@dimen/permission_sp_16"
+        app:layout_constraintBottom_toBottomOf="@id/iv_back"
+        app:layout_constraintLeft_toRightOf="@id/iv_back"
+        app:layout_constraintTop_toTopOf="@id/iv_back" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sub_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+        <Switch
+            android:id="@+id/feature_switch"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_rectangle_top"
+            android:padding="@dimen/permission_dp_10"
+            android:text="@string/enable_pvc"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/option_menu"
+            app:layout_constraintLeft_toLeftOf="parent" />
+        <io.agora.api.example.common.widget.VideoFeatureMenu
+            android:id="@+id/option_menu"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

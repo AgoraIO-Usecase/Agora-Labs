@@ -18,7 +18,7 @@ import io.agora.api.example.App;
 import io.agora.api.example.R;
 import io.agora.api.example.common.widget.PopWindow;
 import io.agora.api.example.common.widget.VideoFeatureMenu;
-import io.agora.api.example.databinding.FragmentPvcBinding;
+import io.agora.api.example.databinding.FragmentRoiBinding;
 import io.agora.api.example.utils.ConstraintLayoutUtils;
 import io.agora.api.example.utils.ThreadUtils;
 import io.agora.api.example.utils.UIUtil;
@@ -34,13 +34,13 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
 import static android.util.TypedValue.COMPLEX_UNIT_SP;
 import static androidx.constraintlayout.widget.ConstraintSet.PARENT_ID;
 
-public class PVCFragment extends Fragment implements View.OnClickListener{
+public class ROIFragment extends Fragment implements View.OnClickListener{
     private final String TAG="AgoraLab";
 
     protected RtcEngineEx rtcEngine;
     protected int sceneMode= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
     private RtcConnection rtcConnection;
-    private FragmentPvcBinding binding;
+    private FragmentRoiBinding binding;
     private String channelName= String.valueOf((int) (Math.random() * 1000));
     private int senderUid =101;
     private int remoteUid=102;
@@ -54,11 +54,11 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
     private TextureView remoteView;
 
     private TextView tvOriginVideo;
-    private TextView tvPVC;
+    private TextView tvROI;
     private TextView tvLocalBitrate;
     private TextView tvRemoteBitrate;
 
-    private boolean pvcEnabled;
+    private boolean roiEnabled;
 
 
     private VideoEncoderConfiguration configuration;
@@ -70,7 +70,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
 
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
         @Nullable Bundle savedInstanceState) {
-        binding=FragmentPvcBinding.inflate(inflater,container,false);
+        binding= FragmentRoiBinding.inflate(inflater,container,false);
         return binding.getRoot();
     }
 
@@ -82,19 +82,21 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
     private void showLayoutPopWin(){
         if(popWindow==null) {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.video_layout_select, null);
-            View.OnClickListener listener = v -> {
-                if (v.getId() == R.id.iv_half) {
-                    curLayout = LAYOUT_HALF;
-                    binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
-                } else if (v.getId() == R.id.iv_local_big) {
-                    curLayout = LAYOUT_LOCAL_BIG;
-                    binding.ivLayout.setImageResource(R.mipmap.ic_view_2);
-                } else if (v.getId() == R.id.iv_local_small) {
-                    curLayout = LAYOUT_LOCAL_SMALL;
-                    binding.ivLayout.setImageResource(R.mipmap.ic_view_3);
+            View.OnClickListener listener = new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    if (v.getId() == R.id.iv_half) {
+                        curLayout = LAYOUT_HALF;
+                        binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
+                    } else if (v.getId() == R.id.iv_local_big) {
+                        curLayout = LAYOUT_LOCAL_BIG;
+                        binding.ivLayout.setImageResource(R.mipmap.ic_view_2);
+                    } else if (v.getId() == R.id.iv_local_small) {
+                        curLayout = LAYOUT_LOCAL_SMALL;
+                        binding.ivLayout.setImageResource(R.mipmap.ic_view_3);
+                    }
+                    updateLayout();
+                    popWindow.dissmiss();
                 }
-                updateLayout();
-                popWindow.dissmiss();
             };
             view.findViewById(R.id.iv_half).setOnClickListener(listener);
             view.findViewById(R.id.iv_local_big).setOnClickListener(listener);
@@ -114,11 +116,11 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
                 setVideoConfig(resolution);
             }
         });
-        binding.featureSwitch.setChecked(pvcEnabled);
+        binding.featureSwitch.setChecked(roiEnabled);
         binding.featureSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                pvcEnabled=isChecked;
-                updatePVC();
+                roiEnabled =isChecked;
+                updateROI();
             }
         });
         binding.ivLayout.setOnLongClickListener(new View.OnLongClickListener() {
@@ -133,17 +135,17 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         tvOriginVideo.setGravity(Gravity.CENTER);
         tvOriginVideo.setTextColor(getResources().getColor(R.color.white));
         tvOriginVideo.setTextSize(COMPLEX_UNIT_SP,15);
-        int padding=UIUtil.dip2px(getContext(),6);
+        int padding= UIUtil.dip2px(getContext(),6);
         tvOriginVideo.setPadding(padding,padding,padding,padding);
         tvOriginVideo.setBackgroundResource(R.drawable.bg_rectangle_grey);
 
-        tvPVC=new TextView(getContext());
-        tvPVC.setGravity(Gravity.CENTER);
-        tvPVC.setTextColor(getResources().getColor(R.color.white));
-        tvPVC.setTextSize(COMPLEX_UNIT_SP,15);
-        tvPVC.setPadding(padding,padding,padding,padding);
-        tvPVC.setText(pvcEnabled?R.string.pvc_enabled:R.string.pvc_disabled);
-        tvPVC.setBackgroundResource(pvcEnabled?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
+        tvROI =new TextView(getContext());
+        tvROI.setGravity(Gravity.CENTER);
+        tvROI.setTextColor(getResources().getColor(R.color.white));
+        tvROI.setTextSize(COMPLEX_UNIT_SP,15);
+        tvROI.setPadding(padding,padding,padding,padding);
+        tvROI.setText(roiEnabled ?R.string.roi_enabled:R.string.roi_disabled);
+        tvROI.setBackgroundResource(roiEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
 
         tvLocalBitrate=new TextView(getContext());
         tvLocalBitrate.setGravity(Gravity.CENTER);
@@ -156,17 +158,15 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         tvRemoteBitrate.setTextColor(getResources().getColor(R.color.white));
         tvRemoteBitrate.setTextSize(COMPLEX_UNIT_SP,13);
         tvRemoteBitrate.setPadding(padding,padding,padding,padding);
-
-
     }
 
-    private void updatePVC(){
-        tvPVC.setText(pvcEnabled?R.string.pvc_enabled:R.string.pvc_disabled);
-        tvPVC.setBackgroundResource(pvcEnabled?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
-        if(pvcEnabled){
-            rtcEngine.setParameters("{\"rtc.video.enable_pvc\":true}");
+    private void updateROI(){
+        tvROI.setText(roiEnabled ?R.string.roi_enabled:R.string.roi_disabled);
+        tvROI.setBackgroundResource(roiEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
+        if(roiEnabled){
+            rtcEngine.setParameters("{\"che.video.roiEnable\":true}");
         }else{
-            rtcEngine.setParameters("{\"rtc.video.enable_pvc\":false}");
+            rtcEngine.setParameters("{\"che.video.roiEnable\":false}");
         }
     }
 
@@ -399,9 +399,9 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             if(remoteView!=null) {
                 binding.subContainer.addView(remoteView);
                 int topMargin = UIUtil.dip2px(getContext(), 10);
-                setTopCenterLayout(tvPVC, topMargin);
+                setTopCenterLayout(tvROI, topMargin);
                 ConstraintLayoutUtils.setTopRight(tvRemoteBitrate, topMargin);
-                binding.subContainer.addView(tvPVC);
+                binding.subContainer.addView(tvROI);
                 binding.subContainer.addView(tvRemoteBitrate);
             }
         }else if(curLayout==LAYOUT_LOCAL_BIG){
@@ -415,18 +415,18 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             }
             if(remoteView!=null) {
                 binding.subContainer.addView(remoteView);
-                setTopCenterLayout(tvPVC, UIUtil.dip2px(getContext(), 10));
+                setTopCenterLayout(tvROI, UIUtil.dip2px(getContext(), 10));
                 ConstraintLayoutUtils.setBottomCenter(tvRemoteBitrate);
-                binding.subContainer.addView(tvPVC);
+                binding.subContainer.addView(tvROI);
                 binding.subContainer.addView(tvRemoteBitrate);
             }
         }else if(curLayout==LAYOUT_LOCAL_SMALL){
             if(remoteView!=null) {
                 binding.mainContainer.addView(remoteView);
                 int topMargin = UIUtil.dip2px(getContext(), 60);
-                setTopCenterLayout(tvPVC, topMargin);
+                setTopCenterLayout(tvROI, topMargin);
                 ConstraintLayoutUtils.setTopRight(tvRemoteBitrate, topMargin);
-                binding.mainContainer.addView(tvPVC);
+                binding.mainContainer.addView(tvROI);
                 binding.mainContainer.addView(tvRemoteBitrate);
             }
             if(localView!=null) {

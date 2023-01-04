@@ -17,6 +17,12 @@
         <action
             android:id="@+id/action_homeFragment_to_pvc"
             app:destination="@id/pvc" />
+        <action
+            android:id="@+id/action_homeFragment_to_roi"
+            app:destination="@id/roi" />
+        <action
+            android:id="@+id/action_homeFragment_to_super_res"
+            app:destination="@id/super_res" />
     </fragment>
 
     <fragment
@@ -36,5 +42,16 @@
         android:label="@string/pvc"
         tools:layout="@layout/fragment_pvc"
         />
-
+    <fragment
+        android:id="@+id/roi"
+        android:name="io.agora.api.example.examples.video.ROIFragment"
+        android:label="@string/roi"
+        tools:layout="@layout/fragment_roi"
+        />
+    <fragment
+        android:id="@+id/super_res"
+        android:name="io.agora.api.example.examples.video.SuperResolutionFragment"
+        android:label="@string/super_res"
+        tools:layout="@layout/fragment_super_resolution"
+        />
 </navigation>

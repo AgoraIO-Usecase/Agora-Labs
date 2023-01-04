@@ -25,6 +25,7 @@ import io.agora.api.example.common.widget.indicator.buildins.navigator.indicator
 import io.agora.api.example.common.widget.indicator.buildins.navigator.titles.ColorTransitionPagerTitleView;
 import io.agora.api.example.common.widget.indicator.buildins.navigator.titles.SimplePagerTitleView;
 import io.agora.api.example.databinding.SlidingMenuBinding;
+import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.UIUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +101,9 @@ public class SlidingMenuLayout extends ConstraintLayout {
                 return indicator;
             }
         });
-        commonNavigator.setAdjustMode(true);
+        if(SystemUtil.isZh()) {
+            commonNavigator.setAdjustMode(true);
+        }
         binding.indicator.setNavigator(commonNavigator);
         //ViewPagerHelper.bind(binding.indicator, binding.viewpager);
     }

@@ -44,4 +44,6 @@
         <attr name="bsb_rtl" format="boolean"/> <!--right to left, default: false-->
         <attr name="android:enabled"/>
     </declare-styleable>
+
+
 </resources>

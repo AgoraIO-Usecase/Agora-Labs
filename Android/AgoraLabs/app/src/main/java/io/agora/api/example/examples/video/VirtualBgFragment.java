@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
@@ -188,11 +189,12 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
 
 
     private void setupBackgroundBlur(float blur){
+        Log.d(TAG,"setupBackgroundBlur:"+blur);
         virtualBackgroundSource.backgroundSourceType=VirtualBackgroundSource.BACKGROUND_BLUR;
         virtualBackgroundSource.color=0x000000;
-        if(blur>2) {
+        if(blur>=100) {
             virtualBackgroundSource.blurDegree=VirtualBackgroundSource.BLUR_DEGREE_HIGH;
-        }else if(blur>=1){
+        }else if(blur>=50){
             virtualBackgroundSource.blurDegree=VirtualBackgroundSource.BLUR_DEGREE_MEDIUM;
         }else if(blur>=0){
             virtualBackgroundSource.blurDegree=VirtualBackgroundSource.BLUR_DEGREE_LOW;
@@ -206,6 +208,7 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
         startPreview();
         copyResource();
     }
+
 
     protected void initializeEngine() {
         if(rtcEngine!=null){

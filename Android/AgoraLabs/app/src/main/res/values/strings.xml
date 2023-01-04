@@ -168,4 +168,17 @@
     <string name="pvc_disabled">PVC Disabled</string>
     <string name="feature_not_supported">This function is not supported at the moment, so stay tuned</string>
     <string name="resource_preparing">Resources preparing, please wait</string>
+
+    <string name="enable_roi">Enable ROI</string>
+    <string name="roi_enabled">ROI effect</string>
+    <string name="roi_disabled">ROI Disabled</string>
+
+
+    <string name="enable_sr">Enable Super Resolution</string>
+    <string name="sr_enabled">Super Resolution effect</string>
+    <string name="sr_disabled">Super Resolution Disabled</string>
+    <string name="sr_1">1.0x</string>
+    <string name="sr_1_33">1.33x</string>
+    <string name="sr_1_5">1.5x</string>
+    <string name="sr_2">2.0x</string>
 </resources>

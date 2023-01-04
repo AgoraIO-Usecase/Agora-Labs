@@ -158,4 +158,16 @@
     <string name="pvc_disabled">PVC未开启</string>
     <string name="feature_not_supported">该功能暂不支持,敬请期待</string>
     <string name="resource_preparing">资源准备中，请稍候</string>
+
+    <string name="enable_roi">启用感兴趣区域算法</string>
+    <string name="roi_enabled">启用感兴趣区域算法</string>
+    <string name="roi_disabled">感兴趣区域算法未开启</string>
+
+    <string name="enable_sr">开启超分</string>
+    <string name="sr_enabled">超分已开启</string>
+    <string name="sr_disabled">超分已关闭</string>
+    <string name="sr_1">1倍</string>
+    <string name="sr_1_33">1.33倍</string>
+    <string name="sr_1_5">1.5倍</string>
+    <string name="sr_2">2.0倍</string>
 </resources>

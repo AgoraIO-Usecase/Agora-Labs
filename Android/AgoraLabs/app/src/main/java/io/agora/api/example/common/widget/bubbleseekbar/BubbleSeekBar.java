@@ -293,7 +293,7 @@ public class BubbleSeekBar extends View {
             if (mProgress != mMin) {
                 mPreSecValue = mSectionValue;
             }
-            isShowSectionMark = true;
+            //isShowSectionMark = true;
             isAutoAdjustSectionMark = true;
         }
         if (isHideBubble) {
@@ -1123,7 +1123,7 @@ public class BubbleSeekBar extends View {
     public String getProgressText(){
 
         if(mTickArray!=null&& mTickArray.length>0){
-            int index=(int)(mTickArray.length*mProgress/mMax);
+            int index=(int)(mTickArray.length*getProgress()/mMax);
             if(index>=mTickArray.length){
                 index-=1;
             }
