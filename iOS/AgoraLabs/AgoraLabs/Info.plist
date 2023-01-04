@@ -25,11 +25,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Request Camera Access</string>
+	<string>NSCameraUsageDescription</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Request Mic Access</string>
+	<string>NSMicrophoneUsageDescription</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App needs your permission to access photo library</string>
+	<string>NSPhotoLibraryUsageDescription</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

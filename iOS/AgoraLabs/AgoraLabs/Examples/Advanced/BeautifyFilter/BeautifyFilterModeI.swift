@@ -238,113 +238,113 @@ class BeautyFuncModel: BaseModel {
             tempModel.paramModel.funcKey = "oneKeyDress"
             
             if i == 0 {//
-                tempModel.abilityName = "爱豆".localized
+                tempModel.abilityName = "aidou".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 100
                 tempModel.paramModel.sourcePath = "style_makeup/aidou"
             }
             
             if i == 1 {//
-                tempModel.abilityName = "白茶".localized
+                tempModel.abilityName = "baica".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 101
                 tempModel.paramModel.sourcePath = "style_makeup/baicha"
             }
             
             if i == 2 {//
-                tempModel.abilityName = "白皙".localized
+                tempModel.abilityName = "baixi".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 102
                 tempModel.paramModel.sourcePath = "style_makeup/baixi"
             }
             
             if i == 3 {//
-                tempModel.abilityName = "冰川".localized
+                tempModel.abilityName = "bingchuan".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 103
                 tempModel.paramModel.sourcePath = "style_makeup/bingchuan"
             }
             
             if i == 4 {//
-                tempModel.abilityName = "C位".localized
+                tempModel.abilityName = "Cwei".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 104
                 tempModel.paramModel.sourcePath = "style_makeup/cwei"
             }
             
             if i == 5 {//
-                tempModel.abilityName = "断眉".localized
+                tempModel.abilityName = "duanmei".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 105
                 tempModel.paramModel.sourcePath = "style_makeup/duanmei"
             }
             
             if i == 6 {//
-                tempModel.abilityName = "韩系".localized
+                tempModel.abilityName = "hanxi".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 106
                 tempModel.paramModel.sourcePath = "style_makeup/hanxi"
             }
             
             if i == 7 {//
-                tempModel.abilityName = "没有小熊".localized
+                tempModel.abilityName = "meiyouxiaoxiong".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 107
                 tempModel.paramModel.sourcePath = "style_makeup/meiyouxiaoxiong"
             }
             
             if i == 8 {//
-                tempModel.abilityName = "暖男".localized
+                tempModel.abilityName = "nuannan".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 108
                 tempModel.paramModel.sourcePath = "style_makeup/nuannan"
             }
             
             if i == 9 {//
-                tempModel.abilityName = "欧美".localized
+                tempModel.abilityName = "oumei".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 109
                 tempModel.paramModel.sourcePath = "style_makeup/oumei"
             }
             
             if i == 10 {//
-                tempModel.abilityName = "气色".localized
+                tempModel.abilityName = "qise".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 110
                 tempModel.paramModel.sourcePath = "style_makeup/qise"
             }
             if i == 11 {//
-                tempModel.abilityName = "深邃".localized
+                tempModel.abilityName = "shensui".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 111
                 tempModel.paramModel.sourcePath = "style_makeup/shensui"
             }
             if i == 12 {//
-                tempModel.abilityName = "甜美".localized
+                tempModel.abilityName = "tianmei".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 112
                 tempModel.paramModel.sourcePath = "style_makeup/tianmei"
             }
             if i == 13 {//
-                tempModel.abilityName = "温暖".localized
+                tempModel.abilityName = "wennuan".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 113
                 tempModel.paramModel.sourcePath = "style_makeup/wennuan"
             }
             if i == 14 {//
-                tempModel.abilityName = "优雅".localized
+                tempModel.abilityName = "youya".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 114
                 tempModel.paramModel.sourcePath = "style_makeup/youya"
             }
             if i == 15 {//
-                tempModel.abilityName = "元气".localized
+                tempModel.abilityName = "yuanqi".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 115
                 tempModel.paramModel.sourcePath = "style_makeup/yuanqi"
             }
             if i == 16 {//
-                tempModel.abilityName = "质感".localized
+                tempModel.abilityName = "zhigan".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 116
                 tempModel.paramModel.sourcePath = "style_makeup/zhigan"
@@ -361,7 +361,7 @@ class BeautyFuncModel: BaseModel {
             tempModel.paramModel.funcKey = "sticker"
             
             if i == 0 {//👌
-                tempModel.abilityName = "贝贝".localized
+                tempModel.abilityName = "beibei".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 100
                 tempModel.paramModel.name = ""
@@ -369,7 +369,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "baby_gan"
             }
             if i == 1 {//👌
-                tempModel.abilityName = "表白七夕".localized
+                tempModel.abilityName = "biaobaiqixi".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 101
                 tempModel.paramModel.name = ""
@@ -377,7 +377,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "biaobaiqixi"
             }
             if i == 2 {//👌
-                tempModel.abilityName = "吃土少女".localized
+                tempModel.abilityName = "chitushaonü".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 102
                 tempModel.paramModel.name = ""
@@ -385,7 +385,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "chitushaonv"
             }
             if i == 3 {//👌
-                tempModel.abilityName = "电吉它".localized
+                tempModel.abilityName = "dianjita".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 103
                 tempModel.paramModel.name = ""
@@ -393,7 +393,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "dianjita"
             }
             if i == 4 {//👌
-                tempModel.abilityName = "公主面具".localized
+                tempModel.abilityName = "gongzhumianju".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 104
                 tempModel.paramModel.name = ""
@@ -401,7 +401,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "gongzhumianju"
             }
             if i == 5 {//👌
-                tempModel.abilityName = "黑猫眼镜".localized
+                tempModel.abilityName = "heimaoyanjing".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 105
                 tempModel.paramModel.name = ""
@@ -409,7 +409,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "heimaoyanjing"
             }
             if i == 6 {//👌
-                tempModel.abilityName = "假面".localized
+                tempModel.abilityName = "jiamian".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 106
                 tempModel.paramModel.name = ""
@@ -417,7 +417,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "jiamian"
             }
             if i == 7 {//👌
-                tempModel.abilityName = "招财猫".localized
+                tempModel.abilityName = "zhaocaimao".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 107
                 tempModel.paramModel.name = ""
@@ -425,7 +425,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "zhaocaimao"
             }
             if i == 8 {//👌
-                tempModel.abilityName = "美好心情".localized
+                tempModel.abilityName = "meihaoxinqing".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 108
                 tempModel.paramModel.name = ""
@@ -433,7 +433,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "meihaoxinqing"
             }
             if i == 9 {//👌
-                tempModel.abilityName = "恐龙测试".localized
+                tempModel.abilityName = "konglongceshi".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 109
                 tempModel.paramModel.name = ""
@@ -441,7 +441,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "konglongceshi"
             }
             if i == 10 {//👌
-                tempModel.abilityName = "绅士".localized
+                tempModel.abilityName = "shenshi".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 110
                 tempModel.paramModel.name = ""
@@ -449,7 +449,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "shenshi"
             }
             if i == 11 {//👌
-                tempModel.abilityName = "跳舞火鸡".localized
+                tempModel.abilityName = "tiaowuhuoji".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 111
                 tempModel.paramModel.name = ""
@@ -457,7 +457,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "tiaowuhuoji"
             }
             if i == 12 {//👌
-                tempModel.abilityName = "猪头猪耳".localized
+                tempModel.abilityName = "zhutouzhuer".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 112
                 tempModel.paramModel.name = ""
@@ -465,7 +465,7 @@ class BeautyFuncModel: BaseModel {
                 tempModel.paramModel.sourcePath = "zhutouzhuer"
             }
             if i == 13 {//👌
-                tempModel.abilityName = "紫色魅惑".localized
+                tempModel.abilityName = "zisemeihuo".localized
                 tempModel.abilityIcon = "mopi"
                 tempModel.abilityId = 113
                 tempModel.paramModel.name = ""
