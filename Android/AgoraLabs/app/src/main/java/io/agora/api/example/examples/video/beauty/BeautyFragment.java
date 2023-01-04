@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -23,14 +24,17 @@ import io.agora.api.example.utils.FileUtils;
 import io.agora.api.example.utils.SPUtils;
 import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
+import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
 import io.agora.rtc2.IMediaExtensionObserver;
 import io.agora.rtc2.IRtcEngineEventHandler;
+import io.agora.rtc2.RtcConnection;
 import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.RtcEngineEx;
 import io.agora.rtc2.video.BeautyOptions;
 import io.agora.rtc2.video.VideoCanvas;
+import io.agora.rtc2.video.VideoEncoderConfiguration;
 import io.agora.rte.extension.faceunity.ExtensionManager;
 import java.io.File;
 import java.util.ArrayList;
@@ -56,6 +60,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
     private AgoraRender agoraRender;
     private String KEY_FACEUNITY_RESOURCE="faceunity_resource";
     private String KEY_VOLC_RESOURCE="volc_resource";
+    private RtcConnection rtcConnection;
 
     protected void initializeEngine() {
         if(rtcEngine!=null){
@@ -234,7 +239,6 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
         }
         rtcEngine.setBeautyEffectOptions(false,new BeautyOptions());
         volcRender.disableExtension();
-
         binding.seekbar.setVisibility(View.GONE);
         fuRender.enableExtension();
         fuRender.loadAIModels();
@@ -271,7 +275,6 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
         }
         fuRender.disableExtension();
         rtcEngine.setBeautyEffectOptions(false,new BeautyOptions());
-
         binding.seekbar.setVisibility(View.GONE);
         volcRender.enableExtension();
         if(volcBeautyMenu==null) {
@@ -317,6 +320,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
         binding.menuContainer.removeAllViews();
         binding.menuContainer.addView(volcBeautyMenu);
     }
+
 
 
     public void copyResource() {

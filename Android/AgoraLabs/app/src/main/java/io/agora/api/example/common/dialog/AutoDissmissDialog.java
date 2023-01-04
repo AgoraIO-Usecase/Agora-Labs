@@ -18,6 +18,7 @@ public class AutoDissmissDialog extends AppCompatDialog {
         setContentView(R.layout.dialog_auto_dismiss);
         icon=findViewById(R.id.icon);
         content=findViewById(R.id.content);
+        setCanceledOnTouchOutside(false);
     }
 
 

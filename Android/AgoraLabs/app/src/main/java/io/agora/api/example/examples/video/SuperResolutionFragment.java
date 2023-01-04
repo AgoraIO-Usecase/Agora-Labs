@@ -18,7 +18,7 @@ import io.agora.api.example.App;
 import io.agora.api.example.R;
 import io.agora.api.example.common.widget.PopWindow;
 import io.agora.api.example.common.widget.VideoFeatureMenu;
-import io.agora.api.example.databinding.FragmentPvcBinding;
+import io.agora.api.example.databinding.FragmentSuperResolutionBinding;
 import io.agora.api.example.utils.ConstraintLayoutUtils;
 import io.agora.api.example.utils.ThreadUtils;
 import io.agora.api.example.utils.UIUtil;
@@ -34,13 +34,13 @@ import io.agora.rtc2.video.VideoEncoderConfiguration;
 import static android.util.TypedValue.COMPLEX_UNIT_SP;
 import static androidx.constraintlayout.widget.ConstraintSet.PARENT_ID;
 
-public class PVCFragment extends Fragment implements View.OnClickListener{
+public class SuperResolutionFragment extends Fragment implements View.OnClickListener{
     private final String TAG="AgoraLab";
 
     protected RtcEngineEx rtcEngine;
     protected int sceneMode= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
     private RtcConnection rtcConnection;
-    private FragmentPvcBinding binding;
+    private FragmentSuperResolutionBinding binding;
     private String channelName= String.valueOf((int) (Math.random() * 1000));
     private int senderUid =101;
     private int remoteUid=102;
@@ -54,12 +54,17 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
     private TextureView remoteView;
 
     private TextView tvOriginVideo;
-    private TextView tvPVC;
+    private TextView tvSR;
     private TextView tvLocalBitrate;
     private TextView tvRemoteBitrate;
 
-    private boolean pvcEnabled;
+    private boolean srEnabled;
 
+    private final int SR_1=6;
+    private final int SR_1_33=7;
+    private final int SR_1_5=8;
+    private final int SR_2=3;
+    private int curSR=SR_1;
 
     private VideoEncoderConfiguration configuration;
     private PopWindow popWindow;
@@ -70,7 +75,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
 
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
         @Nullable Bundle savedInstanceState) {
-        binding=FragmentPvcBinding.inflate(inflater,container,false);
+        binding= FragmentSuperResolutionBinding.inflate(inflater,container,false);
         return binding.getRoot();
     }
 
@@ -114,11 +119,11 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
                 setVideoConfig(resolution);
             }
         });
-        binding.featureSwitch.setChecked(pvcEnabled);
+        binding.featureSwitch.setChecked(srEnabled);
         binding.featureSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                pvcEnabled=isChecked;
-                updatePVC();
+                srEnabled =isChecked;
+                updateSR();
             }
         });
         binding.ivLayout.setOnLongClickListener(new View.OnLongClickListener() {
@@ -133,17 +138,17 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         tvOriginVideo.setGravity(Gravity.CENTER);
         tvOriginVideo.setTextColor(getResources().getColor(R.color.white));
         tvOriginVideo.setTextSize(COMPLEX_UNIT_SP,15);
-        int padding=UIUtil.dip2px(getContext(),6);
+        int padding= UIUtil.dip2px(getContext(),6);
         tvOriginVideo.setPadding(padding,padding,padding,padding);
         tvOriginVideo.setBackgroundResource(R.drawable.bg_rectangle_grey);
 
-        tvPVC=new TextView(getContext());
-        tvPVC.setGravity(Gravity.CENTER);
-        tvPVC.setTextColor(getResources().getColor(R.color.white));
-        tvPVC.setTextSize(COMPLEX_UNIT_SP,15);
-        tvPVC.setPadding(padding,padding,padding,padding);
-        tvPVC.setText(pvcEnabled?R.string.pvc_enabled:R.string.pvc_disabled);
-        tvPVC.setBackgroundResource(pvcEnabled?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
+        tvSR =new TextView(getContext());
+        tvSR.setGravity(Gravity.CENTER);
+        tvSR.setTextColor(getResources().getColor(R.color.white));
+        tvSR.setTextSize(COMPLEX_UNIT_SP,15);
+        tvSR.setPadding(padding,padding,padding,padding);
+        tvSR.setText(srEnabled ?R.string.sr_enabled:R.string.sr_disabled);
+        tvSR.setBackgroundResource(srEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
 
         tvLocalBitrate=new TextView(getContext());
         tvLocalBitrate.setGravity(Gravity.CENTER);
@@ -157,16 +162,31 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         tvRemoteBitrate.setTextSize(COMPLEX_UNIT_SP,13);
         tvRemoteBitrate.setPadding(padding,padding,padding,padding);
 
-
+        binding.sr1.setOnClickListener(this);
+        binding.sr133.setOnClickListener(this);
+        binding.sr15.setOnClickListener(this);
+        binding.sr2.setOnClickListener(this);
     }
 
-    private void updatePVC(){
-        tvPVC.setText(pvcEnabled?R.string.pvc_enabled:R.string.pvc_disabled);
-        tvPVC.setBackgroundResource(pvcEnabled?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
-        if(pvcEnabled){
-            rtcEngine.setParameters("{\"rtc.video.enable_pvc\":true}");
+    private void updateSR(){
+        tvSR.setText(srEnabled ?R.string.sr_enabled:R.string.sr_disabled);
+        tvSR.setBackgroundResource(srEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
+        if(srEnabled) {
+            binding.sr1.setSelected(curSR == SR_1);
+            binding.sr133.setSelected(curSR == SR_1_33);
+            binding.sr15.setSelected(curSR == SR_1_5);
+            binding.sr2.setSelected(curSR == SR_2);
+        }
+        setSRValue();
+    }
+
+
+    private void setSRValue(){
+        if(srEnabled) {
+            rtcEngine.setParameters("{\"rtc.video.enable_sr\":{\"uid\":0,\"enabled\":true,\"mode\":1}}");
+            rtcEngine.setParameters("{\"rtc.video.sr_type\":"+curSR+"}");
         }else{
-            rtcEngine.setParameters("{\"rtc.video.enable_pvc\":false}");
+            rtcEngine.setParameters("{\"rtc.video.enable_sr\":{\"uid\":0,\"enabled\":false,\"mode\":1}}");
         }
     }
 
@@ -346,8 +366,38 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
                 binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
             }
             updateLayout();
+        }else if(v.getId()==R.id.sr_1){
+            setSelectButton(v);
+        }else if(v.getId()==R.id.sr_1_33){
+            setSelectButton(v);
+        }else if(v.getId()==R.id.sr_1_5){
+            setSelectButton(v);
+        }else if(v.getId()==R.id.sr_2){
+            setSelectButton(v);
         }
     }
+
+    private void setSelectButton(View button){
+        if(!srEnabled){
+            return;
+        }
+        binding.sr1.setSelected(button.getId()==R.id.sr_1);
+        binding.sr133.setSelected(button.getId()==R.id.sr_1_33);
+        binding.sr15.setSelected(button.getId()==R.id.sr_1_5);
+        binding.sr2.setSelected(button.getId()==R.id.sr_2);
+        if(binding.sr1.isSelected()){
+            curSR=SR_1;
+        }else if(binding.sr133.isSelected()){
+            curSR=SR_1_33;
+        }else if(binding.sr15.isSelected()){
+            curSR=SR_1_5;
+        }else if(binding.sr2.isSelected()){
+            curSR=SR_2;
+        }
+        setSRValue();
+    }
+
+
 
     public void updateLayout(){
         if(curLayout==LAYOUT_HALF){
@@ -399,9 +449,9 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             if(remoteView!=null) {
                 binding.subContainer.addView(remoteView);
                 int topMargin = UIUtil.dip2px(getContext(), 10);
-                setTopCenterLayout(tvPVC, topMargin);
+                setTopCenterLayout(tvSR, topMargin);
                 ConstraintLayoutUtils.setTopRight(tvRemoteBitrate, topMargin);
-                binding.subContainer.addView(tvPVC);
+                binding.subContainer.addView(tvSR);
                 binding.subContainer.addView(tvRemoteBitrate);
             }
         }else if(curLayout==LAYOUT_LOCAL_BIG){
@@ -415,18 +465,18 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             }
             if(remoteView!=null) {
                 binding.subContainer.addView(remoteView);
-                setTopCenterLayout(tvPVC, UIUtil.dip2px(getContext(), 10));
+                setTopCenterLayout(tvSR, UIUtil.dip2px(getContext(), 10));
                 ConstraintLayoutUtils.setBottomCenter(tvRemoteBitrate);
-                binding.subContainer.addView(tvPVC);
+                binding.subContainer.addView(tvSR);
                 binding.subContainer.addView(tvRemoteBitrate);
             }
         }else if(curLayout==LAYOUT_LOCAL_SMALL){
             if(remoteView!=null) {
                 binding.mainContainer.addView(remoteView);
                 int topMargin = UIUtil.dip2px(getContext(), 60);
-                setTopCenterLayout(tvPVC, topMargin);
+                setTopCenterLayout(tvSR, topMargin);
                 ConstraintLayoutUtils.setTopRight(tvRemoteBitrate, topMargin);
-                binding.mainContainer.addView(tvPVC);
+                binding.mainContainer.addView(tvSR);
                 binding.mainContainer.addView(tvRemoteBitrate);
             }
             if(localView!=null) {
