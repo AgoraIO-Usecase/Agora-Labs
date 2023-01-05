@@ -7,10 +7,11 @@
 //
 
 import ASValueTrackingSlider
+import AgoraRtcKit
 import JXSegmentedView
 import UIKit
 
-class BeautifyFilter: UIViewController {
+class BeautifyFilter: BaseViewController {
     
     let filterList:[SubCellModel] = [
         SubCellModel(name: "Faceunity",tag: 0),
@@ -88,12 +89,12 @@ class BeautifyFilter: UIViewController {
         // make myself a broadcaster
         agoraKit.setClientRole(GlobalSettings.shared.getUserRole())
         // enable video module and set up video encoding configs
-        agoraKit.enableVideo()
-        agoraKit.enableAudio()
         agoraKit.setVideoEncoderConfiguration(AgoraVideoEncoderConfiguration(size: resolution,
                                                                              frameRate: fps,
                                                                              bitrate: AgoraVideoBitrateStandard,
                                                                              orientationMode: orientation, mirrorMode: .auto))
+        agoraKit.enableVideo()
+        agoraKit.enableAudio()
         
         // set up local video to render your local camera preview
         let videoCanvas = AgoraRtcVideoCanvas()
@@ -256,7 +257,6 @@ extension BeautifyFilter{
 
         let paramDic4 : Dictionary = ["obj_handle":bundelPath,"name":model.paramModel.name,"value":model.paramModel.value] as [String : Any]
         agoraKit.setExtensionPropertyWithVendor("FaceUnity", extension: "Effect", key: "fuItemSetParam", value: virtualTools.toJson(paramDic4))
-
     }
 }
 

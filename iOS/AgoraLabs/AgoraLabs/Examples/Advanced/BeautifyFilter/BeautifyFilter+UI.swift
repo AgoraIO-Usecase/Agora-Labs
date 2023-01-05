@@ -58,7 +58,7 @@ extension BeautifyFilter {
     func setupSDKFilterItem()  {
         for i in 0..<filterList.count {
             let itemModel = filterList[i]
-            let itemView = SubButton(type: .custom)
+            let itemView = SubButton(alphaNormal: 0.6)
             itemView.title = itemModel.name.localized
             itemView.tag  = i
             itemView.titleLabel?.font = UIFont.systemFont(ofSize: 15)

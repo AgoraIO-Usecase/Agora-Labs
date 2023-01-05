@@ -36,6 +36,7 @@
 "meitong" = "Pupil";
 "duibidu" = "Contrast";
 
+
 "aidou" = "Idol";
 "baica" = "white tea";
 "baixi" = "white";
@@ -87,3 +88,20 @@
 "dressUp"="DRESSUP";
 
 "Stay Tuned"="Stay Tuned";
+
+"Enabled"="Enabled";
+"Disabled"="Disabled";
+"Original Video"="Original Video";
+
+"chaofenxiaoguo"="Super score effect";
+"chaofenxiaoguoweikaiqi"="Super score is not turned on";
+
+"PVCxiaoguo"="PVC effect";
+"PVCweikaiqi"="PVC not open";
+
+"ROIxiaoguo"="ROI effect";
+"ROIxiaoguoweikaiqi"="ROI effect is not enabled";
+
+"qiyongchaofen"="Enable super resolution";
+"qiyongganzhishipinbianma"="Enable PVC";
+"qiyongganxingququyusuanfa"="Enable ROI";

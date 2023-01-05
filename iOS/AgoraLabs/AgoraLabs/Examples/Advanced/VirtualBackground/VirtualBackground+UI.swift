@@ -160,7 +160,7 @@ extension VirtualBackground {
             //原图
             self.currentModel = self.originalModel
             for item in itemModelList {
-                item.open =  false
+                item.isSelected =  false
                 if let itemView = item.subView as? SubCellView { itemView.setupSubCellModel(item) }
             }
             UINotificationFeedbackGenerator().notificationOccurred(.success)
@@ -169,7 +169,7 @@ extension VirtualBackground {
             //绿幕分割
             let model:SubCellModel = self.itemModelList[index]
             guard let itemView = model.subView as? SubCellView  else { return  }
-            model.open = !model.open
+            model.isSelected = !model.isSelected
             itemView.setupSubCellModel(model)
             self.greenScreenState(model: model)
         }else {
@@ -179,10 +179,10 @@ extension VirtualBackground {
                 guard let itemView = item.subView as? SubCellView  else { return  }
                 if item.tag == 1 { continue }
                 if item.tag == model.tag {
-                    item.open = !item.open
+                    item.isSelected = !item.isSelected
                     itemView.setupSubCellModel(item)
                 }else  {
-                    item.open = false
+                    item.isSelected = false
                     itemView.setupSubCellModel(item)
                 }
             }
@@ -192,7 +192,7 @@ extension VirtualBackground {
                 self.itemViewClick(model: model)
             }
         }
-        self.blurSlider?.isHidden = itemModelList.first?.open == false
+        self.blurSlider?.isHidden = itemModelList.first?.isSelected == false
     }
 }
 
@@ -219,7 +219,7 @@ extension VirtualBackground {
     private func configAddLocalImg(_ imagePath : String) {
         if let model = self.itemModelList.filter({$0.name == "Customize Image"}).first {
             model.value = imagePath
-            model.open = true
+            model.isSelected = true
             self.itemViewClick(model: model)
         }
     }
@@ -259,7 +259,7 @@ extension VirtualBackground:ASValueTrackingSliderDataSource,ASValueTrackingSlide
         let model:SubCellModel = self.itemModelList[0]
         if let _value = model.value as? Int, _value != modelValue {
             model.value = modelValue
-            model.open = true
+            model.isSelected = true
             UINotificationFeedbackGenerator().notificationOccurred(.success)
             self.itemViewClick(model: model)
         }

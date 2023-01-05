@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AgoraRtcKit
 import JXSegmentedView
 import FDFullscreenPopGesture
 
@@ -88,7 +89,8 @@ class ViewController: UIViewController {
         ]
     ]
     
-    var doneMap = ["Virtual Background","Beautify Filter"]
+    var doneMap = ["Virtual Background","Beautify Filter",
+                   "Resolution","ROI","PVC"]
     
     private var segmentedDataSource: JXSegmentedTitleDataSource!
     private var segmentedView: JXSegmentedView!
@@ -98,7 +100,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("AgoraRtcKit - \(AgoraRtcEngineKit.getSdkVersion())")
         view.backgroundColor = "#eff4ff".hexColor()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()

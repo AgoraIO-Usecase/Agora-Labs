@@ -6,6 +6,7 @@
 //  Copyright © 2022 Agora Corp. All rights reserved.
 //
 
+import AgoraRtcKit
 import UIKit
 
 class VirtualBackground: BaseViewController {
@@ -45,7 +46,7 @@ class VirtualBackground: BaseViewController {
         config.channelProfile = .liveBroadcasting
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: nil)
         agoraKit.setLogFile(LogUtils.sdkLogPath())
-        
+
         // get channel name from configs
         guard let resolution = GlobalSettings.shared.getSetting(key: "resolution")?.selectedOption().value as? CGSize,
               let fps = GlobalSettings.shared.getSetting(key: "fps")?.selectedOption().value as? AgoraVideoFrameRate,
@@ -57,12 +58,12 @@ class VirtualBackground: BaseViewController {
         // make myself a broadcaster
         agoraKit.setClientRole(GlobalSettings.shared.getUserRole())
         // enable video module and set up video encoding configs
-        agoraKit.enableVideo()
-        agoraKit.enableAudio()
         agoraKit.setVideoEncoderConfiguration(AgoraVideoEncoderConfiguration(size: resolution,
                                                                              frameRate: fps,
                                                                              bitrate: AgoraVideoBitrateStandard,
                                                                              orientationMode: orientation, mirrorMode: .auto))
+        agoraKit.enableVideo()
+        agoraKit.enableAudio()
         
         // set up local video to render your local camera preview
         let videoCanvas = AgoraRtcVideoCanvas()
@@ -102,7 +103,7 @@ class VirtualBackground: BaseViewController {
     
     //绿幕分割开启状态
     func greenScreenState(model:SubCellModel){
-        if model.open {
+        if model.isSelected {
             self.setVirtualColorBackground(hexString:"00FF00")
         }else{
             self.stateProperty = nil
@@ -114,7 +115,7 @@ class VirtualBackground: BaseViewController {
     
     //点击功能
     func itemViewClick(model:SubCellModel) {
-        if !model.open {
+        if !model.isSelected {
             self.closeVirtualBackground()
             return
         }

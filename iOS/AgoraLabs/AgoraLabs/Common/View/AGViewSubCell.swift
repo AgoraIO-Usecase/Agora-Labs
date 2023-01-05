@@ -11,7 +11,8 @@ class SubCellModel {
     var bgImageName:String = ""
     var tag:Int = 0
     var value:Any?
-    var open:Bool = false
+    var isSelected:Bool = false
+    var isEnabled:Bool = true
     var subView:UIView?
     init(name:String,tag:Int,value:Any = "",bgImageName:String = "") {
         self.name = name
@@ -105,15 +106,20 @@ class SubCellView: UIView {
             iconImage.isHidden = true
             bgImage.image = UIImage(named: model.bgImageName)
         }
-        
-        if model.open {
-            iconView.borderWidth = 2
-            iconView.borderColor = UIColor(hex: "91E2FF").cgColor
-            self.alpha = 1
-        }else{
+        if model.isEnabled == false {
             iconView.borderWidth = 1
             iconView.borderColor = UIColor(hex: "ffffff", alpha: 0.16).cgColor
-            self.alpha = 0.6
+            self.alpha = 0.3
+        }else {
+            if model.isSelected {
+                iconView.borderWidth = 2
+                iconView.borderColor = UIColor(hex: "91E2FF").cgColor
+                self.alpha = 1
+            }else{
+                iconView.borderWidth = 1
+                iconView.borderColor = UIColor(hex: "ffffff", alpha: 0.16).cgColor
+                self.alpha = 0.6
+            }
         }
     }
     
@@ -141,20 +147,34 @@ class SubButton: UIButton {
             if isSelected {
                 self.borderWidth = 2
                 self.borderColor = UIColor(hex: "91E2FF").cgColor
-                self.alpha = 1
+                self.alpha = alphaSelected
             }else{
                 self.borderWidth = 1
                 self.borderColor = UIColor(hex: "ffffff", alpha: 0.16).cgColor
-                self.alpha = 0.6
+                self.alpha = alphaNormal
             }
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    var alphaNormal = 1.0
+    var alphaSelected = 1.0
+    
+    init(alphaNormal:CGFloat) {
+        super.init(frame: CGRect.zero)
         self.borderWidth = 1
         self.borderColor = UIColor(hex: "ffffff", alpha: 0.16).cgColor
-        self.alpha = 0.6
+        self.alphaNormal = alphaNormal
+        self.alpha = alphaNormal
+    }
+    
+    func addBlurEffect(style:UIBlurEffect.Style) {
+        let blurEffect = UIBlurEffect(style: style)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        addSubview(visualEffectView)
+        visualEffectView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        visualEffectView.layer.masksToBounds = true
     }
     
     required init?(coder: NSCoder) {

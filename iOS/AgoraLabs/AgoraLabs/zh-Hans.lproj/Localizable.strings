@@ -255,3 +255,22 @@
 "oneKeyDress"="风格妆";
 "sticker"="贴纸";
 "dressUp"="美妆";
+
+"Bitrate"="码率";
+"Enabled"="效果";
+"Disabled"="效果未开启";
+"Original Video"="原视频";
+
+"chaofenxiaoguo"="超分效果";
+"chaofenxiaoguoweikaiqi"="超分效果未开启";
+
+"PVCxiaoguo"="PVC效果";
+"PVCweikaiqi"="PVC效果未开启";
+
+"ROIxiaoguo"="ROI效果";
+"ROIxiaoguoweikaiqi"="ROI效果未开启";
+
+"qiyongchaofen"="启用超分";
+"qiyongganzhishipinbianma"="启用感知视频编码";
+"qiyongganxingququyusuanfa"="启用感兴趣区域算法";
+
