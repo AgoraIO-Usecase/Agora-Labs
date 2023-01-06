@@ -23,6 +23,7 @@ public class VideoFeatureMenu extends ConstraintLayout implements View.OnClickLi
 
 
     private OnMenuOptionSelectedListener listener;
+    private List<OptionItem> data;
 
 
     public void setListener(OnMenuOptionSelectedListener listener) {
@@ -47,7 +48,10 @@ public class VideoFeatureMenu extends ConstraintLayout implements View.OnClickLi
     }
 
     private void initView(){
-        List<OptionItem> data=new ArrayList<>();
+        if(data==null) {
+            data = new ArrayList<>();
+        }
+        data.clear();
         data.add(new OptionItem(RESOLUTION_360P,R.mipmap.ic_360p,R.string.resolutoion_360p));
         data.add(new OptionItem(RESOLUTION_480P,R.mipmap.ic_480p,R.string.resolutoion_480p));
         data.add(new OptionItem(RESOLUTION_540P,R.mipmap.ic_540p,R.string.resolutoion_540p));
@@ -63,10 +67,10 @@ public class VideoFeatureMenu extends ConstraintLayout implements View.OnClickLi
 
             }
         });
+    }
 
-
-
-
+    public void setCurrentResolution(int resolution){
+        binding.menu.setSelected(data.get(resolution-1));
     }
 
     public interface OnMenuOptionSelectedListener{

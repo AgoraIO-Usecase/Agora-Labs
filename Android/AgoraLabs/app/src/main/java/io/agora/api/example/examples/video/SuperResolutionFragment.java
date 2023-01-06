@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,8 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
     private final int SR_2=3;
     private int curSR=SR_1;
 
+    private int resolution=VideoFeatureMenu.RESOLUTION_360P;
+
     private VideoEncoderConfiguration configuration;
     private PopWindow popWindow;
 
@@ -116,9 +119,11 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         binding.ivLayout.setOnClickListener(this);
         binding.optionMenu.setListener(new VideoFeatureMenu.OnMenuOptionSelectedListener() {
             @Override public void onResolutionSelected(int resolution) {
-                setVideoConfig(resolution);
+                SuperResolutionFragment.this.resolution=resolution;
+                setVideoConfig();
             }
         });
+        binding.optionMenu.setCurrentResolution(resolution);
         binding.featureSwitch.setChecked(srEnabled);
         binding.featureSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -166,6 +171,38 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         binding.sr133.setOnClickListener(this);
         binding.sr15.setOnClickListener(this);
         binding.sr2.setOnClickListener(this);
+
+        binding.menuControler.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                if(binding.optionMenu.getVisibility()==View.GONE){
+                    binding.optionMenu.setVisibility(View.VISIBLE);
+                }else{
+                    binding.optionMenu.setVisibility(View.GONE);
+                }
+            }
+        });
+        View.OnTouchListener listener=new View.OnTouchListener() {
+            private float lastY;
+            @Override public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_DOWN){
+                    lastY=event.getY();
+                }else if(event.getAction()==MotionEvent.ACTION_UP){
+                    float y=event.getY();
+                    if(y-lastY>10){
+                        if(binding.optionMenu.getVisibility()!=View.GONE) {
+                            binding.optionMenu.setVisibility(View.GONE);
+                        }
+                    }else if(lastY-y>5){
+                        if(binding.optionMenu.getVisibility()!=View.VISIBLE) {
+                            binding.optionMenu.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+                return false;
+            }
+        };
+        binding.menuControler.setOnTouchListener(listener);
+        binding.featureSwitch.setOnTouchListener(listener);
     }
 
     private void updateSR(){
@@ -176,6 +213,11 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
             binding.sr133.setSelected(curSR == SR_1_33);
             binding.sr15.setSelected(curSR == SR_1_5);
             binding.sr2.setSelected(curSR == SR_2);
+        }else{
+            binding.sr1.setSelected(false);
+            binding.sr133.setSelected(false);
+            binding.sr15.setSelected(false);
+            binding.sr2.setSelected(false);
         }
         setSRValue();
     }
@@ -211,6 +253,7 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         config.mAreaCode = ((App)getActivity().getApplication()).getAreaCode();
         try {
             rtcEngine = (RtcEngineEx)RtcEngineEx.create(config);
+            rtcEngine.disableAudio();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -231,13 +274,7 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         rtcConnection=new RtcConnection();
         rtcConnection.channelId=channelName;
         rtcConnection.localUid= senderUid;
-
-        configuration=new VideoEncoderConfiguration();
-        configuration.dimensions=new VideoEncoderConfiguration.VideoDimensions(640,360);
-        configuration.bitrate=800;
-        configuration.frameRate=15;
-        rtcEngine.setVideoEncoderConfigurationEx(configuration,rtcConnection);
-
+        setVideoConfig();
         localView = new TextureView(getContext()) ;
         rtcEngine.enableVideo();
         rtcEngine.enableAudio();
@@ -329,8 +366,10 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
 
     }
 
-    private void setVideoConfig(int resolution){
-        configuration=new VideoEncoderConfiguration();
+    private void setVideoConfig(){
+        if(configuration==null) {
+            configuration = new VideoEncoderConfiguration();
+        }
         if(resolution==VideoFeatureMenu.RESOLUTION_360P){
             configuration.dimensions=new VideoEncoderConfiguration.VideoDimensions(640,360);
             configuration.bitrate=800;

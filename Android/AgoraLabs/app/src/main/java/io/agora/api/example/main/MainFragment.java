@@ -93,7 +93,9 @@ public class MainFragment extends Fragment {
                 indicator.setYOffset(borderWidth);
                 indicator.setXOffset(0-UIUtil.dip2px(getContext(),10));
                 indicator.setMode(MODE_WRAP_CONTENT);
-                indicator.setColors(Color.parseColor("#2787FF"));
+                //indicator.setColors(Color.parseColor("#2787FF"));
+                indicator.setStartColor(Color.parseColor("#91E2FF"));
+                indicator.setEndColor(Color.parseColor("#2787FF"));
                 //indicator.setBackgroundResource(R.drawable.bg_rectangle_blue);
                 return indicator;
             }

@@ -2,8 +2,11 @@ package io.agora.api.example.common.widget.indicator.buildins.navigator.indicato
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.view.View;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
@@ -35,6 +38,8 @@ public class LinePagerIndicator extends View implements IPagerIndicator {
     private Paint mPaint;
     private List<PositionData> mPositionDataList;
     private List<Integer> mColors;
+    private int startColor;
+    private int endColor;
 
     private RectF mLineRect = new RectF();
 
@@ -62,6 +67,7 @@ public class LinePagerIndicator extends View implements IPagerIndicator {
         }
 
         // 计算颜色
+
         if (mColors != null && mColors.size() > 0) {
             int currentColor = mColors.get(Math.abs(position) % mColors.size());
             int nextColor = mColors.get(Math.abs(position + 1) % mColors.size());
@@ -98,7 +104,12 @@ public class LinePagerIndicator extends View implements IPagerIndicator {
         mLineRect.right = rightX + (nextRightX - rightX) * mEndInterpolator.getInterpolation(positionOffset);
         mLineRect.top = getHeight() - mLineHeight - mYOffset;
         mLineRect.bottom = getHeight() - mYOffset;
-
+        if(startColor!=0&&endColor!=0) {
+            LinearGradient linearGradient =
+                new LinearGradient(mLineRect.left, mLineRect.top, mLineRect.right, mLineRect.bottom,
+                    startColor, endColor, Shader.TileMode.MIRROR);
+            mPaint.setShader(linearGradient);
+        }
         invalidate();
     }
 
@@ -177,6 +188,14 @@ public class LinePagerIndicator extends View implements IPagerIndicator {
 
     public void setColors(Integer... colors) {
         mColors = Arrays.asList(colors);
+    }
+
+    public void setStartColor(int color){
+        this.startColor=color;
+    }
+
+    public void setEndColor(int color){
+        this.endColor=color;
     }
 
     public Interpolator getStartInterpolator() {
