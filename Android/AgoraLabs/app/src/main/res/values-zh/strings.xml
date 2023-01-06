@@ -170,4 +170,5 @@
     <string name="sr_1_33">1.33倍</string>
     <string name="sr_1_5">1.5倍</string>
     <string name="sr_2">2.0倍</string>
+    <string name="imge_type_not_support">暂不支持该图片类型!</string>
 </resources>
