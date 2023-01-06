@@ -91,6 +91,11 @@ class VirtualBackground: BaseViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        AgoraRtcEngineKit.destroy()
+    }
+    
     //切换摄像头
     @objc func switchBtnDidClick() {
         agoraKit.switchCamera()
@@ -143,7 +148,6 @@ class VirtualBackground: BaseViewController {
     
     deinit {
         self.closeVirtualBackground()
-        AgoraRtcEngineKit.destroy()
     }
 }
 

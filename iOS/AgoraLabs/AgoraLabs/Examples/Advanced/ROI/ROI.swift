@@ -167,9 +167,13 @@ class ROI: BaseViewController {
     }
     
     @objc func backBtnDidClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         self.agoraKit.leaveChannel(nil)
         AgoraRtcEngineKit.destroy()
-        self.navigationController?.popViewController(animated: true)
     }
     
     //切换摄像头

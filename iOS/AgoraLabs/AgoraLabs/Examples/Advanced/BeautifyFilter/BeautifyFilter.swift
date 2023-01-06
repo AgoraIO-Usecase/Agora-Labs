@@ -115,6 +115,11 @@ class BeautifyFilter: BaseViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        AgoraRtcEngineKit.destroy()
+    }
+    
     //切换摄像头
     @objc func switchBtnDidClick() {
         agoraKit.switchCamera()
@@ -122,7 +127,6 @@ class BeautifyFilter: BaseViewController {
     
     deinit {
         self.closeBottomView()
-        AgoraRtcEngineKit.destroy()
     }
 }
 
