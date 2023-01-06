@@ -189,7 +189,8 @@ class ROI: BaseViewController {
         if isOpenROI == enabled {
             return
         }
-        let json = JSON(["che.video.roiEnable":enabled]).rawString() ?? ""
+        let json = JSON(["che.video.roiEnable":enabled,
+                         "che.hardware_encoding":0]).rawString() ?? ""
         let rt = agoraKit.setParameters(json)
         self.isOpenROI = enabled
         if rt != 0 {
