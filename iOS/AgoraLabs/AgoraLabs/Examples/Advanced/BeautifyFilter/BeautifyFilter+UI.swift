@@ -203,7 +203,7 @@ extension BeautifyFilter{
                 make.size.equalTo(CGSize(width: 72, height: 70))
             }
             itemView.clickView {[weak self] sender in
-                UINotificationFeedbackGenerator().notificationOccurred(.success)
+                AGHUD.touchFeedback()
                 self?.beautyItemViewClick(index: sender.tag)
             }
         }
@@ -229,7 +229,7 @@ extension BeautifyFilter{
                 item.isSelected =  false
                 if let itemView = item.subView as? SubCellView { itemView.setupBeautyFuncModel(item) }
             }
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            AGHUD.touchFeedback()
             self.setupfaceUnityOriginalClick()
         }else{
             self.setupfaceUnityItem(index: index)
@@ -329,7 +329,7 @@ extension BeautifyFilter{
                 make.size.equalTo(CGSize(width: 72, height: 70))
             }
             itemView.clickView {[weak self] sender in
-                UINotificationFeedbackGenerator().notificationOccurred(.success)
+                AGHUD.touchFeedback()
                 self?.agoraItemViewClick(index: sender.tag)
             }
         }
@@ -355,7 +355,7 @@ extension BeautifyFilter{
                 item.isSelected =  false
                 if let itemView = item.subView as? SubCellView { itemView.setupBeautyFuncModel(item) }
             }
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            AGHUD.touchFeedback()
             self.setupAgoraOriginalClick()
         }else{
             self.setupAgoraItem(index: index)
@@ -505,7 +505,7 @@ extension BeautifyFilter:JXSegmentedViewDelegate{
                 make.size.equalTo(CGSize(width: 72, height: 70))
             }
             itemView.clickView {[weak self] sender in
-                UINotificationFeedbackGenerator().notificationOccurred(.success)
+                AGHUD.touchFeedback()
                 self?.beautyItemViewClick(index: sender.tag)
             }
             if itemModel.isSelected {
@@ -533,7 +533,7 @@ extension BeautifyFilter:JXSegmentedViewDelegate{
                 item.isSelected =  false
                 if let itemView = item.subView as? SubCellView { itemView.setupBeautyFuncModel(item) }
             }
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            AGHUD.touchFeedback()
             self.setupVolcUnityOriginalClick()
         }else{
             self.setupVolcUnityItem(index: index)
@@ -636,7 +636,7 @@ extension BeautifyFilter:ASValueTrackingSliderDataSource,ASValueTrackingSliderDe
 extension BeautifyFilter{
     //选择对应的美颜模块
     private func filterItemViewClick(index:Int)  {
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        AGHUD.touchFeedback()
         for i in 0..<filterList.count {
             let filterItem = filterList[i]
             if filterItem.tag == index {

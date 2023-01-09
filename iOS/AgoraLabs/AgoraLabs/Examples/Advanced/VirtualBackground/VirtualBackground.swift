@@ -28,6 +28,7 @@ class VirtualBackground: BaseViewController {
     var blurSlider:UISlider?
     
     var localVideoView:UIView?
+    var isOpenAgoraGreen:Bool = false
     var agoraKit: AgoraRtcEngineKit!
     
     override func viewDidLoad() {
@@ -109,8 +110,10 @@ class VirtualBackground: BaseViewController {
     //绿幕分割开启状态
     func greenScreenState(model:SubCellModel){
         if model.isSelected {
-            self.setVirtualColorBackground(hexString:"00FF00")
+            self.isOpenAgoraGreen = true
+            self.setVirtualColorBackground(hexString:"FFFFFF")
         }else{
+            self.isOpenAgoraGreen = false
             self.stateProperty = nil
             self.closeVirtualBackground()
         }
@@ -191,7 +194,11 @@ extension VirtualBackground {
     
     // Close VirtualBackground
     func closeVirtualBackground() {
+        
         let ret = agoraKit.enableVirtualBackground(false, backData: nil, segData: nil)
+        if isOpenAgoraGreen  {
+            self.setVirtualColorBackground(hexString:"FFFFFF")
+        }
         print("Close VirtualBackground ----设置返回值：\(ret)")
     }
 }

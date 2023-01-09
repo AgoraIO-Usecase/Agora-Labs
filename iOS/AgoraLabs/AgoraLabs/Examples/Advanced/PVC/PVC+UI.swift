@@ -92,7 +92,7 @@ extension PVC{
         if XMMenuPopover.shared.isMenuVisible {  return  }
         
         if sender.state == .began {
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            AGHUD.touchFeedback()
             
             let itemW = 51
             let itemH = 56
@@ -138,7 +138,7 @@ extension PVC{
     @objc func updataLayoutContentView(tag:Int) {
         self.layoutType = tag
         self.layoutImage?.image = UIImage(named: "view\(self.layoutType)")
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        AGHUD.touchFeedback()
         if tag == 1 {
             //原视频(上) 远程(下)
             print("原视频(上) 远程(下)")
@@ -211,7 +211,7 @@ extension PVC{
         bottomView.addSubview(bottomContentView)
         bottomContentView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(SCREEN_BOTTOM_HEIGHT)
+            make.bottom.equalToSuperview().offset(-SCREEN_BOTTOM_HEIGHT)
             make.height.equalTo(118)
         }
         
@@ -262,7 +262,7 @@ extension PVC{
             itemView.setupSubCellModel(itemModelList[i])
             bottomContentView.addSubview(itemView)
             itemView.clickView {[weak self] sender in
-                UINotificationFeedbackGenerator().notificationOccurred(.success)
+                AGHUD.touchFeedback()
                 self?.switchResolution(tag: sender.tag)
             }
         }

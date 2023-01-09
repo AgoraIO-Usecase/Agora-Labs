@@ -89,9 +89,8 @@ class ViewController: UIViewController {
         ]
     ]
     
-    var doneMap = ["Virtual Background","Beautify Filter",
-                   "Resolution","ROI","PVC"]
-    
+    var doneMap = ["Virtual Background","Beautify Filter","Resolution","ROI","PVC"]
+//    var doneMap = ["Virtual Background","Beautify Filter"]
     private var segmentedDataSource: JXSegmentedTitleDataSource!
     private var segmentedView: JXSegmentedView!
     private var contentScrollView: UIScrollView!
@@ -191,7 +190,7 @@ extension ViewController: AGViewDelegate{
             self.navigationController?.pushViewController(entryViewController, animated: true)
 
         }else{
-            AGHUD.showInfo(info: "该功能暂不支持，敬请期待")
+            AGHUD.showInfo(info: "ggnzbzcjqqd".localized)
         }
     }
 }

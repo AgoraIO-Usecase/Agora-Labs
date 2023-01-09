@@ -29,9 +29,13 @@ class AGHUD {
     class func showInfo(info: String){
         disMiss()
         self.configDefaultParam()
-        UINotificationFeedbackGenerator().notificationOccurred(.error)
+        AGHUD.touchFeedback()
         SVProgressHUD.showInfo(withStatus: info)
     }
+    
+    class func touchFeedback() {
+        UINotificationFeedbackGenerator().notificationOccurred(.error)
+     }
     
     //显示文字和成功对号
     class func showSuccess(info: String){

@@ -108,7 +108,7 @@ extension VirtualBackground {
                 make.size.equalTo(CGSize(width: 72, height: 70))
             }
             itemView.clickView {[weak self] sender in
-                UINotificationFeedbackGenerator().notificationOccurred(.success)
+                AGHUD.touchFeedback()
                 self?.itemViewClick(index: sender.tag)
             }
         }
@@ -163,7 +163,7 @@ extension VirtualBackground {
                 item.isSelected =  false
                 if let itemView = item.subView as? SubCellView { itemView.setupSubCellModel(item) }
             }
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            AGHUD.touchFeedback()
             self.originalViewClick()
         }else if index == 1 {
             //绿幕分割
@@ -260,7 +260,7 @@ extension VirtualBackground:ASValueTrackingSliderDataSource,ASValueTrackingSlide
         if let _value = model.value as? Int, _value != modelValue {
             model.value = modelValue
             model.isSelected = true
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            AGHUD.touchFeedback()
             self.itemViewClick(model: model)
         }
         return newString
