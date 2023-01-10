@@ -54,6 +54,17 @@ extension UIColor {
     }
 }
 
+extension UILabel{
+    @discardableResult
+    func setupShadow() -> UILabel {
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
+        self.layer.shadowRadius = 1
+        return self
+    }
+}
+
 //平方-简-中黑体 和大小
 func FontPFMediumSize(_ fontSize:CGFloat) -> UIFont {
     return UIFont.init(name: "PingFangSC-Medium", size: fontSize)!

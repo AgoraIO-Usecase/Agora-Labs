@@ -28,6 +28,7 @@ extension BeautifyFilter {
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
         button.setTitle("Beautify Filter".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
+        button.titleLabel?.setupShadow()
         let leftBarBtn = UIBarButtonItem(customView: button)
         self.navigationItem.leftBarButtonItem = leftBarBtn
         
@@ -107,7 +108,7 @@ extension BeautifyFilter {
         self.view.addSubview(rangeSlider)
         rangeSlider.snp.makeConstraints { make in
             make.bottom.equalTo(bottomView.snp.top).offset(-16)
-            make.width.equalTo(SCREEN_WIDTH-32)
+            make.width.equalTo(SCREEN_WIDTH-60)
             make.centerX.equalToSuperview()
         }
     }

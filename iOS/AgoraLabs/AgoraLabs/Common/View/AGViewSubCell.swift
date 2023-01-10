@@ -11,14 +11,15 @@ class SubCellModel {
     var bgImageName:String = ""
     var tag:Int = 0
     var value:Any?
-    var isSelected:Bool = false
-    var isEnabled:Bool = true
+    var isSelected:Bool = false     //是否开启
+    var isEnabled:Bool = true       //是否可用
     var subView:UIView?
-    init(name:String,tag:Int,value:Any = "",bgImageName:String = "") {
+    init(name:String,tag:Int,value:Any = "",bgImageName:String = "",isSelected:Bool = false) {
         self.name = name
         self.tag = tag
         self.value = value
         self.bgImageName = bgImageName
+        self.isSelected = isSelected
     }
 }
 

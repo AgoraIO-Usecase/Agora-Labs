@@ -13,22 +13,21 @@ class VirtualBackground: BaseViewController {
     
     var currentModel:SubCellModel?
     
-    let originalModel = SubCellModel(name: "Original Image",tag: -1)
+    let originalModel = SubCellModel(name: "Original Image",tag: -1,isSelected: true)
+    let greenModel = SubCellModel(name: "Split Green Screen",tag: 1)
     
-    var stateProperty:AgoraSegmentationProperty?
+    var stateProperty:AgoraSegmentationProperty? = nil
     
     let itemModelList:[SubCellModel] = [
         SubCellModel(name: "Background Blur",tag: 0,value: 1),
-        SubCellModel(name: "Split Green Screen",tag: 1),
-        SubCellModel(name: "Scenery Image",tag: 2, bgImageName: "Image1"),
-        SubCellModel(name: "Meeting Image",tag: 3, bgImageName: "Image2"),
-        SubCellModel(name: "Customize Image",tag: 4)
+        SubCellModel(name: "Scenery Image",tag: 1, bgImageName: "Image1"),
+        SubCellModel(name: "Meeting Image",tag: 2, bgImageName: "Image2"),
+        SubCellModel(name: "Customize Image",tag: 3)
     ]
     
     var blurSlider:UISlider?
     
     var localVideoView:UIView?
-    var isOpenAgoraGreen:Bool = false
     var agoraKit: AgoraRtcEngineKit!
     
     override func viewDidLoad() {
@@ -91,12 +90,7 @@ class VirtualBackground: BaseViewController {
     @objc func backBtnDidClick() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        AgoraRtcEngineKit.destroy()
-    }
-    
+        
     //切换摄像头
     @objc func switchBtnDidClick() {
         agoraKit.switchCamera()
@@ -106,14 +100,13 @@ class VirtualBackground: BaseViewController {
     func originalViewClick() {
         self.closeVirtualBackground()
     }
-    
-    //绿幕分割开启状态
-    func greenScreenState(model:SubCellModel){
-        if model.isSelected {
-            self.isOpenAgoraGreen = true
+
+    //绿幕分割
+    @objc func switchOpenGreenChange(_ sender:UISwitch) {
+        self.greenModel.isSelected = sender.isOn
+        if self.greenModel.isSelected {
             self.setVirtualColorBackground(hexString:"FFFFFF")
         }else{
-            self.isOpenAgoraGreen = false
             self.stateProperty = nil
             self.closeVirtualBackground()
         }
@@ -150,6 +143,7 @@ class VirtualBackground: BaseViewController {
     }
     
     deinit {
+        AgoraRtcEngineKit.destroy()
         self.closeVirtualBackground()
     }
 }
@@ -194,9 +188,8 @@ extension VirtualBackground {
     
     // Close VirtualBackground
     func closeVirtualBackground() {
-        
         let ret = agoraKit.enableVirtualBackground(false, backData: nil, segData: nil)
-        if isOpenAgoraGreen  {
+        if self.greenModel.isSelected  {
             self.setVirtualColorBackground(hexString:"FFFFFF")
         }
         print("Close VirtualBackground ----设置返回值：\(ret)")

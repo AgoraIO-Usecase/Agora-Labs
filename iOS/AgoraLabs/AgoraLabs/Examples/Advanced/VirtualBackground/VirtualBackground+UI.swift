@@ -16,6 +16,7 @@ extension VirtualBackground {
     func setupUI() {
         self.setupNavigation()
         self.setupContentView()
+        self.setupGreenSwitch()
         self.setupBottom()
     }
     
@@ -28,6 +29,7 @@ extension VirtualBackground {
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
         button.setTitle("Virtual Background".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
+        button.titleLabel?.setupShadow()
         let leftBarBtn = UIBarButtonItem(customView: button)
         self.navigationItem.leftBarButtonItem = leftBarBtn
         
@@ -43,6 +45,30 @@ extension VirtualBackground {
         let barItemOne = UIBarButtonItem.init(customView: imageOne)
         
         navigationItem.rightBarButtonItem = barItemOne
+    }
+    
+    func setupGreenSwitch()  {
+        let greenSwitch = UISwitch()
+        greenSwitch.addTarget(self, action: #selector(switchOpenGreenChange(_:)), for: .valueChanged)
+        greenSwitch.onTintColor = "099DFD".hexColor()
+        greenSwitch.isOn = false
+        greenModel.subView = greenSwitch
+        self.view.addSubview(greenSwitch)
+        greenSwitch.snp.makeConstraints { (make) in
+            make.right.equalToSuperview().offset(-16)
+            make.top.equalToSuperview().offset(Int(SCREEN_NAV_FULL_HEIGHT)+16)
+        }
+        
+        let greenlabel = UILabel().setupShadow()
+        greenlabel.text = "Split Green Screen".localized
+        greenlabel.textColor = .white
+        greenlabel.font = UIFont.systemFont(ofSize: 14)
+        self.view.addSubview(greenlabel)
+        greenlabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(greenSwitch)
+            make.right.equalTo(greenSwitch.snp.left).offset(-4)
+        }
+        
     }
     
     func setupContentView() {
@@ -142,7 +168,7 @@ extension VirtualBackground {
         self.view.addSubview(rangeSlider)
         rangeSlider.snp.makeConstraints { make in
             make.bottom.equalTo(bottomView.snp.top).offset(-16)
-            make.width.equalTo(SCREEN_WIDTH-32)
+            make.width.equalTo(SCREEN_WIDTH-60)
             make.centerX.equalToSuperview()
         }
 
@@ -153,7 +179,7 @@ extension VirtualBackground {
 }
 
 extension VirtualBackground {
-  
+      
     private func itemViewClick(index:Int) {
         
         if index == -1 {
@@ -163,21 +189,23 @@ extension VirtualBackground {
                 item.isSelected =  false
                 if let itemView = item.subView as? SubCellView { itemView.setupSubCellModel(item) }
             }
+            
+            if let itemView = self.originalModel.subView as? SubCellView {
+                self.originalModel.isSelected = true
+                itemView.setupSubCellModel(self.originalModel)
+            }
+            
+            if let itemView = self.greenModel.subView as? UISwitch {
+                itemView.isOn = false
+                self.switchOpenGreenChange(itemView)
+            }
             AGHUD.touchFeedback()
             self.originalViewClick()
-        }else if index == 1 {
-            //绿幕分割
-            let model:SubCellModel = self.itemModelList[index]
-            guard let itemView = model.subView as? SubCellView  else { return  }
-            model.isSelected = !model.isSelected
-            itemView.setupSubCellModel(model)
-            self.greenScreenState(model: model)
         }else {
             let model:SubCellModel = self.itemModelList[index]
             self.currentModel = model
             for item in itemModelList {
                 guard let itemView = item.subView as? SubCellView  else { return  }
-                if item.tag == 1 { continue }
                 if item.tag == model.tag {
                     item.isSelected = !item.isSelected
                     itemView.setupSubCellModel(item)
@@ -186,7 +214,13 @@ extension VirtualBackground {
                     itemView.setupSubCellModel(item)
                 }
             }
-            if model.tag == 4 {
+            
+            if let itemView = self.originalModel.subView as? SubCellView {
+                self.originalModel.isSelected = false
+                itemView.setupSubCellModel(self.originalModel)
+            }
+            
+            if model.tag == 3 {
                 self.showImagePickerVC()
             }else{
                 self.itemViewClick(model: model)
