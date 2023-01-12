@@ -17,7 +17,7 @@ extension Resolution {
         self.setupBottom()
         self.setupShowContentView()
         self.setupBottomContentView()
-        self.setupMultipleView()
+        //self.setupMultipleView()
     }
     
     func setupNavigation() {
@@ -160,6 +160,25 @@ extension Resolution {
                 make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
             }
         }else if tag == 2 {
+            //原视频(小) 远程(大)
+            print("原视频(小) 远程(大)")
+            remoteVideoView.reloadPosition(type: .inside)
+            remoteVideoView.cornerRadius = 0
+            remoteVideoView.snp.remakeConstraints { make in
+                make.top.left.right.equalToSuperview()
+                make.height.equalTo(contentView.snp.height)
+            }
+            
+            localVideoView.reloadPosition(type: .outside)
+            localVideoView.cornerRadius = 8
+            contentView.bringSubviewToFront(localVideoView)
+            localVideoView.snp.remakeConstraints { make in
+                make.right.equalToSuperview().offset(-16)
+                make.bottom.equalTo(bottomView.snp.top).offset(-16)
+                make.size.equalTo(CGSize(width: 160, height: 200))
+            }
+            
+        }else if tag == 3 {
             //原视频(大) 远程(小)
             print("原视频(大) 远程(小)")
             
@@ -175,27 +194,10 @@ extension Resolution {
             contentView.bringSubviewToFront(remoteVideoView)
             remoteVideoView.snp.remakeConstraints { make in
                 make.right.equalToSuperview().offset(-16)
-                make.bottom.equalTo(multipleView.snp.top).offset(-16)
+                make.bottom.equalTo(bottomView.snp.top).offset(-16)
                 make.size.equalTo(CGSize(width: 160, height: 200))
-            }
-        }else if tag == 3 {
-            //原视频(小) 远程(大)
-            print("原视频(小) 远程(大)")
-            remoteVideoView.reloadPosition(type: .inside)
-            remoteVideoView.cornerRadius = 0
-            remoteVideoView.snp.remakeConstraints { make in
-                make.top.left.right.equalToSuperview()
-                make.height.equalTo(contentView.snp.height)
             }
             
-            localVideoView.reloadPosition(type: .outside)
-            localVideoView.cornerRadius = 8
-            contentView.bringSubviewToFront(localVideoView)
-            localVideoView.snp.remakeConstraints { make in
-                make.right.equalToSuperview().offset(-16)
-                make.bottom.equalTo(multipleView.snp.top).offset(-16)
-                make.size.equalTo(CGSize(width: 160, height: 200))
-            }
         }
         
     }
@@ -265,7 +267,6 @@ extension Resolution {
             let itemView = SubCellView()
             itemModel.subView = itemView
             itemModel.isSelected = i == 0
-            itemModel.isEnabled = openSwitch.isOn
             itemView.tag = i
             itemView.setupSubCellModel(itemModelList[i])
             bottomContentView.addSubview(itemView)
@@ -319,26 +320,18 @@ extension Resolution {
             bottomView.snp.updateConstraints{ make in
                 make.bottom.equalToSuperview()
             }
-            multipleView.snp.updateConstraints { make in
-                make.bottom.equalTo(bottomView.snp.top)
-            }
-            multipleView.isHidden = false
             bottomContentView.isHidden = false
         }else if recognizer.direction == .down {
             
             bottomView.snp.updateConstraints { make in
                 make.bottom.equalToSuperview().offset(118)
             }
-            multipleView.snp.updateConstraints { make in
-                make.bottom.equalTo(bottomView.snp.top).offset(56)
-            }
-            multipleView.isHidden = true
             bottomContentView.isHidden = true
         }
     }
     
     func switchResolution(tag:Int) {
-        if openSwitch.isOn == false { return }
+//        if openSwitch.isOn == false { return }
         self.itemModelList.forEach { model in
             model.isSelected = model.tag == tag
             guard let itemView = model.subView as? SubCellView  else { return  }
@@ -346,24 +339,24 @@ extension Resolution {
         }
         guard let videoConfig = self.itemModelList[tag].value as? AgoraVideoEncoderConfiguration else { return }
         self.setupResolution(videoConfig: videoConfig)
+        self.setupSuperResolution(enabled: openSwitch.isOn)
     }
     
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
         self.remoteVideoView.titleSelected = sender.isOn
         
-        self.multipleModelList.forEach { model in
-            guard let itemView = model.subView as? SubButton  else { return  }
-            itemView.isSelected = sender.isOn ?model.isSelected:false
-            itemView.isEnabled = sender.isOn
-            if sender.isOn { self.currentModel = model }
-        }
+//        self.multipleModelList.forEach { model in
+//            guard let itemView = model.subView as? SubButton  else { return  }
+//            itemView.isSelected = sender.isOn ?model.isSelected:false
+//            if sender.isOn { self.currentModel = model }
+//        }
         
-        self.itemModelList.forEach { model in
-            model.isEnabled = sender.isOn
-            guard let itemView = model.subView as? SubCellView  else { return  }
-            itemView.setupSubCellModel(model)
-        }
+//        self.itemModelList.forEach { model in
+//            model.isEnabled = sender.isOn
+//            guard let itemView = model.subView as? SubCellView  else { return  }
+//            itemView.setupSubCellModel(model)
+//        }
         self.setupSuperResolution(enabled: sender.isOn)
     }
     

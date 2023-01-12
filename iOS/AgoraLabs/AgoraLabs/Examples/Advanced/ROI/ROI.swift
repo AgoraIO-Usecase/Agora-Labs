@@ -95,7 +95,7 @@ class ROI: BaseViewController {
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
         
         agoraKit.enableVideo()
-        agoraKit.enableAudio()
+        agoraKit.disableAudio()
         // set up local video to render your local camera preview
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = AgoraLabsUser.sendUid

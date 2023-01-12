@@ -107,10 +107,10 @@ class Resolution: BaseViewController {
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
         
         agoraKit.enableVideo()
-        agoraKit.enableAudio()
+        agoraKit.disableAudio()
         // set up local video to render your local camera preview
         let videoCanvas = AgoraRtcVideoCanvas()
-        videoCanvas.uid = UInt(10086) ?? 0//AgoraLabsUser.sendUid
+        videoCanvas.uid =  AgoraLabsUser.sendUid
         // the view to be binded
         videoCanvas.view = localVideoView.showView
         videoCanvas.renderMode = .hidden
@@ -202,17 +202,12 @@ class Resolution: BaseViewController {
     }
     
     func setupSuperResolution(enabled:Bool) {
-        //3    GAN low 2x    
-        //6    GAN low 1x
-        //7    GAN low 1.33x
-        //8    GAN low 1.5x
         let json = JSON([
             "rtc.video.enable_sr":[
                 "uid":AgoraLabsUser.sendUid,
                 "enabled":enabled,
-                "mode":1
-            ],
-            "rtc.video.sr_type": self.currentModel?.value ?? 0 ]).rawString() ?? ""
+                "mode":1 
+            ]]).rawString() ?? ""
         let rt = agoraKit.setParameters(json)
         if rt != 0 {
             AGHUD.showFaild(info: "Enable SR False:\(rt)")

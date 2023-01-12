@@ -159,6 +159,25 @@ extension PVC{
                 make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
             }
         }else if tag == 2 {
+            //原视频(小) 远程(大)
+            print("原视频(小) 远程(大)")
+            remoteVideoView.reloadPosition(type: .inside)
+            remoteVideoView.cornerRadius = 0
+            remoteVideoView.snp.remakeConstraints { make in
+                make.top.left.right.equalToSuperview()
+                make.height.equalTo(contentView.snp.height)
+            }
+            
+            localVideoView.reloadPosition(type: .outside)
+            localVideoView.cornerRadius = 8
+            contentView.bringSubviewToFront(localVideoView)
+            localVideoView.snp.remakeConstraints { make in
+                make.right.equalToSuperview().offset(-16)
+                make.bottom.equalTo(bottomView.snp.top).offset(-16)
+                make.size.equalTo(CGSize(width: 160, height: 200))
+            }
+            
+        }else if tag == 3 {
             //原视频(大) 远程(小)
             print("原视频(大) 远程(小)")
             
@@ -177,24 +196,7 @@ extension PVC{
                 make.bottom.equalTo(bottomView.snp.top).offset(-16)
                 make.size.equalTo(CGSize(width: 160, height: 200))
             }
-        }else if tag == 3 {
-            //原视频(小) 远程(大)
-            print("原视频(小) 远程(大)")
-            remoteVideoView.reloadPosition(type: .inside)
-            remoteVideoView.cornerRadius = 0
-            remoteVideoView.snp.remakeConstraints { make in
-                make.top.left.right.equalToSuperview()
-                make.height.equalTo(contentView.snp.height)
-            }
             
-            localVideoView.reloadPosition(type: .outside)
-            localVideoView.cornerRadius = 8
-            contentView.bringSubviewToFront(localVideoView)
-            localVideoView.snp.remakeConstraints { make in
-                make.right.equalToSuperview().offset(-16)
-                make.bottom.equalTo(bottomView.snp.top).offset(-16)
-                make.size.equalTo(CGSize(width: 160, height: 200))
-            }
         }
         
     }
@@ -257,7 +259,6 @@ extension PVC{
             let itemView = SubCellView()
             itemModel.subView = itemView
             itemModel.isSelected = i == 0
-            itemModel.isEnabled = openSwitch.isOn
             itemView.tag = i
             itemView.setupSubCellModel(itemModelList[i])
             bottomContentView.addSubview(itemView)
@@ -292,7 +293,7 @@ extension PVC{
     }
     
     func switchResolution(tag:Int) {
-        if openSwitch.isOn == false { return }
+//        if openSwitch.isOn == false { return }
         self.itemModelList.forEach { model in
             model.isSelected = model.tag == tag
             guard let itemView = model.subView as? SubCellView  else { return  }
@@ -300,23 +301,23 @@ extension PVC{
         }
         guard let videoConfig = self.itemModelList[tag].value as? [AgoraVideoEncoderConfiguration] else { return }
         self.setupResolution(videoConfig: videoConfig[1])
-        self.setupPVC(enabled: true)
+        self.setupPVC(enabled: openSwitch.isOn)
     }
     
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
         
         self.remoteVideoView.titleSelected = sender.isOn
-        var tag = 0
-        self.itemModelList.forEach { model in
-            model.isEnabled = sender.isOn
-            guard let itemView = model.subView as? SubCellView  else { return  }
-            itemView.setupSubCellModel(model)
-            if model.isSelected { tag = model.tag }
-        }
-        
-        guard let videoConfig = self.itemModelList[tag].value as? [AgoraVideoEncoderConfiguration] else { return }
-        self.setupResolution(videoConfig: openSwitch.isOn == false ?videoConfig[0]:videoConfig[1])
+//        var tag = 0
+//        self.itemModelList.forEach { model in
+//            model.isEnabled = sender.isOn
+//            guard let itemView = model.subView as? SubCellView  else { return  }
+//            itemView.setupSubCellModel(model)
+//            if model.isSelected { tag = model.tag }
+//        }
+//        
+//        guard let videoConfig = self.itemModelList[tag].value as? [AgoraVideoEncoderConfiguration] else { return }
+//        self.setupResolution(videoConfig: openSwitch.isOn == false ?videoConfig[0]:videoConfig[1])
         self.setupPVC(enabled: sender.isOn)
         
     }
