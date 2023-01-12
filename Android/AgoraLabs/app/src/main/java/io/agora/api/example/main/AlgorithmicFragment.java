@@ -1,5 +1,7 @@
 package io.agora.api.example.main;
 
+import android.content.Context;
+import android.os.Vibrator;
 import io.agora.api.example.R;
 import io.agora.api.example.common.dialog.AutoDissmissDialog;
 import io.agora.api.example.main.model.Feature;
@@ -13,6 +15,8 @@ public class AlgorithmicFragment extends BaseListFragment {
 
     @Override protected void onItemSelect(Feature feature, int position) {
         //todo
+        Vibrator vibrator= (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(30);
         AutoDissmissDialog dialog=new AutoDissmissDialog(getContext(),R.style.auto_dismiss_dialog);
         dialog.setResource(R.mipmap.ic_warning_circle,R.string.feature_not_supported);
         dialog.show();

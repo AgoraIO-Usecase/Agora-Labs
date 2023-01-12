@@ -81,15 +81,21 @@ public class MenuPage extends LinearLayout {
         menuItemAdapter.setOnItemClickListener(listener);
     }
 
-    public void setSelected(List<OptionItem> items){
-        menuItemAdapter.setSelected(items);
-    }
-
     public void setSelected(OptionItem item){
-        List<OptionItem> items=new ArrayList<>();
-        items.add(item);
-        menuItemAdapter.setSelected(items);
+        setSelected(item,true);
     }
 
+    public void setSelected(OptionItem item,boolean onlyOneSelected){
+        if(onlyOneSelected){
+            menuItemAdapter.clearSelected();
+        }
+        item.setSelected(true);
+        menuItemAdapter.notifyDataSetChanged();
+    }
+
+    public void setUnSelected(OptionItem item){
+        item.setSelected(false);
+        menuItemAdapter.notifyDataSetChanged();
+    }
 
 }

@@ -349,19 +349,19 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         }
         if(resolution==VideoFeatureMenu.RESOLUTION_360P){
             configuration.dimensions=new VideoEncoderConfiguration.VideoDimensions(640,360);
-            configuration.bitrate= pvcEnabled ? 560 : 800;
+            configuration.bitrate= 800;
             configuration.frameRate=15;
         }else if(resolution==VideoFeatureMenu.RESOLUTION_480P){
             configuration.dimensions=new VideoEncoderConfiguration.VideoDimensions(640,480);
-            configuration.bitrate= pvcEnabled ? 854 : 1200;
+            configuration.bitrate= 1200;
             configuration.frameRate=15;
         }else if(resolution==VideoFeatureMenu.RESOLUTION_540P){
             configuration.dimensions=new VideoEncoderConfiguration.VideoDimensions(960,540);
-            configuration.bitrate= pvcEnabled ? 1030 : 1470;
+            configuration.bitrate= 1470;
             configuration.frameRate=15;
         }else if(resolution==VideoFeatureMenu.RESOLUTION_720P){
             configuration.dimensions=new VideoEncoderConfiguration.VideoDimensions(960,720);
-            configuration.bitrate= pvcEnabled ? 1580 : 2260;
+            configuration.bitrate= 2260;
             configuration.frameRate=15;
         }
         rtcEngine.setVideoEncoderConfigurationEx(configuration,rtcConnection);

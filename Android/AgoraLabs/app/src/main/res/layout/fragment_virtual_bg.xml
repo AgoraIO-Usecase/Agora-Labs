@@ -40,6 +40,18 @@
         android:layout_marginTop="@dimen/permission_dp_10"
         android:layout_marginRight="@dimen/permission_dp_10"/>
 
+    <Switch
+        android:id="@+id/split_green_screen_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/split_green_screen"
+        app:layout_constraintTop_toBottomOf="@+id/iv_switch_camera"
+        android:layout_marginTop="16dp"
+        app:layout_constraintRight_toRightOf="@+id/iv_switch_camera"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        />
+
     <io.agora.api.example.common.widget.bubbleseekbar.BubbleSeekBar
         android:id="@+id/bg_blur_seekbar"
         android:layout_width="match_parent"

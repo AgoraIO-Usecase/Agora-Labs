@@ -1,6 +1,8 @@
 package io.agora.api.example.examples.video.beauty;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
@@ -80,6 +82,8 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
         Log.d(TAG,"version:"+RtcEngine.getSdkVersion());
         try {
             rtcEngine = (RtcEngineEx)RtcEngineEx.create(config);
+            rtcEngine.registerExtension("ByteDance","Effect", Constants.MediaSourceType.PRIMARY_CAMERA_SOURCE);
+            rtcEngine.registerExtension("FaceUnity","Effect",Constants.MediaSourceType.PRIMARY_CAMERA_SOURCE);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -213,6 +217,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
             agoraMenu.addFixMenuItem(new OptionItem(-1, R.mipmap.ic_ban, R.string.original_image));
             agoraMenu.setOnItemClickListener(new OnItemClickListener() {
                 @Override public void onItemClick(View v, OptionItem optionItem, int position) {
+                    SystemUtil.vibrator(getContext());
                     agoraMenu.setSelected(optionItem);
                     agoraRender.setSelectedID(optionItem.getId());
                     if(optionItem.getId()==-1){
@@ -250,6 +255,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
             xiangxinMenu.addFixMenuItem(new OptionItem(-1, R.mipmap.ic_ban, R.string.original_image));
             xiangxinMenu.setOnItemClickListener(new OnItemClickListener() {
                 @Override public void onItemClick(View v, OptionItem optionItem, int position) {
+                    SystemUtil.vibrator(getContext());
                     xiangxinMenu.setSelected(optionItem);
                     fuRender.setSelectedID(optionItem.getId());
                     if(optionItem.getId()==-1){
@@ -299,6 +305,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
             });
             volcBeautyMenu.setOnItemClickListener(new OnItemClickListener() {
                 @Override public void onItemClick(View v, OptionItem optionItem, int position) {
+                    SystemUtil.vibrator(getContext());
                     if(optionItem.getId()==-1){
                         rtcEngine.enableExtension("ByteDance", "Effect", false);
                     }else{

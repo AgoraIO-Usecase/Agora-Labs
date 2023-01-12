@@ -81,7 +81,7 @@
 
     <string name="original_image">原图</string>
     <string name="background_blur">背影虚化</string>
-    <string name="split_green_screen">绿幕分隔</string>
+    <string name="split_green_screen">绿幕分割</string>
     <string name="landscape">风景</string>
     <string name="meeting_room">会议室</string>
     <string name="customize">自定义</string>

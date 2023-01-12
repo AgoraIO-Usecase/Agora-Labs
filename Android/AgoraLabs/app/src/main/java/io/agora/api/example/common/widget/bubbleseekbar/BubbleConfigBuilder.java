@@ -214,6 +214,11 @@ public class BubbleConfigBuilder {
         return this;
     }
 
+    public BubbleConfigBuilder disableAlwaysShowBubble() {
+        this.alwaysShowBubble = false;
+        return this;
+    }
+
     public BubbleConfigBuilder alwaysShowBubbleDelay(long delay) {
         alwaysShowBubbleDelay = delay;
         return this;

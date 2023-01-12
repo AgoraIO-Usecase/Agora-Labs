@@ -1,6 +1,7 @@
 package io.agora.api.example.common.widget.indicator;
 
 import android.util.Log;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 public class ViewPagerHelper {

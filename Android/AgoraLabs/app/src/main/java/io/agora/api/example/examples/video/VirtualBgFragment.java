@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -58,7 +59,6 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
     private VirtualBackgroundSource virtualBackgroundSource=new VirtualBackgroundSource();
     private SegmentationProperty segmentationProperty=new SegmentationProperty();
     private boolean splitGreenEnabled=false;
-    private List<OptionItem> selectedOptionItems =new ArrayList<>();
 
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
         @Nullable Bundle savedInstanceState) {
@@ -71,6 +71,12 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
         binding.ivBack.setOnClickListener(this);
         binding.ivSwitchCamera.setOnClickListener(this);
         binding.optionOriginal.setOnClickListener(this);
+        binding.splitGreenScreenSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                splitGreenEnabled=isChecked;
+                setSplitGreenScreen(splitGreenEnabled);
+            }
+        });
         initMenu();
     }
 
@@ -81,7 +87,7 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
     private void initMenu(){
         List<OptionItem> data=new ArrayList<>();
         data.add(new OptionItem(ID_BACKGROUND_BLUR,R.mipmap.ic_bg_blur,R.string.background_blur));
-        data.add(new OptionItem(ID_SPLIT_GREEN_SCREEN,R.mipmap.ic_split_green_screen,R.string.split_green_screen));
+       // data.add(new OptionItem(ID_SPLIT_GREEN_SCREEN,R.mipmap.ic_split_green_screen,R.string.split_green_screen));
         data.add(new OptionItem(ID_LANDSCAPE,R.mipmap.ic_landscape,R.string.landscape));
         data.add(new OptionItem(ID_MEETING_ROOM,R.mipmap.ic_meeting_room,R.string.meeting_room));
         data.add(new OptionItem(ID_CUSTOMIZE,R.mipmap.ic_roi,R.string.customize));
@@ -97,9 +103,18 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
 
         binding.bgBlurSeekbar.setTickArray(getContext().getResources().getStringArray(R.array.blur_degree));
         binding.bgBlurSeekbar.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListenerAdapter() {
+            private int lastProgress=0;
             @Override public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat,
                 boolean fromUser) {
                 super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser);
+                if(binding.bgBlurSeekbar.getVisibility()!=View.VISIBLE){
+                    return;
+                }
+                if(progress!=lastProgress) {
+                    SystemUtil.vibrator(getContext());
+                    lastProgress=progress;
+                }
+                Log.d(TAG,"---onProgressChanged:"+progressFloat);
                 setupBackgroundBlur(progressFloat);
             }
 
@@ -116,7 +131,23 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
     }
 
     private void onMenuItemSelected(OptionItem item,int position){
-        binding.bgBlurSeekbar.setVisibility(item.getId()==ID_BACKGROUND_BLUR?View.VISIBLE:View.GONE);
+        if (item.isSelected() && item.getId() != ID_SPLIT_GREEN_SCREEN) {
+            disableVirtualBackground();
+            if(splitGreenEnabled){
+                setSplitGreenScreen(true);
+            }
+            //selectedOptionItems.remove(item);
+            menuItemAdapter.setUnSelected(item);
+            return;
+        }
+        if(item.getId()!=ID_BACKGROUND_BLUR && item.getId()!=ID_SPLIT_GREEN_SCREEN){
+            binding.bgBlurSeekbar.hideBubble();
+            binding.bgBlurSeekbar.getConfigBuilder().disableAlwaysShowBubble().build();
+            binding.bgBlurSeekbar.setVisibility(View.GONE);
+        }else if(item.getId()==ID_BACKGROUND_BLUR){
+            binding.bgBlurSeekbar.setVisibility(View.VISIBLE);
+        }
+        SystemUtil.vibrator(getContext());
         if(item.getId()==ID_BACKGROUND_BLUR){
             binding.bgBlurSeekbar.getConfigBuilder().alwaysShowBubble().build();
             setupBackgroundBlur(binding.bgBlurSeekbar.getProgressFloat());
@@ -124,9 +155,6 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
             setVirtualImgBg(getContext().getExternalFilesDir("blur")+"/landscape.jpeg");
         }else if(item.getId()==ID_MEETING_ROOM){
             setVirtualImgBg(getContext().getExternalFilesDir("blur")+"/meeting_room.jpeg");
-        }else if(item.getId()==ID_SPLIT_GREEN_SCREEN){
-            splitGreenEnabled=!splitGreenEnabled;
-            setSplitGreenScreen(splitGreenEnabled);
         }else if(item.getId()==ID_CUSTOMIZE){
             Intent pickIntent = new Intent(Intent.ACTION_PICK, null);
             pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
@@ -137,35 +165,30 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
 
     private void setSelectedMenus(OptionItem item){
         if(item==null){
-           selectedOptionItems.clear();
-        }else if(item.getId()==ID_SPLIT_GREEN_SCREEN){
-            if(splitGreenEnabled){
-                selectedOptionItems.add(item);
-            }else{
-                selectedOptionItems.remove(item);
-            }
+           //selectedOptionItems.clear();
+           menuItemAdapter.clearSelected();
         }else {
-            selectedOptionItems.clear();
-            selectedOptionItems.add(item);
-            if(splitGreenEnabled){
-                List<OptionItem> list=menuItemAdapter.getData();
-                for(OptionItem optionItem :list){
-                    if(optionItem.getId()==ID_SPLIT_GREEN_SCREEN){
-                        selectedOptionItems.add(optionItem);
-                        break;
-                    }
-                }
-            }
+            menuItemAdapter.setSelected(item,true);
         }
-        menuItemAdapter.setSelected(selectedOptionItems);
+        menuItemAdapter.notifyDataSetChanged();
     }
+
+    private int getSelectedCount(){
+        int count=0;
+        List<OptionItem> list=menuItemAdapter.getData();
+        for(OptionItem optionItem :list){
+           if(optionItem.isSelected()){
+               count++;
+           }
+        }
+        return count;
+    }
+
 
     @Override public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode!= RESULT_OK){
-            return;
-        }
-        if(requestCode==GALLERY_REQUEST_CODE){
+
+        if(requestCode==GALLERY_REQUEST_CODE &&resultCode==RESULT_OK){
            Uri uri= data.getData();
            String path= FileUtils.getRealPath(getContext().getApplicationContext(),uri);
             if (TextUtils.isEmpty(path) || ((!path.endsWith(".png")) && (!path.endsWith(".jpg") && (!path.endsWith(".jpeg"))))) {
@@ -177,14 +200,17 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
     }
 
     private void setSplitGreenScreen(boolean enabled){
-        //virtualBackgroundSource.backgroundSourceType=VirtualBackgroundSource.BACKGROUND_COLOR;
         if(enabled) {
             segmentationProperty.modelType = SegmentationProperty.SEG_MODEL_GREEN;
             segmentationProperty.greenCapacity = 0.8f;
         }else{
             segmentationProperty.modelType = SegmentationProperty.SEG_MODEL_AI;
         }
-        rtcEngine.enableVirtualBackground(true,virtualBackgroundSource,segmentationProperty);
+        if (!enabled && getSelectedCount() ==0) {
+            rtcEngine.enableVirtualBackground(false, null, null);
+        } else {
+            rtcEngine.enableVirtualBackground(true, virtualBackgroundSource, segmentationProperty);
+        }
     }
 
     private void setVirtualImgBg(String path){
@@ -260,16 +286,24 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
         }else if(v.getId()==R.id.iv_switch_camera){
             rtcEngine.switchCamera();
         }else if(v.getId()==R.id.option_original){
-            binding.bgBlurSeekbar.setVisibility(View.GONE);
-            rtcEngine.enableVirtualBackground(false,null,null);
+            disableVirtualBackground();
             reset();
         }
+    }
+
+    private void disableVirtualBackground(){
+        SystemUtil.vibrator(getContext());
+        binding.bgBlurSeekbar.setVisibility(View.GONE);
+        virtualBackgroundSource=new VirtualBackgroundSource();
+        rtcEngine.enableVirtualBackground(false,null,null);
     }
     
     private void reset(){
         splitGreenEnabled=false;
+        virtualBackgroundSource=new VirtualBackgroundSource();
         segmentationProperty.modelType = SegmentationProperty.SEG_MODEL_AI;
-        setSelectedMenus(null);
+        menuItemAdapter.clearSelected();
+        binding.splitGreenScreenSwitch.setChecked(false);
     }
 
     public void copyResource() {

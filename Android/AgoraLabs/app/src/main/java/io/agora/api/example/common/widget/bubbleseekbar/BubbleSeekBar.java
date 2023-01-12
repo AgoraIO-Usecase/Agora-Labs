@@ -476,7 +476,14 @@ public class BubbleSeekBar extends View {
         }
         mBubbleCenterRawX = calculateCenterRawXofBubbleView();
         mBubbleCenterRawSolidY = mPoint[1] - mBubbleView.getMeasuredHeight();
-        mBubbleCenterRawSolidY -= dp2px(24);
+        int dpi=getContext().getResources().getDisplayMetrics().densityDpi;
+        int width=getContext().getResources().getDisplayMetrics().widthPixels;
+        float density=getContext().getResources().getDisplayMetrics().density;
+        if (dpi> 480 && density > 3 && width > 1080) {
+            mBubbleCenterRawSolidY -= dp2px(36);
+        }else{
+            mBubbleCenterRawSolidY -= dp2px(24);
+        }
         if (BubbleUtils.isMIUI()) {
             mBubbleCenterRawSolidY -= dp2px(4);
         }
@@ -1020,7 +1027,7 @@ public class BubbleSeekBar extends View {
     /**
      * The WindowManager removes the BubbleView from the Window.
      */
-    private void hideBubble() {
+    public void hideBubble() {
         if (mBubbleView == null)
             return;
 
