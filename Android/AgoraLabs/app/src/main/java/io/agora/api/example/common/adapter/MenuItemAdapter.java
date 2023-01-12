@@ -68,17 +68,35 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.VH> {
 
 
 
-    public void setSelected(List<OptionItem> items){
-        if(items==null){
-            return;
-        }
+    public void clearSelected(){
         for(OptionItem item:data){
-            if(items.contains(item)){
-                item.setSelected(true);
-            }else{
-                item.setSelected(false);
+            item.setSelected(false);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void setSelected(List<OptionItem> items){
+        for(OptionItem item:data){
+            item.setSelected(false);
+        }
+        for(OptionItem item:items){
+            item.setSelected(true);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void setSelected(OptionItem item,boolean onlyOneSelected){
+        if(onlyOneSelected){
+            for(OptionItem optionItem:data){
+                optionItem.setSelected(false);
             }
         }
+        item.setSelected(true);
+        notifyDataSetChanged();
+    }
+
+    public void setUnSelected(OptionItem item){
+        item.setSelected(false);
         notifyDataSetChanged();
     }
 

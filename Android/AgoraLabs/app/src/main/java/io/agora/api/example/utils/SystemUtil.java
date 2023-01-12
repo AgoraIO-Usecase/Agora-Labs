@@ -2,6 +2,7 @@ package io.agora.api.example.utils;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Vibrator;
 import java.util.Locale;
 
 public class SystemUtil {
@@ -43,4 +44,10 @@ public class SystemUtil {
         }
         return language;
     }
+
+    public static void vibrator(Context context){
+        Vibrator vibrator= (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(30);
+    }
+
 }

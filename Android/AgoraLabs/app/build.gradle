@@ -11,7 +11,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 32
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -19,6 +19,22 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            def fileName
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                if (variant.buildType.name == 'release') {
+                    fileName = "AgoraLabs_release_v${defaultConfig.versionName}_${releaseTime()}.apk"
+                } else if (variant.buildType.name == 'debug') {
+                    //fileName = "RTC_Automator_debug_v${defaultConfig.versionName}.apk"
+                    fileName = "AgoraLabs_debug_v${defaultConfig.versionName}_${releaseTime()}.apk"
+                }
+                outputFileName = fileName
+            }
         }
     }
 
@@ -48,8 +64,12 @@ android {
     lintOptions {
         abortOnError false
     }
-
 }
+
+static def releaseTime() {
+    return new Date().format("yyyyMMdd_HHmmss", TimeZone.getTimeZone("GMT+08:00"))
+}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])

@@ -84,7 +84,6 @@
     <string name="tab_net_optimize">Network</string>
     <string name="tab_algorithmic">Algorithms</string>
     <string name="stay_tuned">Stay Tuned</string>
-
     <string name="original_image">Original Image</string>
     <string name="background_blur">Background Blur</string>
     <string name="split_green_screen">Split Green Screen</string>
@@ -166,7 +165,7 @@
     <string name="bitrate">Bitrate: %d kbps</string>
     <string name="pvc_enabled">PVC effect</string>
     <string name="pvc_disabled">PVC Disabled</string>
-    <string name="feature_not_supported">This function is not supported at the moment, so stay tuned</string>
+    <string name="feature_not_supported">stay tuned</string>
     <string name="resource_preparing">Resources preparing, please wait</string>
 
     <string name="enable_roi">Enable ROI</string>
@@ -182,4 +181,6 @@
     <string name="sr_1_5">1.5x</string>
     <string name="sr_2">2.0x</string>
     <string name="imge_type_not_support">This image type is not supported yet!</string>
+    <string name="powered_by_agora" translatable="false">Powered by Agora.io</string>
+    <string name="version" translatable="false">v %s</string>
 </resources>

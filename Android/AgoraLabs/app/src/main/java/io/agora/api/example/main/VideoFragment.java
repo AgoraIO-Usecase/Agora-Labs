@@ -1,5 +1,7 @@
 package io.agora.api.example.main;
 
+import android.content.Context;
+import android.os.Vibrator;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import io.agora.api.example.R;
@@ -33,9 +35,9 @@ public class VideoFragment extends BaseListFragment {
         data.add(new Feature(ID_LIGHT_DARK,R.mipmap.light_dark,R.string.light_dark));
         data.add(new Feature(ID_SHARPEN,R.mipmap.sharpen,R.string.adaptive_sharpen));
         data.add(new Feature(ID_COLOR_ENHANCE,R.mipmap.saturation,R.string.color_enhance));
-        data.add(new Feature(ID_PVC,R.mipmap.pvc,R.string.pvc,true));
-        data.add(new Feature(ID_ROI,R.mipmap.roi,R.string.roi,true));
-        data.add(new Feature(ID_SUPER_RES,R.mipmap.super_res,R.string.super_res,true));
+        data.add(new Feature(ID_PVC,R.mipmap.pvc,R.string.pvc));
+        data.add(new Feature(ID_ROI,R.mipmap.roi,R.string.roi));
+        data.add(new Feature(ID_SUPER_RES,R.mipmap.super_res,R.string.super_res));
         data.add(new Feature(ID_SUPER_QUALITY,R.mipmap.image,R.string.super_quality));
         data.add(new Feature(ID_HDR,R.mipmap.hdr,R.string.hdr));
         adapter.setData(data);
@@ -44,6 +46,8 @@ public class VideoFragment extends BaseListFragment {
 
     @Override protected void onItemSelect(Feature feature, int position) {
         if(!feature.isEnabled()){
+            Vibrator vibrator= (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+            vibrator.vibrate(30);
             AutoDissmissDialog dialog=new AutoDissmissDialog(getContext(),R.style.auto_dismiss_dialog);
             dialog.setResource(R.mipmap.ic_warning_circle,R.string.feature_not_supported);
             dialog.show();
