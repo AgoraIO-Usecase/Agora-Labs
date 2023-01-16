@@ -226,7 +226,6 @@ extension ROI:AgoraRtcEngineDelegate{
         }
     }
     
-    
     /**
      Reports the statistics of the video stream from the remote users. The SDK triggers this callback once every two seconds for each remote user. If a channel has multiple users/hosts sending video streams, the SDK triggers this callback as many times.
 
