@@ -147,7 +147,6 @@ class Resolution: BaseViewController {
         
     }
     
-    
     func setupRecvData() {
 
         let option = AgoraRtcChannelMediaOptions()
