@@ -208,6 +208,7 @@ class Resolution: BaseViewController {
                 "mode":1 
             ]]).rawString() ?? ""
         let rt = agoraKit.setParameters(json)
+        //
         if rt != 0 {
             AGHUD.showFaild(info: "Enable SR False:\(rt)")
             self.openSwitch.isOn = false
