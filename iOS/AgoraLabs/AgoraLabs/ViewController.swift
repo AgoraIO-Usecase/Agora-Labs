@@ -45,14 +45,14 @@ class ViewController: UIViewController {
             [
                 "key":"Image Quality",
                 "content":[
-                    "Reduce Noise",
-                    "Dim Environment",
-                    "Sharpen",
-                    "Enance Saturation",
                     "PVC",
                     "ROI",
                     "Resolution",
                     "Image",
+                    "Reduce Noise",
+                    "Dim Environment",
+                    "Sharpen",
+                    "Enance Saturation",
                     "HDR"
                 ]
             ]

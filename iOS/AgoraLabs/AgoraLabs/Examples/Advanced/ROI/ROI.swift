@@ -17,10 +17,10 @@ class ROI: BaseViewController {
     let originalModel = SubCellModel(name: "Original Image",tag: -1)
 
     let itemModelList:[SubCellModel] = [
-        SubCellModel(name: "360P",tag: 0,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 560, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
-        SubCellModel(name: "480P",tag: 1,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 480), frameRate: .fps15, bitrate: 1220, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 480), frameRate: .fps15, bitrate: 854, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
-        SubCellModel(name: "540P",tag: 2,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 540), frameRate: .fps15, bitrate: 1470, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 540), frameRate: .fps15, bitrate: 1030, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
-        SubCellModel(name: "720P",tag: 3,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 720), frameRate: .fps15, bitrate: 2260, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 720), frameRate: .fps15, bitrate: 1580, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
+        SubCellModel(name: "360P",tag: 0,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
+        SubCellModel(name: "480P",tag: 1,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 480), frameRate: .fps15, bitrate: 1220, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 480), frameRate: .fps15, bitrate: 1220, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
+        SubCellModel(name: "540P",tag: 2,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 540), frameRate: .fps15, bitrate: 1470, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 540), frameRate: .fps15, bitrate: 1470, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
+        SubCellModel(name: "720P",tag: 3,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 720), frameRate: .fps15, bitrate: 2260, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 720), frameRate: .fps15, bitrate: 2260, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
     ]
     var isOpenROI:Bool = false
     var blurSlider:UISlider?
@@ -246,4 +246,5 @@ extension ROI:AgoraRtcEngineDelegate{
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurWarning warningCode: AgoraWarningCode) {
         LogUtils.log(message: "warning: \(warningCode.description)", level: .warning)
     }
+    
 }

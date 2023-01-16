@@ -101,6 +101,7 @@ extension ROI {
             
             let view1Btn = UIButton(frame: CGRect(x: 0, y: 0, width: itemW, height: itemH))
             view1Btn.setImage(UIImage(named: "view1"), for: .normal)
+            view1Btn.alpha = self.layoutType == 1 ?1:0.3
             view1Btn.clickView {[weak self] sender in
                 self?.updataLayoutContentView(tag: 1)
                 XMMenuPopover.shared.hideMenu()
@@ -109,6 +110,7 @@ extension ROI {
             
             let view2Btn = UIButton(frame: CGRect(x: itemW, y: 0, width: itemW, height: itemH))
             view2Btn.setImage(UIImage(named: "view2"), for: .normal)
+            view2Btn.alpha = self.layoutType == 2 ?1:0.3
             view2Btn.clickView {[weak self] sender in
                 self?.updataLayoutContentView(tag: 2)
                 XMMenuPopover.shared.hideMenu()
@@ -117,6 +119,7 @@ extension ROI {
             
             let view3Btn = UIButton(frame: CGRect(x: itemW*2, y: 0, width: itemW, height: itemH))
             view3Btn.setImage(UIImage(named: "view3"), for: .normal)
+            view3Btn.alpha = self.layoutType == 3 ?1:0.3
             view3Btn.clickView {[weak self] sender in
                 self?.updataLayoutContentView(tag: 3)
                 XMMenuPopover.shared.hideMenu()
@@ -307,14 +310,6 @@ extension ROI {
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
         self.remoteVideoView.titleSelected = sender.isOn
-        var tag = 0
-        self.itemModelList.forEach { model in
-            guard let itemView = model.subView as? SubCellView  else { return  }
-            itemView.setupSubCellModel(model)
-            if model.isSelected { tag = model.tag }
-        }
-        guard let videoConfig = self.itemModelList[tag].value as? [AgoraVideoEncoderConfiguration] else { return }
-        self.setupResolution(videoConfig: openSwitch.isOn == false ?videoConfig[0]:videoConfig[1])
         self.setupROI(enabled: sender.isOn)
     }
 }
