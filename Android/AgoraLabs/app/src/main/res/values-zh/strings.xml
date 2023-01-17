@@ -166,6 +166,7 @@
     <string name="enable_sr">开启超分</string>
     <string name="sr_enabled">超分已开启</string>
     <string name="sr_disabled">超分已关闭</string>
+    <string name="sr_enabled_failed">机器性能瓶颈，自动关闭超分</string>
     <string name="sr_1">1倍</string>
     <string name="sr_1_33">1.33倍</string>
     <string name="sr_1_5">1.5倍</string>

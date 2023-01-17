@@ -34,6 +34,7 @@
         android:layout_marginBottom="44dp"
         android:textSize="13sp"
         android:textColor="#9918191B"
+        android:visibility="invisible"
      />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ import io.agora.api.example.common.widget.PopWindow;
 import io.agora.api.example.common.widget.VideoFeatureMenu;
 import io.agora.api.example.databinding.FragmentPvcBinding;
 import io.agora.api.example.utils.ConstraintLayoutUtils;
+import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
 import io.agora.api.example.utils.UIUtil;
 import io.agora.rtc2.ChannelMediaOptions;
@@ -85,6 +87,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         if(popWindow==null) {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.video_layout_select, null);
             View.OnClickListener listener = v -> {
+                SystemUtil.vibrator(getContext());
                 if (v.getId() == R.id.iv_half) {
                     curLayout = LAYOUT_HALF;
                     binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
@@ -95,6 +98,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
                     curLayout = LAYOUT_LOCAL_SMALL;
                     binding.ivLayout.setImageResource(R.mipmap.ic_view_3);
                 }
+                updateLayoutIvStatus();
                 updateLayout();
                 popWindow.dissmiss();
             };
@@ -106,8 +110,16 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
                 .setView(view)
                 .create();
         }
-        popWindow.showAsDropDown(binding.ivLayout,0,10);
+        updateLayoutIvStatus();
+        popWindow.showAsDropDown(binding.ivLayout,UIUtil.dip2px(getContext(),-60),UIUtil.dip2px(getContext(),-2));
     }
+
+    private void updateLayoutIvStatus(){
+        ((ImageView)popWindow.getPopupWindow().getContentView().findViewById(R.id.iv_half)).setImageAlpha(curLayout==LAYOUT_HALF ? 255 : 125);
+        ((ImageView)popWindow.getPopupWindow().getContentView().findViewById(R.id.iv_local_big)).setImageAlpha(curLayout==LAYOUT_LOCAL_BIG ? 255 : 125);
+        ((ImageView)popWindow.getPopupWindow().getContentView().findViewById(R.id.iv_local_small)).setImageAlpha(curLayout==LAYOUT_LOCAL_SMALL ? 255 : 125);
+    }
+
     private void initView(){
         binding.ivBack.setOnClickListener(this);
         binding.ivLayout.setOnClickListener(this);
@@ -122,6 +134,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         binding.featureSwitch.setChecked(pvcEnabled);
         binding.featureSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SystemUtil.vibrator(getContext());
                 pvcEnabled=isChecked;
                 updatePVC();
                 setVideoConfig();
@@ -129,6 +142,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         });
         binding.ivLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override public boolean onLongClick(View v) {
+                SystemUtil.vibrator(getContext());
                 showLayoutPopWin();
                 return false;
             }
@@ -313,7 +327,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
                 ThreadUtils.runOnUI(new Runnable() {
                     @Override public void run() {
                         remoteView= new TextureView(getContext()) ;
-                        rtcEngine.setupRemoteVideoEx(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_HIDDEN, uid),rtcc);
+                        rtcEngine.setupRemoteVideoEx(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_HIDDEN,1, uid),rtcc);
                         addView();
                     }
                 });
@@ -368,6 +382,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override public void onClick(View v) {
+        SystemUtil.vibrator(getContext());
         if(v.getId()== R.id.iv_back){
             Navigation.findNavController(v).popBackStack();
         }else if(v.getId()==R.id.iv_layout){

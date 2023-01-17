@@ -11,6 +11,7 @@ import io.agora.api.example.R;
 import io.agora.api.example.common.adapter.OnItemClickListener;
 import io.agora.api.example.databinding.ResolutionMenuBinding;
 import io.agora.api.example.common.widget.slidingmenu.OptionItem;
+import io.agora.api.example.utils.SystemUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,10 +62,10 @@ public class VideoFeatureMenu extends ConstraintLayout implements View.OnClickLi
         binding.menu.setOnItemClickListener(new OnItemClickListener() {
             @Override public void onItemClick(View v, OptionItem optionItem, int position) {
                 if(listener!=null){
+                    SystemUtil.vibrator(getContext());
                     listener.onResolutionSelected(optionItem.getId());
                     binding.menu.setSelected(optionItem);
                 }
-
             }
         });
     }

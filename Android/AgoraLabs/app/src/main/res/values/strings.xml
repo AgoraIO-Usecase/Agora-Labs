@@ -176,6 +176,7 @@
     <string name="enable_sr">Enable Super Resolution</string>
     <string name="sr_enabled">Super Resolution effect</string>
     <string name="sr_disabled">Super Resolution Disabled</string>
+    <string name="sr_enabled_failed">Machine performance bottleneck, automatic close super resolution</string>
     <string name="sr_1">1.0x</string>
     <string name="sr_1_33">1.33x</string>
     <string name="sr_1_5">1.5x</string>
