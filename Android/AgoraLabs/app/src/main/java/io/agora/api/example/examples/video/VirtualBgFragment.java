@@ -128,9 +128,13 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
                 super.getProgressOnFinally(bubbleSeekBar, progress, progressFloat, fromUser);
             }
         });
+        binding.originalTitle.setTextColor(getContext().getResources().getColor(R.color.white));
+        binding.originalIcon.setBackgroundResource(R.drawable.bg_menu_item_selected);
     }
 
     private void onMenuItemSelected(OptionItem item,int position){
+        binding.originalTitle.setTextColor(getContext().getResources().getColor(R.color.menu_text_default_color));
+        binding.originalIcon.setBackgroundResource(R.drawable.bg_menu_item_normal);
         if (item.isSelected() && item.getId() != ID_SPLIT_GREEN_SCREEN) {
             disableVirtualBackground();
             if(splitGreenEnabled){
@@ -286,6 +290,8 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
         }else if(v.getId()==R.id.iv_switch_camera){
             rtcEngine.switchCamera();
         }else if(v.getId()==R.id.option_original){
+            binding.originalTitle.setTextColor(getContext().getResources().getColor(R.color.white));
+            binding.originalIcon.setBackgroundResource(R.drawable.bg_menu_item_selected);
             disableVirtualBackground();
             reset();
         }

@@ -53,7 +53,7 @@
         app:layout_constraintRight_toLeftOf="@+id/iv_switch_camera"
         android:src="@mipmap/ic_view_1"
         android:layout_marginTop="@dimen/permission_dp_10"
-        android:layout_marginRight="@dimen/permission_dp_10"/>
+        android:layout_marginRight="38dp"/>
 
     <ImageView
         android:id="@+id/iv_switch_camera"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:src="@mipmap/ic_camera_flip"
         android:layout_marginTop="@dimen/permission_dp_10"
-        android:layout_marginRight="@dimen/permission_dp_10"/>
+        android:layout_marginRight="25dp"/>
 
     <TextView
         android:id="@+id/sr_1"
@@ -81,6 +81,7 @@
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
         android:textColor="@color/white"
+        android:visibility="gone"
         />
 
     <TextView
@@ -100,6 +101,7 @@
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
         android:textColor="@color/white"
+        android:visibility="gone"
         />
 
     <TextView
@@ -118,6 +120,7 @@
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
         android:textColor="@color/white"
+        android:visibility="gone"
         />
 
     <TextView
@@ -136,6 +139,7 @@
         android:paddingRight="6dp"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
+        android:visibility="gone"
         />
 
     <Switch

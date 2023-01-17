@@ -31,13 +31,13 @@ public class VideoFragment extends BaseListFragment {
         data.add(new Feature(ID_VIRTUAL_BG,R.mipmap.virtual_bg,R.string.virtul_bg,true));
         data.add(new Feature(ID_BEAUTY,R.mipmap.beauty,R.string.beauty,true));
         data.add(new Feature(-1,-1,R.string.video_quality));
+        data.add(new Feature(ID_PVC,R.mipmap.pvc,R.string.pvc,true));
+        data.add(new Feature(ID_ROI,R.mipmap.roi,R.string.roi,true));
+        data.add(new Feature(ID_SUPER_RES,R.mipmap.super_res,R.string.super_res,true));
         data.add(new Feature(ID_DENOISE,R.mipmap.noise,R.string.denoise));
         data.add(new Feature(ID_LIGHT_DARK,R.mipmap.light_dark,R.string.light_dark));
         data.add(new Feature(ID_SHARPEN,R.mipmap.sharpen,R.string.adaptive_sharpen));
         data.add(new Feature(ID_COLOR_ENHANCE,R.mipmap.saturation,R.string.color_enhance));
-        data.add(new Feature(ID_PVC,R.mipmap.pvc,R.string.pvc));
-        data.add(new Feature(ID_ROI,R.mipmap.roi,R.string.roi));
-        data.add(new Feature(ID_SUPER_RES,R.mipmap.super_res,R.string.super_res));
         data.add(new Feature(ID_SUPER_QUALITY,R.mipmap.image,R.string.super_quality));
         data.add(new Feature(ID_HDR,R.mipmap.hdr,R.string.hdr));
         adapter.setData(data);

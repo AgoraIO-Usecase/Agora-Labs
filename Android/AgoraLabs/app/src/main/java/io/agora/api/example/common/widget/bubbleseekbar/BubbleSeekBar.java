@@ -478,8 +478,9 @@ public class BubbleSeekBar extends View {
         mBubbleCenterRawSolidY = mPoint[1] - mBubbleView.getMeasuredHeight();
         int dpi=getContext().getResources().getDisplayMetrics().densityDpi;
         int width=getContext().getResources().getDisplayMetrics().widthPixels;
+        int height=getContext().getResources().getDisplayMetrics().heightPixels;
         float density=getContext().getResources().getDisplayMetrics().density;
-        if (dpi> 480 && density > 3 && width > 1080) {
+        if ((dpi> 480 && density > 3 && width > 1080)||(height>=1920&&width>=1080&&density<3)) {
             mBubbleCenterRawSolidY -= dp2px(36);
         }else{
             mBubbleCenterRawSolidY -= dp2px(24);

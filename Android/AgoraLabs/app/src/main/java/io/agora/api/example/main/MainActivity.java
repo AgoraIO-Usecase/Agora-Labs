@@ -1,6 +1,7 @@
 package io.agora.api.example.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import androidx.appcompat.app.AppCompatActivity;
 import io.agora.api.example.databinding.ActivityMainBinding;
