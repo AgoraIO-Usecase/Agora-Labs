@@ -99,8 +99,8 @@ class Resolution: BaseViewController {
         config.appId = KeyCenter.AppId
         config.areaCode = GlobalSettings.shared.area
         config.channelProfile = .liveBroadcasting
+        config.eventDelegate = self
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: nil)
-        
         self.setupSuperResolution(enabled: false)
         
         agoraKit.setLogFile(LogUtils.sdkLogPath())
@@ -133,7 +133,7 @@ class Resolution: BaseViewController {
         option.clientRoleType = .broadcaster
 
 
-        let result = agoraKit.joinChannelEx(byToken: KeyCenter.Token, connection: connection, delegate: nil, mediaOptions: option) {  channel, uid, elapsed in
+        let result = agoraKit.joinChannelEx(byToken: KeyCenter.Token, connection: connection, delegate: self, mediaOptions: option) {  channel, uid, elapsed in
             print("sendAgoraKit uid=\(uid) joinChannel channel=\(channel)")
         }
 
@@ -158,7 +158,7 @@ class Resolution: BaseViewController {
         connection.localUid = AgoraLabsUser.recvUid
         connection.channelId = AgoraLabsUser.channelName
         
-        let result = agoraKit.joinChannelEx(byToken: KeyCenter.Token, connection: connection, delegate: nil, mediaOptions: option) {  channel, uid, elapsed in
+        let result = agoraKit.joinChannelEx(byToken: KeyCenter.Token, connection: connection, delegate: self, mediaOptions: option) {  channel, uid, elapsed in
             print("recvAgoraKit uid=\(uid) joinChannel channel=\(channel)")
             let videoCanvas = AgoraRtcVideoCanvas()
             videoCanvas.uid = AgoraLabsUser.sendUid
@@ -205,10 +205,10 @@ class Resolution: BaseViewController {
             "rtc.video.enable_sr":[
                 "uid":AgoraLabsUser.sendUid,
                 "enabled":enabled,
-                "mode":1 
-            ]]).rawString() ?? ""
+                "mode":1
+            ]
+        ]).rawString() ?? ""
         let rt = agoraKit.setParameters(json)
-        //
         if rt != 0 {
             AGHUD.showFaild(info: "Enable SR False:\(rt)")
             self.openSwitch.isOn = false
@@ -217,4 +217,33 @@ class Resolution: BaseViewController {
     }
 }
 
+extension Resolution:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
+    func onExtensionError(_ provider: String?, extension: String?, error: Int32, message: String?) {
+        print("onExtensionError------------")
+    }
+    
+    func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
+        print("onEvent ------------ provider:\(provider ?? "")")
+        DispatchQueue.main.async {
+            let valueInt = Int(value ?? "0") ?? 0
+            if provider == "sr.io.agora.builtin" && key == "sr_type" {
+                if valueInt <= 0 && self.openSwitch.isOn {
+                    AGHUD.showFaild(info: "jqxnpj".localized)
+                    self.openSwitch.isOn = false
+                    self.switchOpenChange(self.openSwitch)
+                }
+            }
+        }
+    }
+    
+    func rtcEngine(_ engine: AgoraRtcEngineKit, videoSizeChangedOf sourceType: AgoraVideoSourceType, uid: UInt, size: CGSize, rotation: Int) {
+        print("videoSizeChangedOf ------------ ")
+    }
+    
+    
+//    func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStats stats: AgoraRtcRemoteVideoStats) {
+//        print("AgoraRtcRemoteVideoStats------------\(stats.superResolutionType)")
+//    }
+    
+}
 
