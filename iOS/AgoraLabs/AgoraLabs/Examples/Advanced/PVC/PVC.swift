@@ -68,6 +68,7 @@ class PVC: BaseViewController {
     var layoutType:Int = 1
     var layoutImage:UIImageView?
     var agoraKit: AgoraRtcEngineKit!
+    var videoConfig:AgoraVideoEncoderConfiguration?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +80,9 @@ class PVC: BaseViewController {
     }
     
     func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
+        
+        self.videoConfig = videoConfig
+        
         let connection = AgoraRtcConnection()
         connection.localUid = AgoraLabsUser.sendUid
         connection.channelId = AgoraLabsUser.channelName
@@ -181,12 +185,13 @@ class PVC: BaseViewController {
         agoraKit.switchCamera()
     }
 
-    func setupResolution(videoConfig:AgoraVideoEncoderConfiguration) {
-        
+    func setupResolution(videoConfig:AgoraVideoEncoderConfiguration?) {
+        guard let _videoConfig = videoConfig else { return  }
+        self.videoConfig = _videoConfig
         let connection = AgoraRtcConnection()
         connection.localUid = AgoraLabsUser.sendUid
         connection.channelId = AgoraLabsUser.channelName
-        agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
+        agoraKit.setVideoEncoderConfigurationEx(_videoConfig, connection: connection)
     }
     
     func setupPVC(enabled:Bool) {

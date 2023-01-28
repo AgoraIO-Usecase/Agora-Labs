@@ -303,8 +303,8 @@ extension PVC{
             itemView.setupSubCellModel(model)
         }
         guard let videoConfig = self.itemModelList[tag].value as? [AgoraVideoEncoderConfiguration] else { return }
-        self.setupResolution(videoConfig: videoConfig[1])
         self.setupPVC(enabled: openSwitch.isOn)
+        self.setupResolution(videoConfig: videoConfig[1])
     }
     
     @objc func switchOpenChange(_ sender:UISwitch)  {
@@ -312,7 +312,7 @@ extension PVC{
         
         self.remoteVideoView.titleSelected = sender.isOn
         self.setupPVC(enabled: sender.isOn)
-        
+        self.setupResolution(videoConfig: self.videoConfig)
     }
 }
 
