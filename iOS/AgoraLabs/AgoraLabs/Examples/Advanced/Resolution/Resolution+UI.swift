@@ -360,6 +360,10 @@ extension Resolution {
 //            guard let itemView = model.subView as? SubCellView  else { return  }
 //            itemView.setupSubCellModel(model)
 //        }
+        if sender.isOn == false {
+            self.isSharpenType = false
+            self.isSrType = false
+        }
         self.setupSuperResolution(enabled: sender.isOn)
     }
     

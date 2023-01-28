@@ -75,6 +75,9 @@ class Resolution: BaseViewController {
         return _openSwitch
     }()
     
+    var isSharpenType = false
+    var isSrType = false
+    
     var layoutType:Int = 1
     var layoutImage:UIImageView?
     var agoraKit: AgoraRtcEngineKit!
@@ -219,19 +222,31 @@ class Resolution: BaseViewController {
 
 extension Resolution:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     func onExtensionError(_ provider: String?, extension: String?, error: Int32, message: String?) {
-        print("onExtensionError------------")
+        print("onExtensionError----------provider:\(provider)")
     }
     
     func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
         print("onEvent ------------ provider:\(provider ?? "")")
         DispatchQueue.main.async {
-            let valueInt = Int(value ?? "0") ?? 0
+            
             if provider == "sr.io.agora.builtin" && key == "sr_type" {
-                if valueInt <= 0 && self.openSwitch.isOn {
-                    AGHUD.showFaild(info: "jqxnpj".localized)
-                    self.openSwitch.isOn = false
-                    self.switchOpenChange(self.openSwitch)
+                let valueJSON = JSON(parseJSON: value ?? "")
+                if valueJSON["type"].intValue <= 0 {
+                    self.isSrType = true
                 }
+            }
+            
+            if provider == "agora_video_filters_clear_vision" && key == "sharpen_type" {
+                let valueJSON = JSON(parseJSON: value ?? "")
+                if valueJSON["type"].intValue <= 0 {
+                    self.isSharpenType = true
+                }
+            }
+            
+            if  self.openSwitch.isOn && self.isSrType && self.isSharpenType {
+                AGHUD.showFaild(info: "jqxnpj".localized)
+                self.openSwitch.isOn = false
+                self.switchOpenChange(self.openSwitch)
             }
         }
     }
