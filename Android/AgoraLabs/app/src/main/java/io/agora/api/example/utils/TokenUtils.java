@@ -39,16 +39,12 @@ public class TokenUtils {
     public static void gen(Context context, String channelName,  int uid, OnTokenGenCallback<String> onGetToken){
         gen(context.getString(R.string.agora_app_id), context.getString(R.string.agora_app_certificate), channelName, uid, ret -> {
             if(onGetToken != null){
-                runOnUiThread(() -> {
-                    onGetToken.onTokenGen(ret);
-                });
+                runOnUiThread(() -> onGetToken.onTokenGen(ret));
             }
         }, ret -> {
             Log.e(TAG, "for requesting token error.", ret);
             if (onGetToken != null) {
-                runOnUiThread(() -> {
-                    onGetToken.onTokenGen(null);
-                });
+                runOnUiThread(() -> onGetToken.onTokenGen(null));
             }
         });
     }

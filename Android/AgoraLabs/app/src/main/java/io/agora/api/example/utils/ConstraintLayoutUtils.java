@@ -1,6 +1,5 @@
 package io.agora.api.example.utils;
 
-import android.content.Context;
 import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -9,7 +8,7 @@ import static androidx.constraintlayout.widget.ConstraintSet.PARENT_ID;
 public class ConstraintLayoutUtils {
 
     public static void setHalfScreenLayout(View view,boolean topToParent){
-        ConstraintLayout.LayoutParams params=new ConstraintLayout.LayoutParams(UIUtil.dip2px(view.getContext(),0),UIUtil.dip2px(view.getContext(),0));
+        ConstraintLayout.LayoutParams params=new ConstraintLayout.LayoutParams(0,0);
         params.leftToLeft=PARENT_ID;
         if(topToParent) {
             params.topToTop = PARENT_ID;
@@ -21,11 +20,21 @@ public class ConstraintLayoutUtils {
         view.setLayoutParams(params);
     }
 
+
     public static void setMatchParentLayout(View view){
         ConstraintLayout.LayoutParams params=new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,ConstraintLayout.LayoutParams.MATCH_PARENT);
         params.leftToLeft=PARENT_ID;
         params.topToTop=PARENT_ID;
         params.rightToRight=PARENT_ID;
+        view.setLayoutParams(params);
+    }
+
+    public static void setMatchParentAndBottomToTopLayout(View view,int bottomToTopId){
+        ConstraintLayout.LayoutParams params=new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,0);
+        params.leftToLeft=PARENT_ID;
+        params.topToTop=PARENT_ID;
+        params.rightToRight=PARENT_ID;
+        params.bottomToTop=bottomToTopId;
         view.setLayoutParams(params);
     }
 

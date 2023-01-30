@@ -5,12 +5,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import io.agora.api.example.App;
 import io.agora.api.example.R;
 import io.agora.api.example.common.adapter.MenuItemAdapter;
-import io.agora.api.example.common.adapter.OnItemClickListener;
 import io.agora.api.example.databinding.FragmentVirtualBgBinding;
 import io.agora.api.example.common.widget.slidingmenu.OptionItem;
 import io.agora.api.example.common.widget.bubbleseekbar.BubbleSeekBar;
@@ -71,11 +68,9 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
         binding.ivBack.setOnClickListener(this);
         binding.ivSwitchCamera.setOnClickListener(this);
         binding.optionOriginal.setOnClickListener(this);
-        binding.splitGreenScreenSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                splitGreenEnabled=isChecked;
-                setSplitGreenScreen(splitGreenEnabled);
-            }
+        binding.splitGreenScreenSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            splitGreenEnabled=isChecked;
+            setSplitGreenScreen(splitGreenEnabled);
         });
         initMenu();
     }
@@ -93,11 +88,7 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
         data.add(new OptionItem(ID_CUSTOMIZE,R.mipmap.ic_roi,R.string.customize));
         menuItemAdapter=new MenuItemAdapter();
         menuItemAdapter.setData(data);
-        menuItemAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override public void onItemClick(View v, OptionItem optionItem, int position) {
-                onMenuItemSelected(optionItem,position);
-            }
-        });
+        menuItemAdapter.setOnItemClickListener((v, optionItem, position) -> onMenuItemSelected(optionItem,position));
         binding.cvOptions.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         binding.cvOptions.setAdapter(menuItemAdapter);
 
@@ -114,7 +105,6 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
                     SystemUtil.vibrator(getContext());
                     lastProgress=progress;
                 }
-                Log.d(TAG,"---onProgressChanged:"+progressFloat);
                 setupBackgroundBlur(progressFloat);
             }
 
@@ -225,7 +215,6 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
 
 
     private void setupBackgroundBlur(float blur){
-        Log.d(TAG,"setupBackgroundBlur:"+blur);
         virtualBackgroundSource.backgroundSourceType=VirtualBackgroundSource.BACKGROUND_BLUR;
         virtualBackgroundSource.color=0x000000;
         if(blur>=100) {
@@ -313,17 +302,15 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
     }
 
     public void copyResource() {
-        ThreadUtils.runOnNonUI(new Runnable() {
-            @Override public void run() {
-                if(!isResourceReady()){
-                    File file= getContext().getExternalFilesDir("blur");
-                    if(file.exists()){
-                        FileUtils.deleteFile(file);
-                    }
-                    FileUtils.copyFilesFromAssets(getContext().getApplicationContext(),"blur",getContext().getApplicationContext().getExternalFilesDir("blur").toString());
-                    SPUtils.getInstance(getContext(), "user").put("blur_resource", true);
-                    SPUtils.getInstance(getContext(), "user").put("versionCode", SystemUtil.getVersionCode(App.getInstance()));
+        ThreadUtils.runOnNonUI(() -> {
+            if(!isResourceReady()){
+                File file= getContext().getExternalFilesDir("blur");
+                if(file.exists()){
+                    FileUtils.deleteFile(file);
                 }
+                FileUtils.copyFilesFromAssets(getContext().getApplicationContext(),"blur",getContext().getApplicationContext().getExternalFilesDir("blur").toString());
+                SPUtils.getInstance(getContext(), "user").put("blur_resource", true);
+                SPUtils.getInstance(getContext(), "user").put("versionCode", SystemUtil.getVersionCode(App.getInstance()));
             }
         });
     }

@@ -45,10 +45,10 @@ public class YUVUtils {
                 V = ((112 * R - 94 * G - 18 * B + 128) >> 8) + 128;
 
                 // I420(YUV420p) -> YYYYYYYY UU VV
-                i420[yIndex++] = (byte) ((Y < 0) ? 0 : ((Y > 255) ? 255 : Y));
+                i420[yIndex++] = (byte) ((Y < 0) ? 0 : (Math.min(Y, 255)));
                 if (j % 2 == 0 && i % 2 == 0) {
-                    i420[uIndex++] = (byte) ((U < 0) ? 0 : ((U > 255) ? 255 : U));
-                    i420[vIndex++] = (byte) ((V < 0) ? 0 : ((V > 255) ? 255 : V));
+                    i420[uIndex++] = (byte) ((U < 0) ? 0 : (Math.min(U, 255)));
+                    i420[vIndex++] = (byte) ((V < 0) ? 0 : (Math.min(V, 255)));
                 }
                 index++;
             }
@@ -78,10 +78,10 @@ public class YUVUtils {
                 // NV21 has a plane of Y and interleaved planes of VU each sampled by a factor of 2
                 //    meaning for every 4 Y pixels there are 1 V and 1 U.  Note the sampling is every other
                 //    pixel AND every other scanline.
-                yuv420sp[yIndex++] = (byte) ((Y < 0) ? 0 : ((Y > 255) ? 255 : Y));
+                yuv420sp[yIndex++] = (byte) ((Y < 0) ? 0 : (Math.min(Y, 255)));
                 if (j % 2 == 0 && index % 2 == 0) {
-                    yuv420sp[uvIndex++] = (byte) ((V < 0) ? 0 : ((V > 255) ? 255 : V));
-                    yuv420sp[uvIndex++] = (byte) ((U < 0) ? 0 : ((U > 255) ? 255 : U));
+                    yuv420sp[uvIndex++] = (byte) ((V < 0) ? 0 : (Math.min(V, 255)));
+                    yuv420sp[uvIndex++] = (byte) ((U < 0) ? 0 : (Math.min(U, 255)));
                 }
                 index++;
             }

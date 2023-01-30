@@ -42,7 +42,7 @@ public class Navigator extends FrameLayout implements IPagerNavigator, Navigator
     private boolean skimOver;
     private boolean reselectWhenLayout = true;
 
-    private List<PositionData> positionDataList = new ArrayList<PositionData>();
+    private List<PositionData> positionDataList = new ArrayList<>();
 
     private DataSetObserver observer = new DataSetObserver() {
 
@@ -112,12 +112,12 @@ public class Navigator extends FrameLayout implements IPagerNavigator, Navigator
             root = LayoutInflater.from(getContext()).inflate(R.layout.pager_navigator_layout, this);
         }
 
-        scrollView = (HorizontalScrollView) root.findViewById(R.id.scroll_view);   // mAdjustMode为true时，mScrollView为null
+        scrollView = root.findViewById(R.id.scroll_view);   // mAdjustMode为true时，mScrollView为null
 
-        titleContainer = (LinearLayout) root.findViewById(R.id.title_container);
+        titleContainer = root.findViewById(R.id.title_container);
         titleContainer.setPadding(leftPadding, 0, rightPadding, 0);
 
-        indicatorContainer = (LinearLayout) root.findViewById(R.id.indicator_container);
+        indicatorContainer = root.findViewById(R.id.indicator_container);
         if (indicatorOnTop) {
             indicatorContainer.getParent().bringChildToFront(indicatorContainer);
         }
@@ -137,11 +137,10 @@ public class Navigator extends FrameLayout implements IPagerNavigator, Navigator
                 if (adjustMode) {
                     lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
                     lp.weight = adapter.getTitleWeight(getContext(), i);
-                    lp.gravity= Gravity.CENTER;
                 } else {
                     lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-                    lp.gravity= Gravity.CENTER;
                 }
+                lp.gravity= Gravity.CENTER;
                 titleContainer.addView(view, lp);
             }
         }

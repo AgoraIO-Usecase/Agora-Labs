@@ -18,11 +18,7 @@ public class SystemUtil {
     public static boolean isZh() {
         String language = getLanguageEnv();
 
-        if (language != null && (language.trim().equals("zh-CN") || language.trim().equals("zh-TW"))) {
-            return true;
-        } else {
-            return false;
-        }
+        return language != null && (language.trim().equals("zh-CN") || language.trim().equals("zh-TW"));
     }
 
     private static String getLanguageEnv() {

@@ -56,10 +56,7 @@ public class SlidingMenuLayout extends ConstraintLayout {
 
     private void initView(Context context, @Nullable AttributeSet attrs){
         binding=SlidingMenuBinding.inflate(LayoutInflater.from(context),this,true);
-        /*
-        pagerAdapter=new PagerAdapter();
-        binding.viewpager.setAdapter(pagerAdapter);*/
-       // binding.viewpager.setUserInputEnabled(false);
+        // binding.viewpager.setUserInputEnabled(false);
     }
 
     private void initMagicIndicator() {

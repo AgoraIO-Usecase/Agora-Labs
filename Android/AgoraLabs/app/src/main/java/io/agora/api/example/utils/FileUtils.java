@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
-import android.util.Log;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -57,7 +56,7 @@ public class FileUtils {
             } else {
                 InputStream inputStream = assetManager.open(assetsPath);
                 if (assetsPath.contains(SEPARATOR)) {
-                    assetsPath = assetsPath.substring(assetsPath.lastIndexOf(SEPARATOR), assetsPath.length());
+                    assetsPath = assetsPath.substring(assetsPath.lastIndexOf(SEPARATOR));
                 }
                 readInputStream(storagePath + SEPARATOR + assetsPath, inputStream);
             }
@@ -75,7 +74,7 @@ public class FileUtils {
                 FileOutputStream fos = new FileOutputStream(file);
                 if(inputStream.available()>0) {
                     byte[] buffer = new byte[inputStream.available()];
-                    int lenght = 0;
+                    int lenght;
                     while ((lenght = inputStream.read(buffer)) != -1) {// 循环从输入流读取buffer字节
                         fos.write(buffer, 0, lenght);
                     }
@@ -94,7 +93,7 @@ public class FileUtils {
     public static String getRealPath( Context context,Uri uri ) {
         String fileName = null;
         if (uri != null) {
-            if (uri.getScheme().toString().compareTo("content") == 0) {
+            if (uri.getScheme().compareTo("content") == 0) {
                 Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
                     try {

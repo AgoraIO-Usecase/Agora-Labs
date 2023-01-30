@@ -5,7 +5,7 @@ import android.util.SparseBooleanArray;
 
 public class NavigatorHelper {
     private SparseBooleanArray deselectedItems = new SparseBooleanArray();
-    private SparseArray<Float> leavedPercents = new SparseArray<Float>();
+    private SparseArray<Float> leavedPercents = new SparseArray<>();
 
     private int totalCount;
     private int currentIndex;
@@ -18,10 +18,7 @@ public class NavigatorHelper {
 
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         float currentPositionOffsetSum = position + positionOffset;
-        boolean leftToRight = false;
-        if (lastPositionOffsetSum <= currentPositionOffsetSum) {
-            leftToRight = true;
-        }
+        boolean leftToRight = lastPositionOffsetSum <= currentPositionOffsetSum;
         if (scrollState != ScrollState.SCROLL_STATE_IDLE) {
             if (currentPositionOffsetSum == lastPositionOffsetSum) {
                 return;
