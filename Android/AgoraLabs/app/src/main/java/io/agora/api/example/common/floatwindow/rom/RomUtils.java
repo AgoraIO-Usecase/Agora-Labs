@@ -84,10 +84,8 @@ public class RomUtils {
         String meizuFlymeOSFlag  = getSystemProperty("ro.build.display.id");
         if (TextUtils.isEmpty(meizuFlymeOSFlag)){
             return false;
-        }else if (meizuFlymeOSFlag.contains("flyme") || meizuFlymeOSFlag.toLowerCase().contains("flyme")){
-            return  true;
-        }else {
-            return false;
+        }else{
+            return meizuFlymeOSFlag.contains("flyme") || meizuFlymeOSFlag.toLowerCase().contains("flyme");
         }
     }
 

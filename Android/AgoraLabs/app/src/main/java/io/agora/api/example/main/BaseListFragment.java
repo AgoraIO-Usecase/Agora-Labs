@@ -17,9 +17,7 @@ import java.util.List;
 public abstract class BaseListFragment extends Fragment {
     protected FragmentBaseListBinding binding;
     protected FeatureAdapter adapter;
-    @NonNull @Override public Lifecycle getLifecycle() {
-        return super.getLifecycle();
-    }
+
 
     @Nullable @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
         @Nullable Bundle savedInstanceState) {
@@ -47,7 +45,7 @@ public abstract class BaseListFragment extends Fragment {
                     }
                 }
                 return 1;
-            };
+            }
         });
         binding.cvFeatureList.setLayoutManager(layoutManager);
         binding.cvFeatureList.setAdapter(adapter);

@@ -29,7 +29,6 @@ import io.agora.api.example.utils.UIUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.agora.api.example.common.widget.indicator.buildins.navigator.indicators.LinePagerIndicator.MODE_EXACTLY;
 import static io.agora.api.example.common.widget.indicator.buildins.navigator.indicators.LinePagerIndicator.MODE_WRAP_CONTENT;
 
 public class MainFragment extends Fragment {
@@ -147,9 +146,7 @@ public class MainFragment extends Fragment {
         AndPermission.with(this).runtime().permission(
             permissionArray
         ).onGranted(permissions ->
-        {
-            runnable.run();
-        }).start();
+            runnable.run()).start();
     }
 
 }

@@ -3,6 +3,21 @@ apply plugin: 'com.android.application'
 def localSdkPath= "${rootProject.projectDir.absolutePath}/../../sdk"
 
 android {
+    signingConfigs {
+
+        debug {
+            storeFile file('agoralab.keystore')
+            storePassword '888888'
+            keyAlias 'agoralab'
+            keyPassword '888888'
+        }
+        release {
+            storeFile file('agoralab.keystore')
+            storePassword '888888'
+            keyAlias 'agoralab'
+            keyPassword '888888'
+        }
+    }
     compileSdkVersion 32
     buildToolsVersion "32.0.0"
 
@@ -10,15 +25,23 @@ android {
         applicationId "io.agora.labs"
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 2
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.2.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //signingConfig signingConfigs.release
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //signingConfig signingConfigs.debug
+            debuggable true
         }
     }
 

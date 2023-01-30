@@ -20,7 +20,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -39,8 +38,6 @@ import io.agora.api.example.R;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import static io.agora.api.example.common.widget.bubbleseekbar.BubbleSeekBar.TextPosition.BELOW_SECTION_MARK;
 import static io.agora.api.example.common.widget.bubbleseekbar.BubbleSeekBar.TextPosition.BOTTOM_SIDES;
@@ -184,7 +181,7 @@ public class BubbleSeekBar extends View {
         isTouchToSeek = a.getBoolean(R.styleable.BubbleSeekBar_bsb_touch_to_seek, false);
         isAlwaysShowBubble = a.getBoolean(R.styleable.BubbleSeekBar_bsb_always_show_bubble, false);
         duration = a.getInteger(R.styleable.BubbleSeekBar_bsb_always_show_bubble_delay, 0);
-        mAlwaysShowBubbleDelay = duration < 0 ? 0 : duration;
+        mAlwaysShowBubbleDelay = Math.max(duration, 0);
         isHideBubble = a.getBoolean(R.styleable.BubbleSeekBar_bsb_hide_bubble, false);
         isRtl = a.getBoolean(R.styleable.BubbleSeekBar_bsb_rtl, false);
         setEnabled(a.getBoolean(R.styleable.BubbleSeekBar_android_enabled, isEnabled()));
@@ -646,12 +643,7 @@ public class BubbleSeekBar extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        post(new Runnable() {
-            @Override
-            public void run() {
-                requestLayout();
-            }
-        });
+        post(this::requestLayout);
     }
 
     @Override
@@ -1137,8 +1129,7 @@ public class BubbleSeekBar extends View {
             }
             return mTickArray[index];
         }
-        String text=isShowProgressInFloat ? String.valueOf(getProgressFloat()) : String.valueOf(getProgress());
-        return text;
+        return isShowProgressInFloat ? String.valueOf(getProgressFloat()) : String.valueOf(getProgress());
     }
 
     public float getProgressFloat() {
@@ -1172,17 +1163,13 @@ public class BubbleSeekBar extends View {
             if (progress >= mPreSecValue) { // increasing
                 if (progress >= mPreSecValue + half) {
                     mPreSecValue += mSectionValue;
-                    return mPreSecValue;
-                } else {
-                    return mPreSecValue;
                 }
+                return mPreSecValue;
             } else { // reducing
-                if (progress >= mPreSecValue - half) {
-                    return mPreSecValue;
-                } else {
+                if (progress < mPreSecValue - half) {
                     mPreSecValue -= mSectionValue;
-                    return mPreSecValue;
                 }
+                return mPreSecValue;
             }
         }
 
@@ -1489,8 +1476,6 @@ public class BubbleSeekBar extends View {
             mBubblePath.close();
 
             mBubblePaint.setColor(mBubbleColor);
-            //canvas.drawRect(mBubbleRectF,mBubblePaint);
-            //canvas.drawRect(mBubbleRectF,mBubblePaint);
             canvas.drawPath(mBubblePath, mBubblePaint);
 
             mBubblePaint.setTextSize(mBubbleTextSize);

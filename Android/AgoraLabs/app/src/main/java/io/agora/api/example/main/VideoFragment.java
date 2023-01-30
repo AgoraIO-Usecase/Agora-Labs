@@ -26,7 +26,7 @@ public class VideoFragment extends BaseListFragment {
 
 
     protected void initData(){
-        List<Feature> data=new ArrayList<Feature>();
+        List<Feature> data= new ArrayList<>();
         data.add(new Feature(-1,-1, R.string.special_effect));
         data.add(new Feature(ID_VIRTUAL_BG,R.mipmap.virtual_bg,R.string.virtul_bg,true));
         data.add(new Feature(ID_BEAUTY,R.mipmap.beauty,R.string.beauty,true));

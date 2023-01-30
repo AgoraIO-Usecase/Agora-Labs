@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialog;
 import io.agora.api.example.R;
 import io.agora.api.example.utils.ThreadUtils;
@@ -30,11 +29,7 @@ public class AutoDissmissDialog extends AppCompatDialog {
     @Override
     public void show(){
         super.show();
-        ThreadUtils.postRunOnUIDelayed(new Runnable() {
-            @Override public void run() {
-                dismiss();
-            }
-        },3000);
+        ThreadUtils.postRunOnUIDelayed(() -> dismiss(),3000);
     }
 
 }

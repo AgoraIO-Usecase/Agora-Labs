@@ -5,12 +5,13 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.TextureView;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -27,12 +28,15 @@ import io.agora.api.example.utils.ThreadUtils;
 import io.agora.api.example.utils.UIUtil;
 import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
+import io.agora.rtc2.IMediaExtensionObserver;
 import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcConnection;
 import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.RtcEngineEx;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import static android.util.TypedValue.COMPLEX_UNIT_SP;
 import static androidx.constraintlayout.widget.ConstraintSet.PARENT_ID;
@@ -53,8 +57,8 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
     private final int LAYOUT_LOCAL_SMALL=3;
     private int curLayout=LAYOUT_HALF;
 
-    private TextureView localView;
-    private TextureView remoteView;
+    private SurfaceView localView;
+    private SurfaceView remoteView;
 
     private TextView tvOriginVideo;
     private TextView tvSR;
@@ -68,11 +72,14 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
     private final int SR_1_5=8;
     private final int SR_2=3;
     private int curSR=SR_1_5;
+    private boolean needShowSrFaiedToast=true;
 
     private int resolution=VideoFeatureMenu.RESOLUTION_360P;
 
     private VideoEncoderConfiguration configuration;
     private PopWindow popWindow;
+
+    private boolean srEnabledSuccess=true;
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,6 +148,9 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
             @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SystemUtil.vibrator(getContext());
                 srEnabled =isChecked;
+                if(isChecked){
+                    needShowSrFaiedToast=true;
+                }
                 updateSR();
             }
         });
@@ -164,7 +174,8 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         tvSR =new TextView(getContext());
         tvSR.setGravity(Gravity.CENTER);
         tvSR.setTextColor(getResources().getColor(R.color.white));
-        tvSR.setTextSize(COMPLEX_UNIT_SP,15);
+        tvSR.setTextSize(COMPLEX_UNIT_SP,13);
+        tvSR.setSingleLine();
         tvSR.setPadding(padding,padding,padding,padding);
         tvSR.setText(srEnabled ?R.string.sr_enabled:R.string.sr_disabled);
         tvSR.setBackgroundResource(srEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
@@ -181,10 +192,6 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         tvRemoteBitrate.setTextSize(COMPLEX_UNIT_SP,13);
         tvRemoteBitrate.setPadding(padding,padding,padding,padding);
 
-        binding.sr1.setOnClickListener(this);
-        binding.sr133.setOnClickListener(this);
-        binding.sr15.setOnClickListener(this);
-        binding.sr2.setOnClickListener(this);
 
         binding.menuControler.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
@@ -222,27 +229,18 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
     private void updateSR(){
         tvSR.setText(srEnabled ?R.string.sr_enabled:R.string.sr_disabled);
         tvSR.setBackgroundResource(srEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
-        if(srEnabled) {
-            binding.sr1.setSelected(curSR == SR_1);
-            binding.sr133.setSelected(curSR == SR_1_33);
-            binding.sr15.setSelected(curSR == SR_1_5);
-            binding.sr2.setSelected(curSR == SR_2);
-        }else{
-            binding.sr1.setSelected(false);
-            binding.sr133.setSelected(false);
-            binding.sr15.setSelected(false);
-            binding.sr2.setSelected(false);
-        }
         setSRValue();
     }
 
 
     private void setSRValue(){
+
         if(srEnabled) {
-            rtcEngine.setParameters("{\"rtc.video.enable_sr\":{\"uid\":0,\"enabled\":true,\"mode\":1}}");
-            rtcEngine.setParameters("{\"rtc.video.sr_type\":"+curSR+"}");
+            rtcEngine.setParameters("{\"rtc.video.enable_sr\":{\"uid\":"+senderUid+
+                ",\"enabled\":true,\"mode\":1}}");
         }else{
-            rtcEngine.setParameters("{\"rtc.video.enable_sr\":{\"uid\":0,\"enabled\":false,\"mode\":1}}");
+            rtcEngine.setParameters("{\"rtc.video.enable_sr\":{\"uid\":"+senderUid+
+                ",\"enabled\":false,\"mode\":1}}");
         }
     }
 
@@ -262,25 +260,73 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         config.mAppId = getString(R.string.agora_app_id);
         config.mChannelProfile = sceneMode;
         config.mEventHandler = new IRtcEngineEventHandler() {
-            @Override public void onWarning(int warn) {
-                super.onWarning(warn);
+
+        };
+        config.mExtensionObserver=new IMediaExtensionObserver() {
+            @Override public void onEvent(String provider, String extension, String key, String value) {
+                Log.d(TAG,"-----onEvent---:"+provider+" extension:"+extension+" key:"+key+ " value:"+value);
+                if (provider.equals("sr.io.agora.builtin") && key.equals("sr_type")) {
+                    try {
+                        JSONObject srJSON=new JSONObject(value);
+                        int type=srJSON.optInt("type",0);
+                        srEnabled= type != 0;
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                } else if (provider.equals("agora_video_filters_clear_vision")
+                    && extension.equals("sharpen")
+                    && key.equals("sharpen_type")) {
+                    try {
+                        JSONObject sharpenJSON=new JSONObject(value);
+                        int type=sharpenJSON.optInt("type",0);
+                        if (type == 0 && !srEnabled) {
+                            if (needShowSrFaiedToast) {
+                                needShowSrFaiedToast = false;
+                                ThreadUtils.runOnUI(new Runnable() {
+                                    @Override public void run() {
+                                        Toast.makeText(getContext(), R.string.sr_enabled_failed, Toast.LENGTH_SHORT)
+                                            .show();
+                                    }
+                                });
+                            }
+                            ThreadUtils.runOnUI(SuperResolutionFragment.this::updateSRCb);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
-            @Override public void onError(int err) {
-                super.onError(err);
+            @Override public void onStarted(String provider, String extension) {
+
+            }
+
+            @Override public void onStopped(String provider, String extension) {
+
+            }
+
+
+
+            @Override public void onError(String provider, String extension, int error, String message) {
 
             }
         };
         config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT);
         config.mAreaCode = ((App)getActivity().getApplication()).getAreaCode();
         try {
-            rtcEngine = (RtcEngineEx)RtcEngineEx.create(config);
-            rtcEngine.disableAudio();
+            rtcEngine = (RtcEngineEx) RtcEngineEx.create(config);
+            setSRValue();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    private void updateSRCb(){
+        if(!srEnabled){
+            binding.featureSwitch.setChecked(false);
+        }
+    }
 
     @Override public void onDestroy() {
         super.onDestroy();
@@ -297,7 +343,7 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         rtcConnection.channelId=channelName;
         rtcConnection.localUid= senderUid;
         setVideoConfig();
-        localView = new TextureView(getContext()) ;
+        localView = new SurfaceView(getContext()) ;
         rtcEngine.enableVideo();
         rtcEngine.enableAudio();
         rtcEngine.setupLocalVideo(new VideoCanvas(localView, VideoCanvas.RENDER_MODE_HIDDEN, senderUid));
@@ -307,7 +353,7 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
         mediaOptions.channelProfile= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
         mediaOptions.clientRoleType= Constants.CLIENT_ROLE_BROADCASTER;
-        mediaOptions.publishMicrophoneTrack = true;
+        mediaOptions.publishMicrophoneTrack = false;
         mediaOptions.publishCameraTrack = true;
 
         rtcEngine.joinChannelEx("", rtcConnection, mediaOptions, new IRtcEngineEventHandler() {
@@ -340,6 +386,15 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
                     }
                 });
             }
+
+            @Override public void onVideoSizeChanged(Constants.VideoSourceType source, int uid, int width, int height,
+                int rotation) {
+                super.onVideoSizeChanged(source, uid, width, height, rotation);
+                Log.d(TAG,"-----onVideoSizeChanged1---width:"+width+" height:"+height+" uid:"+uid);
+            }
+
+
+
         });
         addView();
     }
@@ -352,14 +407,28 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
         mediaOptions.channelProfile= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
         mediaOptions.clientRoleType= Constants.CLIENT_ROLE_BROADCASTER;
+        mediaOptions.publishMicrophoneTrack=false;
+
 
         int ret=rtcEngine.joinChannelEx("", rtcc, mediaOptions, new IRtcEngineEventHandler() {
+            @Override public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
+                super.onJoinChannelSuccess(channel, uid, elapsed);
+                Log.d(TAG,"receiver onJoinChannelSuccess--channel:"+channel+" uid:"+uid+" elapsed:"+elapsed);
+
+            }
+
             @Override
             public void onUserJoined(int uid, int elapsed) {
+                Log.d(TAG,"---onUserJoined--uid:"+uid);
                 ThreadUtils.runOnUI(new Runnable() {
                     @Override public void run() {
-                        remoteView= new TextureView(getContext()) ;
+                        remoteView= new SurfaceView(getContext()) ;
                         rtcEngine.setupRemoteVideoEx(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_HIDDEN,1, uid),rtcc);
+                        try {
+                            Thread.sleep(300);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         addView();
                     }
                 });
@@ -376,7 +445,6 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
             }
             @Override
             public void onRtcStats(IRtcEngineEventHandler.RtcStats stats) {
-                Log.d(TAG,"---204--onRtcStats");
                 ThreadUtils.runOnUI(new Runnable() {
                     @Override public void run() {
                         int bitrate=stats.rxVideoKBitRate;
@@ -389,9 +457,12 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
                 super.onError(err);
             }
 
-            @Override public void onWarning(int warn) {
-                super.onWarning(warn);
+            @Override public void onVideoSizeChanged(Constants.VideoSourceType source, int uid, int width, int height,
+                int rotation) {
+                super.onVideoSizeChanged(source, uid, width, height, rotation);
+                Log.d(TAG,"-----onVideoSizeChanged2---width:"+width+" height:"+height+" uid:"+uid);
             }
+
         });
 
     }
@@ -436,43 +507,25 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
                 binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
             }
             updateLayout();
-        }else if(v.getId()==R.id.sr_1){
-            setSelectButton(v);
-        }else if(v.getId()==R.id.sr_1_33){
-            setSelectButton(v);
-        }else if(v.getId()==R.id.sr_1_5){
-            setSelectButton(v);
-        }else if(v.getId()==R.id.sr_2){
-            setSelectButton(v);
         }
-    }
-
-    private void setSelectButton(View button){
-        if(!srEnabled){
-            return;
-        }
-        binding.sr1.setSelected(button.getId()==R.id.sr_1);
-        binding.sr133.setSelected(button.getId()==R.id.sr_1_33);
-        binding.sr15.setSelected(button.getId()==R.id.sr_1_5);
-        binding.sr2.setSelected(button.getId()==R.id.sr_2);
-        if(binding.sr1.isSelected()){
-            curSR=SR_1;
-        }else if(binding.sr133.isSelected()){
-            curSR=SR_1_33;
-        }else if(binding.sr15.isSelected()){
-            curSR=SR_1_5;
-        }else if(binding.sr2.isSelected()){
-            curSR=SR_2;
-        }
-        setSRValue();
     }
 
 
 
     public void updateLayout(){
         if(curLayout==LAYOUT_HALF){
-            ConstraintLayoutUtils.setHalfScreenLayout(binding.mainContainer,true);
-            ConstraintLayoutUtils.setHalfScreenLayout(binding.subContainer,false);
+            ConstraintLayout.LayoutParams mainContainerParams=new ConstraintLayout.LayoutParams(0,0);
+            mainContainerParams.leftToLeft=PARENT_ID;
+            mainContainerParams.rightToRight=PARENT_ID;
+            mainContainerParams.topToTop=PARENT_ID;
+            mainContainerParams.bottomToTop=binding.subContainer.getId();
+            binding.mainContainer.setLayoutParams(mainContainerParams);
+            ConstraintLayout.LayoutParams subContainerParams=new ConstraintLayout.LayoutParams(0,0);
+            subContainerParams.leftToLeft=PARENT_ID;
+            subContainerParams.rightToRight=PARENT_ID;
+            subContainerParams.topToBottom=binding.mainContainer.getId();
+            subContainerParams.bottomToTop=binding.menuControler.getId();
+            binding.subContainer.setLayoutParams(subContainerParams);
             addView();
         }else if(curLayout==LAYOUT_LOCAL_BIG){
             ConstraintLayoutUtils.setMatchParentLayout(binding.mainContainer);
@@ -489,7 +542,7 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
     private void setSmallWin(View view){
         ConstraintLayout.LayoutParams params=new ConstraintLayout.LayoutParams(UIUtil.dip2px(getContext(),160),UIUtil.dip2px(getContext(),200));
         params.rightToRight=PARENT_ID;
-        params.bottomToTop=binding.featureSwitch.getId();
+        params.bottomToTop=binding.menuControler.getId();
         view.setLayoutParams(params);
     }
 

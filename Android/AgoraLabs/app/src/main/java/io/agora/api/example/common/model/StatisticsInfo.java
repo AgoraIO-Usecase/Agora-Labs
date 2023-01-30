@@ -37,68 +37,63 @@ public class StatisticsInfo {
     }
 
     public String getLocalVideoStats() {
-        StringBuilder builder = new StringBuilder();
-        return builder
-                .append(""+localVideoStats.encodedFrameWidth)
-                .append("×")
-                .append(localVideoStats.encodedFrameHeight)
-                .append(",")
-                .append(localVideoStats.encoderOutputFrameRate)
-                .append("fps")
-                .append("\n")
-                .append("LM Delay: ")
-                .append(rtcStats.lastmileDelay)
-                .append("ms")
-                .append("\n")
-                .append("VSend: ")
-                .append(localVideoStats.sentBitrate)
-                .append("kbps")
-                .append("\n")
-                .append("ASend: ")
-                .append(localAudioStats.sentBitrate)
-                .append("kbps")
-                .append("\n")
-                .append("CPU: ")
-                .append(rtcStats.cpuAppUsage)
-                .append("%/")
-                .append(rtcStats.cpuTotalUsage)
-                .append("%/")
-                .append("\n")
-                .append("VSend Loss: ")
-                .append(rtcStats.txPacketLossRate)
-                .append("%")
-                .toString();
+        return localVideoStats.encodedFrameWidth
+            + "×"
+            + localVideoStats.encodedFrameHeight
+            + ","
+            + localVideoStats.encoderOutputFrameRate
+            + "fps"
+            + "\n"
+            + "LM Delay: "
+            + rtcStats.lastmileDelay
+            + "ms"
+            + "\n"
+            + "VSend: "
+            + localVideoStats.sentBitrate
+            + "kbps"
+            + "\n"
+            + "ASend: "
+            + localAudioStats.sentBitrate
+            + "kbps"
+            + "\n"
+            + "CPU: "
+            + rtcStats.cpuAppUsage
+            + "%/"
+            + rtcStats.cpuTotalUsage
+            + "%/"
+            + "\n"
+            + "VSend Loss: "
+            + rtcStats.txPacketLossRate
+            + "%";
     }
 
     public String getRemoteVideoStats() {
-        StringBuilder builder = new StringBuilder();
-        return builder
-                .append(remoteVideoStats.width)
-                .append("×")
-                .append(remoteVideoStats.height)
-                .append(",")
-                .append(remoteVideoStats.rendererOutputFrameRate)
-                .append("fps")
-                .append("\n")
-                .append("VRecv: ")
-                .append(remoteVideoStats.receivedBitrate)
-                .append("kbps")
-                .append("\n")
-                .append("ARecv: ")
-                .append(remoteAudioStats.receivedBitrate)
-                .append("kbps")
-                .append("\n")
-                .append("VLoss: ")
-                .append(remoteVideoStats.packetLossRate)
-                .append("%")
-                .append("\n")
-                .append("ALoss: ")
-                .append(remoteAudioStats.audioLossRate)
-                .append("%")
-                .append("\n")
-                .append("AQuality: ")
-                .append(remoteAudioStats.quality)
-                .toString();
+        String builder = remoteVideoStats.width
+            + "×"
+            + remoteVideoStats.height
+            + ","
+            + remoteVideoStats.rendererOutputFrameRate
+            + "fps"
+            + "\n"
+            + "VRecv: "
+            + remoteVideoStats.receivedBitrate
+            + "kbps"
+            + "\n"
+            + "ARecv: "
+            + remoteAudioStats.receivedBitrate
+            + "kbps"
+            + "\n"
+            + "VLoss: "
+            + remoteVideoStats.packetLossRate
+            + "%"
+            + "\n"
+            + "ALoss: "
+            + remoteAudioStats.audioLossRate
+            + "%"
+            + "\n"
+            + "AQuality: "
+            + remoteAudioStats.quality;
+        return builder;
     }
 
     public void setLastMileQuality(int quality) {
@@ -129,37 +124,36 @@ public class StatisticsInfo {
     }
 
     public String getLastMileResult() {
-        if(lastMileProbeResult == null)
+        if (lastMileProbeResult == null) {
             return null;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Rtt: ")
-                .append(lastMileProbeResult.rtt)
-                .append("ms")
-                .append("\n")
-                .append("DownlinkAvailableBandwidth: ")
-                .append(lastMileProbeResult.downlinkReport.availableBandwidth)
-                .append("Kbps")
-                .append("\n")
-                .append("DownlinkJitter: ")
-                .append(lastMileProbeResult.downlinkReport.jitter)
-                .append("ms")
-                .append("\n")
-                .append("DownlinkLoss: ")
-                .append(lastMileProbeResult.downlinkReport.packetLossRate)
-                .append("%")
-                .append("\n")
-                .append("UplinkAvailableBandwidth: ")
-                .append(lastMileProbeResult.uplinkReport.availableBandwidth)
-                .append("Kbps")
-                .append("\n")
-                .append("UplinkJitter: ")
-                .append(lastMileProbeResult.uplinkReport.jitter)
-                .append("ms")
-                .append("\n")
-                .append("UplinkLoss: ")
-                .append(lastMileProbeResult.uplinkReport.packetLossRate)
-                .append("%");
-        return stringBuilder.toString();
+        }
+        return "Rtt: "
+            + lastMileProbeResult.rtt
+            + "ms"
+            + "\n"
+            + "DownlinkAvailableBandwidth: "
+            + lastMileProbeResult.downlinkReport.availableBandwidth
+            + "Kbps"
+            + "\n"
+            + "DownlinkJitter: "
+            + lastMileProbeResult.downlinkReport.jitter
+            + "ms"
+            + "\n"
+            + "DownlinkLoss: "
+            + lastMileProbeResult.downlinkReport.packetLossRate
+            + "%"
+            + "\n"
+            + "UplinkAvailableBandwidth: "
+            + lastMileProbeResult.uplinkReport.availableBandwidth
+            + "Kbps"
+            + "\n"
+            + "UplinkJitter: "
+            + lastMileProbeResult.uplinkReport.jitter
+            + "ms"
+            + "\n"
+            + "UplinkLoss: "
+            + lastMileProbeResult.uplinkReport.packetLossRate
+            + "%";
     }
 
     public void setLastMileProbeResult(LastmileProbeResult lastmileProbeResult) {

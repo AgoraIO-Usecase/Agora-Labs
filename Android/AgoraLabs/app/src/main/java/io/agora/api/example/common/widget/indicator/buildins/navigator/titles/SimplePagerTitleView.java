@@ -5,7 +5,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.TextUtils;
 import android.view.Gravity;
-import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatTextView;
 import io.agora.api.example.common.widget.indicator.buildins.navigator.abs.IMeasurablePagerTitleView;
 import io.agora.api.example.utils.UIUtil;

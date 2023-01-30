@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.TextureView;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -53,8 +53,8 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
     private final int LAYOUT_LOCAL_SMALL=3;
     private int curLayout=LAYOUT_HALF;
 
-    private TextureView localView;
-    private TextureView remoteView;
+    private SurfaceView localView;
+    private SurfaceView remoteView;
 
     private TextView tvOriginVideo;
     private TextView tvPVC;
@@ -160,7 +160,8 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         tvPVC=new TextView(getContext());
         tvPVC.setGravity(Gravity.CENTER);
         tvPVC.setTextColor(getResources().getColor(R.color.white));
-        tvPVC.setTextSize(COMPLEX_UNIT_SP,15);
+        tvPVC.setTextSize(COMPLEX_UNIT_SP,13);
+        tvPVC.setSingleLine();
         tvPVC.setPadding(padding,padding,padding,padding);
         tvPVC.setText(pvcEnabled?R.string.pvc_enabled:R.string.pvc_disabled);
         tvPVC.setBackgroundResource(pvcEnabled?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
@@ -265,7 +266,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         rtcConnection.localUid= senderUid;
 
         setVideoConfig();
-        localView = new TextureView(getContext()) ;
+        localView = new SurfaceView(getContext()) ;
         rtcEngine.enableVideo();
         rtcEngine.enableAudio();
         rtcEngine.setupLocalVideo(new VideoCanvas(localView, VideoCanvas.RENDER_MODE_HIDDEN, senderUid));
@@ -275,7 +276,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
         mediaOptions.channelProfile= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
         mediaOptions.clientRoleType= Constants.CLIENT_ROLE_BROADCASTER;
-        mediaOptions.publishMicrophoneTrack = true;
+        mediaOptions.publishMicrophoneTrack = false;
         mediaOptions.publishCameraTrack = true;
 
         rtcEngine.joinChannelEx("", rtcConnection, mediaOptions, new IRtcEngineEventHandler() {
@@ -320,13 +321,14 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
         mediaOptions.channelProfile= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
         mediaOptions.clientRoleType= Constants.CLIENT_ROLE_BROADCASTER;
+        mediaOptions.publishMicrophoneTrack=false;
 
         int ret=rtcEngine.joinChannelEx("", rtcc, mediaOptions, new IRtcEngineEventHandler() {
             @Override
             public void onUserJoined(int uid, int elapsed) {
                 ThreadUtils.runOnUI(new Runnable() {
                     @Override public void run() {
-                        remoteView= new TextureView(getContext()) ;
+                        remoteView= new SurfaceView(getContext()) ;
                         rtcEngine.setupRemoteVideoEx(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_HIDDEN,1, uid),rtcc);
                         addView();
                     }
@@ -344,7 +346,6 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             }
             @Override
             public void onRtcStats(IRtcEngineEventHandler.RtcStats stats) {
-                Log.d(TAG,"---204--onRtcStats");
                 ThreadUtils.runOnUI(new Runnable() {
                     @Override public void run() {
                         int bitrate=stats.rxVideoKBitRate;
@@ -402,15 +403,25 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
 
     public void updateLayout(){
         if(curLayout==LAYOUT_HALF){
-            ConstraintLayoutUtils.setHalfScreenLayout(binding.mainContainer,true);
-            ConstraintLayoutUtils.setHalfScreenLayout(binding.subContainer,false);
+            ConstraintLayout.LayoutParams mainContainerParams=new ConstraintLayout.LayoutParams(0,0);
+            mainContainerParams.leftToLeft=PARENT_ID;
+            mainContainerParams.rightToRight=PARENT_ID;
+            mainContainerParams.topToTop=PARENT_ID;
+            mainContainerParams.bottomToTop=binding.subContainer.getId();
+            binding.mainContainer.setLayoutParams(mainContainerParams);
+            ConstraintLayout.LayoutParams subContainerParams=new ConstraintLayout.LayoutParams(0,0);
+            subContainerParams.leftToLeft=PARENT_ID;
+            subContainerParams.rightToRight=PARENT_ID;
+            subContainerParams.topToBottom=binding.mainContainer.getId();
+            subContainerParams.bottomToTop=binding.menuControler.getId();
+            binding.subContainer.setLayoutParams(subContainerParams);
             addView();
         }else if(curLayout==LAYOUT_LOCAL_BIG){
-            ConstraintLayoutUtils.setMatchParentLayout(binding.mainContainer);
+            ConstraintLayoutUtils.setMatchParentAndBottomToTopLayout(binding.mainContainer,binding.menuControler.getId());
             setSmallWin(binding.subContainer);
             addView();
         }else if(curLayout==LAYOUT_LOCAL_SMALL){
-            ConstraintLayoutUtils.setMatchParentLayout(binding.mainContainer);
+            ConstraintLayoutUtils.setMatchParentAndBottomToTopLayout(binding.mainContainer,binding.menuControler.getId());
             setSmallWin(binding.subContainer);
             addView();
         }
@@ -420,7 +431,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
     private void setSmallWin(View view){
         ConstraintLayout.LayoutParams params=new ConstraintLayout.LayoutParams(UIUtil.dip2px(getContext(),160),UIUtil.dip2px(getContext(),200));
         params.rightToRight=PARENT_ID;
-        params.bottomToTop=binding.featureSwitch.getId();
+        params.bottomToTop=binding.menuControler.getId();
         view.setLayoutParams(params);
     }
 

@@ -3,11 +3,6 @@ package io.agora.api.example;
 import android.app.Application;
 
 import io.agora.rtc2.RtcEngineConfig;
-import java.lang.annotation.Annotation;
-import java.util.Set;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class App extends Application {
 

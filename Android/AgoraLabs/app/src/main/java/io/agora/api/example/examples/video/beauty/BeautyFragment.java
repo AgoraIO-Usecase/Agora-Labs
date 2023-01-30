@@ -1,12 +1,9 @@
 package io.agora.api.example.examples.video.beauty;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -26,7 +23,6 @@ import io.agora.api.example.utils.FileUtils;
 import io.agora.api.example.utils.SPUtils;
 import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
-import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
 import io.agora.rtc2.IMediaExtensionObserver;
 import io.agora.rtc2.IRtcEngineEventHandler;
@@ -36,15 +32,12 @@ import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.RtcEngineEx;
 import io.agora.rtc2.video.BeautyOptions;
 import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.video.VideoEncoderConfiguration;
 import io.agora.rte.extension.faceunity.ExtensionManager;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static io.agora.rtc2.video.BeautyOptions.LIGHTENING_CONTRAST_HIGH;
 
 public class BeautyFragment extends Fragment implements View.OnClickListener, IMediaExtensionObserver {
     private final String TAG="AgoraLab";
@@ -73,6 +66,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
         config.mAppId = getString(R.string.agora_app_id);
         config.mChannelProfile = sceneMode;
         config.mEventHandler = new IRtcEngineEventHandler() {
+
         };
         config.mExtensionObserver=this;
         config.addExtension("AgoraFaceUnityExtension");
@@ -82,8 +76,11 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
         Log.d(TAG,"version:"+RtcEngine.getSdkVersion());
         try {
             rtcEngine = (RtcEngineEx)RtcEngineEx.create(config);
+            /*todo
             rtcEngine.registerExtension("ByteDance","Effect", Constants.MediaSourceType.PRIMARY_CAMERA_SOURCE);
             rtcEngine.registerExtension("FaceUnity","Effect",Constants.MediaSourceType.PRIMARY_CAMERA_SOURCE);
+
+             */
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -215,19 +212,17 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
             agoraMenu = new MenuPage(getContext());
             agoraMenu.addMenuItems(agoraRender.generatorOptionItems());
             agoraMenu.addFixMenuItem(new OptionItem(-1, R.mipmap.ic_ban, R.string.original_image));
-            agoraMenu.setOnItemClickListener(new OnItemClickListener() {
-                @Override public void onItemClick(View v, OptionItem optionItem, int position) {
-                    SystemUtil.vibrator(getContext());
-                    agoraMenu.setSelected(optionItem);
-                    agoraRender.setSelectedID(optionItem.getId());
-                    if(optionItem.getId()==-1){
-                        agoraRender.disableExtension();
-                        binding.seekbar.setVisibility(View.GONE);
-                    }else{
-                        agoraRender.enableExtension();
-                        binding.seekbar.setVisibility(View.VISIBLE);
-                        binding.seekbar.setProgress(agoraRender.getCurrentProgress());
-                    }
+            agoraMenu.setOnItemClickListener((v, optionItem, position) -> {
+                SystemUtil.vibrator(getContext());
+                agoraMenu.setSelected(optionItem);
+                agoraRender.setSelectedID(optionItem.getId());
+                if(optionItem.getId()==-1){
+                    agoraRender.disableExtension();
+                    binding.seekbar.setVisibility(View.GONE);
+                }else{
+                    agoraRender.enableExtension();
+                    binding.seekbar.setVisibility(View.VISIBLE);
+                    binding.seekbar.setProgress(agoraRender.getCurrentProgress());
                 }
             });
         }
@@ -306,11 +301,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
             volcBeautyMenu.setOnItemClickListener(new OnItemClickListener() {
                 @Override public void onItemClick(View v, OptionItem optionItem, int position) {
                     SystemUtil.vibrator(getContext());
-                    if(optionItem.getId()==-1){
-                        rtcEngine.enableExtension("ByteDance", "Effect", false);
-                    }else{
-                        rtcEngine.enableExtension("ByteDance", "Effect", true);
-                    }
+                    rtcEngine.enableExtension("ByteDance", "Effect", optionItem.getId() != -1);
                     volcBeautyMenu.setSelected(optionItem);
                     volcRender.setSelectedFeatureID(optionItem.getId());
                     int progress=volcRender.getProgress(optionItem.getId());
