@@ -14,11 +14,11 @@ struct AgoraLabsUser {
     
     static var sendUid: UInt {
         let time = AgoraLabsUser.time+10086
-        return UInt("\(time)".suffix(5)) ?? 0
+        return 10086//UInt("\(time)".suffix(5)) ?? 0
     }
     static var recvUid: UInt {
         let time = AgoraLabsUser.time+10010
-        return UInt("\(time)".suffix(5)) ?? 0
+        return 10010//UInt("\(time)".suffix(5)) ?? 0
     }
     static var channelName: String {
         return  String("\(AgoraLabsUser.time+10000)".suffix(5))

@@ -42,7 +42,7 @@ class LogUtils {
         return folder
     }
     static func sdkLogPath() -> String {
-        let logPath = "\(logFolder())/agorasdk.log"
+        let logPath = "\(logFolder())/agorasdk_\(AgoraLabsUser.time).log"
         return logPath
     }
     
