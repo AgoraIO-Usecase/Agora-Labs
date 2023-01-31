@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import io.agora.api.example.common.adapter.FeatureAdapter;
 import io.agora.api.example.databinding.FragmentBaseListBinding;
@@ -29,11 +28,7 @@ public abstract class BaseListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         adapter=new FeatureAdapter();
-        adapter.setOnItemClickListener(new FeatureAdapter.OnItemClickListener() {
-            @Override public void onItemClick(View v, Feature feature, int position) {
-                onItemSelect(feature,position);
-            }
-        });
+        adapter.setOnItemClickListener((v, feature, position) -> onItemSelect(feature,position));
         GridLayoutManager layoutManager=new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(){
 

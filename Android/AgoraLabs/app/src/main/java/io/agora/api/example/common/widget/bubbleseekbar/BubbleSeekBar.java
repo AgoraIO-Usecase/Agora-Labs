@@ -777,12 +777,9 @@ public class BubbleSeekBar extends View {
 
                 if (isAutoAdjustSectionMark) {
                     if (isTouchToSeek) {
-                        postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                isTouchToSeekAnimEnd = false;
-                                autoAdjustSection();
-                            }
+                        postDelayed(() -> {
+                            isTouchToSeekAnimEnd = false;
+                            autoAdjustSection();
                         }, mAnimDuration);
                     } else {
                         autoAdjustSection();
@@ -806,35 +803,30 @@ public class BubbleSeekBar extends View {
                                 }
                             }).start();
                     } else {
-                        postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                mBubbleView.animate()
-                                    .alpha(isAlwaysShowBubble ? 1f : 0f)
-                                    .setDuration(mAnimDuration)
-                                    .setListener(new AnimatorListenerAdapter() {
-                                        @Override
-                                        public void onAnimationEnd(Animator animation) {
-                                            if (!isAlwaysShowBubble) {
-                                                hideBubble();
-                                            }
+                        postDelayed(() -> mBubbleView.animate()
+                            .alpha(isAlwaysShowBubble ? 1f : 0f)
+                            .setDuration(mAnimDuration)
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    if (!isAlwaysShowBubble) {
+                                        hideBubble();
+                                    }
 
-                                            isThumbOnDragging = false;
-                                            invalidate();
-                                        }
+                                    isThumbOnDragging = false;
+                                    invalidate();
+                                }
 
-                                        @Override
-                                        public void onAnimationCancel(Animator animation) {
-                                            if (!isAlwaysShowBubble) {
-                                                hideBubble();
-                                            }
+                                @Override
+                                public void onAnimationCancel(Animator animation) {
+                                    if (!isAlwaysShowBubble) {
+                                        hideBubble();
+                                    }
 
-                                            isThumbOnDragging = false;
-                                            invalidate();
-                                        }
-                                    }).start();
-                            }
-                        }, mAnimDuration);
+                                    isThumbOnDragging = false;
+                                    invalidate();
+                                }
+                            }).start(), mAnimDuration);
                     }
                 }
 
@@ -921,27 +913,24 @@ public class BubbleSeekBar extends View {
                 valueAnim = ValueAnimator.ofFloat(mThumbCenterX, (i + 1) * mSectionOffset + mLeft);
             }
             valueAnim.setInterpolator(new LinearInterpolator());
-            valueAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    mThumbCenterX = (float) animation.getAnimatedValue();
-                    mProgress = calculateProgress();
+            valueAnim.addUpdateListener(animation -> {
+                mThumbCenterX = (float) animation.getAnimatedValue();
+                mProgress = calculateProgress();
 
-                    if (!isHideBubble && mBubbleView.getParent() != null) {
-                        mBubbleCenterRawX = calculateCenterRawXofBubbleView();
-                        mLayoutParams.x = (int) (mBubbleCenterRawX + 0.5f);
-                        mWindowManager.updateViewLayout(mBubbleView, mLayoutParams);
-                        mBubbleView.setProgressText(getProgressText());
-                    } else {
-                        processProgress();
-                    }
+                if (!isHideBubble && mBubbleView.getParent() != null) {
+                    mBubbleCenterRawX = calculateCenterRawXofBubbleView();
+                    mLayoutParams.x = (int) (mBubbleCenterRawX + 0.5f);
+                    mWindowManager.updateViewLayout(mBubbleView, mLayoutParams);
+                    mBubbleView.setProgressText(getProgressText());
+                } else {
+                    processProgress();
+                }
 
-                    invalidate();
+                invalidate();
 
-                    if (mProgressListener != null) {
-                        mProgressListener.onProgressChanged(BubbleSeekBar.this, getProgress(),
-                            getProgressFloat(), true);
-                    }
+                if (mProgressListener != null) {
+                    mProgressListener.onProgressChanged(BubbleSeekBar.this, getProgress(),
+                        getProgressFloat(), true);
                 }
             });
         }
@@ -1098,12 +1087,9 @@ public class BubbleSeekBar extends View {
         if (isAlwaysShowBubble) {
             hideBubble();
 
-            postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    showBubble();
-                    triggerBubbleShowing = true;
-                }
+            postDelayed(() -> {
+                showBubble();
+                triggerBubbleShowing = true;
             }, mAlwaysShowBubbleDelay);
         }
         if (isSeekBySection) {

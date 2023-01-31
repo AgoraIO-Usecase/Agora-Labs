@@ -75,17 +75,14 @@ public class SlidingMenuLayout extends ConstraintLayout {
                 simplePagerTitleView.setNormalColor(Color.parseColor("#88ffffff"));
                 simplePagerTitleView.setSelectedColor(Color.WHITE);
                 simplePagerTitleView.setTextSize(TypedValue.COMPLEX_UNIT_SP,15);
-                simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //binding.viewpager.setCurrentItem(index,false);
-                        currentPage=index;
-                        binding.indicator.onPageSelected(index);
-                        binding.indicator.onPageScrolled(index,0,0);
-                        updateCurrentPage();
-                        if(onTitleClickLister!=null){
-                            onTitleClickLister.onTitleSelected(index);
-                        }
+                simplePagerTitleView.setOnClickListener(v -> {
+                    //binding.viewpager.setCurrentItem(index,false);
+                    currentPage=index;
+                    binding.indicator.onPageSelected(index);
+                    binding.indicator.onPageScrolled(index,0,0);
+                    updateCurrentPage();
+                    if(onTitleClickLister!=null){
+                        onTitleClickLister.onTitleSelected(index);
                     }
                 });
                 return simplePagerTitleView;
@@ -132,11 +129,9 @@ public class SlidingMenuLayout extends ConstraintLayout {
         params.leftMargin= UIUtil.dip2px(getContext(),8);
         params.rightMargin= UIUtil.dip2px(getContext(),8);
         view.setLayoutParams(params);
-        view.setOnClickListener(new OnClickListener() {
-            @Override public void onClick(View v) {
-                if(listener!=null){
-                    listener.onItemClick(v,item,-1);
-                }
+        view.setOnClickListener(v -> {
+            if(listener!=null){
+                listener.onItemClick(v,item,-1);
             }
         });
         binding.fixedMenuContainer.setVisibility(VISIBLE);

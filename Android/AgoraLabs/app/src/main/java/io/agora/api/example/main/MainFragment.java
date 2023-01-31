@@ -46,10 +46,7 @@ public class MainFragment extends Fragment {
 
     @Override public void onStart() {
         super.onStart();
-        runOnPermissionGranted(new Runnable() {
-            @Override
-            public void run() {
-            }
+        runOnPermissionGranted(() -> {
         });
     }
 
@@ -63,7 +60,7 @@ public class MainFragment extends Fragment {
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
             public int getCount() {
-                return titles == null ? 0 : titles.size();
+                return titles.size();
             }
 
             @Override
@@ -72,12 +69,7 @@ public class MainFragment extends Fragment {
                 clipPagerTitleView.setText(titles.get(index));
                 clipPagerTitleView.setTextColor(Color.parseColor("#990A3D7B"));
                 clipPagerTitleView.setClipColor(Color.WHITE);
-                clipPagerTitleView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        binding.viewpager.setCurrentItem(index);
-                    }
-                });
+                clipPagerTitleView.setOnClickListener(v -> binding.viewpager.setCurrentItem(index));
                 return clipPagerTitleView;
             }
 

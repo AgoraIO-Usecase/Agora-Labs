@@ -248,20 +248,18 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
             xiangxinMenu = new MenuPage(getContext());
             xiangxinMenu.addMenuItems(fuRender.generatorOptionItems());
             xiangxinMenu.addFixMenuItem(new OptionItem(-1, R.mipmap.ic_ban, R.string.original_image));
-            xiangxinMenu.setOnItemClickListener(new OnItemClickListener() {
-                @Override public void onItemClick(View v, OptionItem optionItem, int position) {
-                    SystemUtil.vibrator(getContext());
-                    xiangxinMenu.setSelected(optionItem);
-                    fuRender.setSelectedID(optionItem.getId());
-                    if(optionItem.getId()==-1){
-                        rtcEngine.enableExtension("FaceUnity", "Effect", false);
-                        binding.seekbar.setVisibility(View.GONE);
-                    }else{
-                        rtcEngine.enableExtension("FaceUnity", "Effect", true);
-                        binding.seekbar.setVisibility(View.VISIBLE);
-                    }
-                    binding.seekbar.setProgress(fuRender.getCurrentProgress());
+            xiangxinMenu.setOnItemClickListener((v, optionItem, position) -> {
+                SystemUtil.vibrator(getContext());
+                xiangxinMenu.setSelected(optionItem);
+                fuRender.setSelectedID(optionItem.getId());
+                if(optionItem.getId()==-1){
+                    rtcEngine.enableExtension("FaceUnity", "Effect", false);
+                    binding.seekbar.setVisibility(View.GONE);
+                }else{
+                    rtcEngine.enableExtension("FaceUnity", "Effect", true);
+                    binding.seekbar.setVisibility(View.VISIBLE);
                 }
+                binding.seekbar.setProgress(fuRender.getCurrentProgress());
             });
         }
         binding.menuContainer.setVisibility(View.VISIBLE);
@@ -289,28 +287,24 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
             titles.add(getResources().getString(R.string.sticker));
             titles.add(getResources().getString(R.string.makeups));
             volcBeautyMenu.setTitles(titles);
-            volcBeautyMenu.setOnTitleClickLister(new SlidingMenuLayout.OnTitleClickLister() {
-                @Override public void onTitleSelected(int index) {
-                    if(index==0||index==1){
-                        binding.seekbar.setVisibility(View.VISIBLE);
-                    }else{
-                        binding.seekbar.setVisibility(View.GONE);
-                    }
+            volcBeautyMenu.setOnTitleClickLister(index -> {
+                if(index==0||index==1){
+                    binding.seekbar.setVisibility(View.VISIBLE);
+                }else{
+                    binding.seekbar.setVisibility(View.GONE);
                 }
             });
-            volcBeautyMenu.setOnItemClickListener(new OnItemClickListener() {
-                @Override public void onItemClick(View v, OptionItem optionItem, int position) {
-                    SystemUtil.vibrator(getContext());
-                    rtcEngine.enableExtension("ByteDance", "Effect", optionItem.getId() != -1);
-                    volcBeautyMenu.setSelected(optionItem);
-                    volcRender.setSelectedFeatureID(optionItem.getId());
-                    int progress=volcRender.getProgress(optionItem.getId());
-                    if(progress<0){
-                        binding.seekbar.setVisibility(View.GONE);
-                    }else {
-                        binding.seekbar.setVisibility(View.VISIBLE);
-                        binding.seekbar.setProgress(progress);
-                    }
+            volcBeautyMenu.setOnItemClickListener((v, optionItem, position) -> {
+                SystemUtil.vibrator(getContext());
+                rtcEngine.enableExtension("ByteDance", "Effect", optionItem.getId() != -1);
+                volcBeautyMenu.setSelected(optionItem);
+                volcRender.setSelectedFeatureID(optionItem.getId());
+                int progress=volcRender.getProgress(optionItem.getId());
+                if(progress<0){
+                    binding.seekbar.setVisibility(View.GONE);
+                }else {
+                    binding.seekbar.setVisibility(View.VISIBLE);
+                    binding.seekbar.setProgress(progress);
                 }
             });
          }
@@ -322,26 +316,24 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
 
 
     public void copyResource() {
-        ThreadUtils.runOnNonUI(new Runnable() {
-            @Override public void run() {
-                if (!isFuResourceReady()) {
-                    File file=new File(getContext().getExternalFilesDir("assets")+"/faceunity");
-                    if(file.exists()){
-                        FileUtils.deleteFile(file);
-                    }
-                    FileUtils.copyFilesFromAssets(App.getInstance(),"faceunity",App.getInstance().getExternalFilesDir("assets")+"/faceunity");
-                    SPUtils.getInstance(getContext(), "user").put(KEY_FACEUNITY_RESOURCE, true);
-                    SPUtils.getInstance(getContext(), "user").put("versionCode", SystemUtil.getVersionCode(App.getInstance()));
+        ThreadUtils.runOnNonUI(() -> {
+            if (!isFuResourceReady()) {
+                File file=new File(getContext().getExternalFilesDir("assets")+"/faceunity");
+                if(file.exists()){
+                    FileUtils.deleteFile(file);
                 }
-                if(!isVolcResourceReady()){
-                    File file=new File(getContext().getExternalFilesDir("assets")+"/bytedance");
-                    if(file.exists()){
-                        FileUtils.deleteFile(file);
-                    }
-                    FileUtils.copyFilesFromAssets(App.getInstance(),"bytedance",App.getInstance().getExternalFilesDir("assets")+"/bytedance");
-                    SPUtils.getInstance(getContext(), "user").put(KEY_VOLC_RESOURCE, true);
-                    SPUtils.getInstance(getContext(), "user").put("versionCode", SystemUtil.getVersionCode(App.getInstance()));
+                FileUtils.copyFilesFromAssets(App.getInstance(),"faceunity",App.getInstance().getExternalFilesDir("assets")+"/faceunity");
+                SPUtils.getInstance(getContext(), "user").put(KEY_FACEUNITY_RESOURCE, true);
+                SPUtils.getInstance(getContext(), "user").put("versionCode", SystemUtil.getVersionCode(App.getInstance()));
+            }
+            if(!isVolcResourceReady()){
+                File file=new File(getContext().getExternalFilesDir("assets")+"/bytedance");
+                if(file.exists()){
+                    FileUtils.deleteFile(file);
                 }
+                FileUtils.copyFilesFromAssets(App.getInstance(),"bytedance",App.getInstance().getExternalFilesDir("assets")+"/bytedance");
+                SPUtils.getInstance(getContext(), "user").put(KEY_VOLC_RESOURCE, true);
+                SPUtils.getInstance(getContext(), "user").put("versionCode", SystemUtil.getVersionCode(App.getInstance()));
             }
         });
     }

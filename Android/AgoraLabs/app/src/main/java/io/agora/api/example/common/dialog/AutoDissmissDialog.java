@@ -29,7 +29,7 @@ public class AutoDissmissDialog extends AppCompatDialog {
     @Override
     public void show(){
         super.show();
-        ThreadUtils.postRunOnUIDelayed(() -> dismiss(),3000);
+        ThreadUtils.postRunOnUIDelayed(this::dismiss,3000);
     }
 
 }

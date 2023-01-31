@@ -28,12 +28,10 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.VH> {
         OptionItem item=data.get(holder.getAbsoluteAdapterPosition());
         holder.icon.setImageResource(item.getImgRes());
         holder.title.setText(item.getTitleRes());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                notifyDataSetChanged();
-                if(onItemClickListener!=null){
-                    onItemClickListener.onItemClick(v,data.get(position),position);
-                }
+        holder.itemView.setOnClickListener(v -> {
+            notifyDataSetChanged();
+            if(onItemClickListener!=null){
+                onItemClickListener.onItemClick(v,data.get(position),position);
             }
         });
         holder.title.setTextColor(holder.itemView.getContext().getResources().getColor(item.isSelected()?R.color.white:R.color.menu_text_default_color));
