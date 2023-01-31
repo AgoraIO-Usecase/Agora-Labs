@@ -164,36 +164,30 @@ public class PopWindow implements PopupWindow.OnDismissListener{
             //注意下面这三个是contentView 不是PopupWindow
             popupWindow.getContentView().setFocusable(true);
             popupWindow.getContentView().setFocusableInTouchMode(true);
-            popupWindow.getContentView().setOnKeyListener(new View.OnKeyListener() {
-                @Override
-                public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        popupWindow.dismiss();
+            popupWindow.getContentView().setOnKeyListener((v, keyCode, event) -> {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    popupWindow.dismiss();
 
-                        return true;
-                    }
-                    return false;
+                    return true;
                 }
+                return false;
             });
             //在Android 6.0以上 ，只能通过拦截事件来解决
-            popupWindow.setTouchInterceptor(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
+            popupWindow.setTouchInterceptor((v, event) -> {
 
-                    final int x = (int) event.getX();
-                    final int y = (int) event.getY();
+                final int x = (int) event.getX();
+                final int y = (int) event.getY();
 
-                    if ((event.getAction() == MotionEvent.ACTION_DOWN)
-                        && ((x < 0) || (x >= width) || (y < 0) || (y >= height))) {
-                        Log.e(TAG,"out side ");
-                        Log.e(TAG,"width:"+ popupWindow.getWidth()+"height:"+ popupWindow.getHeight()+" x:"+x+" y  :"+y);
-                        return true;
-                    } else if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-                        Log.e(TAG,"out side ...");
-                        return true;
-                    }
-                    return false;
+                if ((event.getAction() == MotionEvent.ACTION_DOWN)
+                    && ((x < 0) || (x >= width) || (y < 0) || (y >= height))) {
+                    Log.e(TAG,"out side ");
+                    Log.e(TAG,"width:"+ popupWindow.getWidth()+"height:"+ popupWindow.getHeight()+" x:"+x+" y  :"+y);
+                    return true;
+                } else if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                    Log.e(TAG,"out side ...");
+                    return true;
                 }
+                return false;
             });
         }else{
             popupWindow.setFocusable(isFocusable);

@@ -15,12 +15,10 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ((TextView)findViewById(R.id.version)).setText(getVersionName());
-        ThreadUtils.postRunOnUIDelayed(new Runnable() {
-            @Override public void run() {
-                Intent it=new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(it);
-                finish();
-            }
+        ThreadUtils.postRunOnUIDelayed(() -> {
+            Intent it=new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(it);
+            finish();
         },2000);
     }
 

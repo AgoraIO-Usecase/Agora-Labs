@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -106,6 +105,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             view.findViewById(R.id.iv_local_big).setOnClickListener(listener);
             view.findViewById(R.id.iv_local_small).setOnClickListener(listener);
 
+
             popWindow = new PopWindow.PopupWindowBuilder(getContext())
                 .setView(view)
                 .create();
@@ -123,29 +123,24 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
     private void initView(){
         binding.ivBack.setOnClickListener(this);
         binding.ivLayout.setOnClickListener(this);
-        binding.optionMenu.setListener(new VideoFeatureMenu.OnMenuOptionSelectedListener() {
-            @Override public void onResolutionSelected(int resolution) {
-                PVCFragment.this.resolution=resolution;
-                setVideoConfig();
-            }
+        binding.ivSwitchCamera.setOnClickListener(this);
+        binding.optionMenu.setListener(resolution -> {
+            PVCFragment.this.resolution=resolution;
+            setVideoConfig();
         });
         binding.optionMenu.setCurrentResolution(resolution);
 
         binding.featureSwitch.setChecked(pvcEnabled);
-        binding.featureSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SystemUtil.vibrator(getContext());
-                pvcEnabled=isChecked;
-                updatePVC();
-                setVideoConfig();
-            }
+        binding.featureSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SystemUtil.vibrator(getContext());
+            pvcEnabled=isChecked;
+            updatePVC();
+            setVideoConfig();
         });
-        binding.ivLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override public boolean onLongClick(View v) {
-                SystemUtil.vibrator(getContext());
-                showLayoutPopWin();
-                return false;
-            }
+        binding.ivLayout.setOnLongClickListener(v -> {
+            SystemUtil.vibrator(getContext());
+            showLayoutPopWin();
+            return false;
         });
 
         tvOriginVideo=new TextView(getContext());
@@ -178,13 +173,11 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         tvRemoteBitrate.setTextSize(COMPLEX_UNIT_SP,13);
         tvRemoteBitrate.setPadding(padding,padding,padding,padding);
 
-        binding.menuControler.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if(binding.optionMenu.getVisibility()==View.GONE){
-                    binding.optionMenu.setVisibility(View.VISIBLE);
-                }else{
-                    binding.optionMenu.setVisibility(View.GONE);
-                }
+        binding.menuControler.setOnClickListener(v -> {
+            if(binding.optionMenu.getVisibility()==View.GONE){
+                binding.optionMenu.setVisibility(View.VISIBLE);
+            }else{
+                binding.optionMenu.setVisibility(View.GONE);
             }
         });
         View.OnTouchListener listener=new View.OnTouchListener() {
@@ -290,11 +283,9 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onUserOffline(final int uid, final int reason) {
                 Log.d(TAG,"onUserOffline:" + uid);
-                ThreadUtils.runOnUI(new Runnable() {
-                    @Override public void run() {
-                        if(remoteView!=null&&remoteView.getParent()!=null){
-                            ((ViewGroup)remoteView.getParent()).removeAllViews();
-                        }
+                ThreadUtils.runOnUI(() -> {
+                    if(remoteView!=null&&remoteView.getParent()!=null){
+                        ((ViewGroup)remoteView.getParent()).removeAllViews();
                     }
                 });
             }
@@ -302,11 +293,9 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onRtcStats(IRtcEngineEventHandler.RtcStats stats) {
                 Log.d(TAG,"onRtcStats");
-                ThreadUtils.runOnUI(new Runnable() {
-                    @Override public void run() {
-                        int bitrate=stats.txVideoKBitRate;
-                        tvLocalBitrate.setText(getContext().getResources().getString(R.string.bitrate,bitrate));
-                    }
+                ThreadUtils.runOnUI(() -> {
+                    int bitrate=stats.txVideoKBitRate;
+                    tvLocalBitrate.setText(getContext().getResources().getString(R.string.bitrate,bitrate));
                 });
             }
         });
@@ -326,31 +315,25 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         int ret=rtcEngine.joinChannelEx("", rtcc, mediaOptions, new IRtcEngineEventHandler() {
             @Override
             public void onUserJoined(int uid, int elapsed) {
-                ThreadUtils.runOnUI(new Runnable() {
-                    @Override public void run() {
-                        remoteView= new SurfaceView(getContext()) ;
-                        rtcEngine.setupRemoteVideoEx(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_HIDDEN,1, uid),rtcc);
-                        addView();
-                    }
+                ThreadUtils.runOnUI(() -> {
+                    remoteView= new SurfaceView(getContext()) ;
+                    rtcEngine.setupRemoteVideoEx(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_HIDDEN,1, uid),rtcc);
+                    addView();
                 });
             }
             @Override
             public void onUserOffline(final int uid, final int reason) {
-                ThreadUtils.runOnUI(new Runnable() {
-                    @Override public void run() {
-                        if(remoteView!=null&&remoteView.getParent()!=null){
-                            ((ViewGroup)remoteView.getParent()).removeAllViews();
-                        }
+                ThreadUtils.runOnUI(() -> {
+                    if(remoteView!=null&&remoteView.getParent()!=null){
+                        ((ViewGroup)remoteView.getParent()).removeAllViews();
                     }
                 });
             }
             @Override
             public void onRtcStats(IRtcEngineEventHandler.RtcStats stats) {
-                ThreadUtils.runOnUI(new Runnable() {
-                    @Override public void run() {
-                        int bitrate=stats.rxVideoKBitRate;
-                        tvRemoteBitrate.setText(getContext().getResources().getString(R.string.bitrate,bitrate));
-                    }
+                ThreadUtils.runOnUI(() -> {
+                    int bitrate=stats.rxVideoKBitRate;
+                    tvRemoteBitrate.setText(getContext().getResources().getString(R.string.bitrate,bitrate));
                 });
             }
         });
@@ -388,16 +371,18 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             Navigation.findNavController(v).popBackStack();
         }else if(v.getId()==R.id.iv_layout){
             if(curLayout==LAYOUT_HALF){
-                curLayout=LAYOUT_LOCAL_BIG;
-                binding.ivLayout.setImageResource(R.mipmap.ic_view_2);
-            }else if(curLayout==LAYOUT_LOCAL_BIG){
                 curLayout=LAYOUT_LOCAL_SMALL;
                 binding.ivLayout.setImageResource(R.mipmap.ic_view_3);
-            }else if(curLayout==LAYOUT_LOCAL_SMALL){
+            }else if(curLayout==LAYOUT_LOCAL_BIG){
                 curLayout=LAYOUT_HALF;
                 binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
+            }else if(curLayout==LAYOUT_LOCAL_SMALL){
+                curLayout=LAYOUT_LOCAL_BIG;
+                binding.ivLayout.setImageResource(R.mipmap.ic_view_2);
             }
             updateLayout();
+        }else if(v.getId()==R.id.iv_switch_camera){
+            rtcEngine.switchCamera();
         }
     }
 

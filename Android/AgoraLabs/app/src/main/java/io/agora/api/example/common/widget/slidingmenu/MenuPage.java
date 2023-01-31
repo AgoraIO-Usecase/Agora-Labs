@@ -54,11 +54,9 @@ public class MenuPage extends LinearLayout {
         params.leftMargin= UIUtil.dip2px(getContext(),8);
         params.rightMargin= UIUtil.dip2px(getContext(),8);
         view.setLayoutParams(params);
-        view.setOnClickListener(new OnClickListener() {
-            @Override public void onClick(View v) {
-                if(listener!=null){
-                    listener.onItemClick(v, fixOptionItem,-1);
-                }
+        view.setOnClickListener(v -> {
+            if(listener!=null){
+                listener.onItemClick(v, fixOptionItem,-1);
             }
         });
         addView(view,0);

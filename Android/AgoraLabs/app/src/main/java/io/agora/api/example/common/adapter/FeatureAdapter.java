@@ -27,11 +27,10 @@ public class FeatureAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if(viewType==0){
             view=LayoutInflater.from(parent.getContext()).inflate(R.layout.feature_list_title_item,parent,false);
             return new TitleVH(view);
-        }else if(viewType==1){
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.feature_list_feature_item,parent,false);
+        }else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.feature_list_feature_item, parent, false);
             return new FeatureVH(view);
         }
-        return null;
     }
 
     @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
@@ -43,11 +42,9 @@ public class FeatureAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((FeatureVH) holder).icon.setImageResource(feature.getIconRes());
             ((FeatureVH) holder).stayTuned.setVisibility(feature.isEnabled()?View.GONE:View.VISIBLE);
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if(onItemClickListener!=null){
-                    onItemClickListener.onItemClick(v,data.get(holder.getAbsoluteAdapterPosition()),holder.getAbsoluteAdapterPosition());
-                }
+        holder.itemView.setOnClickListener(v -> {
+            if(onItemClickListener!=null){
+                onItemClickListener.onItemClick(v,data.get(holder.getAbsoluteAdapterPosition()),holder.getAbsoluteAdapterPosition());
             }
         });
     }
