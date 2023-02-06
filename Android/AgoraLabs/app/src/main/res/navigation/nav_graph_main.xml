@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="io.agora.api.example.main.MainFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_homeFragment_to_virtual_bg"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out"
+            app:destination="@id/virtualBG" />
+        <action
+            android:id="@+id/action_homeFragment_to_beauty"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out"
+            app:destination="@id/Beauty" />
+        <action
+            android:id="@+id/action_homeFragment_to_pvc"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out"
+            app:destination="@id/pvc" />
+        <action
+            android:id="@+id/action_homeFragment_to_roi"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out"
+            app:destination="@id/roi" />
+        <action
+            android:id="@+id/action_homeFragment_to_super_res"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out"
+            app:destination="@id/super_res" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/virtualBG"
+        android:name="io.agora.api.example.examples.video.VirtualBgFragment"
+        android:label="@string/virtul_bg"
+        tools:layout="@layout/fragment_virtual_bg" />
+    <fragment
+        android:id="@+id/Beauty"
+        android:name="io.agora.api.example.examples.video.beauty.BeautyFragment"
+        android:label="@string/beauty"
+        tools:layout="@layout/fragment_beauty"
+        />
+    <fragment
+        android:id="@+id/pvc"
+        android:name="io.agora.api.example.examples.video.PVCFragment"
+        android:label="@string/pvc"
+        tools:layout="@layout/fragment_pvc"
+        />
+    <fragment
+        android:id="@+id/roi"
+        android:name="io.agora.api.example.examples.video.ROIFragment"
+        android:label="@string/roi"
+        tools:layout="@layout/fragment_roi"
+        />
+    <fragment
+        android:id="@+id/super_res"
+        android:name="io.agora.api.example.examples.video.SuperResolutionFragment"
+        android:label="@string/super_res"
+        tools:layout="@layout/fragment_super_resolution"
+        />
+</navigation>
