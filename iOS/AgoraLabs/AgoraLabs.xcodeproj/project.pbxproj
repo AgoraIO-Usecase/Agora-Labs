@@ -284,6 +284,8 @@
 		A6EAA8822990A052008D9ECE /* VLHotSpotBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8802990A052008D9ECE /* VLHotSpotBtn.m */; };
 		A6EAA8862990A13B008D9ECE /* VLBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8852990A13B008D9ECE /* VLBaseView.m */; };
 		A6EAA8892990A86B008D9ECE /* ALLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8882990A86B008D9ECE /* ALLoginViewController.m */; };
+		A6EAA8962991025F008D9ECE /* VLCommonWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8932991025F008D9ECE /* VLCommonWebViewController.m */; };
+		A6EAA8972991025F008D9ECE /* VLLocalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8942991025F008D9ECE /* VLLocalWebViewController.m */; };
 		A7847F922458062900469187 /* StatisticsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7847F912458062900469187 /* StatisticsInfo.swift */; };
 		A7847F942458089E00469187 /* AgoraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7847F932458089E00469187 /* AgoraExtension.swift */; };
 		A7BD7660247CC6920062A6B3 /* UITypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BD765F247CC6920062A6B3 /* UITypeAlias.swift */; };
@@ -649,6 +651,11 @@
 		A6EAA8852990A13B008D9ECE /* VLBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLBaseView.m; sourceTree = "<group>"; };
 		A6EAA8872990A86B008D9ECE /* ALLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALLoginViewController.h; sourceTree = "<group>"; };
 		A6EAA8882990A86B008D9ECE /* ALLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALLoginViewController.m; sourceTree = "<group>"; };
+		A6EAA8922991025F008D9ECE /* VLLocalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLLocalWebViewController.h; sourceTree = "<group>"; };
+		A6EAA8932991025F008D9ECE /* VLCommonWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCommonWebViewController.m; sourceTree = "<group>"; };
+		A6EAA8942991025F008D9ECE /* VLLocalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLLocalWebViewController.m; sourceTree = "<group>"; };
+		A6EAA8952991025F008D9ECE /* VLCommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCommonWebViewController.h; sourceTree = "<group>"; };
+		A6EAA8982991047B008D9ECE /* VLURLPathConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLURLPathConfig.h; sourceTree = "<group>"; };
 		A7847F912458062900469187 /* StatisticsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsInfo.swift; sourceTree = "<group>"; };
 		A7847F932458089E00469187 /* AgoraExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraExtension.swift; sourceTree = "<group>"; };
 		A7BD765F247CC6920062A6B3 /* UITypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITypeAlias.swift; sourceTree = "<group>"; };
@@ -833,6 +840,7 @@
 		03D13BFF24488F1E00B599B3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A6EAA8912991025F008D9ECE /* WebView */,
 				A62469162952AA0800DFB5BA /* BeautyTool */,
 				A6D88CF4293DE2A000806419 /* ViewController */,
 				A6D88CF1293DE2A000806419 /* View */,
@@ -1373,6 +1381,7 @@
 				A6EAA8842990A13B008D9ECE /* VLBaseView.h */,
 				A6EAA8852990A13B008D9ECE /* VLBaseView.m */,
 				A6EAA8832990A0FB008D9ECE /* VLMacroDefine.h */,
+				A6EAA8982991047B008D9ECE /* VLURLPathConfig.h */,
 				A6EAA87229909E85008D9ECE /* WMZCode */,
 				A6EAA87F2990A052008D9ECE /* VLHotSpotBtn */,
 				A6EAA86B29909E85008D9ECE /* VLPopImageVerifyView.m */,
@@ -1404,6 +1413,17 @@
 				A6EAA8812990A052008D9ECE /* VLHotSpotBtn.h */,
 			);
 			path = VLHotSpotBtn;
+			sourceTree = "<group>";
+		};
+		A6EAA8912991025F008D9ECE /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				A6EAA8922991025F008D9ECE /* VLLocalWebViewController.h */,
+				A6EAA8932991025F008D9ECE /* VLCommonWebViewController.m */,
+				A6EAA8942991025F008D9ECE /* VLLocalWebViewController.m */,
+				A6EAA8952991025F008D9ECE /* VLCommonWebViewController.h */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		A75A56D324A0603000D0089E /* Basic */ = {
@@ -1814,6 +1834,7 @@
 				A667E22B295557220053E0B5 /* ROI.swift in Sources */,
 				A7BD7660247CC6920062A6B3 /* UITypeAlias.swift in Sources */,
 				7F930839293DA89C00D3F00B /* VideoView.swift in Sources */,
+				A6EAA8962991025F008D9ECE /* VLCommonWebViewController.m in Sources */,
 				A6D88D05293F422500806419 /* VirtualBackground+UI.swift in Sources */,
 				A6D88CF8293DE2A000806419 /* AGBasisViewController.swift in Sources */,
 				A6246BE12952B26900DFB5BA /* Resolution.swift in Sources */,
@@ -1828,6 +1849,7 @@
 				03BCEC762449EB5000ED7177 /* LogViewController.swift in Sources */,
 				E74877CA28A2611C00CA2F58 /* ToastView.swift in Sources */,
 				A6C5B1812941C9630071FFBF /* BeautifyFilter+UI.swift in Sources */,
+				A6EAA8972991025F008D9ECE /* VLLocalWebViewController.m in Sources */,
 				A7847F942458089E00469187 /* AgoraExtension.swift in Sources */,
 				E74877BA28A23C1400CA2F58 /* JSONObject.swift in Sources */,
 				A6D88D07293F44B900806419 /* Uiew+Tap.swift in Sources */,

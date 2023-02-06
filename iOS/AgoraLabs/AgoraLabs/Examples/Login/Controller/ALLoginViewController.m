@@ -7,13 +7,19 @@
 //
 
 #import "ALLoginViewController.h"
+#import "Masonry.h"
+#import "VLCommonWebViewController.h"
 #import "VLLoginInputPhoneView.h"
 #import "VLLoginInputVerifyCodeView.h"
-#import "VLPrivacyCustomView.h"
-#import "YYText.h"
-#import "VLPopImageVerifyView.h"
-#import "Masonry.h"
 #import "VLMacroDefine.h"
+#import "VLURLPathConfig.h"
+#import "VLPrivacyCustomView.h"
+#import "VLPopImageVerifyView.h"
+#import "YYCategories.h"
+#import "YYText.h"
+#import "LEEAlert.h"
+#import "LSTPopView.h"
+#import "AgoraLabs-Swift.h"
 
 @interface ALLoginViewController () <VLLoginInputVerifyCodeViewDelegate, VLPrivacyCustomViewDelegate,VLPopImageVerifyViewDelegate>
 
@@ -24,7 +30,7 @@
 @property (nonatomic, strong) UIButton *loginButton;
 @property (nonatomic, strong) UIButton *agreeButton;    // 同意按钮
 @property (nonatomic, strong) YYLabel *privacyLabel;    // 隐私政策
-//@property (nonatomic, strong) LSTPopView *popView;
+@property (nonatomic, strong) LSTPopView *popView;
 @property (nonatomic, assign) bool policyAgreed;
 
 @end
@@ -34,9 +40,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _policyAgreed = NO;
-    [self.view setBackgroundColor:UIColor.whiteColor];
-//    [self setBackgroundImage:@"home_bg_image"];
-//    [self setNaviTitleName:AGLocalizedString(@"声网")];
+    
+    [self.view setBackgroundColor:[UIColor colorWithRGB:0xeff4ff]];
     [self setupViews];
     [self setupLayout];
 }
@@ -104,33 +109,29 @@
 
 - (void)alertPrivacyAlertView:(int)pass {
     kWeakSelf(self)
-//    [LEEAlert alert].config
-//    .LeeMaxWidth(300)
-//    .LeeMaxHeight(380)
-//    .LeeHeaderColor([UIColor whiteColor])
-//    .LeeAddTitle(^(UILabel * _Nonnull label) {
-//        label.text = AGLocalizedString(@"个人信息保护指引");
-//        label.textColor = UIColorMakeWithHex(@"#040925");
-//        label.font = VLUIFontMake(16);
-//    })
-//    .LeeItemInsets(UIEdgeInsetsMake(20, 10, 10, 0))
-//    .LeeAddCustomView(^(LEECustomView *custom) {
-//        kStrongSelf(self)
-//        self.privacyCustomView = [self getPrivacyCustomView:pass];
-//        custom.view = self.privacyCustomView;
-//        custom.view.superview.layer.masksToBounds = NO;
-//        custom.positionType = LEECustomViewPositionTypeCenter;
-//    })
-//    // 想为哪一项设置间距范围 直接在其后面设置即可 ()
-//    .LeeItemInsets(UIEdgeInsetsMake(10, 10, 20, 10))
-//    .LeeShow();
+    [LEEAlert alert].config
+    .LeeMaxWidth(300)
+    .LeeMaxHeight(380)
+    .LeeHeaderColor([UIColor whiteColor])
+    .LeeAddTitle(^(UILabel * _Nonnull label) {
+        label.text = @"个人信息保护指引";
+        label.textColor = [UIColor colorWithRGB:0x040925];
+        label.font = [UIFont systemFontOfSize:16];
+    })
+    .LeeItemInsets(UIEdgeInsetsMake(20, 10, 10, 0))
+    .LeeAddCustomView(^(LEECustomView *custom) {
+        kStrongSelf(self)
+        self.privacyCustomView = [self getPrivacyCustomView:pass];
+        custom.view = self.privacyCustomView;
+        custom.view.superview.layer.masksToBounds = NO;
+        custom.positionType = LEECustomViewPositionTypeCenter;
+    })
+    // 想为哪一项设置间距范围 直接在其后面设置即可 ()
+    .LeeItemInsets(UIEdgeInsetsMake(10, 10, 20, 10))
+    .LeeShow();
 }
 
 #pragma mark - Public Methods
-
-- (void)configNavigationBar:(UINavigationBar *)navigationBar {
-//    [super configNavigationBar:navigationBar];
-}
 - (BOOL)preferredNavigationBarHidden {
     return YES;
 }
@@ -161,11 +162,11 @@
             }
             break;
         case VLPrivacyClickTypePrivacy:
-//            [self pushToWebView:kURLPathH5Privacy];
+            [self pushToWebView:kURLPathH5Privacy];
             [self closePrivaxyAlertView];
             break;
         case VLPrivacyClickTypeUserAgreement:
-//            [self pushToWebView:kURLPathH5UserAgreement];
+            [self pushToWebView:kURLPathH5UserAgreement];
             [self closePrivaxyAlertView];
             break;
         default:
@@ -174,8 +175,7 @@
 }
 
 - (void)closePrivaxyAlertView {
-//    [LEEAlert closeWithCompletionBlock:^{
-//    }];
+    [LEEAlert closeWithCompletionBlock:^{}];
 }
 
 #pragma mark - VLLoginInputVerifyCodeViewDelegate
@@ -199,17 +199,18 @@
 #pragma mark - Action
 
 - (void)loginClick:(UIButton *)button {
+    [self popImageVerifyView];
+    
     if (![self checkPhoneNo]) return;
     if (![self checkPrivacyAgree]) return;
     if (![self checkVerifyCode]) return;
     
-    [self popImageVerifyView];
 }
 
 -(BOOL)checkVerifyCode {
     
     if (_verifyView.isVerifyCodeSent == NO || [_verifyView.verifyCode isEqualToString:@""] || !_verifyView.verifyCode) {
-//        [VLToast toast:AGLocalizedString(@"请输入验证码")];
+        [AGHUD showFaildWithInfo:@"请输入验证码"];
         return NO;
     }
     return YES;
@@ -217,7 +218,7 @@
 
 -(BOOL)checkPrivacyAgree {
     if (!self.agreeButton.selected) {
-//        [VLToast toast:AGLocalizedString(@"请您认真阅读用户协议及隐私政策的条款内容，同意后可开始使用我们的服务")];
+        [AGHUD showFaildWithInfo:@"请您认真阅读用户协议及隐私政策的条款内容，同意后可开始使用我们的服务"];
         return NO;
     }
     return YES;
@@ -253,12 +254,12 @@
 
 -(BOOL)checkPhoneNo {
     if ([_phoneView.phoneNo isEqualToString:@""] || !_phoneView.phoneNo) {
-//        [VLToast toast:AGLocalizedString(@"请输入手机号")];
+        [AGHUD showFaildWithInfo:@"请输入手机号"];
         return NO;
     }
     
     if (![self isValidateTelNumber:_phoneView.phoneNo]) {
-//        [VLToast toast:AGLocalizedString(@"手机号码格式错误")];
+        [AGHUD showFaildWithInfo:@"手机号码格式错误"];
         return NO;
     }
     
@@ -270,44 +271,44 @@
 }
 
 - (void)navigatorToWebviewOfUserProtocol{
-//    [self pushToWebView:kURLPathH5UserAgreement];
+    [self pushToWebView:kURLPathH5UserAgreement];
 }
 
 - (void)navigatorToWebviewOfPrivacyProtocol{
-//    [self pushToWebView:kURLPathH5Privacy];
+    [self pushToWebView:kURLPathH5Privacy];
 }
 
 - (void)pushToWebView:(NSString *)url {
-//    VLCommonWebViewController *webVC = [[VLCommonWebViewController alloc] init];
-//    webVC.urlString = url;
-//    if (!self.navigationController) {
-//        [self presentViewController:webVC animated:YES completion:nil];
-//    } else {
-//        [self.navigationController pushViewController:webVC animated:YES];
-//    }
+    VLCommonWebViewController *webVC = [[VLCommonWebViewController alloc] init];
+    webVC.urlString = url;
+    if (!self.navigationController) {
+        [self presentViewController:webVC animated:YES completion:nil];
+    } else {
+        [self.navigationController pushViewController:webVC animated:YES];
+    }
 }
 
 - (void)popImageVerifyView {
-//
-//    VLPopImageVerifyView *imageVerifyView = [[VLPopImageVerifyView alloc]initWithFrame:CGRectMake(40, 0, SCREEN_WIDTH-80, 198+(SCREEN_WIDTH-120)*0.65) withDelegate:self];
-//
-//    LSTPopView *popView = [LSTPopView initWithCustomView:imageVerifyView parentView:self.view popStyle:LSTPopStyleFade dismissStyle:LSTDismissStyleFade];
-//    popView.hemStyle = LSTHemStyleCenter;
-//    popView.popDuration = 0.5;
-//    popView.dismissDuration = 0.5;
-//    popView.cornerRadius = 16;
-//    self.popView = popView;
-//    popView.isClickFeedback = NO;
-//    [popView pop];
+
+    VLPopImageVerifyView *imageVerifyView = [[VLPopImageVerifyView alloc]initWithFrame:CGRectMake(40, 0, kScreenWidth-80, 198+(kScreenWidth-120)*0.65) withDelegate:self];
+
+    LSTPopView *popView = [LSTPopView initWithCustomView:imageVerifyView parentView:self.view popStyle:LSTPopStyleFade dismissStyle:LSTDismissStyleFade];
+    popView.hemStyle = LSTHemStyleCenter;
+    popView.popDuration = 0.5;
+    popView.dismissDuration = 0.5;
+    popView.cornerRadius = 16;
+    self.popView = popView;
+    popView.isClickFeedback = NO;
+    [popView pop];
 }
 
 #pragma mark --delegate
 - (void)closeBtnAction {
-//    [self.popView dismiss];
+    [self.popView dismiss];
 }
 
 - (void)slideSuccessAction {
-//    [self.popView dismiss];
+    [self.popView dismiss];
     
     NSDictionary *param = @{
         @"phone" : self.phoneView.phoneNo,
@@ -336,9 +337,9 @@
 - (UILabel *)appNameLabel {
     if (!_appNameLabel) {
         _appNameLabel = [[UILabel alloc] init];
-//        _appNameLabel.font = VLUIFontBoldMake(26);
-//        _appNameLabel.textColor = UIColorMakeWithHex(@"#040925");
-//        _appNameLabel.text = AGLocalizedString(@"欢迎体验声网服务");
+        _appNameLabel.font = [UIFont systemFontOfSize:26];
+        _appNameLabel.textColor = [UIColor colorWithRGB:0x040925];
+        _appNameLabel.text = @"欢迎体验声网服务";
     }
     return _appNameLabel;
 }
@@ -375,31 +376,31 @@
     _privacyLabel.numberOfLines = 0;
     _privacyLabel.preferredMaxLayoutWidth = kScreenWidth - 30 * 2;
     
-//    NSString *_str4Total = AGLocalizedString(@"我已阅读并同意 用户协议 及 隐私政策 ");
-//    NSString *_str4Highlight1 = AGLocalizedString(@"用户协议");
-//    NSString *_str4Highlight2 = AGLocalizedString(@"隐私政策");
-//    NSMutableAttributedString *_mattrStr = [NSMutableAttributedString new];
-//
-//    [_mattrStr appendAttributedString:[[NSAttributedString alloc] initWithString:_str4Total attributes:@{NSFontAttributeName : VLUIFontMake(12), NSForegroundColorAttributeName : UIColorMakeWithHex(@"#6C7192")}]];
-//    _mattrStr.yy_lineSpacing = 6;
-//    NSRange range1 = [_str4Total rangeOfString:_str4Highlight1];
-//    NSRange range2 = [_str4Total rangeOfString:_str4Highlight2];
-//    [_mattrStr addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range1];
-//    [_mattrStr addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range2];
-//    if(range1.location != NSNotFound){
-//        kWeakSelf(self)
-//        [_mattrStr yy_setTextHighlightRange:range1 color:UIColorMakeWithHex(@"#009FFF") backgroundColor:[UIColor clearColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-//            [weakself navigatorToWebviewOfUserProtocol];
-//        }];
-//    }
-//    if(range2.location != NSNotFound){
-//        kWeakSelf(self)
-//        [_mattrStr yy_setTextHighlightRange:range2 color:UIColorMakeWithHex(@"#009FFF") backgroundColor:[UIColor clearColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-//            [weakself navigatorToWebviewOfPrivacyProtocol];
-//        }];
-//    }
+    NSString *_str4Total = @"我已阅读并同意 用户协议 及 隐私政策 ";
+    NSString *_str4Highlight1 = @"用户协议";
+    NSString *_str4Highlight2 = @"隐私政策";
+    NSMutableAttributedString *_mattrStr = [NSMutableAttributedString new];
+
+    [_mattrStr appendAttributedString:[[NSAttributedString alloc] initWithString:_str4Total attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12], NSForegroundColorAttributeName : [UIColor colorWithRGB:0x6C7192]}]];
+    _mattrStr.yy_lineSpacing = 6;
+    NSRange range1 = [_str4Total rangeOfString:_str4Highlight1];
+    NSRange range2 = [_str4Total rangeOfString:_str4Highlight2];
+    [_mattrStr addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range1];
+    [_mattrStr addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range2];
+    if(range1.location != NSNotFound){
+        kWeakSelf(self)
+        [_mattrStr yy_setTextHighlightRange:range1 color:[UIColor colorWithRGB:0x009FFF]  backgroundColor:[UIColor clearColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            [weakself navigatorToWebviewOfUserProtocol];
+        }];
+    }
+    if(range2.location != NSNotFound){
+        kWeakSelf(self)
+        [_mattrStr yy_setTextHighlightRange:range2 color:[UIColor colorWithRGB:0x009FFF]  backgroundColor:[UIColor clearColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            [weakself navigatorToWebviewOfPrivacyProtocol];
+        }];
+    }
     _privacyLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    _privacyLabel.attributedText = _mattrStr;
+    _privacyLabel.attributedText = _mattrStr;
     return _privacyLabel;
 }
 
@@ -408,7 +409,7 @@
         _loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
         [_loginButton addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
-//        [_loginButton setBackgroundColor:UIColorMakeWithHex(@"#345DFF")];
+        [_loginButton setBackgroundColor:[UIColor colorWithRGB:0x345DFF]];
         CAGradientLayer *gl = [CAGradientLayer layer];
         gl.frame = CGRectMake(30,445,315,48);
         gl.startPoint = CGPointMake(0.43, 0.01);

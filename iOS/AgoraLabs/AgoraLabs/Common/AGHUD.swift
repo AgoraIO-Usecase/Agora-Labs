@@ -10,8 +10,8 @@ import Foundation
 import SVProgressHUD
 
 var dismissTime = 3
-
-class AGHUD {
+@objcMembers
+class AGHUD: NSObject  {
     
     class func initializeHUD(){
         //背部设置一个透明蒙版,防止正在提示的时候用户点击

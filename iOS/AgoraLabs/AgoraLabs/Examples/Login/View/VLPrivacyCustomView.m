@@ -165,8 +165,8 @@
         }
         
         [_disButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        _disButton.titleLabel.font = VLUIFontMake(16);
-//        [_disButton setBackgroundColor:UIColorMakeWithHex(@"#EFF4FF")];
+        _agreeButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_agreeButton setBackgroundColor:[UIColor colorWithRGB:0xEFF4FF]];
         _disButton.layer.backgroundColor = [UIColor colorWithRed:239/255.0 green:244/255.0 blue:255/255.0 alpha:1.0].CGColor;
         _disButton.layer.cornerRadius = 20;
         _disButton.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.23].CGColor;
@@ -189,8 +189,8 @@
         }
         
         [_agreeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        _agreeButton.titleLabel.font = VLUIFontMake(16);
-//        [_agreeButton setBackgroundColor:UIColorMakeWithHex(@"#2753FF")];
+        _agreeButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_agreeButton setBackgroundColor:[UIColor colorWithRGB:0x2753FF]];
         // gradient
         CAGradientLayer *gl = [CAGradientLayer layer];
         gl.frame = CGRectMake(197.5,498.5,115,40);

@@ -7,7 +7,7 @@
 #define VLMacroDefine_h
 
 #define __MAIN_SCREEN_WIDTH__       MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+
 #define  VLSCALE_W                 (__MAIN_SCREEN_WIDTH__ / 375.0)
 
 #define  VLREALVALUE_WIDTH(w)      (VLSCALE_W * w)

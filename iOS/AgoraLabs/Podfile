@@ -23,5 +23,7 @@ target 'AgoraLabs' do
   pod 'YYCategories','1.0.4'
   pod 'SwiftyJSON', '5.0.1'
   pod 'YYText','1.0.7'
+  pod 'LEEAlert', '1.6.4'
+  pod 'LSTPopView', '0.3.10'
 end
 

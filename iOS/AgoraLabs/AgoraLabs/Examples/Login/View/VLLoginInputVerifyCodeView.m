@@ -123,8 +123,8 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"验证码";
-//        _titleLabel.textColor = UIColorMakeWithHex(@"#979CBB");
-//        _titleLabel.font = VLUIFontMake(14);
+        _titleLabel.textColor = [UIColor colorWithRGB:0x979CBB];
+        _titleLabel.font = [UIFont systemFontOfSize:14];
     }
     return _titleLabel;
 }
@@ -134,8 +134,8 @@
         _vTextField = [[UITextField alloc] init];
         _vTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入验验证码" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor colorWithRGB:0x979CBB]}];
         _vTextField.keyboardType = UIKeyboardTypeNumberPad;
-//        _vTextField.textColor = UIColorMakeWithHex(@"#3C4267");
-//        _vTextField.font = VLUIFontMake(15);
+        _vTextField.textColor = [UIColor colorWithRGB:0x3C4267];
+        _vTextField.font = [UIFont systemFontOfSize:15];
     }
     return _vTextField;
 }
@@ -144,8 +144,8 @@
     if (!_vSendbutton) {
         _vSendbutton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_vSendbutton setTitle:@"发送验证码" forState:UIControlStateNormal];
-//        [_vSendbutton setTitleColor:UIColorMakeWithHex(@"#009FFF") forState:UIControlStateNormal];
-//        _vSendbutton.titleLabel.font = VLUIFontMake(14);
+        [_vSendbutton setTitleColor:[UIColor colorWithRGB:0x009FFF]  forState:UIControlStateNormal];
+        _vSendbutton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_vSendbutton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _vSendbutton;
