@@ -1,0 +1,112 @@
+{
+    "name": "VelociraptorBone.mtl",
+    "materials": [
+        {
+            "name": "mtl_0",
+            "techniques": [
+                {
+                    "name": "tech_0",
+                    "passes": [
+                        {
+                            "name": "pass_0",
+                            "blend": false,
+                            "blend_src_factor": "BF_SRC_ALPHA",
+                            "blend_dst_factor": "BF_ONE_MINUS_SRC_ALPHA",
+                            "depthTest": true,
+                            "depthWrite": true,
+                            "depthFunc": "DF_LEQUAL",
+                            "renderFaceMode": "RFM_FRONT_AND_BACK",
+                            "stencilTestEnable": false,
+                            "uniforms": {
+                                "g_unif_BoneMatArr": "BT_BONE_MATRIXES",
+                                "g_unif_CameraWorldPos": "BT_CAMERA_WORLD_POS",
+                                "g_unif_ModelMat": "BT_MODEL_MATRIX",
+                                "g_unif_ModelViewProjMat": "BT_MODEL_VIEW_PROJECTION_MATRIX",
+                                "g_unif_NormalWorldMat": "BT_NORMAL_WORLD_MATRIX",
+                                "u_AmbientOcclusion": 1.0,
+                                "u_EmissiveColor": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "u_Metallic": 1.0,
+                                "u_ParallaxFactor": 0.001,
+                                "u_Roughness": 0,
+                                "u_Specular": 0.5,
+                                "u_Translucency": 1.0,
+                                "u_BRDFTex": {
+                                    "type": "2d_texture",
+                                    "wrap": "WM_CLAMP",
+                                    "filter": "FM_LINEAR_MIPMAP_LINEAR",
+                                    "source": [
+                                        "T_IBL_BRDF_Lut.png"
+                                    ]
+                                },
+                                "u_BaseColor": {
+                                    "type": "2d_texture",
+                                    "wrap": "WM_CLAMP",
+                                    "filter": "FM_LINEAR_MIPMAP_LINEAR",
+                                    "source": [
+                                        "T_Velociraptor_BC.png"
+                                    ]
+                                },
+                                "u_IrradianceTex": {
+                                    "type": "2d_texture",
+                                    "wrap": "WM_CLAMP",
+                                    "filter": "FM_LINEAR",
+                                    "source": [
+                                        "T_IBL_Irradiance.png"
+                                    ]
+                                },
+                                "u_MRAOTex": {
+                                    "type": "2d_texture",
+                                    "wrap": "WM_REPEAT",
+                                    "filter": "FM_LINEAR_MIPMAP_LINEAR",
+                                    "source": [
+                                        "T_Velociraptor_MRAO.png"
+                                    ]
+                                },
+                                "u_NormalTex": {
+                                    "type": "2d_texture",
+                                    "wrap": "WM_REPEAT",
+                                    "filter": "FM_LINEAR_MIPMAP_LINEAR",
+                                    "source": [
+                                        "T_Velociraptor_N.png"
+                                    ]
+                                },
+                                "u_RadianceTex": {
+                                    "type": "2d_texture",
+                                    "wrap": "WM_CLAMP",
+                                    "filter": "FM_LINEAR",
+                                    "source": [
+                                        "T_IBL_Radiance.png"
+                                    ]
+                                },
+                                "u_SHTex": {
+                                    "type": "2d_texture",
+                                    "wrap": "WM_REPEAT",
+                                    "filter": "FM_LINEAR_MIPMAP_LINEAR",
+                                    "source": [
+                                        "T_Velociraptor_SH.png"
+                                    ]
+                                }
+                            },
+                            "shaders": [
+                                {
+                                    "type": "VERTEX_SHADER",
+                                    "source": "VS680721954f6f3d30dd59ca378fb671f0.glsl",
+                                    "defination": []
+                                },
+                                {
+                                    "type": "FRAGMENT_SHADER",
+                                    "source": "VelociraptorBoneFSa4bfa026b7d13127f2581f283cbdde69.glsl",
+                                    "defination": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
