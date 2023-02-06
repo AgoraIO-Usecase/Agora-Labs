@@ -13,3 +13,4 @@
 #import "BDResourceHelper.h"
 #import <YYCategories/YYCategories.h>
 #import <XMMenuPopover/XMMenuPopover.h>
+#import "ALLoginViewController.h"

@@ -275,6 +275,15 @@
 		A6E6FFFD2976513B00D9555C /* hez_ztt_fu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A6E6FF472976513B00D9555C /* hez_ztt_fu.bundle */; };
 		A6E6FFFE2976513B00D9555C /* sea_lm_fu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A6E6FF482976513B00D9555C /* sea_lm_fu.bundle */; };
 		A6E6FFFF2976513B00D9555C /* boyfriend1.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A6E6FF492976513B00D9555C /* boyfriend1.bundle */; };
+		A6EAA87929909E85008D9ECE /* VLPopImageVerifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA86B29909E85008D9ECE /* VLPopImageVerifyView.m */; };
+		A6EAA87A29909E85008D9ECE /* VLLoginInputVerifyCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA86C29909E85008D9ECE /* VLLoginInputVerifyCodeView.m */; };
+		A6EAA87B29909E85008D9ECE /* VLPrivacyCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA86D29909E85008D9ECE /* VLPrivacyCustomView.m */; };
+		A6EAA87C29909E85008D9ECE /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6EAA87329909E85008D9ECE /* Media.xcassets */; };
+		A6EAA87D29909E85008D9ECE /* WMZCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA87529909E85008D9ECE /* WMZCodeView.m */; };
+		A6EAA87E29909E85008D9ECE /* VLLoginInputPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA87629909E85008D9ECE /* VLLoginInputPhoneView.m */; };
+		A6EAA8822990A052008D9ECE /* VLHotSpotBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8802990A052008D9ECE /* VLHotSpotBtn.m */; };
+		A6EAA8862990A13B008D9ECE /* VLBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8852990A13B008D9ECE /* VLBaseView.m */; };
+		A6EAA8892990A86B008D9ECE /* ALLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8882990A86B008D9ECE /* ALLoginViewController.m */; };
 		A7847F922458062900469187 /* StatisticsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7847F912458062900469187 /* StatisticsInfo.swift */; };
 		A7847F942458089E00469187 /* AgoraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7847F932458089E00469187 /* AgoraExtension.swift */; };
 		A7BD7660247CC6920062A6B3 /* UITypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BD765F247CC6920062A6B3 /* UITypeAlias.swift */; };
@@ -622,6 +631,24 @@
 		A6E6FFDA2976513B00D9555C /* fuzzytoonfilter.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = fuzzytoonfilter.bundle; sourceTree = "<group>"; };
 		A6E6FFDB2976513B00D9555C /* face_beautification.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = face_beautification.bundle; sourceTree = "<group>"; };
 		A6E6FFDC2976513B00D9555C /* aitype.bundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = aitype.bundle; sourceTree = "<group>"; };
+		A6EAA86B29909E85008D9ECE /* VLPopImageVerifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLPopImageVerifyView.m; sourceTree = "<group>"; };
+		A6EAA86C29909E85008D9ECE /* VLLoginInputVerifyCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLLoginInputVerifyCodeView.m; sourceTree = "<group>"; };
+		A6EAA86D29909E85008D9ECE /* VLPrivacyCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLPrivacyCustomView.m; sourceTree = "<group>"; };
+		A6EAA86E29909E85008D9ECE /* VLLoginInputPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLLoginInputPhoneView.h; sourceTree = "<group>"; };
+		A6EAA86F29909E85008D9ECE /* VLPopImageVerifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLPopImageVerifyView.h; sourceTree = "<group>"; };
+		A6EAA87029909E85008D9ECE /* VLPrivacyCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLPrivacyCustomView.h; sourceTree = "<group>"; };
+		A6EAA87129909E85008D9ECE /* VLLoginInputVerifyCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLLoginInputVerifyCodeView.h; sourceTree = "<group>"; };
+		A6EAA87329909E85008D9ECE /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		A6EAA87429909E85008D9ECE /* WMZCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMZCodeView.h; sourceTree = "<group>"; };
+		A6EAA87529909E85008D9ECE /* WMZCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMZCodeView.m; sourceTree = "<group>"; };
+		A6EAA87629909E85008D9ECE /* VLLoginInputPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLLoginInputPhoneView.m; sourceTree = "<group>"; };
+		A6EAA8802990A052008D9ECE /* VLHotSpotBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLHotSpotBtn.m; sourceTree = "<group>"; };
+		A6EAA8812990A052008D9ECE /* VLHotSpotBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLHotSpotBtn.h; sourceTree = "<group>"; };
+		A6EAA8832990A0FB008D9ECE /* VLMacroDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VLMacroDefine.h; sourceTree = "<group>"; };
+		A6EAA8842990A13B008D9ECE /* VLBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLBaseView.h; sourceTree = "<group>"; };
+		A6EAA8852990A13B008D9ECE /* VLBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLBaseView.m; sourceTree = "<group>"; };
+		A6EAA8872990A86B008D9ECE /* ALLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALLoginViewController.h; sourceTree = "<group>"; };
+		A6EAA8882990A86B008D9ECE /* ALLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALLoginViewController.m; sourceTree = "<group>"; };
 		A7847F912458062900469187 /* StatisticsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsInfo.swift; sourceTree = "<group>"; };
 		A7847F932458089E00469187 /* AgoraExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraExtension.swift; sourceTree = "<group>"; };
 		A7BD765F247CC6920062A6B3 /* UITypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITypeAlias.swift; sourceTree = "<group>"; };
@@ -721,6 +748,7 @@
 		03BCEC4C244932E000ED7177 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				A6EAA86329909D75008D9ECE /* Login */,
 				A75A56D324A0603000D0089E /* Basic */,
 				A75A56D724A0603000D0089E /* Advanced */,
 			);
@@ -1321,6 +1349,63 @@
 			path = graphics;
 			sourceTree = "<group>";
 		};
+		A6EAA86329909D75008D9ECE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A6EAA86629909E85008D9ECE /* Controller */,
+				A6EAA86A29909E85008D9ECE /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A6EAA86629909E85008D9ECE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A6EAA8872990A86B008D9ECE /* ALLoginViewController.h */,
+				A6EAA8882990A86B008D9ECE /* ALLoginViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A6EAA86A29909E85008D9ECE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A6EAA8842990A13B008D9ECE /* VLBaseView.h */,
+				A6EAA8852990A13B008D9ECE /* VLBaseView.m */,
+				A6EAA8832990A0FB008D9ECE /* VLMacroDefine.h */,
+				A6EAA87229909E85008D9ECE /* WMZCode */,
+				A6EAA87F2990A052008D9ECE /* VLHotSpotBtn */,
+				A6EAA86B29909E85008D9ECE /* VLPopImageVerifyView.m */,
+				A6EAA86C29909E85008D9ECE /* VLLoginInputVerifyCodeView.m */,
+				A6EAA86D29909E85008D9ECE /* VLPrivacyCustomView.m */,
+				A6EAA86E29909E85008D9ECE /* VLLoginInputPhoneView.h */,
+				A6EAA86F29909E85008D9ECE /* VLPopImageVerifyView.h */,
+				A6EAA87029909E85008D9ECE /* VLPrivacyCustomView.h */,
+				A6EAA87129909E85008D9ECE /* VLLoginInputVerifyCodeView.h */,
+				A6EAA87629909E85008D9ECE /* VLLoginInputPhoneView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A6EAA87229909E85008D9ECE /* WMZCode */ = {
+			isa = PBXGroup;
+			children = (
+				A6EAA87329909E85008D9ECE /* Media.xcassets */,
+				A6EAA87429909E85008D9ECE /* WMZCodeView.h */,
+				A6EAA87529909E85008D9ECE /* WMZCodeView.m */,
+			);
+			path = WMZCode;
+			sourceTree = "<group>";
+		};
+		A6EAA87F2990A052008D9ECE /* VLHotSpotBtn */ = {
+			isa = PBXGroup;
+			children = (
+				A6EAA8802990A052008D9ECE /* VLHotSpotBtn.m */,
+				A6EAA8812990A052008D9ECE /* VLHotSpotBtn.h */,
+			);
+			path = VLHotSpotBtn;
+			sourceTree = "<group>";
+		};
 		A75A56D324A0603000D0089E /* Basic */ = {
 			isa = PBXGroup;
 			children = (
@@ -1531,6 +1616,7 @@
 				A6E600482976513B00D9555C /* makeup_icon_combination_red_maple.bundle in Resources */,
 				A667E29729559FF30053E0B5 /* PVC.storyboard in Resources */,
 				A6E600102976513B00D9555C /* facewarp3.bundle in Resources */,
+				A6EAA87C29909E85008D9ECE /* Media.xcassets in Resources */,
 				A6E600462976513B00D9555C /* demo_icon_customize.bundle in Resources */,
 				A6D88D92294074E000806419 /* bg1.jpeg in Resources */,
 				A6E6003B2976513B00D9555C /* mu_style_blush_01.bundle in Resources */,
@@ -1696,10 +1782,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6EAA8822990A052008D9ECE /* VLHotSpotBtn.m in Sources */,
 				A6D88CF7293DE2A000806419 /* AGViewControllerHead.swift in Sources */,
 				A667E22D295557300053E0B5 /* ROI+UI.swift in Sources */,
 				036CBA47251990B400D74FAD /* AgoraCustomEncryption.h in Sources */,
+				A6EAA87929909E85008D9ECE /* VLPopImageVerifyView.m in Sources */,
 				03F8733224C8696600EDB1A3 /* EntryViewController.swift in Sources */,
+				A6EAA8892990A86B008D9ECE /* ALLoginViewController.m in Sources */,
 				A6C5B1832941E8190071FFBF /* BeautifyFilterModeI.swift in Sources */,
 				0371D8AE250B4A2C00C0DD61 /* JoinChannelAudio.swift in Sources */,
 				A6D88CF6293DE2A000806419 /* AGViewControllerCell.swift in Sources */,
@@ -1707,9 +1796,13 @@
 				8B333DA9267B4BC3002A3785 /* SettingsCells.swift in Sources */,
 				A6D88D09293F52B600806419 /* AGViewSubCell.swift in Sources */,
 				0339BE64251DCA3B007D4FDD /* GlobalSettings.swift in Sources */,
+				A6EAA87E29909E85008D9ECE /* VLLoginInputPhoneView.m in Sources */,
 				036CBA4625198F1A00D74FAD /* AgoraCustomEncryption.mm in Sources */,
 				8BC751D7273E502700552265 /* LiveStreaming.swift in Sources */,
+				A6EAA87D29909E85008D9ECE /* WMZCodeView.m in Sources */,
+				A6EAA87B29909E85008D9ECE /* VLPrivacyCustomView.m in Sources */,
 				A667E29B2955A0120053E0B5 /* PVC+UI.swift in Sources */,
+				A6EAA87A29909E85008D9ECE /* VLLoginInputVerifyCodeView.m in Sources */,
 				A6246BE32952BA3400DFB5BA /* AGContrastView.swift in Sources */,
 				A6246BE02952B26900DFB5BA /* Resolution+UI.swift in Sources */,
 				E721600F28D3314B006431BD /* AlertManager.swift in Sources */,
@@ -1741,6 +1834,7 @@
 				A667E29929559FFE0053E0B5 /* PVC.swift in Sources */,
 				03BCEC50244938C500ED7177 /* BaseViewController.swift in Sources */,
 				A6D88CFA293DF28A00806419 /* AGHUD.swift in Sources */,
+				A6EAA8862990A13B008D9ECE /* VLBaseView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1944,7 +2038,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = PSLY6TJJC8;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = PSLY6TJJC8;
@@ -2026,7 +2120,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = YS397FG5PA;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = YS397FG5PA;
 				ENABLE_BITCODE = NO;
