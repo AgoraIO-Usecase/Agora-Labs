@@ -1,0 +1,53 @@
+{
+    "name": "VelociraptorBone_temp.mtl",
+    "materials": [
+        {
+            "name": "mat_0",
+            "techniques": [
+                {
+                    "name": "tech_0",
+                    "passes": [
+                        {
+                            "name": "pass_0",
+                            "depthTest": true,
+                            "blend": false,
+                            "depthWrite": true,
+                            "cullFace": true,
+                            "depthFunc": "DF_LEQUAL",
+                            "blend_src_factor": "BF_SRC_ALPHA",
+                            "blend_dst_factor": "BF_ONE_MINUS_SRC_ALPHA",
+                            "uniforms": {
+                                "u_BonesMat": "BT_BONE_MATRIXES",
+                                "u_ModelViewProjectionMat": "BT_MODEL_VIEW_PROJECTION_MATRIX",
+                                "u_ModelMat": "BT_MODEL_MATRIX",
+                                "u_NormalMat": "BT_NORMAL_WORLD_MATRIX",
+                                "abeldoMap": {
+                                    "type": "2d_texture",
+                                    "source": [
+                                        "u_DiffuseTex.png"
+                                    ],
+                                    "wrap": "WM_CLAMP",
+                                    "filter": "FM_LINEAR"
+                                }
+                            },
+                            "shaders": [
+                                {
+                                    "type": "VERTEX_SHADER",
+                                    "source": "cook_torrance.vs",
+                                    "defination": [
+                                        "USE_BONE_ANIMATION"
+                                    ]
+                                },
+                                {
+                                    "type": "FRAGMENT_SHADER",
+                                    "source": "cook_torrance.fs",
+                                    "defination": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
