@@ -1,0 +1,44 @@
+{
+	"version": "1.0",
+	"materials": [
+        {
+            "name": "mat_0",
+            "techniques": [
+                {
+                    "name": "tech_0",
+                    "passes": [
+                        {
+                            "name": "pass_0",
+                            "depthTest": true,
+                            "depthWrite": true,
+                            "blend": true,
+                            "blend_src_factor": "BF_SRC_ALPHA",
+                            "blend_dst_factor": "BF_ONE_MINUS_SRC_ALPHA",
+                            "uniforms": {
+                                "u_ModelViewProjectMat": "BT_MODEL_VIEW_PROJECTION_MATRIX",
+                                "u_ModelMat": "BT_MODEL_MATRIX",
+                                "u_NormalWorldMat": "BT_NORMAL_WORLD_MATRIX",
+                                "u_CameraPosInWorld": "BT_CAMERA_WORLD_POS"
+                            },
+                            "shaders": [
+                                {
+                                    "type": "VERTEX_SHADER",
+                                    "source": "Shadow.vert.glsl",
+                                    "defination": [
+                                    ]
+                                },
+                                {
+                                    "type": "FRAGMENT_SHADER",
+                                    "source": "Shadow.frag.glsl",
+                                    "defination": [
+                                        "_AE_USE_DIRECTIONAL_LIGHTING_"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+	]
+}
