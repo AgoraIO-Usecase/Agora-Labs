@@ -171,7 +171,7 @@ extension VirtualBackground {
         virtualBG.color = UInt(color)
         let tempProperty = AgoraSegmentationProperty()
         tempProperty.modelType = .agoraGreen
-        tempProperty.greenCapacity = 0.8
+        tempProperty.greenCapacity = 0.5
         self.stateProperty = tempProperty
         let ret = agoraKit.enableVirtualBackground(true, backData: virtualBG, segData: stateProperty)
         print("Split Green Screen ----设置返回值：\(ret)")
