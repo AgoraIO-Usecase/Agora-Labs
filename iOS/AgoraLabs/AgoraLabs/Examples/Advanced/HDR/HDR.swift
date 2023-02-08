@@ -1,51 +1,43 @@
 //
-//  Resolution.swift
+//  HDR.swift
 //  AgoraLabs
 //
-//  Created by LiaoChenliang on 2022/12/15.
-//  Copyright © 2022 Agora Corp. All rights reserved.
+//  Created by LiaoChenliang on 2023/2/8.
+//  Copyright © 2023 Agora Corp. All rights reserved.
 //
 
 import AgoraRtcKit
 import SwiftyJSON
 import UIKit
 
-class Resolution: BaseViewController {
+class HDR: BaseViewController {
     
     var currentModel:SubCellModel?
     
-    let originalModel = SubCellModel(name: "Original Image",tag: -1)
-
-    let itemModelList:[SubCellModel] = [
-        SubCellModel(name: "360P",tag: 0,value: AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto)),
-        SubCellModel(name: "480P",tag: 1,value: AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 480), frameRate: .fps15, bitrate: 1200, orientationMode: .fixedPortrait, mirrorMode: .auto)),
-        SubCellModel(name: "540P",tag: 2,value: AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 540), frameRate: .fps15, bitrate: 1450, orientationMode: .fixedPortrait, mirrorMode: .auto)),
-        SubCellModel(name: "720P",tag: 3,value: AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 720), frameRate: .fps15, bitrate: 2200, orientationMode: .fixedPortrait, mirrorMode: .auto)),
-    ]
-
-    let multipleModelList:[SubCellModel] = [
-        SubCellModel(name: "1",tag: 0,value: 6),
-        SubCellModel(name: "1.33",tag: 1,value: 7),
-        SubCellModel(name: "1.5",tag: 2,value: 8),
-        SubCellModel(name: "2",tag: 3,value: 3)
-    ]
-    
+    var isOpenHDR:Bool = false
     var blurSlider:UISlider?
     lazy var contentView: UIView = {
         let _contentView = UIView()
         _contentView.backgroundColor = .black
         return _contentView
     }()
+    lazy var localVideoView: AGContrastView = {
+        let _localVideoView = AGContrastView(type: .top, frame: CGRect.zero)
+        _localVideoView.backgroundColor = .black
+        _localVideoView.masksToBounds = true
+        _localVideoView.showSubTitle = true
+        _localVideoView.title = "Original Video".localized
+        return _localVideoView
+    }()
     lazy var remoteVideoView: AGContrastView = {
-        let _remoteVideoView = AGContrastView(type: .single, frame: CGRect.zero)
+        let _remoteVideoView = AGContrastView(type: .bottom, frame: CGRect.zero)
         _remoteVideoView.backgroundColor = .black
         _remoteVideoView.masksToBounds = true
+        _remoteVideoView.titleSelected = false
+        _remoteVideoView.showSubTitle = true
+        _remoteVideoView.selectTitle = "ROIxiaoguo".localized
+        _remoteVideoView.title = "ROIxiaoguoweikaiqi".localized
         return _remoteVideoView
-    }()
-    lazy var multipleView: UIView = {
-        let _multipleView = UIView()
-        _multipleView.backgroundColor = .clear
-        return _multipleView
     }()
     lazy var bottomView: UIView = {
         let _bottomView = UIView()
@@ -65,12 +57,10 @@ class Resolution: BaseViewController {
         return _openSwitch
     }()
     
-    var isSharpenType = false
-    var isSrType = false
-    
     var layoutType:Int = 1
     var layoutImage:UIImageView?
     var agoraKit: AgoraRtcEngineKit!
+    var videoConfig:AgoraVideoEncoderConfiguration?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +72,9 @@ class Resolution: BaseViewController {
     }
     
     func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
+        
+        self.videoConfig = videoConfig
+        
         let connection = AgoraRtcConnection()
         connection.localUid = AgoraLabsUser.sendUid
         connection.channelId = AgoraLabsUser.channelName
@@ -92,19 +85,26 @@ class Resolution: BaseViewController {
         config.appId = KeyCenter.AppId
         config.areaCode = GlobalSettings.shared.area
         config.channelProfile = .liveBroadcasting
-        config.eventDelegate = self
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: nil)
-        self.setupSuperResolution(enabled: false)
-        
+        self.setupHDR(enabled: false)
         agoraKit.setLogFile(LogUtils.sdkLogPath())
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
         
         agoraKit.enableVideo()
         agoraKit.disableAudio()
+        // set up local video to render your local camera preview
+        let videoCanvas = AgoraRtcVideoCanvas()
+        videoCanvas.uid = AgoraLabsUser.sendUid
+        // the view to be binded
+        videoCanvas.view = localVideoView.showView
+        videoCanvas.renderMode = .hidden
+        agoraKit.setupLocalVideo(videoCanvas)
+        // you have to call startPreview to see local video
+        agoraKit.startPreview()
         
         // Set audio route to speaker
         agoraKit.setDefaultAudioRouteToSpeakerphone(true)
-
+        
         // start joining channel
         // 1. Users can only see each other after they join the
         // same channel successfully using the same app id.
@@ -115,12 +115,12 @@ class Resolution: BaseViewController {
         option.publishCameraTrack = true
         option.publishMicrophoneTrack = true
         option.clientRoleType = .broadcaster
-
-
+        
+       
         let result = agoraKit.joinChannelEx(byToken: KeyCenter.Token, connection: connection, delegate: self, mediaOptions: option) {  channel, uid, elapsed in
             print("sendAgoraKit uid=\(uid) joinChannel channel=\(channel)")
         }
-
+        
         if result != 0 {
             // Usually happens with invalid parameters
             // Error code description can be found at:
@@ -130,6 +130,7 @@ class Resolution: BaseViewController {
         }
         
     }
+    
     
     func setupRecvData() {
 
@@ -176,70 +177,71 @@ class Resolution: BaseViewController {
         agoraKit.switchCamera()
     }
 
-    func setupResolution(videoConfig:AgoraVideoEncoderConfiguration) {
-        
+    func setupResolution(videoConfig:AgoraVideoEncoderConfiguration?) {
+        guard let _videoConfig = videoConfig else { return  }
+        self.videoConfig = _videoConfig
         let connection = AgoraRtcConnection()
         connection.localUid = AgoraLabsUser.sendUid
         connection.channelId = AgoraLabsUser.channelName
-        agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
+        agoraKit.setVideoEncoderConfigurationEx(_videoConfig, connection: connection)
     }
     
-    func setupSuperResolution(enabled:Bool) {
-        let json = JSON([
-            "rtc.video.enable_sr":[
-                "uid":AgoraLabsUser.sendUid,
-                "enabled":enabled,
-                "mode":1
-            ]
-        ]).rawString() ?? ""
+    func setupHDR(enabled:Bool) {
+        if isOpenHDR == enabled {
+            return
+        }
+        let json = JSON(["che.video.roiEnable":enabled,
+                         "engine.video.enable_hw_encoder":false]).rawString() ?? ""
         let rt = agoraKit.setParameters(json)
+        self.isOpenHDR = enabled
         if rt != 0 {
-            AGHUD.showFaild(info: "Enable SR False:\(rt)")
+            AGHUD.showFaild(info: "ROIEnable False:\(rt)")
             self.openSwitch.isOn = false
+            self.isOpenHDR = false
             self.switchOpenChange(self.openSwitch)
         }
     }
 }
 
-extension Resolution:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
-    func onExtensionError(_ provider: String?, extension: String?, error: Int32, message: String?) {
-        print("onExtensionError----------provider:\(provider)")
-    }
+extension HDR:AgoraRtcEngineDelegate{
     
-    func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
-        print("onEvent ------------ provider:\(provider ?? "")")
-        DispatchQueue.main.async {
-            
-            if provider == "sr.io.agora.builtin" && key == "sr_type" {
-                let valueJSON = JSON(parseJSON: value ?? "")
-                if valueJSON["type"].intValue <= 0 {
-                    self.isSrType = true
-                }
-            }
-            
-            if provider == "agora_video_filters_clear_vision" && key == "sharpen_type" {
-                let valueJSON = JSON(parseJSON: value ?? "")
-                if valueJSON["type"].intValue <= 0 {
-                    self.isSharpenType = true
-                }
-            }
-            
-            if  self.openSwitch.isOn && self.isSrType && self.isSharpenType {
-                AGHUD.showFaild(info: "jqxnpj".localized)
-                self.openSwitch.isOn = false
-                self.switchOpenChange(self.openSwitch)
-            }
+    /**
+     The SDK triggers this callback once every two seconds to report the statistics of the local video stream.
+
+     Parameters
+     engine
+     AgoraRtcEngineKit object.
+     sourceType
+     The capture type of the custom video source. See AgoraVideoSourceType.
+     stats
+     The statistics of the local video stream. See AgoraRtcLocalVideoStats.
+     */
+    func rtcEngine(_ engine: AgoraRtcEngineKit, localVideoStats stats: AgoraRtcLocalVideoStats, sourceType: AgoraVideoSourceType) {
+        if stats.uid ==  AgoraLabsUser.sendUid {
+            localVideoView.subTitle = "Bitrate".localized+": \(stats.sentBitrate) kbps"
+            //print("send - sentBitrate=\(stats.sentBitrate) sentFrameRate=\(stats.sentFrameRate)")
         }
     }
     
-    func rtcEngine(_ engine: AgoraRtcEngineKit, videoSizeChangedOf sourceType: AgoraVideoSourceType, uid: UInt, size: CGSize, rotation: Int) {
-        print("videoSizeChangedOf ------------ ")
+    /**
+     Reports the statistics of the video stream from the remote users. The SDK triggers this callback once every two seconds for each remote user. If a channel has multiple users/hosts sending video streams, the SDK triggers this callback as many times.
+
+     Parameters
+     engine
+     AgoraRtcEngineKit object.
+     stats
+     Statistics of the remote video stream. For details, see AgoraRtcRemoteVideoStats.
+     */
+    func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStats stats: AgoraRtcRemoteVideoStats) {
+        if stats.uid ==  AgoraLabsUser.sendUid {
+            remoteVideoView.subTitle = "Bitrate".localized+": \(stats.receivedBitrate) kbps"
+            //print("recv - receivedBitrate=\(stats.receivedBitrate) receivedFrameRate=\(stats.receivedFrameRate)")
+        }
     }
     
-    
-//    func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStats stats: AgoraRtcRemoteVideoStats) {
-//        print("AgoraRtcRemoteVideoStats------------\(stats.superResolutionType)")
-//    }
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurWarning warningCode: AgoraWarningCode) {
+        LogUtils.log(message: "warning: \(warningCode.description)", level: .warning)
+    }
     
 }
 

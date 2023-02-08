@@ -11,6 +11,7 @@ enum AGContrastPositionType:Int {
     case bottom
     case inside
     case outside
+    case single
 }
 
 class AGContrastView: UIView {
@@ -132,6 +133,17 @@ class AGContrastView: UIView {
                 make.bottom.equalToSuperview().offset(-8)
                 make.centerX.equalToSuperview()
             }
+        }else if self.positionType == .single {
+            titleBtn.snp.remakeConstraints { make in
+                make.top.equalToSuperview().offset(SCREEN_NAV_FULL_HEIGHT+8)
+                make.centerX.equalToSuperview()
+            }
+            titleBtn.isHidden = true
+            subTitleBtn.snp.remakeConstraints { make in
+                make.right.equalToSuperview().offset(-8)
+                make.centerY.equalTo(titleBtn)
+            }
+            subTitleBtn.isHidden = true
         }
     }
 }

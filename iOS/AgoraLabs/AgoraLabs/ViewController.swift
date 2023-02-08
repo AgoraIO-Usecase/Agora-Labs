@@ -89,7 +89,7 @@ class ViewController: UIViewController {
         ]
     ]
     
-    var doneMap = ["Virtual Background","Beautify Filter","Resolution","ROI","PVC"]
+    var doneMap = ["Virtual Background","Beautify Filter","Resolution","ROI","PVC","HDR"]
 //    var doneMap = ["Virtual Background","Beautify Filter"]
     private var segmentedDataSource: JXSegmentedTitleDataSource!
     private var segmentedView: JXSegmentedView!
@@ -190,7 +190,12 @@ extension ViewController: AGViewDelegate{
             self.navigationController?.pushViewController(entryViewController, animated: true)
 
         }else{
-            AGHUD.showInfo(info: "ggnzbzcjqqd".localized)
+//            AGHUD.showInfo(info: "ggnzbzcjqqd".localized)
+            let vc = ALLoginViewController()
+            vc.fd_prefersNavigationBarHidden = false
+            vc.fd_interactivePopDisabled = true
+            self.navigationController?.pushViewController(vc, animated: true)
+
         }
     }
 }

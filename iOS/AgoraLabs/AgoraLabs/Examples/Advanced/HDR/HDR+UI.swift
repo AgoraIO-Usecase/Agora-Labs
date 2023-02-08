@@ -1,0 +1,259 @@
+//
+//  HDR+UI.swift
+//  AgoraLabs
+//
+//  Created by LiaoChenliang on 2023/2/8.
+//  Copyright © 2023 Agora Corp. All rights reserved.
+//
+
+import AgoraRtcKit
+import SnapKitExtend
+import UIKit
+
+extension HDR {
+    
+    func setupUI() {
+        self.setupNavigation()
+        self.setupBottom()
+        self.setupShowContentView()
+        self.setupBottomContentView()
+    }
+    
+    func setupNavigation() {
+        self.view.backgroundColor = SCREEN_CCC_COLOR.hexColor()
+
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x:0, y:0, width:65, height:30)
+        button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
+        button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
+        button.setTitle("ROI".localized, for: .normal)
+        button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
+        let leftBarBtn = UIBarButtonItem(customView: button)
+        self.navigationItem.leftBarButtonItem = leftBarBtn
+        
+        
+        let imageOne = UIImageView()
+        imageOne.image = UIImage.init(named: "CameraFlip")
+        imageOne.contentMode = .scaleAspectFit
+        imageOne.isUserInteractionEnabled = true
+        imageOne.tag = 1000
+        let tapGes = UITapGestureRecognizer(target: self, action: #selector(switchBtnDidClick))
+        imageOne.addGestureRecognizer(tapGes)
+        imageOne.frame = CGRect(x: 0, y: 0, width: 20, height: 15)
+        let barItemOne = UIBarButtonItem.init(customView: imageOne)
+        
+        let imageTwo = UIImageView()
+        imageTwo.image = UIImage.init(named: "view1")
+        imageTwo.contentMode = .scaleAspectFit
+        imageTwo.isUserInteractionEnabled = true
+        imageTwo.tag = 1001
+        let twoGes = UITapGestureRecognizer(target: self, action: #selector(layoutBtnDidClick))
+        imageTwo.addGestureRecognizer(twoGes)
+        
+        let longGes = UILongPressGestureRecognizer(target: self, action: #selector(layoutPopDidClick))
+        imageTwo.addGestureRecognizer(longGes)
+        
+        imageTwo.frame = CGRect(x: 0, y: 0, width: 20, height: 15)
+        self.layoutImage = imageTwo
+        let barItemTwo = UIBarButtonItem.init(customView: imageTwo)
+        
+        navigationItem.rightBarButtonItems = [barItemOne,barItemTwo]
+    }
+    
+    
+    
+    func setupShowContentView() {
+        self.view.layoutIfNeeded()
+        self.view.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(bottomView.snp.top).offset(SCREEN_RECT_CORNER)
+        }
+        
+        contentView.addSubview(localVideoView)
+        localVideoView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+        }
+        
+        contentView.addSubview(remoteVideoView)
+        remoteVideoView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(localVideoView.snp.bottom)
+            make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+        }
+        
+        self.view.bringSubviewToFront(bottomView)
+    }
+    
+    @objc func layoutPopDidClick(_ sender:UILongPressGestureRecognizer)  {
+        
+        guard let _layoutImage = self.layoutImage else { return  }
+        if XMMenuPopover.shared.isMenuVisible {  return  }
+        
+        if sender.state == .began {
+            AGHUD.touchFeedback()
+            
+            let itemW = 51
+            let itemH = 56
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: itemW*3, height: itemH))
+            view.backgroundColor = .black
+            
+            let view1Btn = UIButton(frame: CGRect(x: 0, y: 0, width: itemW, height: itemH))
+            view1Btn.setImage(UIImage(named: "view1"), for: .normal)
+            view1Btn.alpha = self.layoutType == 1 ?1:0.3
+            view1Btn.clickView {[weak self] sender in
+                self?.updataLayoutContentView(tag: 1)
+                XMMenuPopover.shared.hideMenu()
+            }
+            view.addSubview(view1Btn)
+            
+            let view2Btn = UIButton(frame: CGRect(x: itemW, y: 0, width: itemW, height: itemH))
+            view2Btn.setImage(UIImage(named: "view2"), for: .normal)
+            view2Btn.alpha = self.layoutType == 2 ?1:0.3
+            view2Btn.clickView {[weak self] sender in
+                self?.updataLayoutContentView(tag: 2)
+                XMMenuPopover.shared.hideMenu()
+            }
+            view.addSubview(view2Btn)
+            
+            let view3Btn = UIButton(frame: CGRect(x: itemW*2, y: 0, width: itemW, height: itemH))
+            view3Btn.setImage(UIImage(named: "view3"), for: .normal)
+            view3Btn.alpha = self.layoutType == 3 ?1:0.3
+            view3Btn.clickView {[weak self] sender in
+                self?.updataLayoutContentView(tag: 3)
+                XMMenuPopover.shared.hideMenu()
+            }
+            view.addSubview(view3Btn)
+            
+            let popView = XMMenuPopover.shared
+            popView.style = .custom
+            popView.avoidTopMargin = 0
+            popView.customView = view
+            popView.show(from:_layoutImage , rect: _layoutImage.bounds,animated: true)        }
+    }
+    
+    @objc func layoutBtnDidClick() {
+        self.layoutType = self.layoutType >= 3 ?1:(self.layoutType+1)
+        self.updataLayoutContentView(tag: self.layoutType )
+    }
+    
+    @objc func updataLayoutContentView(tag:Int) {
+        self.layoutType = tag
+        self.layoutImage?.image = UIImage(named: "view\(self.layoutType)")
+        AGHUD.touchFeedback()
+        if tag == 1 {
+            //原视频(上) 远程(下)
+            print("原视频(上) 远程(下)")
+            localVideoView.reloadPosition(type: .top)
+            localVideoView.cornerRadius = 0
+            localVideoView.snp.remakeConstraints { make in
+                make.top.left.right.equalToSuperview()
+                make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+            }
+            
+            
+            remoteVideoView.reloadPosition(type: .bottom)
+            remoteVideoView.cornerRadius = 0
+            contentView.bringSubviewToFront(remoteVideoView)
+            remoteVideoView.snp.remakeConstraints { make in
+                make.left.right.equalToSuperview()
+                make.top.equalTo(localVideoView.snp.bottom)
+                make.height.equalTo(contentView.snp.height).multipliedBy(0.5)
+            }
+        }else if tag == 2 {
+            //原视频(小) 远程(大)
+            print("原视频(小) 远程(大)")
+            remoteVideoView.reloadPosition(type: .inside)
+            remoteVideoView.cornerRadius = 0
+            remoteVideoView.snp.remakeConstraints { make in
+                make.top.left.right.equalToSuperview()
+                make.height.equalTo(contentView.snp.height)
+            }
+            
+            localVideoView.reloadPosition(type: .outside)
+            localVideoView.cornerRadius = 8
+            contentView.bringSubviewToFront(localVideoView)
+            localVideoView.snp.remakeConstraints { make in
+                make.right.equalToSuperview().offset(-16)
+                make.bottom.equalTo(bottomView.snp.top).offset(-16)
+                make.size.equalTo(CGSize(width: 160, height: 200))
+            }
+            
+        }else if tag == 3 {
+            //原视频(大) 远程(小)
+            print("原视频(大) 远程(小)")
+            
+            localVideoView.reloadPosition(type: .inside)
+            localVideoView.cornerRadius = 0
+            localVideoView.snp.remakeConstraints { make in
+                make.top.left.right.equalToSuperview()
+                make.height.equalTo(contentView.snp.height)
+            }
+            
+            remoteVideoView.reloadPosition(type: .outside)
+            remoteVideoView.cornerRadius = 8
+            contentView.bringSubviewToFront(remoteVideoView)
+            remoteVideoView.snp.remakeConstraints { make in
+                make.right.equalToSuperview().offset(-16)
+                make.bottom.equalTo(bottomView.snp.top).offset(-16)
+                make.size.equalTo(CGSize(width: 160, height: 200))
+            }
+            
+        }
+        
+    }
+
+    
+    func setupBottom() {
+        
+        self.view.addSubview(bottomView)
+        bottomView.snp.makeConstraints { make in
+            make.bottom.left.right.equalToSuperview()
+            make.height.equalTo(SCREEN_BOTTOM_HEIGHT+62)
+        }
+        
+        bottomView.addSubview(bottomContentView)
+        bottomContentView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-SCREEN_BOTTOM_HEIGHT)
+            make.height.equalTo(118)
+        }
+        
+        let bottomHubView = UIView()
+        bottomHubView.backgroundColor = "FFFFFF".hexColor(alpha: 0.3)
+        bottomView.addSubview(bottomHubView)
+        bottomHubView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 37, height: 3))
+        }
+            
+        bottomView.rectCorner(corner: [.topLeft,.topRight], radii:  CGSize(width: 12, height: 12))
+    }
+        
+    func setupBottomContentView() {
+        let funNameLabel = UILabel()
+        funNameLabel.text = "qiyongganxingququyusuanfa".localized
+        funNameLabel.textColor = .white
+        funNameLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        bottomView.addSubview(funNameLabel)
+        funNameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(26)
+            make.left.equalToSuperview().offset(16)
+        }
+        
+        bottomView.addSubview(openSwitch)
+        openSwitch.snp.makeConstraints { make in
+            make.centerY.equalTo(funNameLabel.snp.centerY)
+            make.right.equalToSuperview().offset(-16)
+        }
+    }
+    
+    @objc func switchOpenChange(_ sender:UISwitch)  {
+        print("switchOpenChange - \(sender.isOn)")
+        self.remoteVideoView.titleSelected = sender.isOn
+        self.setupHDR(enabled: sender.isOn)
+        self.setupResolution(videoConfig: self.videoConfig)
+    }
+}

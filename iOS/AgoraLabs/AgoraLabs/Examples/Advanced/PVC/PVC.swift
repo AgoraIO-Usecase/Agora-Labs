@@ -29,22 +29,10 @@ class PVC: BaseViewController {
         _contentView.backgroundColor = .black
         return _contentView
     }()
-    lazy var localVideoView: AGContrastView = {
-        let _localVideoView = AGContrastView(type: .top, frame: CGRect.zero)
-        _localVideoView.backgroundColor = .black
-        _localVideoView.masksToBounds = true
-        _localVideoView.showSubTitle = true
-        _localVideoView.title = "Original Video".localized
-        return _localVideoView
-    }()
     lazy var remoteVideoView: AGContrastView = {
-        let _remoteVideoView = AGContrastView(type: .bottom, frame: CGRect.zero)
+        let _remoteVideoView = AGContrastView(type: .single, frame: CGRect.zero)
         _remoteVideoView.backgroundColor = .black
         _remoteVideoView.masksToBounds = true
-        _remoteVideoView.titleSelected = false
-        _remoteVideoView.showSubTitle = true
-        _remoteVideoView.selectTitle = "PVCxiaoguo".localized
-        _remoteVideoView.title = "PVCweikaiqi".localized
         return _remoteVideoView
     }()
     lazy var bottomView: UIView = {
@@ -100,15 +88,6 @@ class PVC: BaseViewController {
         
         agoraKit.enableVideo()
         agoraKit.disableAudio()
-        // set up local video to render your local camera preview
-        let videoCanvas = AgoraRtcVideoCanvas()
-        videoCanvas.uid = AgoraLabsUser.sendUid
-        // the view to be binded
-        videoCanvas.view = localVideoView.showView
-        videoCanvas.renderMode = .hidden
-        agoraKit.setupLocalVideo(videoCanvas)
-        // you have to call startPreview to see local video
-        agoraKit.startPreview()
         
         // Set audio route to speaker
         agoraKit.setDefaultAudioRouteToSpeakerphone(true)
@@ -225,7 +204,7 @@ extension PVC:AgoraRtcEngineDelegate{
      */
     func rtcEngine(_ engine: AgoraRtcEngineKit, localVideoStats stats: AgoraRtcLocalVideoStats, sourceType: AgoraVideoSourceType) {
         if stats.uid ==  AgoraLabsUser.sendUid {
-            localVideoView.subTitle = "Bitrate".localized+": \(stats.sentBitrate) kbps"
+            //localVideoView.subTitle = "Bitrate".localized+": \(stats.sentBitrate) kbps"
             //print("send - sentBitrate=\(stats.sentBitrate) sentFrameRate=\(stats.sentFrameRate)")
         }
     }
