@@ -156,15 +156,19 @@
 
     <string name="lighten">Lighten</string>
     <string name="contrast">Contrast</string>
+    <string name="enable_super_quality">Enable super quality</string>
     <string name="enable_pvc">Enable PVC</string>
     <string name="resolutoion_360p" translatable="false">360p</string>
     <string name="resolutoion_480p" translatable="false">480p</string>
     <string name="resolutoion_540p" translatable="false">540p</string>
     <string name="resolutoion_720p" translatable="false">720p</string>
+    <string name="resolutoion_1080p" translatable="false">1080p</string>
     <string name="original_video">Origin video</string>
     <string name="bitrate">Bitrate: %d kbps</string>
     <string name="pvc_enabled">PVC effect</string>
     <string name="pvc_disabled">PVC not open</string>
+    <string name="super_quality_enabled">Super Quality effect</string>
+    <string name="super_quality_disabled">Super Quality not open</string>
     <string name="feature_not_supported">stay tuned</string>
     <string name="resource_preparing">Resources preparing, please wait</string>
 

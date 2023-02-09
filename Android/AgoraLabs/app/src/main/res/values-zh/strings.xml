@@ -151,11 +151,14 @@
 
     <string name="lighten">亮度</string>
     <string name="contrast">对比度</string>
+    <string name="enable_super_quality">启用超级画质</string>
     <string name="enable_pvc">启用感知视频编码</string>
     <string name="original_video">原视频</string>
     <string name="bitrate">码率: %d kbps</string>
     <string name="pvc_enabled">PVC效果</string>
     <string name="pvc_disabled">PVC未开启</string>
+    <string name="super_quality_enabled">超级画质效果</string>
+    <string name="super_quality_disabled">超级画质未开启</string>
     <string name="feature_not_supported">该功能暂不支持,敬请期待</string>
     <string name="resource_preparing">资源准备中，请稍候</string>
 

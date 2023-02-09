@@ -72,6 +72,9 @@ public class MenuPage extends LinearLayout {
         addView(cv);
     }
 
+    public void addMenuItem(OptionItem item){
+        menuItemAdapter.getData().add(item);
+    }
 
     public void setOnItemClickListener(OnItemClickListener listener){
         this.listener=listener;
@@ -92,6 +95,10 @@ public class MenuPage extends LinearLayout {
 
     public void setUnSelected(OptionItem item){
         item.setSelected(false);
+        menuItemAdapter.notifyDataSetChanged();
+    }
+
+    public void refresh(){
         menuItemAdapter.notifyDataSetChanged();
     }
 

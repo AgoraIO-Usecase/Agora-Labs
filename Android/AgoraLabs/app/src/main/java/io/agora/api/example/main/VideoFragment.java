@@ -38,7 +38,7 @@ public class VideoFragment extends BaseListFragment {
         data.add(new Feature(ID_LIGHT_DARK,R.mipmap.light_dark,R.string.light_dark));
         data.add(new Feature(ID_SHARPEN,R.mipmap.sharpen,R.string.adaptive_sharpen));
         data.add(new Feature(ID_COLOR_ENHANCE,R.mipmap.saturation,R.string.color_enhance));
-        data.add(new Feature(ID_SUPER_QUALITY,R.mipmap.image,R.string.super_quality));
+        data.add(new Feature(ID_SUPER_QUALITY,R.mipmap.image,R.string.super_quality,true));
         data.add(new Feature(ID_HDR,R.mipmap.hdr,R.string.hdr));
         adapter.setData(data);
         adapter.notifyDataSetChanged();
@@ -68,6 +68,9 @@ public class VideoFragment extends BaseListFragment {
         }else if(feature.getId()==ID_SUPER_RES){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_super_res);
+        }else if(feature.getId()==ID_SUPER_QUALITY){
+            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+            navController.navigate(R.id.action_homeFragment_to_super_quality);
         }
 
     }
