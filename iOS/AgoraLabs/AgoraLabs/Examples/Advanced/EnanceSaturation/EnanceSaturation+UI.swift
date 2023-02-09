@@ -191,36 +191,6 @@ extension EnanceSaturation {
         }
     }
     
-    func setupMultipleView()  {
-        self.view.bringSubviewToFront(multipleView)
-        for i in 0..<multipleModelList.count {
-            let itemModel = multipleModelList[i]
-            let button = SubButton(alphaNormal: 0.9)
-            itemModel.subView = button
-            itemModel.isSelected = i == 0
-            button.tag = i
-            button.cornerRadius = 18
-            button.masksToBounds = true
-            button.alphaSelected = 0.9
-            button.isEnabled = openSwitch.isOn
-            button.addBlurEffect(style: .systemThinMaterialDark)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
-            button.setTitleColor(.lightGray, for: .disabled)
-            button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            button.setTitle("\(itemModel.name)倍", for: .normal)
-            button.clickView {[weak self] sender in
-                self?.switchMultipleChange(sender as! SubButton)
-            }
-            multipleView.addSubview(button)
-        }
-        let buttonArr = multipleModelList.compactMap({$0.subView})
-        buttonArr.snp.distributeViewsAlong(axisType: .horizontal, fixedSpacing: 10, leadSpacing: 10, tailSpacing: 10)
-        buttonArr.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
-            $0.height.equalTo(36)
-        }
-    }
-    
     @objc func handleSwipeFrom(_ recognizer:UISwipeGestureRecognizer){
         if recognizer.direction == .up {
             
@@ -237,38 +207,13 @@ extension EnanceSaturation {
         }
     }
     
-    func switchResolution(tag:Int) {
-//        if openSwitch.isOn == false { return }
-        self.itemModelList.forEach { model in
-            model.isSelected = model.tag == tag
-            guard let itemView = model.subView as? SubCellView  else { return  }
-            itemView.setupSubCellModel(model)
-        }
-        guard let videoConfig = self.itemModelList[tag].value as? AgoraVideoEncoderConfiguration else { return }
-        self.setupResolution(videoConfig: videoConfig)
-        self.setupSuperResolution(enabled: openSwitch.isOn)
-    }
     
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
         self.remoteVideoView.titleSelected = sender.isOn
-        if sender.isOn == false {
-            self.isSharpenType = false
-            self.isSrType = false
-        }
-        self.setupSuperResolution(enabled: sender.isOn)
+        self.setupEnanceSaturation(enabled: sender.isOn)
     }
     
-    @objc func switchMultipleChange(_ sender:SubButton)  {
-        if openSwitch.isOn == false { return }
-        self.multipleModelList.forEach { model in
-            model.isSelected = model.tag == sender.tag
-            guard let itemView = model.subView as? SubButton  else { return  }
-            itemView.isSelected = model.isSelected
-            if model.tag == sender.tag { self.currentModel = model }
-        }
-        self.setupSuperResolution(enabled: true)
-    }
 }
 
 extension EnanceSaturation{

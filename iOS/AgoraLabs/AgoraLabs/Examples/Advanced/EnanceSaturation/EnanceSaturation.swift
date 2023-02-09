@@ -12,28 +12,11 @@ import UIKit
 
 class EnanceSaturation: BaseViewController {
     
-    var currentModel:SubCellModel?
-    
-    let originalModel = SubCellModel(name: "Original Image",tag: -1)
-
-    let itemModelList:[SubCellModel] = [
-        SubCellModel(name: "360P",tag: 0,value: AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto)),
-        SubCellModel(name: "480P",tag: 1,value: AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 480), frameRate: .fps15, bitrate: 1200, orientationMode: .fixedPortrait, mirrorMode: .auto)),
-        SubCellModel(name: "540P",tag: 2,value: AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 540), frameRate: .fps15, bitrate: 1450, orientationMode: .fixedPortrait, mirrorMode: .auto)),
-        SubCellModel(name: "720P",tag: 3,value: AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 720), frameRate: .fps15, bitrate: 2200, orientationMode: .fixedPortrait, mirrorMode: .auto)),
-    ]
-
-    let multipleModelList:[SubCellModel] = [
-        SubCellModel(name: "1",tag: 0,value: 6),
-        SubCellModel(name: "1.33",tag: 1,value: 7),
-        SubCellModel(name: "1.5",tag: 2,value: 8),
-        SubCellModel(name: "2",tag: 3,value: 3)
-    ]
-    
     var colourSlider:UISlider?
     var colourValueL:UILabel?
     var complexionSlider:UISlider?
     var complexionValueL:UILabel?
+    
     lazy var contentView: UIView = {
         let _contentView = UIView()
         _contentView.backgroundColor = .black
@@ -68,9 +51,6 @@ class EnanceSaturation: BaseViewController {
         return _openSwitch
     }()
     
-    var isSharpenType = false
-    var isSrType = false
-    
     var layoutType:Int = 1
     var layoutImage:UIImageView?
     var agoraKit: AgoraRtcEngineKit!
@@ -97,7 +77,7 @@ class EnanceSaturation: BaseViewController {
         config.channelProfile = .liveBroadcasting
         config.eventDelegate = self
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: nil)
-        self.setupSuperResolution(enabled: false)
+        self.setupEnanceSaturation(enabled: false)
         
         agoraKit.setLogFile(LogUtils.sdkLogPath())
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
@@ -187,7 +167,7 @@ class EnanceSaturation: BaseViewController {
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
     }
     
-    func setupSuperResolution(enabled:Bool) {
+    func setupEnanceSaturation(enabled:Bool) {
         let json = JSON([
             "rtc.video.enable_sr":[
                 "uid":AgoraLabsUser.sendUid,
@@ -197,7 +177,7 @@ class EnanceSaturation: BaseViewController {
         ]).rawString() ?? ""
         let rt = agoraKit.setParameters(json)
         if rt != 0 {
-            AGHUD.showFaild(info: "Enable SR False:\(rt)")
+            AGHUD.showFaild(info: "Enable EnanceSaturation False:\(rt)")
             self.openSwitch.isOn = false
             self.switchOpenChange(self.openSwitch)
         }
@@ -205,34 +185,8 @@ class EnanceSaturation: BaseViewController {
 }
 
 extension EnanceSaturation:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
-    func onExtensionError(_ provider: String?, extension: String?, error: Int32, message: String?) {
-        print("onExtensionError----------provider:\(provider)")
-    }
-    
     func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
         print("onEvent ------------ provider:\(provider ?? "")")
-        DispatchQueue.main.async {
-            
-            if provider == "sr.io.agora.builtin" && key == "sr_type" {
-                let valueJSON = JSON(parseJSON: value ?? "")
-                if valueJSON["type"].intValue <= 0 {
-                    self.isSrType = true
-                }
-            }
-            
-            if provider == "agora_video_filters_clear_vision" && key == "sharpen_type" {
-                let valueJSON = JSON(parseJSON: value ?? "")
-                if valueJSON["type"].intValue <= 0 {
-                    self.isSharpenType = true
-                }
-            }
-            
-            if  self.openSwitch.isOn && self.isSrType && self.isSharpenType {
-                AGHUD.showFaild(info: "jqxnpj".localized)
-                self.openSwitch.isOn = false
-                self.switchOpenChange(self.openSwitch)
-            }
-        }
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, videoSizeChangedOf sourceType: AgoraVideoSourceType, uid: UInt, size: CGSize, rotation: Int) {
