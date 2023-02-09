@@ -93,6 +93,9 @@
 		A68E42332993895700E298DF /* HDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42322993895700E298DF /* HDR.swift */; };
 		A68E42352993896000E298DF /* HDR+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42342993896000E298DF /* HDR+UI.swift */; };
 		A68E42372993897900E298DF /* HDR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42362993897900E298DF /* HDR.storyboard */; };
+		A68E423A2993ACD800E298DF /* EnanceSaturation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42392993ACD800E298DF /* EnanceSaturation.storyboard */; };
+		A68E423C2993ACE100E298DF /* EnanceSaturation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E423B2993ACE100E298DF /* EnanceSaturation.swift */; };
+		A68E423E2993ACEB00E298DF /* EnanceSaturation+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E423D2993ACEB00E298DF /* EnanceSaturation+UI.swift */; };
 		A690E4B5294AC9E90058D196 /* launch_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A690E4B4294AC9E90058D196 /* launch_logo.png */; };
 		A6C5B17D2941C7F90071FFBF /* BeautifyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */; };
 		A6C5B17F2941C8C70071FFBF /* BeautifyFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C5B17E2941C8C70071FFBF /* BeautifyFilter.storyboard */; };
@@ -461,6 +464,9 @@
 		A68E42322993895700E298DF /* HDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDR.swift; sourceTree = "<group>"; };
 		A68E42342993896000E298DF /* HDR+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HDR+UI.swift"; sourceTree = "<group>"; };
 		A68E42362993897900E298DF /* HDR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HDR.storyboard; sourceTree = "<group>"; };
+		A68E42392993ACD800E298DF /* EnanceSaturation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EnanceSaturation.storyboard; sourceTree = "<group>"; };
+		A68E423B2993ACE100E298DF /* EnanceSaturation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnanceSaturation.swift; sourceTree = "<group>"; };
+		A68E423D2993ACEB00E298DF /* EnanceSaturation+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnanceSaturation+UI.swift"; sourceTree = "<group>"; };
 		A690E4B4294AC9E90058D196 /* launch_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_logo.png; sourceTree = "<group>"; };
 		A6A7BA49294320A6006A8CBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyFilter.swift; sourceTree = "<group>"; };
@@ -991,6 +997,16 @@
 			path = HDR;
 			sourceTree = "<group>";
 		};
+		A68E42382993ACC500E298DF /* EnanceSaturation */ = {
+			isa = PBXGroup;
+			children = (
+				A68E42392993ACD800E298DF /* EnanceSaturation.storyboard */,
+				A68E423B2993ACE100E298DF /* EnanceSaturation.swift */,
+				A68E423D2993ACEB00E298DF /* EnanceSaturation+UI.swift */,
+			);
+			path = EnanceSaturation;
+			sourceTree = "<group>";
+		};
 		A6C5B17B2941C7DF0071FFBF /* BeautifyFilter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1478,6 +1494,7 @@
 		A75A56D724A0603000D0089E /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				A68E42382993ACC500E298DF /* EnanceSaturation */,
 				A68E42312993894300E298DF /* HDR */,
 				8BC751CF273E502700552265 /* LiveStreaming */,
 				A6D88CFF293F1B1700806419 /* VirtualBackground */,
@@ -1707,6 +1724,7 @@
 				A6E6005B2976513B00D9555C /* hair_normal_05.bundle in Resources */,
 				A6E6FFF12976513B00D9555C /* ai_human_processor_pc.bundle in Resources */,
 				A6E6FFE72976513B00D9555C /* bodyRect.bundle in Resources */,
+				A68E423A2993ACD800E298DF /* EnanceSaturation.storyboard in Resources */,
 				A6E600392976513B00D9555C /* mu_style_eyeshadow_03.bundle in Resources */,
 				A6E600082976513B00D9555C /* green_screen_bg_beach.mp4 in Resources */,
 				A6E600652976513B00D9555C /* redribbt.bundle in Resources */,
@@ -1847,6 +1865,7 @@
 				A6EAA8822990A052008D9ECE /* VLHotSpotBtn.m in Sources */,
 				A6D88CF7293DE2A000806419 /* AGViewControllerHead.swift in Sources */,
 				A667E22D295557300053E0B5 /* ROI+UI.swift in Sources */,
+				A68E423C2993ACE100E298DF /* EnanceSaturation.swift in Sources */,
 				036CBA47251990B400D74FAD /* AgoraCustomEncryption.h in Sources */,
 				A6EAA87929909E85008D9ECE /* VLPopImageVerifyView.m in Sources */,
 				03F8733224C8696600EDB1A3 /* EntryViewController.swift in Sources */,
@@ -1854,6 +1873,7 @@
 				A6C5B1832941E8190071FFBF /* BeautifyFilterModeI.swift in Sources */,
 				0371D8AE250B4A2C00C0DD61 /* JoinChannelAudio.swift in Sources */,
 				A6D88CF6293DE2A000806419 /* AGViewControllerCell.swift in Sources */,
+				A68E423E2993ACEB00E298DF /* EnanceSaturation+UI.swift in Sources */,
 				A6C5B3162942E2310071FFBF /* BDResourceHelper.m in Sources */,
 				8B333DA9267B4BC3002A3785 /* SettingsCells.swift in Sources */,
 				A6D88D09293F52B600806419 /* AGViewSubCell.swift in Sources */,

@@ -1,16 +1,16 @@
 //
-//  Resolution.swift
+//  EnanceSaturation.swift
 //  AgoraLabs
 //
-//  Created by LiaoChenliang on 2022/12/15.
-//  Copyright © 2022 Agora Corp. All rights reserved.
+//  Created by LiaoChenliang on 2023/2/8.
+//  Copyright © 2023 Agora Corp. All rights reserved.
 //
 
 import AgoraRtcKit
 import SwiftyJSON
 import UIKit
 
-class Resolution: BaseViewController {
+class EnanceSaturation: BaseViewController {
     
     var currentModel:SubCellModel?
     
@@ -30,7 +30,10 @@ class Resolution: BaseViewController {
         SubCellModel(name: "2",tag: 3,value: 3)
     ]
     
-    var blurSlider:UISlider?
+    var colourSlider:UISlider?
+    var colourValueL:UILabel?
+    var complexionSlider:UISlider?
+    var complexionValueL:UILabel?
     lazy var contentView: UIView = {
         let _contentView = UIView()
         _contentView.backgroundColor = .black
@@ -201,11 +204,7 @@ class Resolution: BaseViewController {
     }
 }
 
-extension Resolution:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
-    func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStateChangedOfUid uid: UInt, state: AgoraVideoRemoteState, reason: AgoraVideoRemoteReason, elapsed: Int) {
-        
-    }
-    
+extension EnanceSaturation:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     func onExtensionError(_ provider: String?, extension: String?, error: Int32, message: String?) {
         print("onExtensionError----------provider:\(provider)")
     }
@@ -237,7 +236,7 @@ extension Resolution:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, videoSizeChangedOf sourceType: AgoraVideoSourceType, uid: UInt, size: CGSize, rotation: Int) {
-        print("videoSizeChangedOf ----- uid:\(uid)------- size:\(size)")
+        print("videoSizeChangedOf ------------ ")
     }
     
     
@@ -246,4 +245,3 @@ extension Resolution:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
 //    }
     
 }
-
