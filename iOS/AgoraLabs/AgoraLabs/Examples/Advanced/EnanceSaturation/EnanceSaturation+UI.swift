@@ -135,10 +135,10 @@ extension EnanceSaturation {
         }
         
         let labvalue1 = UILabel()
-        labvalue1.text = "0"
+        labvalue1.text = "50"
         labvalue1.textColor = .white
         labvalue1.font = UIFont.systemFont(ofSize: 15)
-        self.colourValueL = labvalue1
+        self.strengthValueL = labvalue1
         bottomContentView.addSubview(labvalue1)
         labvalue1.snp.makeConstraints { make in
             make.top.equalTo(labkey1)
@@ -146,10 +146,11 @@ extension EnanceSaturation {
         }
         
         let rangeSlider1 = UISlider()
+        rangeSlider1.value = 0.5
         rangeSlider1.minimumTrackTintColor = "#4ca7ff".hexColor()
         rangeSlider1.maximumTrackTintColor = "#aeafb5".hexColor()
-        rangeSlider1.addTarget(self, action: #selector(self.colourSliderEventValueChanged(_:)), for: .valueChanged)
-        self.colourSlider = rangeSlider1
+        rangeSlider1.addTarget(self, action: #selector(self.strengthSliderEventValueChanged(_:)), for: .valueChanged)
+        self.strengthSlider = rangeSlider1
         bottomContentView.addSubview(rangeSlider1)
         rangeSlider1.snp.makeConstraints { make in
             make.top.equalTo(labvalue1.snp.bottom).offset(8)
@@ -168,10 +169,10 @@ extension EnanceSaturation {
         }
 
         let labvalue2 = UILabel()
-        labvalue2.text = "0"
+        labvalue2.text = "50"
         labvalue2.textColor = .white
         labvalue2.font = UIFont.systemFont(ofSize: 15)
-        self.complexionValueL = labvalue2
+        self.skinValueL = labvalue2
         bottomContentView.addSubview(labvalue2)
         labvalue2.snp.makeConstraints { make in
             make.top.equalTo(labkey2)
@@ -179,10 +180,11 @@ extension EnanceSaturation {
         }
         
         let rangeSlider2 = UISlider()
+        rangeSlider2.value = 0.5
         rangeSlider2.minimumTrackTintColor = "#4ca7ff".hexColor()
         rangeSlider2.maximumTrackTintColor = "#aeafb5".hexColor()
-        rangeSlider2.addTarget(self, action: #selector(self.complexionSliderEventValueChanged(_:)), for: .valueChanged)
-        self.complexionSlider = rangeSlider2
+        rangeSlider2.addTarget(self, action: #selector(self.skinSliderEventValueChanged(_:)), for: .valueChanged)
+        self.skinSlider = rangeSlider2
         bottomContentView.addSubview(rangeSlider2)
         rangeSlider2.snp.makeConstraints { make in
             make.top.equalTo(labvalue2.snp.bottom).offset(8)
@@ -217,12 +219,21 @@ extension EnanceSaturation {
 }
 
 extension EnanceSaturation{
-    @objc func complexionSliderEventValueChanged(_ sender:UISlider){
-        self.complexionValueL?.text = "\(Int(sender.value * 100))"
+    @objc func skinSliderEventValueChanged(_ sender:UISlider){
+        let value = "\(Int(sender.value * 100))"
+        if self.skinValueL?.text != value {
+            self.skinValueL?.text = value
+            self.setupEnanceSaturation(enabled: self.openSwitch.isOn)
+        }
+        
     }
     
-    @objc func colourSliderEventValueChanged(_ sender:UISlider){
-        self.colourValueL?.text = "\(Int(sender.value * 100))"
+    @objc func strengthSliderEventValueChanged(_ sender:UISlider){
+        let value = "\(Int(sender.value * 100))"
+        if self.strengthValueL?.text != value {
+            self.strengthValueL?.text = value
+            self.setupEnanceSaturation(enabled: self.openSwitch.isOn)
+        }
     }
     
     

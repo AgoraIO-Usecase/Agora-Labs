@@ -12,10 +12,10 @@ import UIKit
 
 class EnanceSaturation: BaseViewController {
     
-    var colourSlider:UISlider?
-    var colourValueL:UILabel?
-    var complexionSlider:UISlider?
-    var complexionValueL:UILabel?
+    var strengthSlider:UISlider?
+    var strengthValueL:UILabel?
+    var skinSlider:UISlider?
+    var skinValueL:UILabel?
     
     lazy var contentView: UIView = {
         let _contentView = UIView()
@@ -64,7 +64,7 @@ class EnanceSaturation: BaseViewController {
         self.setupRecvData()
     }
     
-    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
+    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 540), frameRate: .fps15, bitrate: 1450, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
         let connection = AgoraRtcConnection()
         connection.localUid = AgoraLabsUser.sendUid
         connection.channelId = AgoraLabsUser.channelName
@@ -77,14 +77,13 @@ class EnanceSaturation: BaseViewController {
         config.channelProfile = .liveBroadcasting
         config.eventDelegate = self
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: nil)
-        self.setupEnanceSaturation(enabled: false)
         
         agoraKit.setLogFile(LogUtils.sdkLogPath())
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
         
         agoraKit.enableVideo()
         agoraKit.disableAudio()
-        
+    
         // Set audio route to speaker
         agoraKit.setDefaultAudioRouteToSpeakerphone(true)
 
@@ -168,19 +167,10 @@ class EnanceSaturation: BaseViewController {
     }
     
     func setupEnanceSaturation(enabled:Bool) {
-        let json = JSON([
-            "rtc.video.enable_sr":[
-                "uid":AgoraLabsUser.sendUid,
-                "enabled":enabled,
-                "mode":1
-            ]
-        ]).rawString() ?? ""
-        let rt = agoraKit.setParameters(json)
-        if rt != 0 {
-            AGHUD.showFaild(info: "Enable EnanceSaturation False:\(rt)")
-            self.openSwitch.isOn = false
-            self.switchOpenChange(self.openSwitch)
-        }
+        let options = AgoraColorEnhanceOptions()
+        options.skinProtectLevel = self.skinSlider?.value ?? 0.5
+        options.strengthLevel = self.strengthSlider?.value ?? 0.5
+        agoraKit.setColorEnhanceOptions(enabled, options: options)
     }
 }
 
