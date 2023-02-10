@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentFactory;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -115,6 +117,10 @@ public class MainFragment extends Fragment {
         };
         binding.viewpager.setAdapter(adapter);
         binding.viewpager.setOffscreenPageLimit(4);
+        binding.ivSettings.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+            navController.navigate(R.id.action_homeFragment_to_settings);
+        });
     }
 
     @SuppressLint("WrongConstant")

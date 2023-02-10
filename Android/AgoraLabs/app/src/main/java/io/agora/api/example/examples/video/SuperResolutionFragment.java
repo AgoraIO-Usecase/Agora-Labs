@@ -51,31 +51,18 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
     private int senderUid =101;
     private int remoteUid=102;
 
-    private final int LAYOUT_HALF=1;
-    private final int LAYOUT_LOCAL_BIG=2;
-    private final int LAYOUT_LOCAL_SMALL=3;
-    private int curLayout=LAYOUT_HALF;
-
-    private SurfaceView localView;
     private SurfaceView remoteView;
 
-    private TextView tvOriginVideo;
     private TextView tvSR;
 
 
     private boolean srEnabled;
 
-    private final int SR_1=6;
-    private final int SR_1_33=7;
-    private final int SR_1_5=8;
-    private final int SR_2=3;
-    private int curSR=SR_1_5;
     private boolean needShowSrFaiedToast=true;
 
     private int resolution=VideoFeatureMenu.RESOLUTION_360P;
 
     private VideoEncoderConfiguration configuration;
-    private PopWindow popWindow;
 
     private boolean srEnabledSuccess=true;
 
@@ -94,46 +81,8 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         initView();
     }
 
-    private void showLayoutPopWin(){
-        if(popWindow==null) {
-            View view = LayoutInflater.from(getContext()).inflate(R.layout.video_layout_select, null);
-            View.OnClickListener listener = v -> {
-                SystemUtil.vibrator(getContext());
-                if (v.getId() == R.id.iv_half) {
-                    curLayout = LAYOUT_HALF;
-                    binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
-                } else if (v.getId() == R.id.iv_local_big) {
-                    curLayout = LAYOUT_LOCAL_BIG;
-                    binding.ivLayout.setImageResource(R.mipmap.ic_view_2);
-                } else if (v.getId() == R.id.iv_local_small) {
-                    curLayout = LAYOUT_LOCAL_SMALL;
-                    binding.ivLayout.setImageResource(R.mipmap.ic_view_3);
-                }
-                updateLayoutIvStatus();
-                updateLayout();
-                popWindow.dissmiss();
-            };
-            view.findViewById(R.id.iv_half).setOnClickListener(listener);
-            view.findViewById(R.id.iv_local_big).setOnClickListener(listener);
-            view.findViewById(R.id.iv_local_small).setOnClickListener(listener);
-
-            popWindow = new PopWindow.PopupWindowBuilder(getContext())
-                .setView(view)
-                .create();
-        }
-        updateLayoutIvStatus();
-        popWindow.showAsDropDown(binding.ivLayout,UIUtil.dip2px(getContext(),-60),UIUtil.dip2px(getContext(),-2));
-    }
-
-    private void updateLayoutIvStatus(){
-        ((ImageView)popWindow.getPopupWindow().getContentView().findViewById(R.id.iv_half)).setImageAlpha(curLayout==LAYOUT_HALF ? 255 : 125);
-        ((ImageView)popWindow.getPopupWindow().getContentView().findViewById(R.id.iv_local_big)).setImageAlpha(curLayout==LAYOUT_LOCAL_BIG ? 255 : 125);
-        ((ImageView)popWindow.getPopupWindow().getContentView().findViewById(R.id.iv_local_small)).setImageAlpha(curLayout==LAYOUT_LOCAL_SMALL ? 255 : 125);
-    }
-
     private void initView(){
         binding.ivBack.setOnClickListener(this);
-        binding.ivLayout.setOnClickListener(this);
         binding.ivSwitchCamera.setOnClickListener(this);
         binding.optionMenu.setListener(resolution -> {
             SuperResolutionFragment.this.resolution=resolution;
@@ -149,20 +98,7 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
             }
             updateSR();
         });
-        binding.ivLayout.setOnLongClickListener(v -> {
-            SystemUtil.vibrator(getContext());
-            showLayoutPopWin();
-            return false;
-        });
-
-        tvOriginVideo=new TextView(getContext());
-        tvOriginVideo.setText(R.string.original_video);
-        tvOriginVideo.setGravity(Gravity.CENTER);
-        tvOriginVideo.setTextColor(getResources().getColor(R.color.white));
-        tvOriginVideo.setTextSize(COMPLEX_UNIT_SP,15);
         int padding= UIUtil.dip2px(getContext(),6);
-        tvOriginVideo.setPadding(padding,padding,padding,padding);
-        tvOriginVideo.setBackgroundResource(R.drawable.bg_rectangle_grey);
 
         tvSR =new TextView(getContext());
         tvSR.setGravity(Gravity.CENTER);
@@ -172,9 +108,6 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         tvSR.setPadding(padding,padding,padding,padding);
         tvSR.setText(srEnabled ?R.string.sr_enabled:R.string.sr_disabled);
         tvSR.setBackgroundResource(srEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
-
-
-
 
         binding.menuControler.setOnClickListener(v -> {
             if(binding.optionMenu.getVisibility()==View.GONE){
@@ -216,7 +149,6 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
 
 
     private void setSRValue(){
-
         if(srEnabled) {
             rtcEngine.setParameters("{\"rtc.video.enable_sr\":{\"uid\":"+senderUid+
                 ",\"enabled\":true,\"mode\":1}}");
@@ -321,13 +253,8 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         rtcConnection.channelId=channelName;
         rtcConnection.localUid= senderUid;
         setVideoConfig();
-        localView = new SurfaceView(getContext()) ;
         rtcEngine.enableVideo();
         rtcEngine.enableAudio();
-        rtcEngine.setupLocalVideo(new VideoCanvas(localView, VideoCanvas.RENDER_MODE_HIDDEN, senderUid));
-        rtcEngine.startPreview();
-
-
         ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
         mediaOptions.channelProfile= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
         mediaOptions.clientRoleType= Constants.CLIENT_ROLE_BROADCASTER;
@@ -335,7 +262,6 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         mediaOptions.publishCameraTrack = true;
 
         rtcEngine.joinChannelEx("", rtcConnection, mediaOptions, new IRtcEngineEventHandler() {
-
 
             @Override
             public void onUserJoined(int uid, int elapsed) {
@@ -362,11 +288,7 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
                 super.onVideoSizeChanged(source, uid, width, height, rotation);
                 Log.d(TAG,"-----onVideoSizeChanged1---width:"+width+" height:"+height+" uid:"+uid);
             }
-
-
-
         });
-        addView();
     }
 
     private void setupReceiver(){
@@ -380,7 +302,7 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         mediaOptions.publishMicrophoneTrack=false;
 
 
-        int ret=rtcEngine.joinChannelEx("", rtcc, mediaOptions, new IRtcEngineEventHandler() {
+        rtcEngine.joinChannelEx("", rtcc, mediaOptions, new IRtcEngineEventHandler() {
             @Override public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
                 super.onJoinChannelSuccess(channel, uid, elapsed);
                 Log.d(TAG,"receiver onJoinChannelSuccess--channel:"+channel+" uid:"+uid+" elapsed:"+elapsed);
@@ -455,123 +377,21 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         SystemUtil.vibrator(getContext());
         if(v.getId()== R.id.iv_back){
             Navigation.findNavController(v).popBackStack();
-        }else if(v.getId()==R.id.iv_layout){
-            if(curLayout==LAYOUT_HALF){
-                curLayout=LAYOUT_LOCAL_SMALL;
-                binding.ivLayout.setImageResource(R.mipmap.ic_view_3);
-            }else if(curLayout==LAYOUT_LOCAL_BIG){
-                curLayout=LAYOUT_HALF;
-                binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
-            }else if(curLayout==LAYOUT_LOCAL_SMALL){
-                curLayout=LAYOUT_LOCAL_BIG;
-                binding.ivLayout.setImageResource(R.mipmap.ic_view_2);
-            }
-            updateLayout();
         }else if(v.getId()==R.id.iv_switch_camera){
             rtcEngine.switchCamera();
         }
     }
 
-
-
-    public void updateLayout(){
-        if(curLayout==LAYOUT_HALF){
-            ConstraintLayout.LayoutParams mainContainerParams=new ConstraintLayout.LayoutParams(0,0);
-            mainContainerParams.leftToLeft=PARENT_ID;
-            mainContainerParams.rightToRight=PARENT_ID;
-            mainContainerParams.topToTop=PARENT_ID;
-            mainContainerParams.bottomToTop=binding.subContainer.getId();
-            binding.mainContainer.setLayoutParams(mainContainerParams);
-            ConstraintLayout.LayoutParams subContainerParams=new ConstraintLayout.LayoutParams(0,0);
-            subContainerParams.leftToLeft=PARENT_ID;
-            subContainerParams.rightToRight=PARENT_ID;
-            subContainerParams.topToBottom=binding.mainContainer.getId();
-            subContainerParams.bottomToTop=binding.menuControler.getId();
-            binding.subContainer.setLayoutParams(subContainerParams);
-            addView();
-        }else if(curLayout==LAYOUT_LOCAL_BIG){
-            ConstraintLayoutUtils.setMatchParentLayout(binding.mainContainer);
-            setSmallWin(binding.subContainer);
-            addView();
-        }else if(curLayout==LAYOUT_LOCAL_SMALL){
-            ConstraintLayoutUtils.setMatchParentLayout(binding.mainContainer);
-            setSmallWin(binding.subContainer);
-            addView();
-        }
-    }
-
-
-    private void setSmallWin(View view){
-        ConstraintLayout.LayoutParams params=new ConstraintLayout.LayoutParams(UIUtil.dip2px(getContext(),160),UIUtil.dip2px(getContext(),200));
-        params.rightToRight=PARENT_ID;
-        params.bottomToTop=binding.menuControler.getId();
-        view.setLayoutParams(params);
-    }
-
-    private void setTopCenterLayout(View view,int topMargin){
-        ConstraintLayout.LayoutParams params =
-            new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        params.topToTop = PARENT_ID;
-        params.leftToLeft = PARENT_ID;
-        params.rightToRight = PARENT_ID;
-        params.topMargin=topMargin;
-        view.setLayoutParams(params);
-    }
-
-
     private void addView(){
         binding.mainContainer.removeAllViews();
-        binding.subContainer.removeAllViews();
-
-        if(curLayout==LAYOUT_HALF) {
-            if(localView!=null) {
-                binding.mainContainer.addView(localView);
-                ConstraintLayoutUtils.setBottomCenter(tvOriginVideo);
-                binding.mainContainer.addView(tvOriginVideo);
-            }
-            if(remoteView!=null) {
-                binding.subContainer.addView(remoteView);
-                int topMargin = UIUtil.dip2px(getContext(), 10);
-                setTopCenterLayout(tvSR, topMargin);
-                binding.subContainer.addView(tvSR);
-            }
-        }else if(curLayout==LAYOUT_LOCAL_BIG){
-            if(localView!=null) {
-                binding.mainContainer.addView(localView);
-                localView.setZOrderOnTop(false);
-                localView.setZOrderMediaOverlay(false);
-                int topMargin = UIUtil.dip2px(getContext(), 60);
-                setTopCenterLayout(tvOriginVideo, topMargin);
-                binding.mainContainer.addView(tvOriginVideo);
-            }
-            if(remoteView!=null) {
-                binding.subContainer.addView(remoteView);
-                remoteView.setZOrderOnTop(true);
-                remoteView.setZOrderMediaOverlay(true);
-                setTopCenterLayout(tvSR, UIUtil.dip2px(getContext(), 10));
-                binding.subContainer.addView(tvSR);
-            }
-        }else if(curLayout==LAYOUT_LOCAL_SMALL){
-            if(remoteView!=null) {
-                binding.mainContainer.addView(remoteView);
-                remoteView.setZOrderOnTop(false);
-                remoteView.setZOrderMediaOverlay(false);
-                int topMargin = UIUtil.dip2px(getContext(), 60);
-                setTopCenterLayout(tvSR, topMargin);
-                binding.mainContainer.addView(tvSR);
-            }
-            if(localView!=null) {
-                binding.subContainer.addView(localView);
-                localView.setZOrderOnTop(true);
-                localView.setZOrderMediaOverlay(true);
-                setTopCenterLayout(tvOriginVideo, UIUtil.dip2px(getContext(), 10));
-                binding.subContainer.addView(tvOriginVideo);
-            }
+        if(remoteView!=null) {
+            binding.mainContainer.addView(remoteView);
+            remoteView.setZOrderOnTop(false);
+            remoteView.setZOrderMediaOverlay(false);
+            /*
+            int topMargin = UIUtil.dip2px(getContext(), 60);
+            setTopCenterLayout(tvSR, topMargin);
+            binding.mainContainer.addView(tvSR);*/
         }
-
     }
-
-
-
-
 }

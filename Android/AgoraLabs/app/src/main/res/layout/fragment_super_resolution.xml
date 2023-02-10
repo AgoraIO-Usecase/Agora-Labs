@@ -7,21 +7,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/sub_container"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/sub_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/menu_controler"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_container"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
     <ImageView
         android:id="@+id/iv_back"
@@ -45,15 +33,6 @@
         android:layout_marginLeft="@dimen/permission_dp_5"
         android:gravity="center"
         />
-    <ImageView
-        android:id="@+id/iv_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/iv_switch_camera"
-        android:src="@mipmap/ic_view_1"
-        android:layout_marginTop="@dimen/permission_dp_10"
-        android:layout_marginRight="38dp"/>
 
     <ImageView
         android:id="@+id/iv_switch_camera"
