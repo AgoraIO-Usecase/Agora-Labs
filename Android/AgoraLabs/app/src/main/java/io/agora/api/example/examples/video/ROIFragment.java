@@ -47,25 +47,16 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
     private int senderUid =101;
     private int remoteUid=102;
 
-    private final int LAYOUT_HALF=1;
-    private final int LAYOUT_LOCAL_BIG=2;
-    private final int LAYOUT_LOCAL_SMALL=3;
-    private int curLayout=LAYOUT_HALF;
 
-    private SurfaceView localView;
+
     private SurfaceView remoteView;
 
-    private TextView tvOriginVideo;
     private TextView tvROI;
-    private TextView tvLocalBitrate;
     private TextView tvRemoteBitrate;
 
     private boolean roiEnabled;
     private int resolution=VideoFeatureMenu.RESOLUTION_360P;
-
-
     private VideoEncoderConfiguration configuration;
-    private PopWindow popWindow;
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,46 +73,8 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         initView();
     }
 
-    private void showLayoutPopWin(){
-        if(popWindow==null) {
-            View view = LayoutInflater.from(getContext()).inflate(R.layout.video_layout_select, null);
-            View.OnClickListener listener = v -> {
-                SystemUtil.vibrator(getContext());
-                if (v.getId() == R.id.iv_half) {
-                    curLayout = LAYOUT_HALF;
-                    binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
-                } else if (v.getId() == R.id.iv_local_big) {
-                    curLayout = LAYOUT_LOCAL_BIG;
-                    binding.ivLayout.setImageResource(R.mipmap.ic_view_2);
-                } else if (v.getId() == R.id.iv_local_small) {
-                    curLayout = LAYOUT_LOCAL_SMALL;
-                    binding.ivLayout.setImageResource(R.mipmap.ic_view_3);
-                }
-                updateLayoutIvStatus();
-                updateLayout();
-                popWindow.dissmiss();
-            };
-            view.findViewById(R.id.iv_half).setOnClickListener(listener);
-            view.findViewById(R.id.iv_local_big).setOnClickListener(listener);
-            view.findViewById(R.id.iv_local_small).setOnClickListener(listener);
-
-            popWindow = new PopWindow.PopupWindowBuilder(getContext())
-                .setView(view)
-                .create();
-        }
-        updateLayoutIvStatus();
-        popWindow.showAsDropDown(binding.ivLayout,UIUtil.dip2px(getContext(),-60),UIUtil.dip2px(getContext(),-2));
-    }
-
-    private void updateLayoutIvStatus(){
-        ((ImageView)popWindow.getPopupWindow().getContentView().findViewById(R.id.iv_half)).setImageAlpha(curLayout==LAYOUT_HALF ? 255 : 125);
-        ((ImageView)popWindow.getPopupWindow().getContentView().findViewById(R.id.iv_local_big)).setImageAlpha(curLayout==LAYOUT_LOCAL_BIG ? 255 : 125);
-        ((ImageView)popWindow.getPopupWindow().getContentView().findViewById(R.id.iv_local_small)).setImageAlpha(curLayout==LAYOUT_LOCAL_SMALL ? 255 : 125);
-    }
-
     private void initView(){
         binding.ivBack.setOnClickListener(this);
-        binding.ivLayout.setOnClickListener(this);
         binding.ivSwitchCamera.setOnClickListener(this);
         binding.optionMenu.setListener(resolution -> {
             ROIFragment.this.resolution=resolution;
@@ -134,20 +87,8 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
             roiEnabled =isChecked;
             updateROI();
         });
-        binding.ivLayout.setOnLongClickListener(v -> {
-            SystemUtil.vibrator(getContext());
-            showLayoutPopWin();
-            return false;
-        });
 
-        tvOriginVideo=new TextView(getContext());
-        tvOriginVideo.setText(R.string.original_video);
-        tvOriginVideo.setGravity(Gravity.CENTER);
-        tvOriginVideo.setTextColor(getResources().getColor(R.color.white));
-        tvOriginVideo.setTextSize(COMPLEX_UNIT_SP,15);
         int padding= UIUtil.dip2px(getContext(),6);
-        tvOriginVideo.setPadding(padding,padding,padding,padding);
-        tvOriginVideo.setBackgroundResource(R.drawable.bg_rectangle_grey);
 
         tvROI =new TextView(getContext());
         tvROI.setGravity(Gravity.CENTER);
@@ -157,12 +98,6 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         tvROI.setPadding(padding,padding,padding,padding);
         tvROI.setText(roiEnabled ?R.string.roi_enabled:R.string.roi_disabled);
         tvROI.setBackgroundResource(roiEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
-
-        tvLocalBitrate=new TextView(getContext());
-        tvLocalBitrate.setGravity(Gravity.CENTER);
-        tvLocalBitrate.setTextColor(getResources().getColor(R.color.white));
-        tvLocalBitrate.setTextSize(COMPLEX_UNIT_SP,13);
-        tvLocalBitrate.setPadding(padding,padding,padding,padding);
 
         tvRemoteBitrate=new TextView(getContext());
         tvRemoteBitrate.setGravity(Gravity.CENTER);
@@ -238,7 +173,6 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-
     @Override public void onDestroy() {
         super.onDestroy();
         rtcEngine.stopPreview();
@@ -248,7 +182,6 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-
     private void setupSend(){
         rtcConnection=new RtcConnection();
         rtcConnection.channelId=channelName;
@@ -256,11 +189,8 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
 
         setVideoConfig();
 
-        localView = new SurfaceView(getContext()) ;
         rtcEngine.enableVideo();
         rtcEngine.enableAudio();
-        rtcEngine.setupLocalVideo(new VideoCanvas(localView, VideoCanvas.RENDER_MODE_HIDDEN, senderUid));
-        rtcEngine.startPreview();
 
 
         ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
@@ -270,8 +200,6 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         mediaOptions.publishCameraTrack = true;
 
         rtcEngine.joinChannelEx("", rtcConnection, mediaOptions, new IRtcEngineEventHandler() {
-
-
             @Override
             public void onUserJoined(int uid, int elapsed) {
                 Log.d(TAG,"agora onUserJoined:" + uid);
@@ -286,16 +214,7 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
                     }
                 });
             }
-
-            @Override
-            public void onRtcStats(IRtcEngineEventHandler.RtcStats stats) {
-                ThreadUtils.runOnUI(() -> {
-                    int bitrate=stats.txVideoKBitRate;
-                    tvLocalBitrate.setText(getContext().getResources().getString(R.string.bitrate,bitrate));
-                });
-            }
         });
-        addView();
     }
 
     private void setupReceiver(){
@@ -362,57 +281,11 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
 
     @Override public void onClick(View v) {
         SystemUtil.vibrator(getContext());
-        if(v.getId()== R.id.iv_back){
+        if(v.getId()== R.id.iv_back) {
             Navigation.findNavController(v).popBackStack();
-        }else if(v.getId()==R.id.iv_layout){
-            if(curLayout==LAYOUT_HALF){
-                curLayout=LAYOUT_LOCAL_SMALL;
-                binding.ivLayout.setImageResource(R.mipmap.ic_view_3);
-            }else if(curLayout==LAYOUT_LOCAL_BIG){
-                curLayout=LAYOUT_HALF;
-                binding.ivLayout.setImageResource(R.mipmap.ic_view_1);
-            }else if(curLayout==LAYOUT_LOCAL_SMALL){
-                curLayout=LAYOUT_LOCAL_BIG;
-                binding.ivLayout.setImageResource(R.mipmap.ic_view_2);
-            }
-            updateLayout();
         }else if(v.getId()==R.id.iv_switch_camera){
             rtcEngine.switchCamera();
         }
-    }
-
-    public void updateLayout(){
-        if(curLayout==LAYOUT_HALF){
-            ConstraintLayout.LayoutParams mainContainerParams=new ConstraintLayout.LayoutParams(0,0);
-            mainContainerParams.leftToLeft=PARENT_ID;
-            mainContainerParams.rightToRight=PARENT_ID;
-            mainContainerParams.topToTop=PARENT_ID;
-            mainContainerParams.bottomToTop=binding.subContainer.getId();
-            binding.mainContainer.setLayoutParams(mainContainerParams);
-            ConstraintLayout.LayoutParams subContainerParams=new ConstraintLayout.LayoutParams(0,0);
-            subContainerParams.leftToLeft=PARENT_ID;
-            subContainerParams.rightToRight=PARENT_ID;
-            subContainerParams.topToBottom=binding.mainContainer.getId();
-            subContainerParams.bottomToTop=binding.menuControler.getId();
-            binding.subContainer.setLayoutParams(subContainerParams);
-            addView();
-        }else if(curLayout==LAYOUT_LOCAL_BIG){
-            ConstraintLayoutUtils.setMatchParentLayout(binding.mainContainer);
-            setSmallWin(binding.subContainer);
-            addView();
-        }else if(curLayout==LAYOUT_LOCAL_SMALL){
-            ConstraintLayoutUtils.setMatchParentLayout(binding.mainContainer);
-            setSmallWin(binding.subContainer);
-            addView();
-        }
-    }
-
-
-    private void setSmallWin(View view){
-        ConstraintLayout.LayoutParams params=new ConstraintLayout.LayoutParams(UIUtil.dip2px(getContext(),160),UIUtil.dip2px(getContext(),200));
-        params.rightToRight=PARENT_ID;
-        params.bottomToTop=binding.menuControler.getId();
-        view.setLayoutParams(params);
     }
 
     private void setTopCenterLayout(View view,int topMargin){
@@ -425,72 +298,19 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         view.setLayoutParams(params);
     }
 
-
     private void addView(){
         binding.mainContainer.removeAllViews();
-        binding.subContainer.removeAllViews();
-
-        if(curLayout==LAYOUT_HALF) {
-            if(localView!=null) {
-                binding.mainContainer.addView(localView);
-                ConstraintLayoutUtils.setBottomCenter(tvOriginVideo);
-                ConstraintLayoutUtils.setBottomRight(tvLocalBitrate);
-                binding.mainContainer.addView(tvOriginVideo);
-                binding.mainContainer.addView(tvLocalBitrate);
-            }
-            if(remoteView!=null) {
-                binding.subContainer.addView(remoteView);
-                int topMargin = UIUtil.dip2px(getContext(), 10);
-                setTopCenterLayout(tvROI, topMargin);
-                ConstraintLayoutUtils.setTopRight(tvRemoteBitrate, topMargin);
-                binding.subContainer.addView(tvROI);
-                binding.subContainer.addView(tvRemoteBitrate);
-            }
-        }else if(curLayout==LAYOUT_LOCAL_BIG){
-            if(localView!=null) {
-                binding.mainContainer.addView(localView);
-                localView.setZOrderOnTop(false);
-                localView.setZOrderMediaOverlay(false);
-                int topMargin = UIUtil.dip2px(getContext(), 60);
-                setTopCenterLayout(tvOriginVideo, topMargin);
-                ConstraintLayoutUtils.setTopRight(tvLocalBitrate, topMargin);
-                binding.mainContainer.addView(tvOriginVideo);
-                binding.mainContainer.addView(tvLocalBitrate);
-            }
-            if(remoteView!=null) {
-                binding.subContainer.addView(remoteView);
-                remoteView.setZOrderOnTop(true);
-                remoteView.setZOrderMediaOverlay(true);
-                setTopCenterLayout(tvROI, UIUtil.dip2px(getContext(), 10));
-                ConstraintLayoutUtils.setBottomCenter(tvRemoteBitrate);
-                binding.subContainer.addView(tvROI);
-                binding.subContainer.addView(tvRemoteBitrate);
-            }
-        }else if(curLayout==LAYOUT_LOCAL_SMALL){
-            if(remoteView!=null) {
-                binding.mainContainer.addView(remoteView);
-                remoteView.setZOrderOnTop(false);
-                remoteView.setZOrderMediaOverlay(false);
-                int topMargin = UIUtil.dip2px(getContext(), 60);
-                setTopCenterLayout(tvROI, topMargin);
-                ConstraintLayoutUtils.setTopRight(tvRemoteBitrate, topMargin);
-                binding.mainContainer.addView(tvROI);
-                binding.mainContainer.addView(tvRemoteBitrate);
-            }
-            if(localView!=null) {
-                binding.subContainer.addView(localView);
-                localView.setZOrderOnTop(true);
-                localView.setZOrderMediaOverlay(true);
-                setTopCenterLayout(tvOriginVideo, UIUtil.dip2px(getContext(), 10));
-                ConstraintLayoutUtils.setBottomCenter(tvLocalBitrate);
-                binding.subContainer.addView(tvOriginVideo);
-                binding.subContainer.addView(tvLocalBitrate);
-            }
+        if(remoteView!=null) {
+            binding.mainContainer.addView(remoteView);
+            remoteView.setZOrderOnTop(false);
+            remoteView.setZOrderMediaOverlay(false);
+            /*
+            int topMargin = UIUtil.dip2px(getContext(), 60);
+            setTopCenterLayout(tvROI, topMargin);
+            ConstraintLayoutUtils.setTopRight(tvRemoteBitrate, topMargin);
+            binding.mainContainer.addView(tvROI);
+            binding.mainContainer.addView(tvRemoteBitrate);*/
         }
-
     }
-
-
-
 
 }

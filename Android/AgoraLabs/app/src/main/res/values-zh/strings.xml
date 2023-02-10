@@ -175,4 +175,9 @@
     <string name="sr_1_5">1.5倍</string>
     <string name="sr_2">2.0倍</string>
     <string name="imge_type_not_support">暂不支持该图片类型!</string>
+    <string name="settings">设置</string>
+    <string name="user_agreement">用户协议</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="sign_out">退出登陆</string>
+    <string name="logout">注销账号</string>
 </resources>
