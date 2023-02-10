@@ -96,6 +96,12 @@
 		A68E423A2993ACD800E298DF /* EnanceSaturation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42392993ACD800E298DF /* EnanceSaturation.storyboard */; };
 		A68E423C2993ACE100E298DF /* EnanceSaturation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E423B2993ACE100E298DF /* EnanceSaturation.swift */; };
 		A68E423E2993ACEB00E298DF /* EnanceSaturation+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E423D2993ACEB00E298DF /* EnanceSaturation+UI.swift */; };
+		A68E42412995E13500E298DF /* ReduceNoise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42402995E13500E298DF /* ReduceNoise.swift */; };
+		A68E42432995E13D00E298DF /* ReduceNoise+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42422995E13D00E298DF /* ReduceNoise+UI.swift */; };
+		A68E42452995E14400E298DF /* ReduceNoise.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42442995E14400E298DF /* ReduceNoise.storyboard */; };
+		A68E42482995EE4700E298DF /* DimEnvironment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42472995EE4700E298DF /* DimEnvironment.storyboard */; };
+		A68E424A2995EE5000E298DF /* DimEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42492995EE5000E298DF /* DimEnvironment.swift */; };
+		A68E424C2995EE5900E298DF /* DimEnvironment+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */; };
 		A690E4B5294AC9E90058D196 /* launch_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A690E4B4294AC9E90058D196 /* launch_logo.png */; };
 		A6C5B17D2941C7F90071FFBF /* BeautifyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */; };
 		A6C5B17F2941C8C70071FFBF /* BeautifyFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C5B17E2941C8C70071FFBF /* BeautifyFilter.storyboard */; };
@@ -467,6 +473,12 @@
 		A68E42392993ACD800E298DF /* EnanceSaturation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EnanceSaturation.storyboard; sourceTree = "<group>"; };
 		A68E423B2993ACE100E298DF /* EnanceSaturation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnanceSaturation.swift; sourceTree = "<group>"; };
 		A68E423D2993ACEB00E298DF /* EnanceSaturation+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnanceSaturation+UI.swift"; sourceTree = "<group>"; };
+		A68E42402995E13500E298DF /* ReduceNoise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduceNoise.swift; sourceTree = "<group>"; };
+		A68E42422995E13D00E298DF /* ReduceNoise+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReduceNoise+UI.swift"; sourceTree = "<group>"; };
+		A68E42442995E14400E298DF /* ReduceNoise.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReduceNoise.storyboard; sourceTree = "<group>"; };
+		A68E42472995EE4700E298DF /* DimEnvironment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DimEnvironment.storyboard; sourceTree = "<group>"; };
+		A68E42492995EE5000E298DF /* DimEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimEnvironment.swift; sourceTree = "<group>"; };
+		A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DimEnvironment+UI.swift"; sourceTree = "<group>"; };
 		A690E4B4294AC9E90058D196 /* launch_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_logo.png; sourceTree = "<group>"; };
 		A6A7BA49294320A6006A8CBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyFilter.swift; sourceTree = "<group>"; };
@@ -1007,6 +1019,26 @@
 			path = EnanceSaturation;
 			sourceTree = "<group>";
 		};
+		A68E423F2995E12600E298DF /* ReduceNoise */ = {
+			isa = PBXGroup;
+			children = (
+				A68E42442995E14400E298DF /* ReduceNoise.storyboard */,
+				A68E42402995E13500E298DF /* ReduceNoise.swift */,
+				A68E42422995E13D00E298DF /* ReduceNoise+UI.swift */,
+			);
+			path = ReduceNoise;
+			sourceTree = "<group>";
+		};
+		A68E42462995EE3400E298DF /* DimEnvironment */ = {
+			isa = PBXGroup;
+			children = (
+				A68E42472995EE4700E298DF /* DimEnvironment.storyboard */,
+				A68E42492995EE5000E298DF /* DimEnvironment.swift */,
+				A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */,
+			);
+			path = DimEnvironment;
+			sourceTree = "<group>";
+		};
 		A6C5B17B2941C7DF0071FFBF /* BeautifyFilter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1494,6 +1526,8 @@
 		A75A56D724A0603000D0089E /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				A68E42462995EE3400E298DF /* DimEnvironment */,
+				A68E423F2995E12600E298DF /* ReduceNoise */,
 				A68E42382993ACC500E298DF /* EnanceSaturation */,
 				A68E42312993894300E298DF /* HDR */,
 				8BC751CF273E502700552265 /* LiveStreaming */,
@@ -1707,6 +1741,7 @@
 				7F93083A293DA89C00D3F00B /* VideoView.xib in Resources */,
 				A6D88D93294074E000806419 /* add.jpeg in Resources */,
 				A6E600212976513B00D9555C /* makeup_icon_combination_mermaid.bundle in Resources */,
+				A68E42482995EE4700E298DF /* DimEnvironment.storyboard in Resources */,
 				A6E600492976513B00D9555C /* makeup_icon_combination_paper_cranes.bundle in Resources */,
 				A6E6FFFF2976513B00D9555C /* boyfriend1.bundle in Resources */,
 				A6E600682976513B00D9555C /* nihongdeng.bundle in Resources */,
@@ -1757,6 +1792,7 @@
 				A6E6FFF92976513B00D9555C /* gufeng_zh_fu.bundle in Resources */,
 				A6E600732976513B00D9555C /* emotion_type.bundle in Resources */,
 				A6E6FFF22976513B00D9555C /* ai_face_processor.bundle in Resources */,
+				A68E42452995E14400E298DF /* ReduceNoise.storyboard in Resources */,
 				A6E600302976513B00D9555C /* mu_style_eyelash_02.bundle in Resources */,
 				A6E6000D2976513B00D9555C /* picasso_e2.bundle in Resources */,
 				A6E6007E2976513B00D9555C /* face_makeup.bundle in Resources */,
@@ -1864,7 +1900,9 @@
 			files = (
 				A6EAA8822990A052008D9ECE /* VLHotSpotBtn.m in Sources */,
 				A6D88CF7293DE2A000806419 /* AGViewControllerHead.swift in Sources */,
+				A68E42432995E13D00E298DF /* ReduceNoise+UI.swift in Sources */,
 				A667E22D295557300053E0B5 /* ROI+UI.swift in Sources */,
+				A68E424A2995EE5000E298DF /* DimEnvironment.swift in Sources */,
 				A68E423C2993ACE100E298DF /* EnanceSaturation.swift in Sources */,
 				036CBA47251990B400D74FAD /* AgoraCustomEncryption.h in Sources */,
 				A6EAA87929909E85008D9ECE /* VLPopImageVerifyView.m in Sources */,
@@ -1900,6 +1938,7 @@
 				A6EAA8962991025F008D9ECE /* VLCommonWebViewController.m in Sources */,
 				A6D88D05293F422500806419 /* VirtualBackground+UI.swift in Sources */,
 				A6D88CF8293DE2A000806419 /* AGBasisViewController.swift in Sources */,
+				A68E42412995E13500E298DF /* ReduceNoise.swift in Sources */,
 				A6246BE12952B26900DFB5BA /* Resolution.swift in Sources */,
 				67B8C7B52805757200195106 /* MediaUtils.m in Sources */,
 				03D13C0124488F1F00B599B3 /* KeyCenter.swift in Sources */,
@@ -1915,6 +1954,7 @@
 				A6EAA8972991025F008D9ECE /* VLLocalWebViewController.m in Sources */,
 				A7847F942458089E00469187 /* AgoraExtension.swift in Sources */,
 				E74877BA28A23C1400CA2F58 /* JSONObject.swift in Sources */,
+				A68E424C2995EE5900E298DF /* DimEnvironment+UI.swift in Sources */,
 				A68E42332993895700E298DF /* HDR.swift in Sources */,
 				A6D88D07293F44B900806419 /* Uiew+Tap.swift in Sources */,
 				A667E29929559FFE0053E0B5 /* PVC.swift in Sources */,

@@ -1,20 +1,23 @@
 //
-//  EnanceSaturation.swift
+//  ReduceNoise.swift
 //  AgoraLabs
 //
-//  Created by LiaoChenliang on 2023/2/8.
+//  Created by LiaoChenliang on 2023/2/10.
 //  Copyright © 2023 Agora Corp. All rights reserved.
 //
 
 import AgoraRtcKit
 import UIKit
 
-class EnanceSaturation: BaseViewController {
+class ReduceNoise: BaseViewController {
     
-    var strengthSlider:UISlider?
-    var strengthValueL:UILabel?
-    var skinSlider:UISlider?
-    var skinValueL:UILabel?
+    var currentModel:SubCellModel?
+    
+    let multipleModelList:[SubCellModel] = [
+        SubCellModel(name: "低功耗模式",tag: 0,value: 0),
+        SubCellModel(name: "均衡模式",tag: 1,value: 1),
+        SubCellModel(name: "强降噪模式",tag: 2,value: 2)
+    ]
     
     lazy var contentView: UIView = {
         let _contentView = UIView()
@@ -165,15 +168,15 @@ class EnanceSaturation: BaseViewController {
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
     }
     
-    func setupEnanceSaturation(enabled:Bool) {
-        let options = AgoraColorEnhanceOptions()
-        options.skinProtectLevel = self.skinSlider?.value ?? 0.5
-        options.strengthLevel = self.strengthSlider?.value ?? 0.5
-        agoraKit.setColorEnhanceOptions(enabled, options: options)
+    func setupVideoDenoiser(enabled:Bool) {
+        let options = AgoraVideoDenoiserOptions()
+        let level = self.currentModel?.value as? UInt
+        options.level = AgoraVideoDenoiserLevel(rawValue: level ?? 0) ?? .highQuality
+        agoraKit.setVideoDenoiserOptions(enabled, options: options)
     }
 }
 
-extension EnanceSaturation:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
+extension ReduceNoise:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
         print("onEvent ------------ provider:\(provider ?? "")")
     }
@@ -182,9 +185,5 @@ extension EnanceSaturation:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
         print("videoSizeChangedOf ------------ ")
     }
     
-    
-//    func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStats stats: AgoraRtcRemoteVideoStats) {
-//        print("AgoraRtcRemoteVideoStats------------\(stats.superResolutionType)")
-//    }
-    
 }
+

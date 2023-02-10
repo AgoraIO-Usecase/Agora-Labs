@@ -48,11 +48,11 @@ class ViewController: UIViewController {
                     "PVC",
                     "ROI",
                     "Resolution",
-                    "Image",
                     "Reduce Noise",
                     "Dim Environment",
                     "Enance Saturation",
-                    "HDR"
+                    "HDR",
+                    "Image",
                 ]
             ]
         ],
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
     var doneMap = ["Virtual Background",
                    "Beautify Filter",
                    "Resolution","ROI","PVC","HDR",
-                   "Enance Saturation"]
+                   "Enance Saturation","Reduce Noise","Dim Environment"]
 //    var doneMap = ["Virtual Background","Beautify Filter"]
     private var segmentedDataSource: JXSegmentedTitleDataSource!
     private var segmentedView: JXSegmentedView!
