@@ -117,14 +117,16 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if !VLUserCenter().isLogin() {
-            self.onUserLogoutNotify()
-        }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("AgoraRtcKit - \(AgoraRtcEngineKit.getSdkVersion())")
+        
+        if !VLUserCenter().isLogin() {
+            self.onUserLogoutNotify()
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(onUserLogoutNotify), name: NSNotification.Name(rawValue: kUserLogoutNotify), object: nil)
         
@@ -264,6 +266,6 @@ extension ViewController{
         vc.fd_prefersNavigationBarHidden = false
         vc.fd_interactivePopDisabled = true
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: false)
+        self.present(vc, animated: true)
     }
 }
