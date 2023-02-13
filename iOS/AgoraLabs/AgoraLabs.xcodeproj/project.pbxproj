@@ -102,6 +102,15 @@
 		A68E42482995EE4700E298DF /* DimEnvironment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42472995EE4700E298DF /* DimEnvironment.storyboard */; };
 		A68E424A2995EE5000E298DF /* DimEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42492995EE5000E298DF /* DimEnvironment.swift */; };
 		A68E424C2995EE5900E298DF /* DimEnvironment+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */; };
+		A68E424F2995F69500E298DF /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E424E2995F69500E298DF /* Setting.storyboard */; };
+		A68E42512995F6A900E298DF /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42502995F6A900E298DF /* Setting.swift */; };
+		A68E4260299A1CBF00E298DF /* VLResponseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E4256299A1CBF00E298DF /* VLResponseDataModel.m */; };
+		A68E4261299A1CBF00E298DF /* VLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E4259299A1CBF00E298DF /* VLBaseModel.m */; };
+		A68E4262299A1CBF00E298DF /* VLRequestRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E425C299A1CBF00E298DF /* VLRequestRoute.m */; };
+		A68E4263299A1CBF00E298DF /* VLAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E425E299A1CBF00E298DF /* VLAPIRequest.m */; };
+		A68E4267299A1D7600E298DF /* VLLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E4266299A1D7600E298DF /* VLLoginModel.m */; };
+		A68E426B299A1D8900E298DF /* VLUserCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E426A299A1D8900E298DF /* VLUserCenter.m */; };
+		A68E426F299A1DC500E298DF /* VLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E426D299A1DC500E298DF /* VLCache.m */; };
 		A690E4B5294AC9E90058D196 /* launch_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A690E4B4294AC9E90058D196 /* launch_logo.png */; };
 		A6C5B17D2941C7F90071FFBF /* BeautifyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */; };
 		A6C5B17F2941C8C70071FFBF /* BeautifyFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C5B17E2941C8C70071FFBF /* BeautifyFilter.storyboard */; };
@@ -479,6 +488,24 @@
 		A68E42472995EE4700E298DF /* DimEnvironment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DimEnvironment.storyboard; sourceTree = "<group>"; };
 		A68E42492995EE5000E298DF /* DimEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimEnvironment.swift; sourceTree = "<group>"; };
 		A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DimEnvironment+UI.swift"; sourceTree = "<group>"; };
+		A68E424E2995F69500E298DF /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		A68E42502995F6A900E298DF /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		A68E4254299A1CBF00E298DF /* VLNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLNetworkConfig.h; sourceTree = "<group>"; };
+		A68E4256299A1CBF00E298DF /* VLResponseDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLResponseDataModel.m; sourceTree = "<group>"; };
+		A68E4257299A1CBF00E298DF /* VLBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLBaseModel.h; sourceTree = "<group>"; };
+		A68E4258299A1CBF00E298DF /* VLResponseDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLResponseDataModel.h; sourceTree = "<group>"; };
+		A68E4259299A1CBF00E298DF /* VLBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLBaseModel.m; sourceTree = "<group>"; };
+		A68E425B299A1CBF00E298DF /* VLAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLAPIRequest.h; sourceTree = "<group>"; };
+		A68E425C299A1CBF00E298DF /* VLRequestRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLRequestRoute.m; sourceTree = "<group>"; };
+		A68E425D299A1CBF00E298DF /* VLRequestRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLRequestRoute.h; sourceTree = "<group>"; };
+		A68E425E299A1CBF00E298DF /* VLAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLAPIRequest.m; sourceTree = "<group>"; };
+		A68E425F299A1CBF00E298DF /* VLBaseHander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLBaseHander.h; sourceTree = "<group>"; };
+		A68E4265299A1D7600E298DF /* VLLoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLLoginModel.h; sourceTree = "<group>"; };
+		A68E4266299A1D7600E298DF /* VLLoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLLoginModel.m; sourceTree = "<group>"; };
+		A68E4269299A1D8900E298DF /* VLUserCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLUserCenter.h; sourceTree = "<group>"; };
+		A68E426A299A1D8900E298DF /* VLUserCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLUserCenter.m; sourceTree = "<group>"; };
+		A68E426D299A1DC500E298DF /* VLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCache.m; sourceTree = "<group>"; };
+		A68E426E299A1DC500E298DF /* VLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCache.h; sourceTree = "<group>"; };
 		A690E4B4294AC9E90058D196 /* launch_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_logo.png; sourceTree = "<group>"; };
 		A6A7BA49294320A6006A8CBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyFilter.swift; sourceTree = "<group>"; };
@@ -799,6 +826,7 @@
 		03BCEC4C244932E000ED7177 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				A68E424D2995F68300E298DF /* Setting */,
 				A6EAA86329909D75008D9ECE /* Login */,
 				A75A56D324A0603000D0089E /* Basic */,
 				A75A56D724A0603000D0089E /* Advanced */,
@@ -884,12 +912,14 @@
 		03D13BFF24488F1E00B599B3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A68E426C299A1DC500E298DF /* Cache */,
 				A6EAA8912991025F008D9ECE /* WebView */,
 				A62469162952AA0800DFB5BA /* BeautyTool */,
 				A6D88CF4293DE2A000806419 /* ViewController */,
 				A6D88CF1293DE2A000806419 /* View */,
 				7F930837293DA89C00D3F00B /* VideoView.swift */,
 				7F930838293DA89C00D3F00B /* VideoView.xib */,
+				A68E4252299A1CBF00E298DF /* VLNetwork */,
 				E74877B528A23B8B00CA2F58 /* NetworkManager */,
 				67B8C7B22805753D00195106 /* Utils */,
 				036CBA4025198E9100D74FAD /* CustomEncryption */,
@@ -1037,6 +1067,84 @@
 				A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */,
 			);
 			path = DimEnvironment;
+			sourceTree = "<group>";
+		};
+		A68E424D2995F68300E298DF /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				A68E424E2995F69500E298DF /* Setting.storyboard */,
+				A68E42502995F6A900E298DF /* Setting.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		A68E4252299A1CBF00E298DF /* VLNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				A68E4253299A1CBF00E298DF /* Configure */,
+				A68E4255299A1CBF00E298DF /* Model */,
+				A68E425A299A1CBF00E298DF /* Request */,
+			);
+			path = VLNetwork;
+			sourceTree = "<group>";
+		};
+		A68E4253299A1CBF00E298DF /* Configure */ = {
+			isa = PBXGroup;
+			children = (
+				A68E4254299A1CBF00E298DF /* VLNetworkConfig.h */,
+			);
+			path = Configure;
+			sourceTree = "<group>";
+		};
+		A68E4255299A1CBF00E298DF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A68E4256299A1CBF00E298DF /* VLResponseDataModel.m */,
+				A68E4257299A1CBF00E298DF /* VLBaseModel.h */,
+				A68E4258299A1CBF00E298DF /* VLResponseDataModel.h */,
+				A68E4259299A1CBF00E298DF /* VLBaseModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A68E425A299A1CBF00E298DF /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				A68E425B299A1CBF00E298DF /* VLAPIRequest.h */,
+				A68E425C299A1CBF00E298DF /* VLRequestRoute.m */,
+				A68E425D299A1CBF00E298DF /* VLRequestRoute.h */,
+				A68E425E299A1CBF00E298DF /* VLAPIRequest.m */,
+				A68E425F299A1CBF00E298DF /* VLBaseHander.h */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		A68E4264299A1D7600E298DF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A68E4268299A1D8900E298DF /* UserCenter */,
+				A68E4265299A1D7600E298DF /* VLLoginModel.h */,
+				A68E4266299A1D7600E298DF /* VLLoginModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A68E4268299A1D8900E298DF /* UserCenter */ = {
+			isa = PBXGroup;
+			children = (
+				A68E4269299A1D8900E298DF /* VLUserCenter.h */,
+				A68E426A299A1D8900E298DF /* VLUserCenter.m */,
+			);
+			path = UserCenter;
+			sourceTree = "<group>";
+		};
+		A68E426C299A1DC500E298DF /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				A68E426D299A1DC500E298DF /* VLCache.m */,
+				A68E426E299A1DC500E298DF /* VLCache.h */,
+			);
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		A6C5B17B2941C7DF0071FFBF /* BeautifyFilter */ = {
@@ -1448,6 +1556,7 @@
 		A6EAA86329909D75008D9ECE /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				A68E4264299A1D7600E298DF /* Model */,
 				A6EAA86629909E85008D9ECE /* Controller */,
 				A6EAA86A29909E85008D9ECE /* View */,
 			);
@@ -1472,13 +1581,13 @@
 				A6EAA8982991047B008D9ECE /* VLURLPathConfig.h */,
 				A6EAA87229909E85008D9ECE /* WMZCode */,
 				A6EAA87F2990A052008D9ECE /* VLHotSpotBtn */,
+				A6EAA86F29909E85008D9ECE /* VLPopImageVerifyView.h */,
 				A6EAA86B29909E85008D9ECE /* VLPopImageVerifyView.m */,
+				A6EAA87129909E85008D9ECE /* VLLoginInputVerifyCodeView.h */,
 				A6EAA86C29909E85008D9ECE /* VLLoginInputVerifyCodeView.m */,
+				A6EAA87029909E85008D9ECE /* VLPrivacyCustomView.h */,
 				A6EAA86D29909E85008D9ECE /* VLPrivacyCustomView.m */,
 				A6EAA86E29909E85008D9ECE /* VLLoginInputPhoneView.h */,
-				A6EAA86F29909E85008D9ECE /* VLPopImageVerifyView.h */,
-				A6EAA87029909E85008D9ECE /* VLPrivacyCustomView.h */,
-				A6EAA87129909E85008D9ECE /* VLLoginInputVerifyCodeView.h */,
 				A6EAA87629909E85008D9ECE /* VLLoginInputPhoneView.m */,
 			);
 			path = View;
@@ -1692,6 +1801,7 @@
 				A6E6001F2976513B00D9555C /* makeup_icon_combination_bored_cat.bundle in Resources */,
 				A6E6FFE42976513B00D9555C /* halfBodyDetect.bundle in Resources */,
 				A6E6004C2976513B00D9555C /* ctrl_snow.bundle in Resources */,
+				A68E424F2995F69500E298DF /* Setting.storyboard in Resources */,
 				A6E6FFEA2976513B00D9555C /* default_bg.bundle in Resources */,
 				A6E6FFE62976513B00D9555C /* fakeman.bundle in Resources */,
 				A6E600562976513B00D9555C /* hair_gradient_01.bundle in Resources */,
@@ -1904,14 +2014,18 @@
 				A667E22D295557300053E0B5 /* ROI+UI.swift in Sources */,
 				A68E424A2995EE5000E298DF /* DimEnvironment.swift in Sources */,
 				A68E423C2993ACE100E298DF /* EnanceSaturation.swift in Sources */,
+				A68E42512995F6A900E298DF /* Setting.swift in Sources */,
 				036CBA47251990B400D74FAD /* AgoraCustomEncryption.h in Sources */,
 				A6EAA87929909E85008D9ECE /* VLPopImageVerifyView.m in Sources */,
 				03F8733224C8696600EDB1A3 /* EntryViewController.swift in Sources */,
 				A6EAA8892990A86B008D9ECE /* ALLoginViewController.m in Sources */,
+				A68E426B299A1D8900E298DF /* VLUserCenter.m in Sources */,
 				A6C5B1832941E8190071FFBF /* BeautifyFilterModeI.swift in Sources */,
+				A68E4262299A1CBF00E298DF /* VLRequestRoute.m in Sources */,
 				0371D8AE250B4A2C00C0DD61 /* JoinChannelAudio.swift in Sources */,
 				A6D88CF6293DE2A000806419 /* AGViewControllerCell.swift in Sources */,
 				A68E423E2993ACEB00E298DF /* EnanceSaturation+UI.swift in Sources */,
+				A68E4267299A1D7600E298DF /* VLLoginModel.m in Sources */,
 				A6C5B3162942E2310071FFBF /* BDResourceHelper.m in Sources */,
 				8B333DA9267B4BC3002A3785 /* SettingsCells.swift in Sources */,
 				A6D88D09293F52B600806419 /* AGViewSubCell.swift in Sources */,
@@ -1938,9 +2052,13 @@
 				A6EAA8962991025F008D9ECE /* VLCommonWebViewController.m in Sources */,
 				A6D88D05293F422500806419 /* VirtualBackground+UI.swift in Sources */,
 				A6D88CF8293DE2A000806419 /* AGBasisViewController.swift in Sources */,
+				A68E4263299A1CBF00E298DF /* VLAPIRequest.m in Sources */,
 				A68E42412995E13500E298DF /* ReduceNoise.swift in Sources */,
 				A6246BE12952B26900DFB5BA /* Resolution.swift in Sources */,
+				A68E426F299A1DC500E298DF /* VLCache.m in Sources */,
 				67B8C7B52805757200195106 /* MediaUtils.m in Sources */,
+				A68E4261299A1CBF00E298DF /* VLBaseModel.m in Sources */,
+				A68E4260299A1CBF00E298DF /* VLResponseDataModel.m in Sources */,
 				03D13C0124488F1F00B599B3 /* KeyCenter.swift in Sources */,
 				E74877B728A23B8B00CA2F58 /* NetworkManager.swift in Sources */,
 				03D13BD02448758900B599B3 /* AppDelegate.swift in Sources */,

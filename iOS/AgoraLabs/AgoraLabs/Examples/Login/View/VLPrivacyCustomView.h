@@ -23,7 +23,7 @@ typedef enum : NSUInteger {
 @interface VLPrivacyCustomView : VLBaseView
 
 - (instancetype)initWithPass:(int)pass;
-
+- (instancetype)initWithContentTitle:(NSMutableAttributedString *)content confirmTitle:(NSMutableAttributedString *)confirm cancelTitle:(NSMutableAttributedString *)cancel;
 @property (nonatomic, weak) id <VLPrivacyCustomViewDelegate> delegate;
 @property (nonatomic, assign) int pass;
 

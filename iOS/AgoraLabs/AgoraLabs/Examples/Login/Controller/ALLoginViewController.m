@@ -8,6 +8,7 @@
 
 #import "ALLoginViewController.h"
 #import "Masonry.h"
+#import "VLAPIRequest.h"
 #import "VLCommonWebViewController.h"
 #import "VLLoginInputPhoneView.h"
 #import "VLLoginInputVerifyCodeView.h"
@@ -20,6 +21,9 @@
 #import "LEEAlert.h"
 #import "LSTPopView.h"
 #import "AgoraLabs-Swift.h"
+
+#import "VLLoginModel.h"
+#import "VLUserCenter.h"
 
 @interface ALLoginViewController () <VLLoginInputVerifyCodeViewDelegate, VLPrivacyCustomViewDelegate,VLPopImageVerifyViewDelegate>
 
@@ -186,25 +190,27 @@
     NSDictionary *param = @{
         @"phone":self.phoneView.phoneNo
     };
-//    [VLAPIRequest getRequestURL:kURLPathVerifyCode parameter:param showHUD:YES success:^(VLResponseDataModel * _Nonnull response) {
-//        if (response.code == 0) {
-//            [self.verifyView startTime:sender];
-//        } else {
-//            [VLToast toast:response.message];
-//        }
-//    } failure:^(NSError * _Nullable error, NSURLSessionDataTask * _Nullable task) {
-//    }];
+    [AGHUD showNetWork];
+    [VLAPIRequest getRequestURL:kURLPathVerifyCode parameter:param showHUD:YES success:^(VLResponseDataModel * _Nonnull response) {
+        if (response.code == 0) {
+            [AGHUD disMiss];
+            [self.verifyView startTime:sender];
+        } else {
+            [AGHUD showFaildWithInfo:response.message];
+        }
+    } failure:^(NSError * _Nullable error, NSURLSessionDataTask * _Nullable task) {
+    }];
 }
 
 #pragma mark - Action
 
 - (void)loginClick:(UIButton *)button {
-    [self popImageVerifyView];
     
     if (![self checkPhoneNo]) return;
     if (![self checkPrivacyAgree]) return;
     if (![self checkVerifyCode]) return;
     
+    [self popImageVerifyView];
 }
 
 -(BOOL)checkVerifyCode {
@@ -314,22 +320,23 @@
         @"phone" : self.phoneView.phoneNo,
         @"code": self.verifyView.verifyCode
     };
-//    [VLAPIRequest getRequestURL:kURLPathLogin parameter:param showHUD:YES success:^(VLResponseDataModel * _Nonnull response) {
-//        if (response.code == 0) {
-//            VLLoginModel *model = [VLLoginModel vj_modelWithDictionary:response.data];
-//            [[VLUserCenter center] storeUserInfo:model];
-//            [UIApplication.sharedApplication.delegate.window configRootViewController];
-//        }
-//        else {
-//            dispatch_main_async_safe(^{
-//                [VLToast toast:AGLocalizedString(@"验证码校验失败，请重试")];
-//            })
-//        }
-//    } failure:^(NSError * _Nullable error, NSURLSessionDataTask * _Nullable task) {
-//        dispatch_main_async_safe(^{
-//            [VLToast toast:AGLocalizedString(@"验证码校验失败，请重试")];
-//        })
-//    }];
+    [VLAPIRequest getRequestURL:kURLPathLogin parameter:param showHUD:YES success:^(VLResponseDataModel * _Nonnull response) {
+        if (response.code == 0) {
+            VLLoginModel *model = [VLLoginModel vj_modelWithDictionary:response.data];
+            [[VLUserCenter sharedInstance] storeUserInfo:model];
+            [self dismissViewControllerAnimated:true completion:nil];
+            //[UIApplication.sharedApplication.delegate.window configRootViewController];
+        }
+        else {
+            dispatch_main_async_safe(^{
+                [AGHUD showFaildWithInfo:@"验证码校验失败，请重试"];
+            })
+        }
+    } failure:^(NSError * _Nullable error, NSURLSessionDataTask * _Nullable task) {
+        dispatch_main_async_safe(^{
+            [AGHUD showFaildWithInfo:@"验证码校验失败，请重试"];
+        })
+    }];
 }
 
 #pragma mark - Lazy

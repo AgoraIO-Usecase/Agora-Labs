@@ -57,6 +57,11 @@ var SCREEN_NAV_HEIGHT:CGFloat {
     return 44.0
 }
 
+/// 首页导航栏高度
+var SCREEN_HOMETOP_HEIGHT:CGFloat {
+    return 34.0
+}
+
 /// 状态栏+导航栏的高度
 var SCREEN_NAV_FULL_HEIGHT:CGFloat {
     return SCREEN_NAV_HEIGHT + SCREEN_STATUS_HEIGHT

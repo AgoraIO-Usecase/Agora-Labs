@@ -19,6 +19,8 @@ static NSString * const kURLPathLogout = @"/api-login/users/logout"; // 退出�
 static NSString * const kURLPathUploadUserInfo = @"/api-login/users/update";  //修改用户信息
 static NSString * const kURLPathVerifyCode = @"/api-login/users/verificationCode"; //发送验证码
 
+static NSString * const kUserLogoutNotify = @"kUserLogoutNotify";
+
 #pragma mark - H5相关
 static NSString * const kURLPathH5UserAgreement = @"https://accktvpic.oss-cn-beijing.aliyuncs.com/pic/meta/demo/fulldemoStatic/privacy/service.html";
 static NSString * const kURLPathH5Privacy = @"https://accktvpic.oss-cn-beijing.aliyuncs.com/pic/meta/demo/fulldemoStatic/privacy/privacy.html";

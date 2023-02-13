@@ -20,10 +20,16 @@ target 'AgoraLabs' do
   pod 'ZLPhotoBrowser','4.3.1'
   pod 'ASValueTrackingSlider', :git => 'https://github.com/liaochenliang/ASValueTrackingSlider.git'
   pod 'XMMenuPopover', :git => 'https://github.com/liaochenliang/XMMenuPopover.git'
-  pod 'YYCategories','1.0.4'
+
   pod 'SwiftyJSON', '5.0.1'
-  pod 'YYText','1.0.7'
   pod 'LEEAlert', '1.6.4'
   pod 'LSTPopView', '0.3.10'
+  
+  pod 'YYModel', '1.0.4'
+  pod 'YYText','1.0.7'
+  pod 'YYCategories','1.0.4'
+  pod 'YYCache', '1.0.4'
+  
+  pod 'AFNetworking', '4.0.1'
 end
 

@@ -82,6 +82,11 @@ class AGHUD: NSObject  {
     }
     
     //显示网络加载错误的指示
+    class func showNetWork(){
+        SVProgressHUD.show()
+    }
+    
+    //显示网络加载错误的指示
     class func showNetWorkError(){
         showInfo(info: "网络连接失败,请检查你的网络设置")
     }

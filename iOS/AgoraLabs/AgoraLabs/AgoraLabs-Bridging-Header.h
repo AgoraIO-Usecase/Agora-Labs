@@ -13,4 +13,10 @@
 #import "BDResourceHelper.h"
 #import <YYCategories/YYCategories.h>
 #import <XMMenuPopover/XMMenuPopover.h>
+#import <LEEAlert/LEEAlert.h>
 #import "ALLoginViewController.h"
+#import "VLCommonWebViewController.h"
+#import "VLURLPathConfig.h"
+#import "VLPrivacyCustomView.h"
+#import "VLUserCenter.h"
+#import <YYText/YYText.h>

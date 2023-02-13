@@ -40,6 +40,19 @@
     [self addSubview:self.agreeButton];
 }
 
+- (instancetype)initWithContentTitle:(NSMutableAttributedString *)content confirmTitle:(NSMutableAttributedString *)confirm cancelTitle:(NSMutableAttributedString *)cancel{
+    if (self = [super init]) {
+        _pass = 1;
+        [self initSubViews];
+        [self addSubViewConstraints];
+        
+        self.label.attributedText = content;
+        [_disButton setAttributedTitle:cancel forState:UIControlStateNormal];
+        [_agreeButton setAttributedTitle:confirm forState:UIControlStateNormal];
+    }
+    return self;
+}
+
 - (void)addSubViewConstraints {
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(self);
@@ -165,8 +178,8 @@
         }
         
         [_disButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        _agreeButton.titleLabel.font = [UIFont systemFontOfSize:16];
-        [_agreeButton setBackgroundColor:[UIColor colorWithRGB:0xEFF4FF]];
+        _disButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_disButton setBackgroundColor:[UIColor colorWithRGB:0xEFF4FF]];
         _disButton.layer.backgroundColor = [UIColor colorWithRed:239/255.0 green:244/255.0 blue:255/255.0 alpha:1.0].CGColor;
         _disButton.layer.cornerRadius = 20;
         _disButton.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.23].CGColor;

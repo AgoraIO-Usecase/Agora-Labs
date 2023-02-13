@@ -98,16 +98,62 @@ class ViewController: UIViewController {
     private var contentScrollView: UIScrollView!
     private var listVCArray = [AGViewController]()
     
+    private lazy var titleLabel: UILabel = {
+        let _titleLabel = UILabel()
+        _titleLabel.text = "Agora Labs"
+        _titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        _titleLabel.textColor = "099DFD".hexColor()
+        return _titleLabel
+    }()
+    
+    private lazy var setButton: UIButton = {
+        let _setButton = UIButton()
+        _setButton.setImage(UIImage(named: "logout"), for: .normal)
+        _setButton.addTarget(self, action: #selector(self.clickPsuhSettingVC), for: .touchUpInside)
+        return _setButton
+    }()
+    
+    private var topView = UIView()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !VLUserCenter().isLogin() {
+            self.onUserLogoutNotify()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("AgoraRtcKit - \(AgoraRtcEngineKit.getSdkVersion())")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onUserLogoutNotify), name: NSNotification.Name(rawValue: kUserLogoutNotify), object: nil)
+        
         view.backgroundColor = "#eff4ff".hexColor()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.fd_prefersNavigationBarHidden = true
+        
+        topView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(6)
+        }
+        
+        topView.addSubview(setButton)
+        setButton.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 22, height: 22))
+            make.centerY.equalTo(titleLabel)
+            make.right.equalToSuperview().offset(-18)
+        }
+        
+        self.view.addSubview(topView)
+        topView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(SCREEN_STATUS_HEIGHT)
+            make.right.left.equalToSuperview()
+            make.height.equalTo(SCREEN_HOMETOP_HEIGHT)
+        }
         
         segmentedView = JXSegmentedView()
         
@@ -169,14 +215,15 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        segmentedView.frame = CGRect(x: 0, y: SCREEN_STATUS_HEIGHT, width: view.bounds.size.width, height: SCREEN_HEAD_HEIGHT)
-        contentScrollView.frame = CGRect(x: 0, y: SCREEN_HEAD_HEIGHT+SCREEN_STATUS_HEIGHT, width: view.bounds.size.width, height: view.bounds.size.height - SCREEN_HEAD_HEIGHT - SCREEN_STATUS_HEIGHT)
+        segmentedView.frame = CGRect(x: 0, y: SCREEN_STATUS_HEIGHT+SCREEN_HOMETOP_HEIGHT, width: view.bounds.size.width, height: SCREEN_HEAD_HEIGHT)
+        contentScrollView.frame = CGRect(x: 0, y: SCREEN_HEAD_HEIGHT+SCREEN_HOMETOP_HEIGHT+SCREEN_STATUS_HEIGHT, width: view.bounds.size.width, height: view.bounds.size.height - SCREEN_HEAD_HEIGHT - SCREEN_STATUS_HEIGHT - SCREEN_HOMETOP_HEIGHT)
         contentScrollView.contentSize = CGSize(width: contentScrollView.bounds.size.width*CGFloat(segmentedDataSource.dataSource.count), height: contentScrollView.bounds.size.height)
         for (index, vc) in listVCArray.enumerated() {
             vc.view.frame = CGRect(x: contentScrollView.bounds.size.width*CGFloat(index), y: 0, width: contentScrollView.bounds.size.width, height: contentScrollView.bounds.size.height)
         }
     }
     
+
 }
 
 extension ViewController: AGViewDelegate{
@@ -193,12 +240,30 @@ extension ViewController: AGViewDelegate{
 
         }else{
 //            AGHUD.showInfo(info: "ggnzbzcjqqd".localized)
-            let vc = ALLoginViewController()
-            vc.fd_prefersNavigationBarHidden = false
-            vc.fd_interactivePopDisabled = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            
 
         }
     }
+    
+    @objc func clickPsuhSettingVC()  {
+        let name = "Setting"
+        let menuItem =  MenuItem(name: name, storyboard: name.removeAllSapce, controller: name.removeAllSapce)
+        let storyBoard: UIStoryboard = UIStoryboard(name: menuItem.storyboard, bundle: nil)
+        let entryViewController:UIViewController = storyBoard.instantiateViewController(withIdentifier: menuItem.storyboard)
+        entryViewController.fd_prefersNavigationBarHidden = false
+        entryViewController.fd_interactivePopDisabled = true
+        self.navigationController?.pushViewController(entryViewController, animated: true)
+    }
 }
 
+extension ViewController{
+    @objc func onUserLogoutNotify() {
+//        [VLUserCenter center]
+        VLUserCenter.sharedInstance().logout()
+        let vc = ALLoginViewController()
+        vc.fd_prefersNavigationBarHidden = false
+        vc.fd_interactivePopDisabled = true
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: false)
+    }
+}
