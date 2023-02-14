@@ -21,6 +21,9 @@ target 'AgoraLabs' do
   pod 'ASValueTrackingSlider', :git => 'https://github.com/liaochenliang/ASValueTrackingSlider.git'
   pod 'XMMenuPopover', :git => 'https://github.com/liaochenliang/XMMenuPopover.git'
 
+  pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git'
+
+  
   pod 'SwiftyJSON', '5.0.1'
   pod 'LEEAlert', '1.6.4'
   pod 'LSTPopView', '0.3.10'

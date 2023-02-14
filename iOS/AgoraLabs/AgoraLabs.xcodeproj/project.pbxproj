@@ -111,6 +111,7 @@
 		A68E4267299A1D7600E298DF /* VLLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E4266299A1D7600E298DF /* VLLoginModel.m */; };
 		A68E426B299A1D8900E298DF /* VLUserCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E426A299A1D8900E298DF /* VLUserCenter.m */; };
 		A68E426F299A1DC500E298DF /* VLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E426D299A1DC500E298DF /* VLCache.m */; };
+		A68E4274299B97F600E298DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A68E4272299B97F600E298DF /* InfoPlist.strings */; };
 		A690E4B5294AC9E90058D196 /* launch_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A690E4B4294AC9E90058D196 /* launch_logo.png */; };
 		A6C5B17D2941C7F90071FFBF /* BeautifyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */; };
 		A6C5B17F2941C8C70071FFBF /* BeautifyFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C5B17E2941C8C70071FFBF /* BeautifyFilter.storyboard */; };
@@ -506,6 +507,8 @@
 		A68E426A299A1D8900E298DF /* VLUserCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLUserCenter.m; sourceTree = "<group>"; };
 		A68E426D299A1DC500E298DF /* VLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLCache.m; sourceTree = "<group>"; };
 		A68E426E299A1DC500E298DF /* VLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCache.h; sourceTree = "<group>"; };
+		A68E4273299B97F600E298DF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A68E4275299B981500E298DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A690E4B4294AC9E90058D196 /* launch_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_logo.png; sourceTree = "<group>"; };
 		A6A7BA49294320A6006A8CBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyFilter.swift; sourceTree = "<group>"; };
@@ -1652,12 +1655,13 @@
 		A7CA48BF2455315A00507435 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				033A9F2C252D737900BC26E1 /* Localizable.strings */,
+				A68E4272299B97F600E298DF /* InfoPlist.strings */,
 				03D13BDD2448758B00B599B3 /* Info.plist */,
 				03D13BCF2448758900B599B3 /* AppDelegate.swift */,
 				03D13BD82448758B00B599B3 /* Assets.xcassets */,
 				A690E4B4294AC9E90058D196 /* launch_logo.png */,
 				03D13BDA2448758B00B599B3 /* LaunchScreen.storyboard */,
-				033A9F2C252D737900BC26E1 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1926,6 +1930,7 @@
 				A6E6006D2976513B00D9555C /* xiongmao.bundle in Resources */,
 				A6E6001B2976513B00D9555C /* big_head.bundle in Resources */,
 				A6E6FFF82976513B00D9555C /* boyfriend2.bundle in Resources */,
+				A68E4274299B97F600E298DF /* InfoPlist.strings in Resources */,
 				A6E600292976513B00D9555C /* mu_style_foundation_01.bundle in Resources */,
 				033A9F30252D860100BC26E1 /* JoinChannelAudio.storyboard in Resources */,
 				03D13BD92448758B00B599B3 /* Assets.xcassets in Resources */,
@@ -2143,6 +2148,15 @@
 				8BC751D3273E502700552265 /* Base */,
 			);
 			name = LiveStreaming.storyboard;
+			sourceTree = "<group>";
+		};
+		A68E4272299B97F600E298DF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A68E4273299B97F600E298DF /* zh-Hans */,
+				A68E4275299B981500E298DF /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		A7CA48C224553CF600507435 /* Popover.storyboard */ = {
