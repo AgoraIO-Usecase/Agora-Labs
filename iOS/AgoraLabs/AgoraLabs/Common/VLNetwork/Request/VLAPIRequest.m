@@ -75,11 +75,11 @@ static AFHTTPSessionManager *_sessionManager;
             //if (show) [MBProgressHUD hideHUDForView:window animated:true];
             NSDictionary *dic = [self dicWithResponseData:responseObject];
             VLResponseDataModel *model = [VLResponseDataModel yy_modelWithDictionary:dic];
-            VLLog(@"\n完成请求:\n%@\nheader:\n%@\n参数:\n%@\n响应原数据:\n%@",task.currentRequest.URL,_sessionManager.requestSerializer.HTTPRequestHeaders,paramenter,dic);
+            NSLog(@"\n完成请求:\n%@\nheader:\n%@\n参数:\n%@\n响应原数据:\n%@",task.currentRequest.URL,_sessionManager.requestSerializer.HTTPRequestHeaders,paramenter,dic);
             if (model.code == 401) [self setLoginVC];
             [self requestSuccess:completeBlock object:responseObject method:method task:task];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            VLLog(@"\n完成请求:\n%@\nheader:\n%@\n参数:\n%@\n响应数据:%@",task.currentRequest.URL,_sessionManager.requestSerializer.HTTPRequestHeaders,paramenter,error);
+            NSLog(@"\n完成请求:\n%@\nheader:\n%@\n参数:\n%@\n响应数据:%@",task.currentRequest.URL,_sessionManager.requestSerializer.HTTPRequestHeaders,paramenter,error);
             //[MBProgressHUD hideHUDForView:window animated:true];
             [self requestError:errorBlock error:error task:task];
             NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)task.response;

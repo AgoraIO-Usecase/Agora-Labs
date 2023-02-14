@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isLogin;
 - (void)storeUserInfo:(VLLoginModel *)user;
 - (void)logout;
-
+- (void)destroyUser;
 + (void)clearUserRoomInfo;
 
 

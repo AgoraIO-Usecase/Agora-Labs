@@ -158,6 +158,7 @@ extension Setting:VLPrivacyCustomViewDelegate{
         if self.currentAlertView == self.logoutAlertView {
             if type.rawValue == 0 {
                 //退出 - 确认 - 回到首页 弹出登录页
+                VLUserCenter.sharedInstance().logout()
                 self.navigationController?.popToRootViewController(animated: true)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserLogoutNotify), object: nil, userInfo: nil)
             }else if type.rawValue == 1 {
@@ -168,6 +169,7 @@ extension Setting:VLPrivacyCustomViewDelegate{
                 //注销- 取消
             }else if type.rawValue == 1 {
                 //注销 - 确认 - 注销用户 - 回到首页 弹出登录页
+                VLUserCenter.sharedInstance().destroyUser()
                 self.navigationController?.popToRootViewController(animated: true)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserLogoutNotify), object: nil, userInfo: nil)
             }

@@ -3,8 +3,11 @@
 //  VoiceOnLine
 //
 
-#import "VLUserCenter.h"
 #import "VLCache.h"
+#import "VLUserCenter.h"
+
+#import "VLURLPathConfig.h"
+#import "VLAPIRequest.h"
 
 @interface VLUserCenter()
 
@@ -38,12 +41,27 @@ static NSString *kLocalLoginKey = @"kLocalLoginKey";
 }
 
 - (void)logout {
-    [self cleanUserInfo];
+    NSDictionary *param = @{@"userNo":VLUserCenter.user.userNo ?: @""};
+    [VLAPIRequest getRequestURL:kURLPathLogout parameter:param showHUD:YES success:^(VLResponseDataModel * _Nonnull response) {
+        [self cleanUserInfo];
+    } failure:^(NSError * _Nullable error, NSURLSessionDataTask * _Nullable task) {
+        [self cleanUserInfo];
+    }];
+    
 }
 
 - (void)cleanUserInfo {
     _loginModel = nil;
     [VLCache.system removeObjectForKey:kLocalLoginKey];
+}
+
+- (void)destroyUser{
+    NSDictionary *param = @{@"userNo":VLUserCenter.user.userNo ?: @""};
+    [VLAPIRequest getRequestURL:kURLPathDestroyUser parameter:param showHUD:YES success:^(VLResponseDataModel * _Nonnull response) {
+        [self cleanUserInfo];
+    } failure:^(NSError * _Nullable error, NSURLSessionDataTask * _Nullable task) {
+        [self cleanUserInfo];
+    }];
 }
 
 + (VLLoginModel *)user {

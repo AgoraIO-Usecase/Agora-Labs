@@ -108,7 +108,7 @@ class ViewController: UIViewController {
     
     private lazy var setButton: UIButton = {
         let _setButton = UIButton()
-        _setButton.setImage(UIImage(named: "logout"), for: .normal)
+        _setButton.setImage(UIImage(named: "deactivate"), for: .normal)
         _setButton.addTarget(self, action: #selector(self.clickPsuhSettingVC), for: .touchUpInside)
         return _setButton
     }()
@@ -261,7 +261,6 @@ extension ViewController: AGViewDelegate{
 extension ViewController{
     @objc func onUserLogoutNotify() {
 //        [VLUserCenter center]
-        VLUserCenter.sharedInstance().logout()
         let vc = ALLoginViewController()
         vc.fd_prefersNavigationBarHidden = false
         vc.fd_interactivePopDisabled = true
