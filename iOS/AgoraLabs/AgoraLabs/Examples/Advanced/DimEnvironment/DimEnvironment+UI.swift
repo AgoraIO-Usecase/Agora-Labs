@@ -129,11 +129,13 @@ extension DimEnvironment {
             let button = SubButton(alphaNormal: 0.9)
             itemModel.subView = button
             itemModel.isSelected = i == 1
+            itemModel.isEnabled = false
             button.tag = i
             button.cornerRadius = 8
             button.masksToBounds = true
             button.alphaSelected = 0.9
             button.isSelected = itemModel.isSelected
+            button.isEnabled = itemModel.isEnabled
             button.addBlurEffect(style: .systemThinMaterialDark)
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
             button.setTitleColor(.lightGray, for: .disabled)
@@ -175,6 +177,10 @@ extension DimEnvironment {
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
         self.remoteVideoView.titleSelected = sender.isOn
+        self.multipleModelList.forEach { model in
+            guard let itemView = model.subView as? SubButton  else { return  }
+            itemView.isEnabled = sender.isOn
+        }
         self.setupVideoDenoiser(enabled: sender.isOn)
     }
     

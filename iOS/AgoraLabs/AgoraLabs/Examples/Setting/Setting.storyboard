@@ -183,7 +183,7 @@
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">Powered by Agora.io
-v 1.2.3.4</string>
+v 2.0</string>
                                         <attributes>
                                             <color key="NSColor" red="0.78987973929999999" green="0.80244809390000005" blue="0.83734911680000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" size="13" name="PingFangSC-Regular"/>

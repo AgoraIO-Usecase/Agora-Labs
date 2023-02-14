@@ -17,6 +17,11 @@ extension HDR {
         self.setupBottom()
         self.setupShowContentView()
         self.setupBottomContentView()
+        
+        if !UIDevice().phone12Model() {
+            AGHUD.showFaild(info: "该设备暂不支持HDR")
+            self.openSwitch.isEnabled = false
+        }
     }
     
     func setupNavigation() {
@@ -26,7 +31,7 @@ extension HDR {
         button.frame = CGRect(x:0, y:0, width:65, height:30)
         button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
-        button.setTitle("ROI".localized, for: .normal)
+        button.setTitle("HDR".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
         let leftBarBtn = UIBarButtonItem(customView: button)
         self.navigationItem.leftBarButtonItem = leftBarBtn
@@ -234,7 +239,7 @@ extension HDR {
         
     func setupBottomContentView() {
         let funNameLabel = UILabel()
-        funNameLabel.text = "qiyongganxingququyusuanfa".localized
+        funNameLabel.text = "qiyongHDR".localized
         funNameLabel.textColor = .white
         funNameLabel.font = UIFont.boldSystemFont(ofSize: 15)
         bottomView.addSubview(funNameLabel)

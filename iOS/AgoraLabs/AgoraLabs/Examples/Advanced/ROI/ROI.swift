@@ -17,10 +17,10 @@ class ROI: BaseViewController {
     let originalModel = SubCellModel(name: "Original Image",tag: -1)
 
     let itemModelList:[SubCellModel] = [
-        SubCellModel(name: "360P",tag: 0,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
-        SubCellModel(name: "480P",tag: 1,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 480), frameRate: .fps15, bitrate: 1220, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 480), frameRate: .fps15, bitrate: 1220, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
-        SubCellModel(name: "540P",tag: 2,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 540), frameRate: .fps15, bitrate: 1470, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 540), frameRate: .fps15, bitrate: 1470, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
-        SubCellModel(name: "720P",tag: 3,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 720), frameRate: .fps15, bitrate: 2260, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 960, height: 720), frameRate: .fps15, bitrate: 2260, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
+        SubCellModel(name: "360P",tag: 0,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 360, height: 640), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 360, height: 640), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
+        SubCellModel(name: "480P",tag: 1,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 480, height: 854), frameRate: .fps15, bitrate: 1220, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 480, height: 854), frameRate: .fps15, bitrate: 1220, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
+        SubCellModel(name: "540P",tag: 2,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 540, height: 960), frameRate: .fps15, bitrate: 1470, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 540, height: 960), frameRate: .fps15, bitrate: 1470, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
+        SubCellModel(name: "720P",tag: 3,value: [AgoraVideoEncoderConfiguration(size: CGSize(width: 720, height: 1280), frameRate: .fps15, bitrate: 2260, orientationMode: .fixedPortrait, mirrorMode: .auto),AgoraVideoEncoderConfiguration(size: CGSize(width: 720, height: 1280), frameRate: .fps15, bitrate: 2260, orientationMode: .fixedPortrait, mirrorMode: .auto)]),
     ]
     var isOpenROI:Bool = false
     var blurSlider:UISlider?
@@ -178,7 +178,9 @@ class ROI: BaseViewController {
             return
         }
         let json = JSON(["che.video.roiEnable":enabled,
-                         "engine.video.enable_hw_encoder":false]).rawString() ?? ""
+                         "engine.video.enable_hw_encoder":false,
+                         "rtc.video.roi_max_qp":35,
+                         "rtc.video.roi_qp_offset":2]).rawString() ?? ""
         let rt = agoraKit.setParameters(json)
         self.isOpenROI = enabled
         if rt != 0 {

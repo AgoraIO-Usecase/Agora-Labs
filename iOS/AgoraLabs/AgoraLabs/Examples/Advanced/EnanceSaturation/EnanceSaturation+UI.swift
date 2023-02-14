@@ -191,6 +191,12 @@ extension EnanceSaturation {
             make.width.equalTo(SCREEN_WIDTH-60)
             make.centerX.equalToSuperview()
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+            self.skinSlider?.isEnabled = false
+            self.strengthSlider?.isEnabled = false
+        }
+        
     }
     
     @objc func handleSwipeFrom(_ recognizer:UISwipeGestureRecognizer){
@@ -213,6 +219,8 @@ extension EnanceSaturation {
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
         self.remoteVideoView.titleSelected = sender.isOn
+        self.skinSlider?.isEnabled = sender.isOn
+        self.strengthSlider?.isEnabled = sender.isOn
         self.setupEnanceSaturation(enabled: sender.isOn)
     }
     

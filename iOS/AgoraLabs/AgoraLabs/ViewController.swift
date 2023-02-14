@@ -92,7 +92,7 @@ class ViewController: UIViewController {
                    "Beautify Filter",
                    "Resolution","ROI","PVC","HDR",
                    "Enance Saturation","Reduce Noise","Dim Environment"]
-//    var doneMap = ["Virtual Background","Beautify Filter"]
+    
     private var segmentedDataSource: JXSegmentedTitleDataSource!
     private var segmentedView: JXSegmentedView!
     private var contentScrollView: UIScrollView!
@@ -108,7 +108,7 @@ class ViewController: UIViewController {
     
     private lazy var setButton: UIButton = {
         let _setButton = UIButton()
-        _setButton.setImage(UIImage(named: "deactivate"), for: .normal)
+        _setButton.setImage(UIImage(named: "setting"), for: .normal)
         _setButton.addTarget(self, action: #selector(self.clickPsuhSettingVC), for: .touchUpInside)
         return _setButton
     }()
@@ -122,7 +122,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("AgoraRtcKit - \(AgoraRtcEngineKit.getSdkVersion())")
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            doneMap.removeAll { item in
+                if item == "HDR" {
+                    return true
+                }
+                return false
+            }
+        }
         
         if !VLUserCenter().isLogin() {
             self.onUserLogoutNotify()
@@ -241,9 +249,12 @@ extension ViewController: AGViewDelegate{
             self.navigationController?.pushViewController(entryViewController, animated: true)
 
         }else{
-//            AGHUD.showInfo(info: "ggnzbzcjqqd".localized)
-            
-
+            AGHUD.showInfo(info: "ggnzbzcjqqd".localized)
+//            let vc = ALLoginViewController()
+//            vc.fd_prefersNavigationBarHidden = false
+//            vc.fd_interactivePopDisabled = true
+//            vc.modalPresentationStyle = .fullScreen
+//            self.present(vc, animated: true)
         }
     }
     

@@ -35,8 +35,8 @@ class HDR: BaseViewController {
         _remoteVideoView.masksToBounds = true
         _remoteVideoView.titleSelected = false
         _remoteVideoView.showSubTitle = true
-        _remoteVideoView.selectTitle = "ROIxiaoguo".localized
-        _remoteVideoView.title = "ROIxiaoguoweikaiqi".localized
+        _remoteVideoView.selectTitle = "HDRxiaoguo".localized
+        _remoteVideoView.title = "HDRxiaoguoweikaiqi".localized
         return _remoteVideoView
     }()
     lazy var bottomView: UIView = {
@@ -71,7 +71,7 @@ class HDR: BaseViewController {
         self.setupRecvData()
     }
     
-    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 640, height: 360), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
+    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 720, height: 1280), frameRate: .fps15, bitrate: 2200, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
         
         self.videoConfig = videoConfig
         
@@ -190,8 +190,9 @@ class HDR: BaseViewController {
         if isOpenHDR == enabled {
             return
         }
-        let json = JSON(["che.video.roiEnable":enabled,
-                         "engine.video.enable_hw_encoder":false]).rawString() ?? ""
+        let json = JSON(["che.video.enable_hdr_capture":enabled,
+                         "engine.video.enable_hw_encoder":true,
+                         "engine.video.codec_type":3]).rawString() ?? ""
         let rt = agoraKit.setParameters(json)
         self.isOpenHDR = enabled
         if rt != 0 {

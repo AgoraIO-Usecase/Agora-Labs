@@ -19,20 +19,23 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFE-dT-iOv">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by Agora.io" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3h-FE-8ad">
-                                        <rect key="frame" x="145" y="818" width="124.5" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.42895662779999999" green="0.44384080170000001" blue="0.45946544410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" red="0.93708997959999996" green="0.96226721999999998" blue="0.99566966300000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstItem="B3h-FE-8ad" firstAttribute="centerX" secondItem="eFE-dT-iOv" secondAttribute="centerX" id="Dm7-7a-dtS"/>
-                                    <constraint firstAttribute="bottom" secondItem="B3h-FE-8ad" secondAttribute="bottom" constant="62" id="pfb-HE-0DA"/>
-                                </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3h-FE-8ad">
+                                <rect key="frame" x="145" y="830.5" width="124.5" height="31.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Powered by Agora.io
+v 2.0</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.78823529411764703" green="0.80392156862745101" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" metaFont="system"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="lMX-D3-ffD">
                                 <rect key="frame" x="137" y="298" width="140" height="140"/>
                                 <constraints>
@@ -52,7 +55,9 @@
                         <constraints>
                             <constraint firstItem="eFE-dT-iOv" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="4zN-GC-dDR"/>
                             <constraint firstItem="lMX-D3-ffD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-80" id="6n8-kS-bRo"/>
+                            <constraint firstItem="B3h-FE-8ad" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LX7-HZ-l0m"/>
                             <constraint firstItem="eFE-dT-iOv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bEj-xi-Ker"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="B3h-FE-8ad" secondAttribute="bottom" id="ezY-Fl-fjs"/>
                             <constraint firstItem="WwI-uH-f9Q" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fLT-61-uad"/>
                             <constraint firstItem="lMX-D3-ffD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="j6n-hA-w4Q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eFE-dT-iOv" secondAttribute="trailing" id="my5-nc-OAH"/>

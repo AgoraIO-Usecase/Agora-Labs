@@ -107,4 +107,9 @@
 "qiyongganzhishipinbianma"="Enable PVC";
 "qiyongganxingququyusuanfa"="Enable ROI";
 
+
 "jqxnpj"="Poor equipment performance, super resolution has been automatically turned off";
+
+"HDRxiaoguo"="HDR effect";
+"HDRxiaoguoweikaiqi"="HDR not open";
+"qiyongHDR"="Enable HDR";

@@ -109,6 +109,19 @@
         make.height.mas_equalTo(48);
         make.top.mas_equalTo(self.verifyView.mas_bottom).offset(64);
     }];
+    
+    UILabel *versionLabel = [[UILabel alloc]init];
+    versionLabel.text = @"Powered by Agora.io \nv 2.0";
+    versionLabel.textAlignment = NSTextAlignmentCenter;
+    versionLabel.numberOfLines = 0;
+    versionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [versionLabel setFont:[UIFont systemFontOfSize:13]];
+    [versionLabel setTextColor:[UIColor colorWithRGB:0xC9CDD6]];
+    [self.view addSubview:versionLabel];
+    [versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+    }];
 }
 
 - (void)alertPrivacyAlertView:(int)pass {

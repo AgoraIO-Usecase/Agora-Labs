@@ -74,6 +74,32 @@ func FontPFRegularSize(_ fontSize:CGFloat) -> UIFont {
     return UIFont.init(name: "PingFangSC-Regular", size: fontSize)!
 }
 
+
+public extension UIDevice {
+
+    func phone12Model() -> Bool {
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8 , value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        
+        if identifier.contains("iPhone") {
+            let infoList = identifier.dropFirst(6).components(separatedBy: ",")
+            if let numb = infoList.first, Int(numb) ?? 0 >= 13 {
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
+        }
+        
+    }
+}
+
 enum Font {
     enum HelveticaNeue: String {
         case ultraLightItalic = "UltraLightItalic"
