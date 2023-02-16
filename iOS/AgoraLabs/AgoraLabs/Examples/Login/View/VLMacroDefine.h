@@ -6,6 +6,10 @@
 #ifndef VLMacroDefine_h
 #define VLMacroDefine_h
 
+#import "AgoraLabs-Swift.h"
+
+#define AGLocalizedString(s) ([s toSceneLocalization])
+
 #define __MAIN_SCREEN_WIDTH__       MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
 
 #define  VLSCALE_W                 (__MAIN_SCREEN_WIDTH__ / 375.0)

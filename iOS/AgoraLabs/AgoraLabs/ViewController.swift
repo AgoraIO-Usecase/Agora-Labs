@@ -278,6 +278,6 @@ extension ViewController{
     }
     
     func isCN() -> Bool {
-        return Locale.current.regionCode == "CN"
+        return Locale.current.regionCode == "CN".localized
     }
 }

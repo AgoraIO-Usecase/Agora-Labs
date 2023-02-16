@@ -92,16 +92,16 @@ class Setting: BaseViewController {
             .leeMaxHeight(380)
             .leeHeaderColor(.white)
             .leeAddCustomView({[weak self] sender in
-                let  title = NSMutableAttributedString(string: "退出登录后，我们将保留您的数据信息，期待下次与您相遇")
+                let  title = NSMutableAttributedString(string: "tcdlh".localized)
                 title.yy_alignment = .center
                 title.yy_font = UIFont.systemFont(ofSize: 15)
                 
-                let  confirmTitle = NSMutableAttributedString(string:"确认退出")
+                let  confirmTitle = NSMutableAttributedString(string:"qrtc".localized)
                 confirmTitle.yy_alignment = .center
                 confirmTitle.yy_font = UIFont.systemFont(ofSize: 15)
                 confirmTitle.yy_color = .white
                 
-                let  cancelTitle = NSMutableAttributedString(string:"取消")
+                let  cancelTitle = NSMutableAttributedString(string:"qx".localized)
                 cancelTitle.yy_alignment = .center
                 cancelTitle.yy_font = UIFont.systemFont(ofSize: 15)
                 cancelTitle.yy_color = "#0A3D7B".hexColor(alpha: 0.6)
@@ -125,16 +125,16 @@ class Setting: BaseViewController {
             .leeMaxHeight(380)
             .leeHeaderColor(.white)
             .leeAddCustomView({[weak self] sender in
-                let  title = NSMutableAttributedString(string: "注销后，您将无法使用当前账号体验我们的服务，请谨慎考虑")
+                let  title = NSMutableAttributedString(string: "zxh".localized)
                 title.yy_alignment = .center
                 title.yy_font = UIFont.systemFont(ofSize: 15)
                 
-                let  confirmTitle = NSMutableAttributedString(string:"暂不注销")
+                let  confirmTitle = NSMutableAttributedString(string:"zbzx".localized)
                 confirmTitle.yy_alignment = .center
                 confirmTitle.yy_font = UIFont.systemFont(ofSize: 16)
                 confirmTitle.yy_color = .white
                 
-                let  cancelTitle = NSMutableAttributedString(string:"确认注销")
+                let  cancelTitle = NSMutableAttributedString(string:"qrzx".localized)
                 cancelTitle.yy_alignment = .center
                 cancelTitle.yy_font = UIFont.systemFont(ofSize: 16)
                 cancelTitle.yy_color = "#FF0000".hexColor()

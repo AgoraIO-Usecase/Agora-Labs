@@ -102,7 +102,6 @@
 		A68E42482995EE4700E298DF /* DimEnvironment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42472995EE4700E298DF /* DimEnvironment.storyboard */; };
 		A68E424A2995EE5000E298DF /* DimEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42492995EE5000E298DF /* DimEnvironment.swift */; };
 		A68E424C2995EE5900E298DF /* DimEnvironment+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */; };
-		A68E424F2995F69500E298DF /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E424E2995F69500E298DF /* Setting.storyboard */; };
 		A68E42512995F6A900E298DF /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42502995F6A900E298DF /* Setting.swift */; };
 		A68E4260299A1CBF00E298DF /* VLResponseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E4256299A1CBF00E298DF /* VLResponseDataModel.m */; };
 		A68E4261299A1CBF00E298DF /* VLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E4259299A1CBF00E298DF /* VLBaseModel.m */; };
@@ -112,6 +111,7 @@
 		A68E426B299A1D8900E298DF /* VLUserCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E426A299A1D8900E298DF /* VLUserCenter.m */; };
 		A68E426F299A1DC500E298DF /* VLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E426D299A1DC500E298DF /* VLCache.m */; };
 		A68E4274299B97F600E298DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A68E4272299B97F600E298DF /* InfoPlist.strings */; };
+		A68E42CF299E3B0300E298DF /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42D1299E3B0300E298DF /* Setting.storyboard */; };
 		A690E4B5294AC9E90058D196 /* launch_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A690E4B4294AC9E90058D196 /* launch_logo.png */; };
 		A6C5B17D2941C7F90071FFBF /* BeautifyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */; };
 		A6C5B17F2941C8C70071FFBF /* BeautifyFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C5B17E2941C8C70071FFBF /* BeautifyFilter.storyboard */; };
@@ -489,7 +489,6 @@
 		A68E42472995EE4700E298DF /* DimEnvironment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DimEnvironment.storyboard; sourceTree = "<group>"; };
 		A68E42492995EE5000E298DF /* DimEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimEnvironment.swift; sourceTree = "<group>"; };
 		A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DimEnvironment+UI.swift"; sourceTree = "<group>"; };
-		A68E424E2995F69500E298DF /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		A68E42502995F6A900E298DF /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		A68E4254299A1CBF00E298DF /* VLNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLNetworkConfig.h; sourceTree = "<group>"; };
 		A68E4256299A1CBF00E298DF /* VLResponseDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLResponseDataModel.m; sourceTree = "<group>"; };
@@ -509,6 +508,9 @@
 		A68E426E299A1DC500E298DF /* VLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCache.h; sourceTree = "<group>"; };
 		A68E4273299B97F600E298DF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A68E4275299B981500E298DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A68E42D3299E3B0600E298DF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Setting.strings"; sourceTree = "<group>"; };
+		A68E42D4299E3B9400E298DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
+		A68E42D5299E3BD400E298DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Setting.strings; sourceTree = "<group>"; };
 		A690E4B4294AC9E90058D196 /* launch_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_logo.png; sourceTree = "<group>"; };
 		A6A7BA49294320A6006A8CBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyFilter.swift; sourceTree = "<group>"; };
@@ -1075,7 +1077,7 @@
 		A68E424D2995F68300E298DF /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				A68E424E2995F69500E298DF /* Setting.storyboard */,
+				A68E42D1299E3B0300E298DF /* Setting.storyboard */,
 				A68E42502995F6A900E298DF /* Setting.swift */,
 			);
 			path = Setting;
@@ -1805,7 +1807,7 @@
 				A6E6001F2976513B00D9555C /* makeup_icon_combination_bored_cat.bundle in Resources */,
 				A6E6FFE42976513B00D9555C /* halfBodyDetect.bundle in Resources */,
 				A6E6004C2976513B00D9555C /* ctrl_snow.bundle in Resources */,
-				A68E424F2995F69500E298DF /* Setting.storyboard in Resources */,
+				A68E42CF299E3B0300E298DF /* Setting.storyboard in Resources */,
 				A6E6FFEA2976513B00D9555C /* default_bg.bundle in Resources */,
 				A6E6FFE62976513B00D9555C /* fakeman.bundle in Resources */,
 				A6E600562976513B00D9555C /* hair_gradient_01.bundle in Resources */,
@@ -2157,6 +2159,16 @@
 				A68E4275299B981500E298DF /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A68E42D1299E3B0300E298DF /* Setting.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A68E42D3299E3B0600E298DF /* zh-Hans */,
+				A68E42D4299E3B9400E298DF /* Base */,
+				A68E42D5299E3BD400E298DF /* en */,
+			);
+			name = Setting.storyboard;
 			sourceTree = "<group>";
 		};
 		A7CA48C224553CF600507435 /* Popover.storyboard */ = {

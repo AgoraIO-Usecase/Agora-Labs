@@ -17,6 +17,12 @@ typealias Color = UIColor
 
 typealias MainFont = Font.HelveticaNeue
 
+extension NSString {
+    @objc func toSceneLocalization() -> NSString {
+        return NSLocalizedString(self as String, comment: "") as NSString
+    }
+}
+
 extension String {
     var localized: String { NSLocalizedString(self, comment: "") }
     

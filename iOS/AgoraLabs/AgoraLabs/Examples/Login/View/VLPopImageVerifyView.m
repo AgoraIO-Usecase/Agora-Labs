@@ -40,7 +40,7 @@
     [self addSubview:bgView];
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 22, 80, 20)];
-    titleLabel.text = @"完成验证";
+    titleLabel.text = AGLocalizedString(@"wcyz");
     titleLabel.font = [UIFont systemFontOfSize:14];
     titleLabel.textColor = [UIColor colorWithRGB:0x6C7192];
     [self addSubview:titleLabel];
@@ -51,7 +51,7 @@
     [self addSubview:closeBtn];
 
     UILabel *slideLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, titleLabel.bottom+5, 170, 22)];
-    slideLabel.text = @"拖动下方滑块完成拼图";
+    slideLabel.text = AGLocalizedString(@"tdxfhkwcpt");
     slideLabel.font = [UIFont systemFontOfSize:16];
     slideLabel.textColor = [UIColor colorWithRGB:0x040925];
     [self addSubview:slideLabel];

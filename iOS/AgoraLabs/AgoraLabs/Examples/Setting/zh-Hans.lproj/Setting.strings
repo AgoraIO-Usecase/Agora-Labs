@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "退出登录"; ObjectID = "1Hx-KT-ICL"; */
+"1Hx-KT-ICL.text" = "退出登录";
+
+/* Class = "UILabel"; text = "注销账号"; ObjectID = "IfA-DU-BCb"; */
+"IfA-DU-BCb.text" = "注销账号";
+
+/* Class = "UILabel"; text = "用户协议"; ObjectID = "Jor-cH-k9c"; */
+"Jor-cH-k9c.text" = "用户协议";
+
+/* Class = "UILabel"; text = "隐私政策"; ObjectID = "OL9-8X-PVy"; */
+"OL9-8X-PVy.text" = "隐私政策";
+
+/* Class = "UILabel"; text = "Agora Labs"; ObjectID = "UuK-bV-vEO"; */
+"UuK-bV-vEO.text" = "Agora Labs";

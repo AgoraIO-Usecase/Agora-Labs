@@ -63,6 +63,7 @@
 }
 
 - (void)setupViews {
+   
     [self.view addSubview:self.appNameLabel];
     [self.view addSubview:self.phoneView];
     [self.view addSubview:self.verifyView];
@@ -359,7 +360,7 @@
         _appNameLabel = [[UILabel alloc] init];
         _appNameLabel.font = [UIFont systemFontOfSize:26];
         _appNameLabel.textColor = [UIColor colorWithRGB:0x040925];
-        _appNameLabel.text = @"欢迎体验声网服务";
+        _appNameLabel.text = AGLocalizedString(@"hytyswfw");
     }
     return _appNameLabel;
 }
@@ -396,9 +397,9 @@
     _privacyLabel.numberOfLines = 0;
     _privacyLabel.preferredMaxLayoutWidth = kScreenWidth - 30 * 2;
     
-    NSString *_str4Total = @"我已阅读并同意 用户协议 及 隐私政策 ";
-    NSString *_str4Highlight1 = @"用户协议";
-    NSString *_str4Highlight2 = @"隐私政策";
+    NSString *_str4Total = AGLocalizedString(@"wyydbtyfwtkhystk");//@"我已阅读并同意 用户协议 及 隐私政策 ";
+    NSString *_str4Highlight1 = AGLocalizedString(@"yhxy1");
+    NSString *_str4Highlight2 = AGLocalizedString(@"yszc1");
     NSMutableAttributedString *_mattrStr = [NSMutableAttributedString new];
 
     [_mattrStr appendAttributedString:[[NSAttributedString alloc] initWithString:_str4Total attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12], NSForegroundColorAttributeName : [UIColor colorWithRGB:0x6C7192]}]];
@@ -427,7 +428,7 @@
 - (UIButton *)loginButton {
     if (!_loginButton) {
         _loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
+        [_loginButton setTitle:AGLocalizedString(@"dl") forState:UIControlStateNormal];
         [_loginButton addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
         [_loginButton setBackgroundColor:[UIColor colorWithRGB:0x345DFF]];
         CAGradientLayer *gl = [CAGradientLayer layer];

@@ -91,7 +91,7 @@
             dispatch_source_cancel(self.timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置（倒计时结束后调用）
-                [sender setTitle:@"发送验证码" forState:UIControlStateNormal];
+                [sender setTitle:AGLocalizedString(@"fsyzm") forState:UIControlStateNormal];
                 //设置不可点击
                 sender.userInteractionEnabled = YES;
             });
@@ -101,7 +101,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 VLLog(@"verify timer%@",strTime);
-                [sender setTitle:[NSString stringWithFormat:@"%@秒后可重新发送", strTime] forState:UIControlStateNormal];
+                [sender setTitle:[NSString stringWithFormat:@"%@s", strTime] forState:UIControlStateNormal];
                     //设置可点击
                 sender.userInteractionEnabled = NO;
             });
@@ -122,7 +122,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.text = @"验证码";
+        _titleLabel.text = AGLocalizedString(@"yzm");
         _titleLabel.textColor = [UIColor colorWithRGB:0x979CBB];
         _titleLabel.font = [UIFont systemFontOfSize:14];
     }
@@ -143,7 +143,7 @@
 - (UIButton *)vSendbutton {
     if (!_vSendbutton) {
         _vSendbutton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_vSendbutton setTitle:@"发送验证码" forState:UIControlStateNormal];
+        [_vSendbutton setTitle:AGLocalizedString(@"fsyzm") forState:UIControlStateNormal];
         [_vSendbutton setTitleColor:[UIColor colorWithRGB:0x009FFF]  forState:UIControlStateNormal];
         _vSendbutton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_vSendbutton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
