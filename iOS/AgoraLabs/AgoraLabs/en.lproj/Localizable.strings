@@ -113,3 +113,16 @@
 "HDRxiaoguo"="HDR effect";
 "HDRxiaoguoweikaiqi"="HDR not open";
 "qiyongHDR"="Enable HDR";
+
+"qysczq"="Enable color enhancement";
+"sczqqd"="Color enhancement intensity";
+"fsbhqd"="Skin color protection intensity";
+
+"qyagzq"="Enable Dark light enhancement";
+"xnyx"="Performance priority";
+"hzyx"="Picture quality first";
+
+"qyspjz"="Enable Video noise reduction";
+"dghms"="Low power mode";
+"jhms"="Equilibrium mode";
+"qjzms"="Strong noise reduction mode";

@@ -7,7 +7,7 @@
 */
 
 
-NSCameraUsageDescription ="请点击“好”以开启摄像头权限，用于你使用时体验视频功能进行扫一扫";
+NSCameraUsageDescription ="请点击“好”以开启摄像头权限，用于你使用时体验视频功能";
 
 NSMicrophoneUsageDescription ="APP需要您的允许才能录制";
 

@@ -8,6 +8,7 @@
 
 import AgoraRtcKit
 import SwiftyJSON
+import AAInfographics
 import UIKit
 
 class PVC: BaseViewController {
@@ -40,6 +41,41 @@ class PVC: BaseViewController {
         _bottomView.backgroundColor = SCREEN_MASK_COLOR.hexColor()
         return _bottomView
     }()
+    lazy var aaChartLabel1: UIButton = {
+        let _aaChartLabel = UIButton()
+        _aaChartLabel.isHidden = true
+        _aaChartLabel.layer.shadowOpacity = 0.5
+        _aaChartLabel.layer.shadowColor = UIColor.black.cgColor
+        _aaChartLabel.layer.shadowOffset = CGSize(width: 1, height: 1)
+        _aaChartLabel.layer.shadowRadius = 1
+        
+        _aaChartLabel.setTitleColor(UIColor.white, for: .normal)
+        _aaChartLabel.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        _aaChartLabel.addTarget(self, action: #selector(self.aaChartLabel1Click), for: .touchUpInside)
+        return _aaChartLabel
+    }()
+    lazy var aaChartLabel2: UIButton = {
+        let _aaChartLabel2 = UIButton()
+        _aaChartLabel2.isHidden = false
+        _aaChartLabel2.layer.shadowOpacity = 0.5
+        _aaChartLabel2.layer.shadowColor = UIColor.black.cgColor
+        _aaChartLabel2.layer.shadowOffset = CGSize(width: 1, height: 1)
+        _aaChartLabel2.layer.shadowRadius = 1
+        
+        _aaChartLabel2.setTitleColor(UIColor.white, for: .normal)
+        _aaChartLabel2.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        _aaChartLabel2.addTarget(self, action: #selector(self.aaChartLabel2Click), for: .touchUpInside)
+        return _aaChartLabel2
+    }()
+    let aaChartView = AAChartView()
+    lazy var chartView: UIView = {
+        let _chartView = UIView()
+        _chartView.isHidden = false
+        _chartView.backgroundColor = UIColor.clear
+        _chartView.masksToBounds = true
+        _chartView.cornerRadius = 8
+        return _chartView
+    }()
     lazy var bottomContentView: UIView = {
         let _bottomView = UIView()
         _bottomView.backgroundColor = SCREEN_MASK_COLOR.hexColor()
@@ -52,7 +88,10 @@ class PVC: BaseViewController {
         _openSwitch.isOn = false
         return _openSwitch
     }()
+
     
+    var chartXArray = [Int]()
+    var chartYArray = [String]()
     var layoutType:Int = 1
     var layoutImage:UIImageView?
     var agoraKit: AgoraRtcEngineKit!
@@ -223,6 +262,9 @@ extension PVC:AgoraRtcEngineDelegate{
         if stats.uid ==  AgoraLabsUser.sendUid {
             remoteVideoView.subTitle = "Bitrate".localized+": \(stats.receivedBitrate) kbps"
             //print("recv - receivedBitrate=\(stats.receivedBitrate) receivedFrameRate=\(stats.receivedFrameRate)")
+            self.aaChartLabel2.setTitle("\(stats.receivedBitrate) kbps", for: .normal)
+            self.aaChartLabel1.setTitle("Bitrate".localized+": \(stats.receivedBitrate) kbps", for: .normal)
+            self.reloadChartView(Int(stats.receivedBitrate), Int(Date().timeIntervalSince1970))
         }
     }
     

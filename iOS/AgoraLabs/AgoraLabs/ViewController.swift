@@ -157,6 +157,7 @@ class ViewController: UIViewController {
             make.centerY.equalTo(titleLabel)
             make.right.equalToSuperview().offset(-18)
         }
+        self.setButton.isHidden = !self.isCN()
         
         self.view.addSubview(topView)
         topView.snp.makeConstraints { make in
@@ -250,11 +251,6 @@ extension ViewController: AGViewDelegate{
 
         }else{
             AGHUD.showInfo(info: "ggnzbzcjqqd".localized)
-//            let vc = ALLoginViewController()
-//            vc.fd_prefersNavigationBarHidden = false
-//            vc.fd_interactivePopDisabled = true
-//            vc.modalPresentationStyle = .fullScreen
-//            self.present(vc, animated: true)
         }
     }
     
@@ -271,11 +267,17 @@ extension ViewController: AGViewDelegate{
 
 extension ViewController{
     @objc func onUserLogoutNotify() {
-//        [VLUserCenter center]
+        if !self.isCN() {
+            return
+        }
         let vc = ALLoginViewController()
         vc.fd_prefersNavigationBarHidden = false
         vc.fd_interactivePopDisabled = true
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
+    }
+    
+    func isCN() -> Bool {
+        return Locale.current.regionCode == "CN"
     }
 }

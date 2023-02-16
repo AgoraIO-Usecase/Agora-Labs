@@ -109,7 +109,7 @@ extension DimEnvironment {
         
     func setupBottomContentView() {
         let funNameLabel = UILabel()
-        funNameLabel.text = "Dim Environment".localized
+        funNameLabel.text = "qyagzq".localized
         funNameLabel.textColor = .white
         funNameLabel.font = UIFont.boldSystemFont(ofSize: 15)
         bottomView.addSubview(funNameLabel)

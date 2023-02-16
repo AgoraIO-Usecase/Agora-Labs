@@ -280,3 +280,16 @@
 "HDRxiaoguo"="HDR效果";
 "HDRxiaoguoweikaiqi"="HDR效果未开启";
 "qiyongHDR"="启用HDR";
+
+"qysczq"="启用色彩增强";
+"sczqqd"="色彩增强强度";
+"fsbhqd"="肤色保护强度";
+
+"qyagzq"="启用暗光增强";
+"xnyx"="性能优先";
+"hzyx"="画质优先";
+
+"qyspjz"="启用视频降噪";
+"dghms"="低功耗模式";
+"jhms"="均衡模式";
+"qjzms"="强降噪模式";

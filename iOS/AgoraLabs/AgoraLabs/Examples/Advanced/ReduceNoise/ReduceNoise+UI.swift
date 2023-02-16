@@ -109,7 +109,7 @@ extension ReduceNoise {
         
     func setupBottomContentView() {
         let funNameLabel = UILabel()
-        funNameLabel.text = "Reduce Noise".localized
+        funNameLabel.text = "qyspjz".localized
         funNameLabel.textColor = .white
         funNameLabel.font = UIFont.boldSystemFont(ofSize: 15)
         bottomView.addSubview(funNameLabel)

@@ -43,6 +43,18 @@ extension String {
         Scanner(string: String(hex[hex.index(startIndex, offsetBy: 4)...])).scanHexInt64(&blue)
         return UIColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: alpha)
     }
+    
+    /// 时间戳转换时间字符串
+    /// - Parameters:
+    ///   - timeStamp: 时间戳
+    ///   - dateFormat: 自定义日期格式（如：yyyy-MM-dd HH:mm:ss）
+    /// - Returns: 时间字符串
+    static func getTimeString(timeStamp: Int, dateFormat: String) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval.init(timeStamp))
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = dateFormat
+        return dateformatter.string(from: date)
+    }
 }
 
 extension UIColor {

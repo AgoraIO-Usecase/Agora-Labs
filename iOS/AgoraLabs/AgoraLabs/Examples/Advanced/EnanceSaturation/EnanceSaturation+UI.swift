@@ -109,7 +109,7 @@ extension EnanceSaturation {
         
     func setupBottomContentView() {
         let funNameLabel = UILabel()
-        funNameLabel.text = "Enance Saturation".localized
+        funNameLabel.text = "qysczq".localized
         funNameLabel.textColor = .white
         funNameLabel.font = UIFont.boldSystemFont(ofSize: 15)
         bottomView.addSubview(funNameLabel)
@@ -125,7 +125,7 @@ extension EnanceSaturation {
         }
         
         let labkey1 = UILabel()
-        labkey1.text = "色彩增强强度"
+        labkey1.text = "sczqqd".localized
         labkey1.textColor = .white
         labkey1.font = UIFont.systemFont(ofSize: 15)
         bottomContentView.addSubview(labkey1)
@@ -159,7 +159,7 @@ extension EnanceSaturation {
         }
         
         let labkey2 = UILabel()
-        labkey2.text = "肤色保护强度"
+        labkey2.text = "fsbhqd".localized
         labkey2.textColor = .white
         labkey2.font = UIFont.systemFont(ofSize: 15)
         bottomContentView.addSubview(labkey2)

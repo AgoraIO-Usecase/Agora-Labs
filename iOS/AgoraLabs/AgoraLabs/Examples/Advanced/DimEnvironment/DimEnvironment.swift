@@ -14,8 +14,8 @@ class DimEnvironment: BaseViewController {
     var currentModel:SubCellModel?
     
     let multipleModelList:[SubCellModel] = [
-        SubCellModel(name: "性能优先",tag: 0,value: 1),
-        SubCellModel(name: "画质优先",tag: 1,value: 0)
+        SubCellModel(name: "xnyx".localized,tag: 0,value: 1),
+        SubCellModel(name: "hzyx".localized,tag: 1,value: 0)
     ]
     
     lazy var contentView: UIView = {

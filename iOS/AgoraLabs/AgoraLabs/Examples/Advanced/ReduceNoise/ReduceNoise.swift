@@ -14,9 +14,9 @@ class ReduceNoise: BaseViewController {
     var currentModel:SubCellModel?
     
     let multipleModelList:[SubCellModel] = [
-        SubCellModel(name: "低功耗模式",tag: 0,value: 0),
-        SubCellModel(name: "均衡模式",tag: 1,value: 1),
-        SubCellModel(name: "强降噪模式",tag: 2,value: 2)
+        SubCellModel(name: "dghms".localized,tag: 0,value: 0),
+        SubCellModel(name: "jhms".localized,tag: 1,value: 1),
+        SubCellModel(name: "qjzms".localized,tag: 2,value: 2)
     ]
     
     lazy var contentView: UIView = {
