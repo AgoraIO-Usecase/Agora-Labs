@@ -8,7 +8,7 @@
 
 import AgoraRtcKit
 import UIKit
-
+//暗光
 class DimEnvironment: BaseViewController {
     
     var currentModel:SubCellModel?
@@ -23,7 +23,7 @@ class DimEnvironment: BaseViewController {
         _contentView.backgroundColor = .black
         return _contentView
     }()
-    lazy var remoteVideoView: AGContrastView = {
+    lazy var localVideoView: AGContrastView = {
         let _remoteVideoView = AGContrastView(type: .single, frame: CGRect.zero)
         _remoteVideoView.backgroundColor = .black
         _remoteVideoView.masksToBounds = true
@@ -61,8 +61,6 @@ class DimEnvironment: BaseViewController {
         self.setupUI()
         //发送端设置
         self.setupSendData()
-        //接收端设置
-        self.setupRecvData()
     }
     
     func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 540, height: 960), frameRate: .fps15, bitrate: 1450, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
@@ -84,7 +82,15 @@ class DimEnvironment: BaseViewController {
         
         agoraKit.enableVideo()
         agoraKit.disableAudio()
-    
+        // set up local video to render your local camera preview
+        let videoCanvas = AgoraRtcVideoCanvas()
+        videoCanvas.uid = AgoraLabsUser.sendUid
+        // the view to be binded
+        videoCanvas.view = localVideoView.showView
+        videoCanvas.renderMode = .hidden
+        agoraKit.setupLocalVideo(videoCanvas)
+        // you have to call startPreview to see local video
+        agoraKit.startPreview()
         // Set audio route to speaker
         agoraKit.setDefaultAudioRouteToSpeakerphone(true)
 
@@ -112,36 +118,6 @@ class DimEnvironment: BaseViewController {
             self.showAlert(title: "Error", message: "sendAgoraKit joinChannel call failed: \(result), please check your params")
         }
         
-    }
-    
-    func setupRecvData() {
-
-        let option = AgoraRtcChannelMediaOptions()
-        option.publishCameraTrack = true
-        option.publishMicrophoneTrack = true
-        option.clientRoleType = .broadcaster
-        
-        let connection = AgoraRtcConnection()
-        connection.localUid = AgoraLabsUser.recvUid
-        connection.channelId = AgoraLabsUser.channelName
-        
-        let result = agoraKit.joinChannelEx(byToken: KeyCenter.Token, connection: connection, delegate: self, mediaOptions: option) {  channel, uid, elapsed in
-            print("recvAgoraKit uid=\(uid) joinChannel channel=\(channel)")
-            let videoCanvas = AgoraRtcVideoCanvas()
-            videoCanvas.uid = AgoraLabsUser.sendUid
-            videoCanvas.view = self.remoteVideoView.showView
-            videoCanvas.mirrorMode = .enabled
-            videoCanvas.renderMode = .hidden
-            self.agoraKit.setupRemoteVideoEx(videoCanvas, connection: connection)
-        }
-        
-        if result != 0 {
-            // Usually happens with invalid parameters
-            // Error code description can be found at:
-            // en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-            // cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-            self.showAlert(title: "Error", message: "recv joinChannel call failed: \(result), please check your params")
-        }
     }
     
     @objc func backBtnDidClick() {

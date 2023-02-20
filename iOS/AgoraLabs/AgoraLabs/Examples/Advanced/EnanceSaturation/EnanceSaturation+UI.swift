@@ -54,8 +54,8 @@ extension EnanceSaturation {
             make.edges.equalToSuperview()
         }
         
-        contentView.addSubview(remoteVideoView)
-        remoteVideoView.snp.makeConstraints { make in
+        contentView.addSubview(localVideoView)
+        localVideoView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(contentView.snp.top)
             make.height.equalTo(contentView.snp.height)
@@ -218,7 +218,7 @@ extension EnanceSaturation {
     
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
-        self.remoteVideoView.titleSelected = sender.isOn
+        self.localVideoView.titleSelected = sender.isOn
         self.skinSlider?.isEnabled = sender.isOn
         self.strengthSlider?.isEnabled = sender.isOn
         self.setupEnanceSaturation(enabled: sender.isOn)

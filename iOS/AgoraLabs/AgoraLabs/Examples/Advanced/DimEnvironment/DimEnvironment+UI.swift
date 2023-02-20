@@ -54,8 +54,8 @@ extension DimEnvironment {
             make.edges.equalToSuperview()
         }
         
-        contentView.addSubview(remoteVideoView)
-        remoteVideoView.snp.makeConstraints { make in
+        contentView.addSubview(localVideoView)
+        localVideoView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(contentView.snp.top)
             make.height.equalTo(contentView.snp.height)
@@ -176,7 +176,7 @@ extension DimEnvironment {
     
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
-        self.remoteVideoView.titleSelected = sender.isOn
+        self.localVideoView.titleSelected = sender.isOn
         self.multipleModelList.forEach { model in
             guard let itemView = model.subView as? SubButton  else { return  }
             itemView.isEnabled = sender.isOn

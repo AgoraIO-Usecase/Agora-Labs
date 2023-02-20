@@ -8,7 +8,7 @@
 
 import AgoraRtcKit
 import UIKit
-
+//降噪
 class ReduceNoise: BaseViewController {
     
     var currentModel:SubCellModel?

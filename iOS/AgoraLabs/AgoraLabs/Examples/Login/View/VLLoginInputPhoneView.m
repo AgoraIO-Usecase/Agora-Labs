@@ -96,8 +96,8 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = AGLocalizedString(@"sjh");//AGLocalizedString(@"手机号");
-//        _titleLabel.textColor = UIColorMakeWithHex(@"#979CBB");
-//        _titleLabel.font = VLUIFontMake(15);
+        _titleLabel.textColor = [UIColor colorWithRGB:0x979CBB];
+        _titleLabel.font = [UIFont systemFontOfSize:15];
     }
     return _titleLabel;
 }
@@ -106,8 +106,8 @@
     if (!_areaCodeLabel) {
         _areaCodeLabel = [[UILabel alloc] init];
         _areaCodeLabel.text = @"+86";
-//        _areaCodeLabel.textColor = UIColorMakeWithHex(@"#3C4267");
-//        _areaCodeLabel.font = VLUIFontMake(15);
+        _areaCodeLabel.textColor = [UIColor colorWithRGB:0x3C4267];
+        _areaCodeLabel.font = [UIFont systemFontOfSize:15];
     }
     return _areaCodeLabel;
 }
@@ -115,7 +115,7 @@
 - (UIView *)line {
     if (!_line) {
         _line = [[UIView alloc] init];
-//        _line.backgroundColor = UIColorMakeWithHex(@"#8A8B9B");
+        _line.backgroundColor = [UIColor colorWithRGB:0x8A8B9B];
     }
     return _line;
 }
@@ -124,8 +124,8 @@
     if (!_vTextField) {
         _vTextField = [[UITextField alloc] init];
         _vTextField.keyboardType = UIKeyboardTypeNumberPad;
-//        _vTextField.textColor = UIColorMakeWithHex(@"#3C4267");
-//        _vTextField.font = VLUIFontMake(15);
+        _vTextField.textColor = [UIColor colorWithRGB:0x3C4267];
+        _vTextField.font = [UIFont systemFontOfSize:15];
         [_vTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _vTextField;

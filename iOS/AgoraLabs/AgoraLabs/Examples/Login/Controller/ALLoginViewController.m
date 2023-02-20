@@ -291,7 +291,7 @@
 }
 
 - (void)navigatorToWebviewOfUserProtocol{
-    [self pushToWebView:kURLPathH5UserAgreement];
+    [self pushToWebView:@"https://supportmessaging.apple.com/app/8ecf1651-0aca-4821-96c2-9e0456527587?locale=zh_CN"];
 }
 
 - (void)navigatorToWebviewOfPrivacyProtocol{

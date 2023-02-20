@@ -2310,8 +2310,8 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = PSLY6TJJC8;
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = PSLY6TJJC8;
+				DEVELOPMENT_TEAM = NEV4R2Q744;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = NEV4R2Q744;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2370,8 +2370,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.labs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = medialab;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = medialab;
+				PROVISIONING_PROFILE_SPECIFIER = medialabs;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = medialabs;
 				SWIFT_OBJC_BRIDGING_HEADER = "AgoraLabs/AgoraLabs-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
