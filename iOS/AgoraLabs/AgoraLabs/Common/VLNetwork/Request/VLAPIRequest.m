@@ -58,10 +58,16 @@ static AFHTTPSessionManager *_sessionManager;
 
 
 + (void)requestRoute:(NSString *)route showHUD:(BOOL)show method:(NSString *)method parameter:(id)json requestType:(VLRequestType)type progressBlock:(progressBlock)progressBlock completeBlock:(completeBlock_success)completeBlock errorBlock:(errorBlock_fail)errorBlock {
+
     NSString *url = [self doRoute:route andMethod:method];
     url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    if (json == nil) json = @{};
+   
+    [self requestURL:url showHUD:show method:method parameter:json requestType:type progressBlock:progressBlock completeBlock:completeBlock errorBlock:errorBlock];
+}
+
++ (void)requestURL:(NSString *)url showHUD:(BOOL)show method:(NSString *)method parameter:(id)json requestType:(VLRequestType)type progressBlock:(progressBlock)progressBlock completeBlock:(completeBlock_success)completeBlock errorBlock:(errorBlock_fail)errorBlock {
     
+    if (json == nil) json = @{};
     NSURLSessionDataTask *sessionTask;
 
     [_sessionManager.requestSerializer setValue:[self getToken] forHTTPHeaderField:@"Authorization"];
@@ -107,6 +113,7 @@ static AFHTTPSessionManager *_sessionManager;
         [self addSessionTask:sessionTask];
     }
 }
+
 + (void)requestImageRoute:(NSString *)route  method:(NSString *)method parameter:(id)json requestType:(VLRequestType)type progressBlock:(progressBlock)progressBlock completeBlock:(completeImageBlock_success)completeBlock errorBlock:(errorBlock_fail)errorBlock {
     
     NSString *url = [self doRoute:route andMethod:method];

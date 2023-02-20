@@ -19,4 +19,5 @@
 #import "VLURLPathConfig.h"
 #import "VLPrivacyCustomView.h"
 #import "VLUserCenter.h"
+#import "VLAPIRequest.h"
 #import <YYText/YYText.h>

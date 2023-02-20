@@ -270,22 +270,14 @@ extension PVC:AAChartViewDelegate{
     }
     
     func reloadChartView(_ xItem:Int, _ yItem:Int) {
-
-        if self.chartYArray.count >= 30 {
-            self.chartXArray.remove(at: 0)
-            self.chartXArray.append(xItem)
-        }else{
-            self.chartXArray.append(xItem)
-        }
-        
         if self.chartYArray.count >= 30 {
             self.chartYArray.remove(at: 0)
-            self.chartYArray.append(String.getTimeString(timeStamp: yItem, dateFormat: "mm:ss"))
+            self.chartYArray.append(String.getTimeString(timeStamp: yItem, dateFormat: "HH:mm:ss"))
         }else{
-            self.chartYArray.append(String.getTimeString(timeStamp: yItem, dateFormat: "mm:ss"))
+            self.chartYArray.append(String.getTimeString(timeStamp: yItem, dateFormat: "HH:mm:ss"))
         }
         
-        let xAxisTickInterval:Float = ceilf(Float(self.chartYArray.count)/6.0)
+        let xAxisTickInterval:Float = ceilf(Float(self.chartYArray.count)/5.0)
         
         let kbpsList = AASeriesElement()
             .color("#FFFFFF")

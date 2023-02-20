@@ -248,7 +248,7 @@ extension ViewController: AGViewDelegate{
             entryViewController.fd_prefersNavigationBarHidden = false
             entryViewController.fd_interactivePopDisabled = true
             self.navigationController?.pushViewController(entryViewController, animated: true)
-
+            self.even(name: name)
         }else{
             AGHUD.showInfo(info: "ggnzbzcjqqd".localized)
         }
@@ -280,4 +280,39 @@ extension ViewController{
     func isCN() -> Bool {
         return Locale.current.regionCode == "CN".localized
     }
+
+    func even(name:String) {
+        let url = "https://report-ad.agoralab.co/v1/report"
+        let method = "/v1/report"
+        let src = "2"
+        let ts:Int = Int(Date().timeIntervalSince1970*1000)
+        let sign = "src=\(src)&ts=\(ts)".md5
+        let param = [
+            "pts":[
+                [
+                    "m": "event",
+                    "ls": [
+                        "name": "entryScene",
+                        "project": name,
+                        "version": "2.0.0",
+                        "platform": "iOS"
+                    ],
+                    "vs": [
+                        "count": 1
+                    ]
+                ]
+            ],
+            "src": src,
+            "ts": ts,
+            "sign": sign
+        ] as [String : Any]
+        
+        VLAPIRequest.requestURL(url, showHUD: false, method: method, parameter: param, requestType: .post) { progress in
+        } complete: { model in
+            print("complete")
+        } errorBlock: { error, task in
+            print("errorBlock")
+        }
+    }
+
 }
