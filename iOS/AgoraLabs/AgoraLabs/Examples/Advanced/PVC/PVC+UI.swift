@@ -149,7 +149,7 @@ extension PVC{
         self.aaChartView.delegate = self
         let kbpsList = AASeriesElement()
             .color("#FFFFFF")
-            .data(self.chartXArray)
+            .data(self.chartYArray)
         
         let style = AAStyle()
             .color("#FFFFFF")
@@ -165,7 +165,7 @@ extension PVC{
                .titleStyle(style)
                .markerRadius(0)
                .tooltipValueSuffix("kbps")//the value suffix of the chart tooltip
-               .categories(self.chartYArray)
+               .categories(self.chartXArray)
                .series([kbpsList])
                .xAxisTickInterval(10)
         
@@ -272,24 +272,24 @@ extension PVC:AAChartViewDelegate{
     func reloadChartView(_ xItem:Int, _ yItem:Int) {
 
         if self.chartYArray.count >= 30 {
-            self.chartXArray.remove(at: 0)
-            self.chartXArray.append(xItem)
+            self.chartYArray.remove(at: 0)
+            self.chartYArray.append(xItem)
         }else{
-            self.chartXArray.append(xItem)
+            self.chartYArray.append(xItem)
         }
 
-        if self.chartYArray.count >= 30 {
-            self.chartYArray.remove(at: 0)
-            self.chartYArray.append(String.getTimeString(timeStamp: yItem, dateFormat: "HH:mm:ss"))
+        if self.chartXArray.count >= 30 {
+            self.chartXArray.remove(at: 0)
+            self.chartXArray.append(String.getTimeString(timeStamp: yItem, dateFormat: "HH:mm:ss"))
         }else{
-            self.chartYArray.append(String.getTimeString(timeStamp: yItem, dateFormat: "HH:mm:ss"))
+            self.chartXArray.append(String.getTimeString(timeStamp: yItem, dateFormat: "HH:mm:ss"))
         }
         
         let xAxisTickInterval:Float = ceilf(Float(self.chartYArray.count)/5.0)
         
         let kbpsList = AASeriesElement()
             .color("#FFFFFF")
-            .data(self.chartXArray)
+            .data(self.chartYArray)
         
         let style = AAStyle()
             .color("#FFFFFF")
@@ -306,7 +306,7 @@ extension PVC:AAChartViewDelegate{
                .titleStyle(style)
                .markerRadius(0)
                .tooltipValueSuffix("kbps")//the value suffix of the chart tooltip
-               .categories(self.chartYArray)
+               .categories(self.chartXArray)
                .series([kbpsList])
                .xAxisTickInterval(xAxisTickInterval)
         

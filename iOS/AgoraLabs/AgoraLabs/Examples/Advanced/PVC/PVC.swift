@@ -90,8 +90,8 @@ class PVC: BaseViewController {
     }()
 
     
-    var chartXArray = [Int]()
-    var chartYArray = [String]()
+    var chartXArray = [String]()
+    var chartYArray = [Int]()
     var layoutType:Int = 1
     var layoutImage:UIImageView?
     var agoraKit: AgoraRtcEngineKit!
