@@ -295,7 +295,8 @@ extension ViewController{
                         "name": "entryScene",
                         "project": name,
                         "version": "2.0.0",
-                        "platform": "iOS"
+                        "platform": "iOS",
+                        "model":UIDevice().identifier()
                     ],
                     "vs": [
                         "count": 1
