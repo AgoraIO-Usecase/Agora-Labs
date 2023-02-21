@@ -3,6 +3,7 @@ package io.agora.api.example.utils;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Vibrator;
+import android.util.Log;
 import java.util.Locale;
 
 public class SystemUtil {
@@ -44,6 +45,15 @@ public class SystemUtil {
     public static void vibrator(Context context){
         Vibrator vibrator= (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(30);
+    }
+
+    public static String getVersionName(Context context){
+        try {
+            return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("AgoraLab","Error while getting the local app version name.", e);
+            return "";
+        }
     }
 
 }

@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,10 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import io.agora.api.example.App;
 import io.agora.api.example.R;
-import io.agora.api.example.common.widget.PopWindow;
 import io.agora.api.example.common.widget.VideoFeatureMenu;
 import io.agora.api.example.databinding.FragmentRoiBinding;
-import io.agora.api.example.utils.ConstraintLayoutUtils;
 import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
 import io.agora.api.example.utils.UIUtil;
@@ -248,7 +245,7 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
             public void onRtcStats(IRtcEngineEventHandler.RtcStats stats) {
                 ThreadUtils.runOnUI(() -> {
                     int bitrate=stats.rxVideoKBitRate;
-                    tvRemoteBitrate.setText(getContext().getResources().getString(R.string.bitrate,bitrate));
+                    tvRemoteBitrate.setText(getContext().getResources().getString(R.string.bitrate_value,bitrate));
                 });
             }
         });

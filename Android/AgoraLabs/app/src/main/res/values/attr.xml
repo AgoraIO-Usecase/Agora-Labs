@@ -44,6 +44,10 @@
         <attr name="bsb_rtl" format="boolean"/> <!--right to left, default: false-->
         <attr name="android:enabled"/>
     </declare-styleable>
-
+    <declare-styleable name="SwipeCaptchaView">
+        <attr name="captchaWidth" format="dimension" />
+        <attr name="captchaHeight" format="dimension" />
+        <attr name="matchDeviation" format="dimension" />
+    </declare-styleable>
 
 </resources>

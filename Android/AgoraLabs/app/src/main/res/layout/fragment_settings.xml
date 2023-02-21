@@ -10,7 +10,7 @@
         android:padding="8dp"
         android:layout_marginLeft="@dimen/permission_dp_10"
         android:layout_marginTop="@dimen/permission_dp_10"
-        android:src="@drawable/ic_chevron_left"
+        android:src="@mipmap/ic_back"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <ImageView
@@ -128,7 +128,6 @@
         android:layout_marginBottom="44dp"
         android:textSize="13sp"
         android:textColor="#2E18191B"
-        android:visibility="invisible"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

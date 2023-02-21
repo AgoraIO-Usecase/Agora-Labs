@@ -8,19 +8,20 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import com.example.anan.AAChartCore.AAChartCoreLib.AAChartCreator.AAChartModel;
+import com.example.anan.AAChartCore.AAChartCoreLib.AAChartCreator.AASeriesElement;
+import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartAnimationType;
+import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartType;
+import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AAStyle;
 import io.agora.api.example.App;
 import io.agora.api.example.R;
-import io.agora.api.example.common.widget.PopWindow;
 import io.agora.api.example.common.widget.VideoFeatureMenu;
 import io.agora.api.example.databinding.FragmentPvcBinding;
-import io.agora.api.example.utils.ConstraintLayoutUtils;
 import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
 import io.agora.api.example.utils.UIUtil;
@@ -32,9 +33,12 @@ import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.RtcEngineEx;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static android.util.TypedValue.COMPLEX_UNIT_SP;
-import static androidx.constraintlayout.widget.ConstraintSet.PARENT_ID;
 
 public class PVCFragment extends Fragment implements View.OnClickListener{
     private final String TAG="AgoraLab";
@@ -51,12 +55,15 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
     private SurfaceView remoteView;
 
     private TextView tvPVC;
-    private TextView tvRemoteBitrate;
+    //private TextView tvRemoteBitrate;
 
     private boolean pvcEnabled;
     private int resolution=VideoFeatureMenu.RESOLUTION_360P;
 
 
+    private AAChartModel chartModel;
+    private List<Object> yData=new ArrayList<>();
+    private List<String> xData=new ArrayList<>();
     private VideoEncoderConfiguration configuration;
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,12 +78,36 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
 
     @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initChartModel();
         initView();
     }
 
 
+    private void initChartModel(){
+        if(chartModel==null){
+            AAStyle style=new AAStyle().color("#FFFFFF");
+            chartModel=new AAChartModel()
+                .chartType(AAChartType.Line)
+                .animationType(AAChartAnimationType.Elastic)
+                .animationDuration(1)
+                .dataLabelsEnabled(false)
+                .legendEnabled(false)
+                .dataLabelsStyle(style)
+                .axesTextColor("#FFFFFF")
+                .titleStyle(style)
+                .markerRadius(0)
+                .tooltipValueSuffix("kbps")
+                .categories(xData.toArray(new String[xData.size()]))
+                .series(new AASeriesElement[]{new AASeriesElement().data(yData.toArray())})
+                .xAxisTickInterval(xData.size()/5);
+        }
+    }
+    private void updateChartView(){
+        binding.chartView.aa_drawChartWithChartModel(chartModel);
+    }
 
     private void initView(){
+        binding.chartView.setIsClearBackgroundColor(true);
         binding.ivBack.setOnClickListener(this);
         binding.ivSwitchCamera.setOnClickListener(this);
         binding.optionMenu.setListener(resolution -> {
@@ -105,12 +136,12 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         tvPVC.setPadding(padding,padding,padding,padding);
         tvPVC.setText(pvcEnabled?R.string.pvc_enabled:R.string.pvc_disabled);
         tvPVC.setBackgroundResource(pvcEnabled?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
-
+        /*
         tvRemoteBitrate=new TextView(getContext());
         tvRemoteBitrate.setGravity(Gravity.CENTER);
         tvRemoteBitrate.setTextColor(getResources().getColor(R.color.white));
         tvRemoteBitrate.setTextSize(COMPLEX_UNIT_SP,13);
-        tvRemoteBitrate.setPadding(padding,padding,padding,padding);
+        tvRemoteBitrate.setPadding(padding,padding,padding,padding);*/
 
         binding.menuControler.setOnClickListener(v -> {
             if(binding.optionMenu.getVisibility()==View.GONE){
@@ -141,8 +172,9 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         };
         binding.menuControler.setOnTouchListener(listener);
         binding.featureSwitch.setOnTouchListener(listener);
+        binding.tvBitrate.setOnClickListener(this);
+        binding.tvBitrateContent.setOnClickListener(this);
     }
-    private boolean navigationShow=false;
 
     private void updatePVC(){
         tvPVC.setText(pvcEnabled?R.string.pvc_enabled:R.string.pvc_disabled);
@@ -159,6 +191,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         initializeEngine();
         setupSend();
         setupReceiver();
+        updateChartView();
     }
 
     protected void initializeEngine() {
@@ -259,11 +292,32 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             public void onRtcStats(IRtcEngineEventHandler.RtcStats stats) {
                 ThreadUtils.runOnUI(() -> {
                     int bitrate=stats.rxVideoKBitRate;
-                    tvRemoteBitrate.setText(getContext().getResources().getString(R.string.bitrate,bitrate));
+                    updateBitrate(bitrate);
+                    binding.tvBitrate.setText(bitrate+" kbps");
+                    binding.tvBitrateContent.setText(getString(R.string.bitrate_value,bitrate));
+                    //tvRemoteBitrate.setText(getContext().getResources().getString(R.string.bitrate_value,bitrate));
                 });
             }
         });
 
+    }
+
+    private void updateBitrate(int bitrate){
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("HH:mm:ss");
+        String now=simpleDateFormat.format(new Date());
+        if(xData.size()>=30){
+            xData.remove(0);
+        }
+        xData.add(now);
+        if(yData.size()>=30){
+            yData.remove(0);
+        }
+        yData.add(bitrate);
+        Log.d("AgoraLab","---xData size:"+xData.size()+" yData size:"+yData.size());
+        chartModel.categories(xData.toArray(new String[xData.size()]))
+            .series(new AASeriesElement[]{new AASeriesElement().color("#ffffff").data(yData.toArray())})
+            .xAxisTickInterval((int)Math.ceil(yData.size()/5.0d));;
+        updateChartView();
     }
 
 
@@ -297,6 +351,12 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
             Navigation.findNavController(v).popBackStack();
         }else if(v.getId()==R.id.iv_switch_camera){
             rtcEngine.switchCamera();
+        }else if(v.getId()==R.id.tv_bitrate){
+            binding.chartContainer.setVisibility(View.GONE);
+            binding.tvBitrateContent.setVisibility(View.VISIBLE);
+        }else if(v.getId()==R.id.tv_bitrate_content){
+            binding.chartContainer.setVisibility(View.VISIBLE);
+            binding.tvBitrateContent.setVisibility(View.GONE);
         }
     }
 
