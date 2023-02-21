@@ -32,11 +32,22 @@
         <activity android:name=".SplashActivity"
             android:screenOrientation="portrait"
             android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".main.WelcomeActivity"
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".main.WebViewActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".main.PhoneLoginRegisterActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

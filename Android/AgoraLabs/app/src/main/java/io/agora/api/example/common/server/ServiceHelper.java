@@ -14,7 +14,7 @@ public class ServiceHelper {
             .setLenient()
             .create();
         Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://gateway-fulldemo-staging.agoralab.co")
+            .baseUrl("https://report-ad.agoralab.co/v1/report")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();

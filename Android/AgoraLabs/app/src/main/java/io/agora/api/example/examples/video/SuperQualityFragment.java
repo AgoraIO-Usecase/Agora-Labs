@@ -35,7 +35,6 @@ import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 
 import static android.util.TypedValue.COMPLEX_UNIT_SP;
-import static androidx.constraintlayout.widget.ConstraintSet.GONE;
 import static androidx.constraintlayout.widget.ConstraintSet.PARENT_ID;
 
 public class SuperQualityFragment extends Fragment implements View.OnClickListener{
@@ -328,7 +327,7 @@ public class SuperQualityFragment extends Fragment implements View.OnClickListen
                 Log.d(TAG,"onRtcStats");
                 ThreadUtils.runOnUI(() -> {
                     int bitrate=stats.txVideoKBitRate;
-                    tvLocalBitrate.setText(getContext().getResources().getString(R.string.bitrate,bitrate));
+                    tvLocalBitrate.setText(getContext().getResources().getString(R.string.bitrate_value,bitrate));
                 });
             }
         });
@@ -366,7 +365,7 @@ public class SuperQualityFragment extends Fragment implements View.OnClickListen
             public void onRtcStats(IRtcEngineEventHandler.RtcStats stats) {
                 ThreadUtils.runOnUI(() -> {
                     int bitrate=stats.rxVideoKBitRate;
-                    tvRemoteBitrate.setText(getContext().getResources().getString(R.string.bitrate,bitrate));
+                    tvRemoteBitrate.setText(getContext().getResources().getString(R.string.bitrate_value,bitrate));
                 });
             }
         });

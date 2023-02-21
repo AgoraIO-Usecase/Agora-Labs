@@ -57,6 +57,28 @@
             app:popEnterAnim="@anim/slide_left_in"
             app:popExitAnim="@anim/slide_right_out"
             app:destination="@id/settings" />
+        <action
+            android:id="@+id/action_homeFragment_to_color_enhancement"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out"
+            app:destination="@id/color_enhancement" />
+        <action
+            android:id="@+id/action_homeFragment_to_dark_light_enhancement"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out"
+            app:destination="@id/dark_light_enhancement" />
+        <action
+            android:id="@+id/action_homeFragment_to_video_noise_reduction"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out"
+            app:destination="@id/video_noise_reduction"
+            />
     </fragment>
 
     <fragment
@@ -99,5 +121,23 @@
         android:name="io.agora.api.example.main.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings"
+        />
+    <fragment
+        android:id="@+id/color_enhancement"
+        android:name="io.agora.api.example.examples.video.ColorEnhancementFragment"
+        android:label="@string/color_enhance"
+        tools:layout="@layout/fragment_color_enhancement"
+        />
+    <fragment
+        android:id="@+id/dark_light_enhancement"
+        android:name="io.agora.api.example.examples.video.DarklightFragment"
+        android:label="@string/dark_light_enhancement"
+        tools:layout="@layout/fragment_dark_light_enhancement"
+        />
+    <fragment
+        android:id="@+id/video_noise_reduction"
+        android:name="io.agora.api.example.examples.video.VideoNoiseReductionFragment"
+        android:label="@string/video_noise_reduction"
+        tools:layout="@layout/fragment_video_noise_reduction"
         />
 </navigation>
