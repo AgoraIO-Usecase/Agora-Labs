@@ -270,6 +270,14 @@ extension PVC:AAChartViewDelegate{
     }
     
     func reloadChartView(_ xItem:Int, _ yItem:Int) {
+
+        if self.chartYArray.count >= 30 {
+            self.chartXArray.remove(at: 0)
+            self.chartXArray.append(xItem)
+        }else{
+            self.chartXArray.append(xItem)
+        }
+
         if self.chartYArray.count >= 30 {
             self.chartYArray.remove(at: 0)
             self.chartYArray.append(String.getTimeString(timeStamp: yItem, dateFormat: "HH:mm:ss"))

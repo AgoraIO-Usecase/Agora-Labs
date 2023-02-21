@@ -284,7 +284,7 @@ extension ViewController{
     func even(name:String) {
         let url = "https://report-ad.agoralab.co/v1/report"
         let method = "/v1/report"
-        let src = "2"
+        let src = "agora_labs"
         let ts:Int = Int(Date().timeIntervalSince1970*1000)
         let sign = "src=\(src)&ts=\(ts)".md5
         let param = [
