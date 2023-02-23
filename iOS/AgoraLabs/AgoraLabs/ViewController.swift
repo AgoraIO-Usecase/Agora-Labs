@@ -293,7 +293,7 @@ extension ViewController{
                     "m": "event",
                     "ls": [
                         "name": "entryScene",
-                        "project": name,
+                        "project": name.removeAllSapce,
                         "version": "2.0.0",
                         "platform": "iOS",
                         "model":UIDevice().identifier()

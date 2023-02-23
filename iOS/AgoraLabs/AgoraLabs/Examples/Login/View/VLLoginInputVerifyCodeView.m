@@ -132,7 +132,7 @@
 - (UITextField *)vTextField {
     if (!_vTextField) {
         _vTextField = [[UITextField alloc] init];
-        _vTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入验验证码" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor colorWithRGB:0x979CBB]}];
+        _vTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:AGLocalizedString(@"qsryyzm") attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor colorWithRGB:0x979CBB]}];
         _vTextField.keyboardType = UIKeyboardTypeNumberPad;
         _vTextField.textColor = [UIColor colorWithRGB:0x3C4267];
         _vTextField.font = [UIFont systemFontOfSize:15];

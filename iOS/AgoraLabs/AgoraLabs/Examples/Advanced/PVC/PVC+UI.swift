@@ -164,7 +164,7 @@ extension PVC{
                .yAxisLabelsStyle(style)
                .titleStyle(style)
                .markerRadius(0)
-               .tooltipValueSuffix("kbps")//the value suffix of the chart tooltip
+               .tooltipValueSuffix("kbps")
                .categories(self.chartXArray)
                .series([kbpsList])
                .xAxisTickInterval(10)
