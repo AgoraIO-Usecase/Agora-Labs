@@ -1,5 +1,5 @@
 //
-//  DimEnvironment.swift
+//  DarkLight.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2023/2/10.
@@ -9,7 +9,7 @@
 import AgoraRtcKit
 import UIKit
 //暗光
-class DimEnvironment: BaseViewController {
+class DarkLight: BaseViewController {
     
     var currentModel:SubCellModel?
     
@@ -151,7 +151,7 @@ class DimEnvironment: BaseViewController {
     }
 }
 
-extension DimEnvironment:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
+extension DarkLight:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
         print("onEvent ------------ provider:\(provider ?? "")")
     }

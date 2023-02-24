@@ -80,7 +80,7 @@
 }
 
 -(void)startTime:(UIButton *)sender {
-    __block int timeout = 59; //倒计时时间
+    __block int timeout = 300; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(self.timer,dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0); //每秒执行
@@ -96,8 +96,8 @@
                 sender.userInteractionEnabled = YES;
             });
         } else {
-            int seconds = timeout % 60;
-            NSString *strTime = [NSString stringWithFormat:@"%d", seconds];
+            //int seconds = timeout % 60;
+            NSString *strTime = [NSString stringWithFormat:@"%d", timeout];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 VLLog(@"verify timer%@",strTime);

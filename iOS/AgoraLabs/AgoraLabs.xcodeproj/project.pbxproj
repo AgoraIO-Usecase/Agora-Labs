@@ -51,15 +51,15 @@
 		A68E42332993895700E298DF /* HDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42322993895700E298DF /* HDR.swift */; };
 		A68E42352993896000E298DF /* HDR+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42342993896000E298DF /* HDR+UI.swift */; };
 		A68E42372993897900E298DF /* HDR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42362993897900E298DF /* HDR.storyboard */; };
-		A68E423A2993ACD800E298DF /* EnanceSaturation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42392993ACD800E298DF /* EnanceSaturation.storyboard */; };
-		A68E423C2993ACE100E298DF /* EnanceSaturation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E423B2993ACE100E298DF /* EnanceSaturation.swift */; };
-		A68E423E2993ACEB00E298DF /* EnanceSaturation+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E423D2993ACEB00E298DF /* EnanceSaturation+UI.swift */; };
+		A68E423A2993ACD800E298DF /* EnhanceSaturation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42392993ACD800E298DF /* EnhanceSaturation.storyboard */; };
+		A68E423C2993ACE100E298DF /* EnhanceSaturation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E423B2993ACE100E298DF /* EnhanceSaturation.swift */; };
+		A68E423E2993ACEB00E298DF /* EnhanceSaturation+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E423D2993ACEB00E298DF /* EnhanceSaturation+UI.swift */; };
 		A68E42412995E13500E298DF /* ReduceNoise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42402995E13500E298DF /* ReduceNoise.swift */; };
 		A68E42432995E13D00E298DF /* ReduceNoise+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42422995E13D00E298DF /* ReduceNoise+UI.swift */; };
 		A68E42452995E14400E298DF /* ReduceNoise.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42442995E14400E298DF /* ReduceNoise.storyboard */; };
-		A68E42482995EE4700E298DF /* DimEnvironment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42472995EE4700E298DF /* DimEnvironment.storyboard */; };
-		A68E424A2995EE5000E298DF /* DimEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42492995EE5000E298DF /* DimEnvironment.swift */; };
-		A68E424C2995EE5900E298DF /* DimEnvironment+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */; };
+		A68E42482995EE4700E298DF /* DarkLight.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42472995EE4700E298DF /* DarkLight.storyboard */; };
+		A68E424A2995EE5000E298DF /* DarkLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42492995EE5000E298DF /* DarkLight.swift */; };
+		A68E424C2995EE5900E298DF /* DarkLight+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E424B2995EE5900E298DF /* DarkLight+UI.swift */; };
 		A68E42512995F6A900E298DF /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42502995F6A900E298DF /* Setting.swift */; };
 		A68E4260299A1CBF00E298DF /* VLResponseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E4256299A1CBF00E298DF /* VLResponseDataModel.m */; };
 		A68E4261299A1CBF00E298DF /* VLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E4259299A1CBF00E298DF /* VLBaseModel.m */; };
@@ -459,15 +459,15 @@
 		A68E42322993895700E298DF /* HDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDR.swift; sourceTree = "<group>"; };
 		A68E42342993896000E298DF /* HDR+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HDR+UI.swift"; sourceTree = "<group>"; };
 		A68E42362993897900E298DF /* HDR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HDR.storyboard; sourceTree = "<group>"; };
-		A68E42392993ACD800E298DF /* EnanceSaturation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EnanceSaturation.storyboard; sourceTree = "<group>"; };
-		A68E423B2993ACE100E298DF /* EnanceSaturation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnanceSaturation.swift; sourceTree = "<group>"; };
-		A68E423D2993ACEB00E298DF /* EnanceSaturation+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnanceSaturation+UI.swift"; sourceTree = "<group>"; };
+		A68E42392993ACD800E298DF /* EnhanceSaturation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EnhanceSaturation.storyboard; sourceTree = "<group>"; };
+		A68E423B2993ACE100E298DF /* EnhanceSaturation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhanceSaturation.swift; sourceTree = "<group>"; };
+		A68E423D2993ACEB00E298DF /* EnhanceSaturation+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnhanceSaturation+UI.swift"; sourceTree = "<group>"; };
 		A68E42402995E13500E298DF /* ReduceNoise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduceNoise.swift; sourceTree = "<group>"; };
 		A68E42422995E13D00E298DF /* ReduceNoise+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReduceNoise+UI.swift"; sourceTree = "<group>"; };
 		A68E42442995E14400E298DF /* ReduceNoise.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReduceNoise.storyboard; sourceTree = "<group>"; };
-		A68E42472995EE4700E298DF /* DimEnvironment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DimEnvironment.storyboard; sourceTree = "<group>"; };
-		A68E42492995EE5000E298DF /* DimEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimEnvironment.swift; sourceTree = "<group>"; };
-		A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DimEnvironment+UI.swift"; sourceTree = "<group>"; };
+		A68E42472995EE4700E298DF /* DarkLight.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DarkLight.storyboard; sourceTree = "<group>"; };
+		A68E42492995EE5000E298DF /* DarkLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkLight.swift; sourceTree = "<group>"; };
+		A68E424B2995EE5900E298DF /* DarkLight+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DarkLight+UI.swift"; sourceTree = "<group>"; };
 		A68E42502995F6A900E298DF /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		A68E4254299A1CBF00E298DF /* VLNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLNetworkConfig.h; sourceTree = "<group>"; };
 		A68E4256299A1CBF00E298DF /* VLResponseDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLResponseDataModel.m; sourceTree = "<group>"; };
@@ -1015,14 +1015,14 @@
 			path = HDR;
 			sourceTree = "<group>";
 		};
-		A68E42382993ACC500E298DF /* EnanceSaturation */ = {
+		A68E42382993ACC500E298DF /* EnhanceSaturation */ = {
 			isa = PBXGroup;
 			children = (
-				A68E42392993ACD800E298DF /* EnanceSaturation.storyboard */,
-				A68E423B2993ACE100E298DF /* EnanceSaturation.swift */,
-				A68E423D2993ACEB00E298DF /* EnanceSaturation+UI.swift */,
+				A68E42392993ACD800E298DF /* EnhanceSaturation.storyboard */,
+				A68E423B2993ACE100E298DF /* EnhanceSaturation.swift */,
+				A68E423D2993ACEB00E298DF /* EnhanceSaturation+UI.swift */,
 			);
-			path = EnanceSaturation;
+			path = EnhanceSaturation;
 			sourceTree = "<group>";
 		};
 		A68E423F2995E12600E298DF /* ReduceNoise */ = {
@@ -1035,14 +1035,14 @@
 			path = ReduceNoise;
 			sourceTree = "<group>";
 		};
-		A68E42462995EE3400E298DF /* DimEnvironment */ = {
+		A68E42462995EE3400E298DF /* DarkLight */ = {
 			isa = PBXGroup;
 			children = (
-				A68E42472995EE4700E298DF /* DimEnvironment.storyboard */,
-				A68E42492995EE5000E298DF /* DimEnvironment.swift */,
-				A68E424B2995EE5900E298DF /* DimEnvironment+UI.swift */,
+				A68E42472995EE4700E298DF /* DarkLight.storyboard */,
+				A68E42492995EE5000E298DF /* DarkLight.swift */,
+				A68E424B2995EE5900E298DF /* DarkLight+UI.swift */,
 			);
-			path = DimEnvironment;
+			path = DarkLight;
 			sourceTree = "<group>";
 		};
 		A68E424D2995F68300E298DF /* Setting */ = {
@@ -1640,9 +1640,9 @@
 		A75A56D724A0603000D0089E /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
-				A68E42462995EE3400E298DF /* DimEnvironment */,
+				A68E42462995EE3400E298DF /* DarkLight */,
 				A68E423F2995E12600E298DF /* ReduceNoise */,
-				A68E42382993ACC500E298DF /* EnanceSaturation */,
+				A68E42382993ACC500E298DF /* EnhanceSaturation */,
 				A68E42312993894300E298DF /* HDR */,
 				8BC751CF273E502700552265 /* LiveStreaming */,
 				A6D88CFF293F1B1700806419 /* VirtualBackground */,
@@ -1857,7 +1857,7 @@
 				7F93083A293DA89C00D3F00B /* VideoView.xib in Resources */,
 				A6D88D93294074E000806419 /* add.jpeg in Resources */,
 				A6E600212976513B00D9555C /* makeup_icon_combination_mermaid.bundle in Resources */,
-				A68E42482995EE4700E298DF /* DimEnvironment.storyboard in Resources */,
+				A68E42482995EE4700E298DF /* DarkLight.storyboard in Resources */,
 				A6E600492976513B00D9555C /* makeup_icon_combination_paper_cranes.bundle in Resources */,
 				A6E6FFFF2976513B00D9555C /* boyfriend1.bundle in Resources */,
 				A6E600682976513B00D9555C /* nihongdeng.bundle in Resources */,
@@ -1875,7 +1875,7 @@
 				A6E6005B2976513B00D9555C /* hair_normal_05.bundle in Resources */,
 				A6E6FFF12976513B00D9555C /* ai_human_processor_pc.bundle in Resources */,
 				A6E6FFE72976513B00D9555C /* bodyRect.bundle in Resources */,
-				A68E423A2993ACD800E298DF /* EnanceSaturation.storyboard in Resources */,
+				A68E423A2993ACD800E298DF /* EnhanceSaturation.storyboard in Resources */,
 				A6E600392976513B00D9555C /* mu_style_eyeshadow_03.bundle in Resources */,
 				A6E600082976513B00D9555C /* green_screen_bg_beach.mp4 in Resources */,
 				A6E600652976513B00D9555C /* redribbt.bundle in Resources */,
@@ -2019,8 +2019,8 @@
 				A6D88CF7293DE2A000806419 /* AGViewControllerHead.swift in Sources */,
 				A68E42432995E13D00E298DF /* ReduceNoise+UI.swift in Sources */,
 				A667E22D295557300053E0B5 /* ROI+UI.swift in Sources */,
-				A68E424A2995EE5000E298DF /* DimEnvironment.swift in Sources */,
-				A68E423C2993ACE100E298DF /* EnanceSaturation.swift in Sources */,
+				A68E424A2995EE5000E298DF /* DarkLight.swift in Sources */,
+				A68E423C2993ACE100E298DF /* EnhanceSaturation.swift in Sources */,
 				A68E42512995F6A900E298DF /* Setting.swift in Sources */,
 				036CBA47251990B400D74FAD /* AgoraCustomEncryption.h in Sources */,
 				A6EAA87929909E85008D9ECE /* VLPopImageVerifyView.m in Sources */,
@@ -2031,7 +2031,7 @@
 				A68E4262299A1CBF00E298DF /* VLRequestRoute.m in Sources */,
 				0371D8AE250B4A2C00C0DD61 /* JoinChannelAudio.swift in Sources */,
 				A6D88CF6293DE2A000806419 /* AGViewControllerCell.swift in Sources */,
-				A68E423E2993ACEB00E298DF /* EnanceSaturation+UI.swift in Sources */,
+				A68E423E2993ACEB00E298DF /* EnhanceSaturation+UI.swift in Sources */,
 				A68E4267299A1D7600E298DF /* VLLoginModel.m in Sources */,
 				A6C5B3162942E2310071FFBF /* BDResourceHelper.m in Sources */,
 				8B333DA9267B4BC3002A3785 /* SettingsCells.swift in Sources */,
@@ -2079,7 +2079,7 @@
 				A6EAA8972991025F008D9ECE /* VLLocalWebViewController.m in Sources */,
 				A7847F942458089E00469187 /* AgoraExtension.swift in Sources */,
 				E74877BA28A23C1400CA2F58 /* JSONObject.swift in Sources */,
-				A68E424C2995EE5900E298DF /* DimEnvironment+UI.swift in Sources */,
+				A68E424C2995EE5900E298DF /* DarkLight+UI.swift in Sources */,
 				A68E42332993895700E298DF /* HDR.swift in Sources */,
 				A6D88D07293F44B900806419 /* Uiew+Tap.swift in Sources */,
 				A667E29929559FFE0053E0B5 /* PVC.swift in Sources */,
