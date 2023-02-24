@@ -161,14 +161,15 @@ extension ROI {
             itemView.setupSubCellModel(model)
         }
         guard let videoConfig = self.itemModelList[tag].value as? [AgoraVideoEncoderConfiguration] else { return }
-        self.setupROI(enabled: openSwitch.isOn)
+//        self.setupROI(enabled: openSwitch.isOn)
         self.setupResolution(videoConfig: videoConfig[1])
     }
     
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
         self.remoteVideoView.titleSelected = sender.isOn
-        self.setupROI(enabled: sender.isOn)
-        self.setupResolution(videoConfig: self.videoConfig)
+        self.reJoinChannel(sender.isOn)
+//        self.setupROI(enabled: sender.isOn)
+//        self.setupResolution(videoConfig: self.videoConfig)
     }
 }

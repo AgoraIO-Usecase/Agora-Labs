@@ -4,10 +4,10 @@
 //
 
 #import "VLPrivacyCustomView.h"
-#import "YYCategories.h""
+#import "YYCategories.h"
 #import "VLMacroDefine.h"
 #import "Masonry.h"
-#import "YYText.h""
+#import "YYText.h"
 //@import YYText;
 //@import Masonry;
 //@import QMUIKit;

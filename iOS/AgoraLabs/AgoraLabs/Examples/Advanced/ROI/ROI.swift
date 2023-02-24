@@ -33,6 +33,8 @@ class ROI: BaseViewController {
         let _remoteVideoView = AGContrastView(type: .single, frame: CGRect.zero)
         _remoteVideoView.backgroundColor = .black
         _remoteVideoView.masksToBounds = true
+        _remoteVideoView.titleSelected = false
+        _remoteVideoView.showSubTitle = true
         return _remoteVideoView
     }()
     lazy var bottomView: UIView = {
@@ -67,7 +69,7 @@ class ROI: BaseViewController {
         self.setupRecvData()
     }
     
-    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 360, height: 640), frameRate: .fps15, bitrate: 150, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
+    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 360, height: 640), frameRate: .fps15, bitrate: 150, orientationMode: .fixedPortrait, mirrorMode: .auto),_ isOpen:Bool = false) {
         
         self.videoConfig = videoConfig
         
@@ -82,7 +84,7 @@ class ROI: BaseViewController {
         config.areaCode = GlobalSettings.shared.area
         config.channelProfile = .liveBroadcasting
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: nil)
-        self.setupROI(enabled: false)
+        self.setupROI(enabled: isOpen)
         self.setupDebuglog()
         agoraKit.setLogFile(LogUtils.sdkLogPath())
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
@@ -160,6 +162,14 @@ class ROI: BaseViewController {
         AgoraRtcEngineKit.destroy()
     }
     
+    func reJoinChannel(_ isOpen:Bool) {
+        self.agoraKit.leaveChannel(nil)
+        AgoraRtcEngineKit.destroy()
+        
+        self.setupSendData(self.videoConfig!, isOpen)
+        self.setupRecvData()
+    }
+    
     //切换摄像头
     @objc func switchBtnDidClick() {
         agoraKit.switchCamera()
@@ -178,6 +188,7 @@ class ROI: BaseViewController {
         if isOpenROI == enabled {
             return
         }
+        
         let json = JSON(["che.video.roiEnable":enabled,
                          "engine.video.enable_hw_encoder":false,
                          "rtc.video.roi_max_qp":1000,

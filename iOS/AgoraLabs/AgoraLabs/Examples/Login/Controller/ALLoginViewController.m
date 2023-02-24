@@ -176,7 +176,8 @@
                 [self alertPrivacyAlertView:1];
             }
             else if(self.privacyCustomView.pass != 0) {
-                exit(0);
+                //exit(0);
+                [self closePrivaxyAlertView];
             }
             break;
         case VLPrivacyClickTypePrivacy:

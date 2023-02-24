@@ -101,7 +101,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 VLLog(@"verify timer%@",strTime);
-                [sender setTitle:[NSString stringWithFormat:@"%@s", strTime] forState:UIControlStateNormal];
+                [sender setTitle:[NSString stringWithFormat:@"%@(%@s)",AGLocalizedString(@"cxhq"), strTime] forState:UIControlStateNormal];
                     //设置可点击
                 sender.userInteractionEnabled = NO;
             });

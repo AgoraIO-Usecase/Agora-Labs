@@ -150,7 +150,7 @@ extension PVC{
         let kbpsList = AASeriesElement()
             .color("#FFFFFF")
             .data(self.chartYArray)
-        
+            
         let style = AAStyle()
             .color("#FFFFFF")
         let aaChartModel = AAChartModel()
@@ -310,7 +310,24 @@ extension PVC:AAChartViewDelegate{
                .series([kbpsList])
                .xAxisTickInterval(xAxisTickInterval)
         
+        let aaOptions = aaChartModel.aa_toAAOptions()
+
+        aaOptions.tooltip?
+            .useHTML(true)
+            .formatter("""
+            function () {
+                    return ' \("Bitrate".localized)：'
+                    +  this.y
+                    + 'kbps';
+                    }
+            """)
+            .valueDecimals(0)//设置取值精确到小数点后几位//设置取值精确到小数点后几位
+            .backgroundColor("#000000")
+            .borderColor("#000000")
+            .style(AAStyle().color("#FFFFFF").fontSize(12))
+        
         aaChartView.isScrollEnabled = false
-        aaChartView.aa_drawChartWithChartModel(aaChartModel)
+//        aaChartView.aa_drawChartWithChartModel(aaChartModel)
+        aaChartView.aa_drawChartWithChartOptions(aaOptions)
     }
 }
