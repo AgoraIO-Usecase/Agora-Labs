@@ -126,7 +126,7 @@ public class ColorEnhancementFragment extends Fragment implements View.OnClickLi
 
             }
         });
-        binding.seekbarSkinProtection.setProgress(Math.round(options.skinProtectLevel*10));
+        binding.seekbarSkinProtection.setProgress(Math.round(options.skinProtectLevel*100));
 
         binding.tvSkinProtectionValue.setText(String.valueOf(options.skinProtectLevel));
         binding.seekbarColorProtection.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -144,7 +144,7 @@ public class ColorEnhancementFragment extends Fragment implements View.OnClickLi
 
             }
         });
-        binding.seekbarColorProtection.setProgress(Math.round(options.strengthLevel*10));
+        binding.seekbarColorProtection.setProgress(Math.round(options.strengthLevel*100));
         binding.tvColorProtectionValue.setText(String.valueOf(options.strengthLevel));
         updateColorEnhancement();
     }

@@ -22,6 +22,11 @@ public class SystemUtil {
         return language != null && (language.trim().equals("zh-CN") || language.trim().equals("zh-TW"));
     }
 
+    public static String getCountry(){
+        Locale locale = Locale.getDefault();
+        return locale.getCountry().toLowerCase();
+    }
+
     private static String getLanguageEnv() {
         Locale locale = Locale.getDefault();
         String language = locale.getLanguage();

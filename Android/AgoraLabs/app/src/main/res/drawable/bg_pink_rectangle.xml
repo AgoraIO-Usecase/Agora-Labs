@@ -7,7 +7,7 @@
         android:angle="0"/>
 
     <corners
-        android:topLeftRadius="@dimen/permission_dp_10"
-        android:bottomRightRadius="@dimen/permission_dp_10"/>
+        android:topLeftRadius="10dp"
+        android:bottomRightRadius="10dp"/>
 
 </shape>

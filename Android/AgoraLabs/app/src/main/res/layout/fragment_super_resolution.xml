@@ -18,19 +18,19 @@
         android:src="@mipmap/ic_chevron_left"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/permission_dp_10"
-        android:layout_marginLeft="@dimen/permission_dp_10"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/super_res"
         android:textColor="@color/white"
-        android:textSize="@dimen/permission_sp_16"
+        android:textSize="16sp"
         app:layout_constraintLeft_toRightOf="@id/iv_back"
         app:layout_constraintTop_toTopOf="@id/iv_back"
         app:layout_constraintBottom_toBottomOf="@id/iv_back"
-        android:layout_marginLeft="@dimen/permission_dp_5"
+        android:layout_marginLeft="5dp"
         android:gravity="center"
         />
 
@@ -41,7 +41,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@mipmap/ic_camera_flip"
-        android:layout_marginTop="@dimen/permission_dp_10"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"/>
 
     <Switch

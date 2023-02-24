@@ -1,9 +1,11 @@
 package io.agora.api.example.common.server;
 
 import android.os.Build;
+import android.util.Log;
 import io.agora.api.example.App;
 import io.agora.api.example.common.model.report.EventData;
 import io.agora.api.example.common.server.model.BaseResponse;
+import io.agora.api.example.common.server.model.ReportResponseData;
 import io.agora.api.example.common.server.model.User;
 import io.agora.api.example.utils.GsonUtils;
 import io.agora.api.example.utils.SystemUtil;
@@ -22,17 +24,17 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 public class ServerHelper {
-    public static void report(String event,CallBack<String> cb){
+    public static void report(String event,CallBack<ReportResponseData> cb){
         EventData data=new EventData();
         long ts=System.currentTimeMillis();
         data.setTs(System.currentTimeMillis());
         data.setSrc("agora_labs");
         EventData.PTS pts=new EventData.PTS();
         EventData.PTS.LS ls=new EventData.PTS.LS();
-        ls.setName(event);
+        ls.setName("entryScene");
         ls.setPlatform("Android");
         ls.setVersion(SystemUtil.getVersionName(App.getInstance()));
-        ls.setProject("agora_labs");
+        ls.setProject(event);
         ls.setModel(Build.MODEL);
         pts.setLs(ls);
         EventData.PTS.VS vs=new EventData.PTS.VS();
@@ -56,16 +58,16 @@ public class ServerHelper {
             }
             return;
         }
-
+        Log.d("AgoraLab","------data:"+GsonUtils.getGson().toJson(data));
         RequestBody body=RequestBody.create(MediaType.parse("application/json"), GsonUtils.getGson().toJson(data));
-        Observable<BaseResponse<String>> observable=ServiceHelper.getInstance().getService().report(body);
+        Observable<BaseResponse<ReportResponseData>> observable=ServiceHelper.getInstance().getService().report(body);
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
-            new Observer<BaseResponse<String>>() {
+            new Observer<BaseResponse<ReportResponseData>>() {
                 @Override public void onSubscribe(Disposable d) {
 
                 }
 
-                @Override public void onNext(BaseResponse<String> response) {
+                @Override public void onNext(BaseResponse<ReportResponseData> response) {
                     if(cb!=null){
                         cb.onSuccess(response.getData());
                     }

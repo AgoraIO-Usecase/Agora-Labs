@@ -76,11 +76,8 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
         Log.d(TAG,"version:"+RtcEngine.getSdkVersion());
         try {
             rtcEngine = (RtcEngineEx)RtcEngineEx.create(config);
-            /*todo
             rtcEngine.registerExtension("ByteDance","Effect", Constants.MediaSourceType.PRIMARY_CAMERA_SOURCE);
             rtcEngine.registerExtension("FaceUnity","Effect",Constants.MediaSourceType.PRIMARY_CAMERA_SOURCE);
-
-             */
         } catch (Exception e) {
             e.printStackTrace();
         }
