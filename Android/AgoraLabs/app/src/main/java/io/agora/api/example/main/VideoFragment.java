@@ -2,10 +2,13 @@ package io.agora.api.example.main;
 
 import android.content.Context;
 import android.os.Vibrator;
+import android.util.Log;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import io.agora.api.example.R;
 import io.agora.api.example.common.dialog.AutoDissmissDialog;
+import io.agora.api.example.common.server.ServerHelper;
+import io.agora.api.example.common.server.model.ReportResponseData;
 import io.agora.api.example.main.model.Feature;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +41,9 @@ public class VideoFragment extends BaseListFragment {
         data.add(new Feature(ID_DARK_LIGHT,R.mipmap.light_dark,R.string.light_dark,true));
         data.add(new Feature(ID_DENOISE,R.mipmap.noise,R.string.denoise,true));
 
-        data.add(new Feature(ID_SHARPEN,R.mipmap.sharpen,R.string.adaptive_sharpen));
+        //data.add(new Feature(ID_SHARPEN,R.mipmap.sharpen,R.string.adaptive_sharpen));
 
-        data.add(new Feature(ID_SUPER_QUALITY,R.mipmap.image,R.string.super_quality,true));
+        data.add(new Feature(ID_SUPER_QUALITY,R.mipmap.image,R.string.super_quality,false));
         data.add(new Feature(ID_HDR,R.mipmap.hdr,R.string.hdr));
         adapter.setData(data);
         adapter.notifyDataSetChanged();
@@ -58,31 +61,51 @@ public class VideoFragment extends BaseListFragment {
         if(feature.getId()==ID_VIRTUAL_BG){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_virtual_bg);
+            reportEvent("VirtualBackground");
         }else if(feature.getId()==ID_BEAUTY){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_beauty);
+            reportEvent("BeautifyFilter");
         }else if(feature.getId()==ID_PVC){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_pvc);
+            reportEvent("PVC");
         }else if(feature.getId()==ID_ROI){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_roi);
+            reportEvent("ROI");
         }else if(feature.getId()==ID_SUPER_RES){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_super_res);
+            reportEvent("Resolution");
         }else if(feature.getId()==ID_SUPER_QUALITY){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_super_quality);
+            reportEvent("Image");
         }else if(feature.getId()==ID_COLOR_ENHANCE){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_color_enhancement);
+            reportEvent("EnanceSaturation");
         }else if(feature.getId()== ID_DARK_LIGHT){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_dark_light_enhancement);
+            reportEvent("DimEnvironment");
         }else if(feature.getId()==ID_DENOISE){
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_video_noise_reduction);
+            reportEvent("ReduceNoise");
         }
+    }
 
+    private void reportEvent(String event){
+        ServerHelper.report(event, new ServerHelper.CallBack<ReportResponseData>() {
+            @Override public void onSuccess(ReportResponseData data) {
+                Log.d("AgoraLab","report success");
+            }
+
+            @Override public void onFailed(Throwable e) {
+                Log.d("AgoraLab","report failed e:"+e.getLocalizedMessage());
+            }
+        });
     }
 }

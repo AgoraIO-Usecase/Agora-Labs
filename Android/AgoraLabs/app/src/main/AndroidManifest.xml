@@ -45,8 +45,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".main.WebViewActivity"
+            android:exported="true"
             android:screenOrientation="portrait"/>
         <activity android:name=".main.PhoneLoginRegisterActivity"
+            android:exported="true"
             android:screenOrientation="portrait"/>
     </application>
 

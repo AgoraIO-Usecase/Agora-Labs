@@ -63,7 +63,7 @@
     <string name="denoise">Reduce Noise</string>
     <string name="light_dark">Dim Environment</string>
     <string name="adaptive_sharpen">Sharpen</string>
-    <string name="color_enhance">Color enhancement</string>
+    <string name="color_enhance">Enhance Saturation</string>
     <string name="pvc">PVC</string>
     <string name="roi">ROI</string>
     <string name="super_res">Resolution</string>
@@ -233,8 +233,8 @@
     <string name="app_please_input_account">请输入手机号</string>
     <string name="app_plus_86">+86</string>
     <string name="i_agree">我已阅读并同意</string>
-    <string name="app_and">及</string>
-    <string name="app_login">登录</string>
+    <string name="app_and">And</string>
+    <string name="app_login">Login</string>
     <string name="complete_validation">完成验证</string>
     <string name="drag_complete">拖动下方滑块完成拼图</string>
     <string name="cancel">取消</string>

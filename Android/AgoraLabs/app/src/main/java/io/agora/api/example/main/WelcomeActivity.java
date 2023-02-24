@@ -17,6 +17,7 @@ import io.agora.api.example.common.dialog.UserAgreementDialog;
 import io.agora.api.example.common.dialog.UserAgreementDialog2;
 import io.agora.api.example.databinding.AppActivityWelcomeBinding;
 import io.agora.api.example.utils.SPUtils;
+import io.agora.api.example.utils.SystemUtil;
 
 public class WelcomeActivity extends BaseViewBindingActivity<AppActivityWelcomeBinding> {
     private UserAgreementDialog userAgreementDialog;
@@ -101,7 +102,7 @@ public class WelcomeActivity extends BaseViewBindingActivity<AppActivityWelcomeB
     }
 
     private void startMainActivity() {
-        if (UserManager.getInstance().isLogin()) {
+        if (UserManager.getInstance().isLogin()|| !SystemUtil.getCountry().equalsIgnoreCase("cn")) {
             Intent it=new Intent(this, SplashActivity.class);
             startActivity(it);
             finish();

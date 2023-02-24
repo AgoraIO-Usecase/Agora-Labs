@@ -252,9 +252,9 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
         rtcConnection=new RtcConnection();
         rtcConnection.channelId=channelName;
         rtcConnection.localUid= senderUid;
-        setVideoConfig();
         rtcEngine.enableVideo();
         rtcEngine.enableAudio();
+        setVideoConfig();
         ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
         mediaOptions.channelProfile= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
         mediaOptions.clientRoleType= Constants.CLIENT_ROLE_BROADCASTER;

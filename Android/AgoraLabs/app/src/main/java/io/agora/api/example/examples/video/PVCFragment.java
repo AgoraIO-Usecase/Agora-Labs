@@ -230,9 +230,9 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         rtcConnection.channelId=channelName;
         rtcConnection.localUid= senderUid;
 
-        setVideoConfig();
         rtcEngine.enableVideo();
         rtcEngine.enableAudio();
+        setVideoConfig();
 
         ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
         mediaOptions.channelProfile= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;

@@ -3,7 +3,7 @@
     android:layout_width="@dimen/option_item_width"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="@dimen/permission_dp_10"
+    android:layout_margin="10dp"
     android:layout_gravity="center_vertical"
     android:gravity="center">
     <ImageView

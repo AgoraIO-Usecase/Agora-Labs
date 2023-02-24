@@ -138,6 +138,9 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         tvROI.setBackgroundResource(roiEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
         if(roiEnabled){
             rtcEngine.setParameters("{\"che.video.roiEnable\":true}");
+            rtcEngine.setParameters("{\"engine.video.enable_hw_encoder\":false}");
+            rtcEngine.setParameters("{\"rtc.video.roi_max_qp\":1000}");
+            rtcEngine.setParameters("{\"rtc.video.roi_qp_offset\":3}");
         }else{
             rtcEngine.setParameters("{\"che.video.roiEnable\":false}");
         }
@@ -184,10 +187,9 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         rtcConnection.channelId=channelName;
         rtcConnection.localUid= senderUid;
 
-        setVideoConfig();
-
         rtcEngine.enableVideo();
         rtcEngine.enableAudio();
+        setVideoConfig();
 
 
         ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
@@ -258,19 +260,19 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         }
         if(resolution==VideoFeatureMenu.RESOLUTION_360P){
             configuration.dimensions=new VideoEncoderConfiguration.VideoDimensions(640,360);
-            configuration.bitrate=800;
+            configuration.bitrate=150;
             configuration.frameRate=15;
         }else if(resolution==VideoFeatureMenu.RESOLUTION_480P){
             configuration.dimensions=new VideoEncoderConfiguration.VideoDimensions(640,480);
-            configuration.bitrate=1200;
+            configuration.bitrate=180;
             configuration.frameRate=15;
         }else if(resolution==VideoFeatureMenu.RESOLUTION_540P){
             configuration.dimensions=new VideoEncoderConfiguration.VideoDimensions(960,540);
-            configuration.bitrate=1450;
+            configuration.bitrate=230;
             configuration.frameRate=15;
         }else if(resolution==VideoFeatureMenu.RESOLUTION_720P){
             configuration.dimensions=new VideoEncoderConfiguration.VideoDimensions(960,720);
-            configuration.bitrate=2200;
+            configuration.bitrate=300;
             configuration.frameRate=15;
         }
         rtcEngine.setVideoEncoderConfigurationEx(configuration,rtcConnection);
@@ -285,15 +287,7 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    private void setTopCenterLayout(View view,int topMargin){
-        ConstraintLayout.LayoutParams params =
-            new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        params.topToTop = PARENT_ID;
-        params.leftToLeft = PARENT_ID;
-        params.rightToRight = PARENT_ID;
-        params.topMargin=topMargin;
-        view.setLayoutParams(params);
-    }
+
 
     private void addView(){
         binding.mainContainer.removeAllViews();
@@ -301,12 +295,6 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
             binding.mainContainer.addView(remoteView);
             remoteView.setZOrderOnTop(false);
             remoteView.setZOrderMediaOverlay(false);
-            /*
-            int topMargin = UIUtil.dip2px(getContext(), 60);
-            setTopCenterLayout(tvROI, topMargin);
-            ConstraintLayoutUtils.setTopRight(tvRemoteBitrate, topMargin);
-            binding.mainContainer.addView(tvROI);
-            binding.mainContainer.addView(tvRemoteBitrate);*/
         }
     }
 

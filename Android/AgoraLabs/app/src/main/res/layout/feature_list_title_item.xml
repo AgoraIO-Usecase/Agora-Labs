@@ -4,8 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="left|center_vertical"
-    android:layout_marginLeft="@dimen/permission_dp_15"
-    android:textSize="@dimen/permission_sp_16"
+    android:layout_marginLeft="15dp"
+    android:textSize="16sp"
     android:textColor="#990A3D7B"
     >
 </TextView>
