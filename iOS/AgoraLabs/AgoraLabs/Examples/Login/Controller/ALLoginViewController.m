@@ -176,7 +176,7 @@
                 [self alertPrivacyAlertView:1];
             }
             else if(self.privacyCustomView.pass != 0) {
-                //exit(0);
+                exit(0);
             }
             break;
         case VLPrivacyClickTypePrivacy:
@@ -291,7 +291,7 @@
 }
 
 - (void)navigatorToWebviewOfUserProtocol{
-    [self pushToWebView:@"https://supportmessaging.apple.com/app/8ecf1651-0aca-4821-96c2-9e0456527587?locale=zh_CN"];
+    [self pushToWebView:kURLPathH5UserAgreement];
 }
 
 - (void)navigatorToWebviewOfPrivacyProtocol{

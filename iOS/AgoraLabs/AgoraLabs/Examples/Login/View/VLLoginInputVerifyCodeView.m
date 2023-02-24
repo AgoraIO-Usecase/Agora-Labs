@@ -11,7 +11,7 @@
 //@import Masonry;
 //@import QMUIKit;
 
-@interface VLLoginInputVerifyCodeView()
+@interface VLLoginInputVerifyCodeView()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UITextField *vTextField;
@@ -133,9 +133,11 @@
     if (!_vTextField) {
         _vTextField = [[UITextField alloc] init];
         _vTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:AGLocalizedString(@"qsryyzm") attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor colorWithRGB:0x979CBB]}];
+        _vTextField.delegate = self;
         _vTextField.keyboardType = UIKeyboardTypeNumberPad;
         _vTextField.textColor = [UIColor colorWithRGB:0x3C4267];
         _vTextField.font = [UIFont systemFontOfSize:15];
+        [_vTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _vTextField;
 }
@@ -149,6 +151,32 @@
         [_vSendbutton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _vSendbutton;
+}
+
+- (void)textFieldDidChange:(UITextField *)textField{
+    if (textField.text.length >= 4){
+        textField.text = [textField.text substringToIndex:4];
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return [self validateNumber:string];
+}
+
+- (BOOL)validateNumber:(NSString*)number {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    int i = 0;
+    while (i < number.length) {
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
 }
 
 - (void)dealloc {

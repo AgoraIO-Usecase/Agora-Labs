@@ -83,6 +83,7 @@ class ROI: BaseViewController {
         config.channelProfile = .liveBroadcasting
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: nil)
         self.setupROI(enabled: false)
+        self.setupDebuglog()
         agoraKit.setLogFile(LogUtils.sdkLogPath())
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
         
@@ -189,6 +190,11 @@ class ROI: BaseViewController {
             self.isOpenROI = false
             self.switchOpenChange(self.openSwitch)
         }
+    }
+    
+    func setupDebuglog(){
+        let json = JSON(["rtc.enable_debug_log":true]).rawString() ?? ""
+        agoraKit.setParameters(json)
     }
 }
 

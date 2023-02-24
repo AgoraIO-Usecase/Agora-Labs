@@ -10,7 +10,7 @@
 //@import Masonry;
 //@import QMUIKit;
 
-@interface VLLoginInputPhoneView()
+@interface VLLoginInputPhoneView()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *areaCodeLabel;
@@ -126,9 +126,30 @@
         _vTextField.keyboardType = UIKeyboardTypeNumberPad;
         _vTextField.textColor = [UIColor colorWithRGB:0x3C4267];
         _vTextField.font = [UIFont systemFontOfSize:15];
+        _vTextField.delegate = self;
         [_vTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _vTextField;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return [self validateNumber:string];
+}
+
+- (BOOL)validateNumber:(NSString*)number {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    int i = 0;
+    while (i < number.length) {
+        NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
 }
 
 @end

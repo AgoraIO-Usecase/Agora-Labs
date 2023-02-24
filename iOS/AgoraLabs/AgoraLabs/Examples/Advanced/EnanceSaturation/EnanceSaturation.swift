@@ -1,5 +1,5 @@
 //
-//  EnanceSaturation.swift
+//  EnhanceSaturation.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2023/2/8.
@@ -9,7 +9,7 @@
 import AgoraRtcKit
 import UIKit
 //色彩增强
-class EnanceSaturation: BaseViewController {
+class EnhanceSaturation: BaseViewController {
     
     var strengthSlider:UISlider?
     var strengthValueL:UILabel?
@@ -141,7 +141,7 @@ class EnanceSaturation: BaseViewController {
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
     }
     
-    func setupEnanceSaturation(enabled:Bool) {
+    func setupEnhanceSaturation(enabled:Bool) {
         let options = AgoraColorEnhanceOptions()
         options.skinProtectLevel = self.skinSlider?.value ?? 0.5
         options.strengthLevel = self.strengthSlider?.value ?? 0.5
@@ -149,7 +149,7 @@ class EnanceSaturation: BaseViewController {
     }
 }
 
-extension EnanceSaturation:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
+extension EnhanceSaturation:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
         print("onEvent ------------ provider:\(provider ?? "")")
     }

@@ -144,7 +144,7 @@
 "Reduce Noise"="降噪";
 "Dim Environment"="暗光";
 "Sharpen"="自适应锐化";
-"Enance Saturation"="色彩增强";
+"Enhance Saturation"="色彩增强";
 "PVC"="感知视频编码";
 "ROI"="感兴趣区域算法";
 "Resolution"="超分";
@@ -320,4 +320,6 @@
 "qsryyzm"="请输入验验证码";
 "dl"="登录";
 "wcyz"="完成验证";
+"yzsb"="验证失败";
 "tdxfhkwcpt"="拖动下方滑块完成拼图";
+

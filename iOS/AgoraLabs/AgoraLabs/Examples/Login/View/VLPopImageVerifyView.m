@@ -39,7 +39,7 @@
     bgView.layer.masksToBounds = YES;
     [self addSubview:bgView];
     
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 22, 80, 20)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 22, 180, 20)];
     titleLabel.text = AGLocalizedString(@"wcyz");
     titleLabel.font = [UIFont systemFontOfSize:14];
     titleLabel.textColor = [UIColor colorWithRGB:0x6C7192];
@@ -50,9 +50,11 @@
     [closeBtn addTarget:self action:@selector(closeBtnClickEvent) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:closeBtn];
 
-    UILabel *slideLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, titleLabel.bottom+5, 170, 22)];
+    UILabel *slideLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, titleLabel.bottom+5, 270, 22)];
     slideLabel.text = AGLocalizedString(@"tdxfhkwcpt");
     slideLabel.font = [UIFont systemFontOfSize:16];
+    slideLabel.numberOfLines = 0;
+    slideLabel.lineBreakMode = NSLineBreakByCharWrapping;
     slideLabel.textColor = [UIColor colorWithRGB:0x040925];
     [self addSubview:slideLabel];
     
@@ -64,6 +66,7 @@
             }
         }
         else {
+            [AGHUD showFaildWithInfo:AGLocalizedString(@"yzsb")];
             weakSelf.verifyFailTimes += 1;
             if(weakSelf.verifyFailTimes >= 3) {
                 weakSelf.verifyFailTimes = 0;

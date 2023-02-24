@@ -1,5 +1,5 @@
 //
-//  EnanceSaturation+UI.swift
+//  EnhanceSaturation+UI.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2023/2/8.
@@ -10,7 +10,7 @@ import AgoraRtcKit
 import SnapKitExtend
 import UIKit
 
-extension EnanceSaturation {
+extension EnhanceSaturation {
     
     func setupUI() {
         self.setupNavigation()
@@ -26,7 +26,7 @@ extension EnanceSaturation {
         button.frame = CGRect(x:0, y:0, width:65, height:30)
         button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
-        button.setTitle("Enance Saturation".localized, for: .normal)
+        button.setTitle("Enhance Saturation".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
         let leftBarBtn = UIBarButtonItem(customView: button)
         self.navigationItem.leftBarButtonItem = leftBarBtn
@@ -221,17 +221,17 @@ extension EnanceSaturation {
         self.localVideoView.titleSelected = sender.isOn
         self.skinSlider?.isEnabled = sender.isOn
         self.strengthSlider?.isEnabled = sender.isOn
-        self.setupEnanceSaturation(enabled: sender.isOn)
+        self.setupEnhanceSaturation(enabled: sender.isOn)
     }
     
 }
 
-extension EnanceSaturation{
+extension EnhanceSaturation{
     @objc func skinSliderEventValueChanged(_ sender:UISlider){
         let value = "\(Int(sender.value * 100))"
         if self.skinValueL?.text != value {
             self.skinValueL?.text = value
-            self.setupEnanceSaturation(enabled: self.openSwitch.isOn)
+            self.setupEnhanceSaturation(enabled: self.openSwitch.isOn)
         }
         
     }
@@ -240,7 +240,7 @@ extension EnanceSaturation{
         let value = "\(Int(sender.value * 100))"
         if self.strengthValueL?.text != value {
             self.strengthValueL?.text = value
-            self.setupEnanceSaturation(enabled: self.openSwitch.isOn)
+            self.setupEnhanceSaturation(enabled: self.openSwitch.isOn)
         }
     }
     
