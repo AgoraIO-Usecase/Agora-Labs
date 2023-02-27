@@ -170,8 +170,9 @@ class ReduceNoise: BaseViewController {
     
     func setupVideoDenoiser(enabled:Bool) {
         let options = AgoraVideoDenoiserOptions()
-        let level = self.currentModel?.value as? UInt
-        options.level = AgoraVideoDenoiserLevel(rawValue: level ?? 0) ?? .highQuality
+        let level = self.currentModel?.value as? Int
+        options.level = AgoraVideoDenoiserLevel(rawValue: UInt(level ?? 0)) ?? .highQuality
+        options.mode = .manual
         agoraKit.setVideoDenoiserOptions(enabled, options: options)
     }
 }
