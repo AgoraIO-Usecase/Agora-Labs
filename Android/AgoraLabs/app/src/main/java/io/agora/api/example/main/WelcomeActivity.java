@@ -76,6 +76,7 @@ public class WelcomeActivity extends BaseViewBindingActivity<AppActivityWelcomeB
             userAgreementDialog2.setOnButtonClickListener(new OnButtonClickListener() {
                 @Override
                 public void onLeftButtonClick() {
+                    goPhoneLoginRegister();
                     userAgreementDialog2.dismiss();
                     finish();
                 }

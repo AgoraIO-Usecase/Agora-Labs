@@ -1,7 +1,10 @@
 package io.agora.api.example.login;
 
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import io.agora.api.example.App;
+import io.agora.api.example.R;
 import io.agora.api.example.common.Constant;
 import io.agora.api.example.common.UserManager;
 import io.agora.api.example.common.base.component.BaseRequestViewModel;
@@ -38,7 +41,7 @@ public class LoginViewModel extends BaseRequestViewModel {
 
                     @Override
                     public void onSuccess(BaseResponse<User> data) {
-                        ToastUtils.showToast("登录成功");
+                        ToastUtils.showToast(App.getInstance().getString(R.string.login_successful));
                         ApiManager.token = (data.getData().token);
                         UserManager.getInstance().saveUserInfo(data.getData());
                         getISingleCallback().onSingleCallback(Constant.CALLBACK_TYPE_LOGIN_REQUEST_LOGIN_SUCCESS, null);
@@ -46,6 +49,7 @@ public class LoginViewModel extends BaseRequestViewModel {
 
                     @Override
                     public void onFailure(@Nullable ApiException t) {
+                        Log.d("AgoraLab","----ApiException:"+t.errCode+" "+t.getLocalizedMessage());
                         ToastUtils.showToast(t.getMessage());
                     }
                 }
@@ -71,12 +75,12 @@ public class LoginViewModel extends BaseRequestViewModel {
 
                     @Override
                     public void onSuccess(BaseResponse<String> stringBaseResponse) {
-                        ToastUtils.showToast("验证码发送成功");
+                        ToastUtils.showToast(App.getInstance().getString(R.string.verification_code_sent_successfully));
                     }
 
                     @Override
                     public void onFailure(@Nullable ApiException t) {
-                        ToastUtils.showToast(t.getMessage());
+                        ToastUtils.showToast(App.getInstance().getString(R.string.verification_code_sent_failed));
                     }
                 }
             );

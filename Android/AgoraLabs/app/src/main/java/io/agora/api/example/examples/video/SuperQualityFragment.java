@@ -237,6 +237,7 @@ public class SuperQualityFragment extends Fragment implements View.OnClickListen
     private void updateSuperQuality(){
         tvSuperQuality.setText(superQualityEnabled ?R.string.super_quality_enabled:R.string.super_quality_disabled);
         tvSuperQuality.setBackgroundResource(superQualityEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
+
         if(superQualityEnabled){
             rtcEngine.setParameters("{\"rtc.video.enable_sr\" : {\"enabled\":true, \"mode\":1}}");
             rtcEngine.setParameters("{\"rtc.video.sr_type\" : 20}");

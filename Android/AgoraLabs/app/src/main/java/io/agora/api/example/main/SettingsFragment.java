@@ -54,8 +54,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
         } else if(v.getId()==R.id.user_sign_out){
             if (logoutDialog == null) {
                 logoutDialog = new CommonDialog(requireContext());
-                logoutDialog.setDialogTitle("确定退出登录吗？");
-                logoutDialog.setDescText("退出登录后，我们还会继续保留您的账户数据，记得再来体验哦～");
+                logoutDialog.setDialogTitle(getString(R.string.logout_tips_title));
+                logoutDialog.setDescText(getString(R.string.logout_tips_msg));
                 logoutDialog.setDialogBtnText(getString(R.string.app_exit), getString(R.string.cancel));
                 logoutDialog.setOnButtonClickListener(new OnButtonClickListener() {
                     @Override
@@ -77,8 +77,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
         }else if(v.getId()==R.id.deactivate){
             if (logoffAccountDialog == null) {
                 logoffAccountDialog = new CommonDialog(requireContext());
-                logoffAccountDialog.setDialogTitle("确定注销账号？");
-                logoffAccountDialog.setDescText("注销账号后，您将暂时无法使用该账号体验我们的服务，真的要注销吗？");
+                logoffAccountDialog.setDialogTitle(getString(R.string.logoff_tips_title));
+                logoffAccountDialog.setDescText(getString(R.string.logout_tips_msg));
                 logoffAccountDialog.setDialogBtnText(getString(R.string.app_logoff), getString(R.string.cancel));
                 logoffAccountDialog.setOnButtonClickListener(new OnButtonClickListener() {
                     @Override

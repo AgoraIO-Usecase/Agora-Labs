@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.CountDownTimer;
 import android.text.Html;
 import androidx.appcompat.widget.AppCompatTextView;
+import io.agora.api.example.R;
 
 public class CountDownTimerUtils extends CountDownTimer {
     private AppCompatTextView mTvTime;
@@ -19,7 +20,7 @@ public class CountDownTimerUtils extends CountDownTimer {
     public void onTick(long millisUntilFinished) {
         mTvTime.setClickable(false);
         String openHtmlText =
-            "<font color='#F7B500'>重新获取</font><font color='#F7B500'>(" + millisUntilFinished / 1000 +
+            "<font color='#F7B500'>"+mTvTime.getContext().getString(R.string.reacquire)+"</font><font color='#F7B500'>(" + millisUntilFinished / 1000 +
                 "s)</font>";
         mTvTime.setText(
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ?
@@ -30,6 +31,6 @@ public class CountDownTimerUtils extends CountDownTimer {
     @Override
     public void onFinish() {
         mTvTime.setClickable(true);
-        mTvTime.setText("重新获取");
+        mTvTime.setText(R.string.reacquire);
     }
 }

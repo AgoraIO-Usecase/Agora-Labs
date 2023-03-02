@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.SeekBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +36,9 @@ public class SwipeCaptchaDialog extends BaseDialog<DialogSwipeCaptchaBinding> {
 
     @Override
     protected void initView() {
+        getBinding().ivClose.setOnClickListener(v -> {
+            this.dismiss();
+        });
         getBinding().iBtnRefresh.setOnClickListener(view -> {
             createCaptcha();
         });

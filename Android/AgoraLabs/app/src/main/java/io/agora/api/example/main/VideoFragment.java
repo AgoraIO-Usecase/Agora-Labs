@@ -43,7 +43,7 @@ public class VideoFragment extends BaseListFragment {
 
         //data.add(new Feature(ID_SHARPEN,R.mipmap.sharpen,R.string.adaptive_sharpen));
 
-        data.add(new Feature(ID_SUPER_QUALITY,R.mipmap.image,R.string.super_quality,false));
+        data.add(new Feature(ID_SUPER_QUALITY,R.mipmap.image,R.string.super_quality));
         data.add(new Feature(ID_HDR,R.mipmap.hdr,R.string.hdr));
         adapter.setData(data);
         adapter.notifyDataSetChanged();
