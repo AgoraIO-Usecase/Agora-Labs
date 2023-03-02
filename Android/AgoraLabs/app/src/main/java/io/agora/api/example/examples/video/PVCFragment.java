@@ -17,6 +17,7 @@ import com.example.anan.AAChartCore.AAChartCoreLib.AAChartCreator.AAChartModel;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAChartCreator.AASeriesElement;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartAnimationType;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartType;
+import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AAOptions;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AAStyle;
 import io.agora.api.example.App;
 import io.agora.api.example.R;
@@ -62,6 +63,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
 
 
     private AAChartModel chartModel;
+    private AAOptions aaOptions;
     private List<Object> yData=new ArrayList<>();
     private List<String> xData=new ArrayList<>();
     private VideoEncoderConfiguration configuration;
@@ -100,10 +102,22 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
                 .categories(xData.toArray(new String[xData.size()]))
                 .series(new AASeriesElement[]{new AASeriesElement().data(yData.toArray())})
                 .xAxisTickInterval(xData.size()/5);
+
+
         }
     }
     private void updateChartView(){
-        binding.chartView.aa_drawChartWithChartModel(chartModel);
+        aaOptions=chartModel.aa_toAAOptions();
+        aaOptions.tooltip.useHTML(true).formatter(String.format("function () {\n" +
+                "        return '%s: '" +
+                "        +  this.y" +
+                "        + 'kbps';" +
+                "        }",getContext().getString(R.string.bitrate)))
+            .valueDecimals(0)
+            .backgroundColor("#000000")
+            .borderColor("#000000")
+            .style(new AAStyle().color("#FFFFFF").fontSize(12));
+        binding.chartView.aa_drawChartWithChartOptions(aaOptions);
     }
 
     private void initView(){

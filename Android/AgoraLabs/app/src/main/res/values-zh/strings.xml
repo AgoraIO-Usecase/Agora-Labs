@@ -227,4 +227,16 @@
     <string name="drag_complete">拖动下方滑块完成拼图</string>
     <string name="cancel">取消</string>
     <string name="app_logoff">注销</string>
+    <string name="logout_tips_title">确定退出登录吗？</string>
+    <string name="logout_tips_msg">退出登录后，我们还会继续保留您的账户数据，记得再来体验哦～</string>
+    <string name="logoff_tips_title">确定注销账号？</string>
+    <string name="logoff_tips_msg">注销账号后，您将暂时无法使用该账号体验我们的服务，真的要注销吗？</string>
+    <string name="reacquire">重新获取</string>
+    <string name="please_enter_the_correct_phone_number">请输入正确的手机号</string>
+    <string name="please_agree_to_our_privacy_policy_and_user_agreement">请同意我们的隐私政策与用户协议</string>
+    <string name="agree_and_continue">同意并继续</string>
+    <string name="disagree_and_exit">不同意并退出</string>
+    <string name="verification_code_sent_successfully">验证码发送成功</string>
+    <string name="verification_code_sent_failed">验证码发送失败</string>
+    <string name="login_successful">登陆成功</string>
 </resources>

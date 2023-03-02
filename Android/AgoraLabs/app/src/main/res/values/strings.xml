@@ -222,21 +222,34 @@
     <string name="app_privacy_agreement">Privacy agreement</string>
     <string name="app_about_us">About us</string>
     <string name="privacy_protection_tip1">AgoraLabs是一款用于向声网客户展示产品使用效果的测试产品，仅用于测试产品的功能、性能和可用性，而非提供给大众使用的正式产品。\n1.我们将依据《用户协议》及《隐私政策》来帮助您了解我们在收集、使用、存储您个人信息的情况以及您享有的相关权利。\n2.在您使用本测试软件时，我们将收集您的设备信息、日志信息等，同时根据不同使用场景，你可以授予我们获取您设备的麦克风权限、摄像头权限等信息。\n\n您可通过阅读完整的《用户协议》及《隐私政策》来了解详细信息。</string>
-    <string name="privacy_protection_tip2">同意 用户协议 及 隐私政策 后，AgoraLabs才能为您提供协作服务。</string>
+    <string name="privacy_protection_tip2">AgoraLabs can provide you with collaboration services only after agreeing to the User Agreement and Privacy Policy.</string>
 
-    <string name="app_register_account">注册账号</string>
-    <string name="app_welcome_experience">欢迎体验声网服务</string>
-    <string name="app_mobile_number">手机号</string>
-    <string name="app_v_code">验证码</string>
-    <string name="send_v_code">发送验证码</string>
-    <string name="app_please_input_v_code">请输入验证码</string>
-    <string name="app_please_input_account">请输入手机号</string>
+    <string name="app_register_account">Register account</string>
+    <string name="app_welcome_experience">Welcome to Agora service</string>
+    <string name="app_mobile_number">Phone number</string>
+    <string name="app_v_code">Verification code</string>
+    <string name="send_v_code">Send captcha</string>
+    <string name="app_please_input_v_code">Captcha</string>
+    <string name="app_please_input_account">Enter phone number</string>
     <string name="app_plus_86">+86</string>
-    <string name="i_agree">我已阅读并同意</string>
+    <string name="i_agree">I have read and agree</string>
     <string name="app_and">And</string>
     <string name="app_login">Login</string>
-    <string name="complete_validation">完成验证</string>
-    <string name="drag_complete">拖动下方滑块完成拼图</string>
-    <string name="cancel">取消</string>
-    <string name="app_logoff">注销</string>
+    <string name="complete_validation">Complete verification</string>
+    <string name="drag_complete">Drag the slider below to complete the puzzle</string>
+    <string name="cancel">Cancel</string>
+    <string name="app_logoff">Log off</string>
+    <string name="logout_tips_title">Are you sure to log out?</string>
+    <string name="logout_tips_msg">After logging out, we will continue to retain your account data, remember to experience it again~</string>
+    <string name="logoff_tips_title">Are you sure to logoff?</string>
+    <string name="logoff_tips_msg">After logoff, you will not be able to use the account to experience our services temporarily. Do you really want to logoff?</string>
+    <string name="reacquire">reacquire</string>
+    <string name="please_enter_the_correct_phone_number">Please enter the correct phone number</string>
+    <string name="please_agree_to_our_privacy_policy_and_user_agreement">Please agree to our Privacy Policy and User Agreement</string>
+    <string name="agree_and_continue">Agree and continue</string>
+    <string name="disagree_and_exit">Disagree and exit</string>
+    <string name="verification_code_sent_successfully">Verification code sent successfully</string>
+    <string name="verification_code_sent_failed">Verification code sent failed</string>
+    <string name="login_successful">login successful</string>
+
 </resources>

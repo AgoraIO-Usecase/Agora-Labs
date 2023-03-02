@@ -11,6 +11,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import io.agora.api.example.R;
 import io.agora.api.example.SplashActivity;
 import io.agora.api.example.common.Constant;
 import io.agora.api.example.common.base.component.BaseViewBindingActivity;
@@ -63,7 +64,7 @@ public class PhoneLoginRegisterActivity  extends BaseViewBindingActivity<AppActi
         //                getBinding().etVCode.setText(password);
         //            }
         //        }
-        countDownTimerUtils = new CountDownTimerUtils(getBinding().tvSendVCode, 60000, 1000);
+        countDownTimerUtils = new CountDownTimerUtils(getBinding().tvSendVCode, 300000, 1000);
     }
 
     /**
@@ -95,13 +96,13 @@ public class PhoneLoginRegisterActivity  extends BaseViewBindingActivity<AppActi
                     showSwipeCaptchaDialog();
                 }
             } else {
-                ToastUtils.showToast("请同意我们的隐私政策与用户协议");
+                ToastUtils.showToast(getString(R.string.please_agree_to_our_privacy_policy_and_user_agreement));
             }
         });
         getBinding().tvSendVCode.setOnClickListener(view -> {
             String account = getBinding().etAccounts.getText().toString();
             if (!checkPhoneNum(account)) {
-                ToastUtils.showToast("请输入正确手机号");
+                ToastUtils.showToast(getString(R.string.please_enter_the_correct_phone_number));
             } else {
                 phoneLoginViewModel.requestSendVCode(account);
                 countDownTimerUtils.start();
@@ -159,10 +160,10 @@ public class PhoneLoginRegisterActivity  extends BaseViewBindingActivity<AppActi
     private boolean checkAccount() {
         String account = getBinding().etAccounts.getText().toString();
         if (!checkPhoneNum(account)) {
-            ToastUtils.showToast("请输入正确手机号");
+            ToastUtils.showToast(getString(R.string.please_enter_the_correct_phone_number));
             return false;
         } else if (TextUtils.isEmpty(getBinding().etVCode.getText().toString())) {
-            ToastUtils.showToast("请输入验证码");
+            ToastUtils.showToast(getString(R.string.app_please_input_v_code));
         }
         return true;
     }
