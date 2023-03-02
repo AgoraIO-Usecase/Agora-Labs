@@ -22,21 +22,9 @@ class HDR: BaseViewController {
         return _contentView
     }()
     lazy var localVideoView: AGContrastView = {
-        let _localVideoView = AGContrastView(type: .top, frame: CGRect.zero)
-        _localVideoView.backgroundColor = .black
-        _localVideoView.masksToBounds = true
-        _localVideoView.showSubTitle = true
-        _localVideoView.title = "Original Video".localized
-        return _localVideoView
-    }()
-    lazy var remoteVideoView: AGContrastView = {
-        let _remoteVideoView = AGContrastView(type: .bottom, frame: CGRect.zero)
+        let _remoteVideoView = AGContrastView(type: .single, frame: CGRect.zero)
         _remoteVideoView.backgroundColor = .black
         _remoteVideoView.masksToBounds = true
-        _remoteVideoView.titleSelected = false
-        _remoteVideoView.showSubTitle = true
-        _remoteVideoView.selectTitle = "HDRxiaoguo".localized
-        _remoteVideoView.title = "HDRxiaoguoweikaiqi".localized
         return _remoteVideoView
     }()
     lazy var bottomView: UIView = {
@@ -65,19 +53,10 @@ class HDR: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        //发送端设置
-        self.setupSendData()
-        //接收端设置
-        self.setupRecvData()
+        self.setupAgoraRtcEngine()
     }
     
-    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 720, height: 1280), frameRate: .fps15, bitrate: 2200, orientationMode: .fixedPortrait, mirrorMode: .auto),_ isOpen:Bool = false) {
-        
-        self.videoConfig = videoConfig
-        
-        let connection = AgoraRtcConnection()
-        connection.localUid = AgoraLabsUser.sendUid
-        connection.channelId = AgoraLabsUser.channelName
+    func setupAgoraRtcEngine(_ isOpen:Bool = false) {
         
         // set up agora instance when view loadedlet config = AgoraRtcEngineConfig()
         // set up agora instance when view loaded
@@ -86,12 +65,15 @@ class HDR: BaseViewController {
         config.areaCode = GlobalSettings.shared.area
         config.channelProfile = .liveBroadcasting
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: nil)
-        self.setupHDR(enabled: isOpen)
         agoraKit.setLogFile(LogUtils.sdkLogPath())
-        agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
-        
+        // make myself a broadcaster
+        agoraKit.setClientRole(GlobalSettings.shared.getUserRole())
+        // enable video module and set up video encoding configs
+        agoraKit.setVideoEncoderConfiguration(AgoraVideoEncoderConfiguration(size: CGSize(width: 1280, height: 720), frameRate:.fps15, bitrate: 2200, orientationMode: .adaptative, mirrorMode: .auto))
+        setupHDR(enabled: isOpen)
         agoraKit.enableVideo()
-        agoraKit.disableAudio()
+        //agoraKit.enableAudio()
+        
         // set up local video to render your local camera preview
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = AgoraLabsUser.sendUid
@@ -111,55 +93,7 @@ class HDR: BaseViewController {
         // 2. If app certificate is turned on at dashboard, token is needed
         // when joining channel. The channel name and uid used to calculate
         // the token has to match the ones used for channel join
-        let option = AgoraRtcChannelMediaOptions()
-        option.publishCameraTrack = true
-        option.publishMicrophoneTrack = true
-        option.clientRoleType = .broadcaster
         
-       
-        let result = agoraKit.joinChannelEx(byToken: KeyCenter.Token, connection: connection, delegate: self, mediaOptions: option) {  channel, uid, elapsed in
-            print("sendAgoraKit uid=\(uid) joinChannel channel=\(channel)")
-        }
-        
-        if result != 0 {
-            // Usually happens with invalid parameters
-            // Error code description can be found at:
-            // en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-            // cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-            self.showAlert(title: "Error", message: "sendAgoraKit joinChannel call failed: \(result), please check your params")
-        }
-        
-    }
-    
-    
-    func setupRecvData() {
-
-        let option = AgoraRtcChannelMediaOptions()
-        option.publishCameraTrack = true
-        option.publishMicrophoneTrack = true
-        option.clientRoleType = .broadcaster
-        
-        let connection = AgoraRtcConnection()
-        connection.localUid = AgoraLabsUser.recvUid
-        connection.channelId = AgoraLabsUser.channelName
-        
-        let result = agoraKit.joinChannelEx(byToken: KeyCenter.Token, connection: connection, delegate: self, mediaOptions: option) {  channel, uid, elapsed in
-            print("recvAgoraKit uid=\(uid) joinChannel channel=\(channel)")
-            let videoCanvas = AgoraRtcVideoCanvas()
-            videoCanvas.uid = AgoraLabsUser.sendUid
-            videoCanvas.view = self.remoteVideoView.showView
-            videoCanvas.mirrorMode = .enabled
-            videoCanvas.renderMode = .hidden
-            self.agoraKit.setupRemoteVideoEx(videoCanvas, connection: connection)
-        }
-        
-        if result != 0 {
-            // Usually happens with invalid parameters
-            // Error code description can be found at:
-            // en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-            // cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-            self.showAlert(title: "Error", message: "recv joinChannel call failed: \(result), please check your params")
-        }
     }
     
     @objc func backBtnDidClick() {
@@ -175,30 +109,21 @@ class HDR: BaseViewController {
     func reJoinChannel(_ isOpen:Bool) {
         self.agoraKit.leaveChannel(nil)
         AgoraRtcEngineKit.destroy()
-        
-        self.setupSendData(self.videoConfig!, isOpen)
-        self.setupRecvData()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.setupAgoraRtcEngine(isOpen)
+        }
     }
     
     //切换摄像头
     @objc func switchBtnDidClick() {
         agoraKit.switchCamera()
     }
-
-    func setupResolution(videoConfig:AgoraVideoEncoderConfiguration?) {
-        guard let _videoConfig = videoConfig else { return  }
-        self.videoConfig = _videoConfig
-        let connection = AgoraRtcConnection()
-        connection.localUid = AgoraLabsUser.sendUid
-        connection.channelId = AgoraLabsUser.channelName
-        agoraKit.setVideoEncoderConfigurationEx(_videoConfig, connection: connection)
-    }
     
     func setupHDR(enabled:Bool) {
         if isOpenHDR == enabled {
             return
         }
-        let json = JSON(["che.video.enable_hdr_capture":true,
+        let json = JSON(["che.video.enable_hdr_capture":enabled,
                          "engine.video.enable_hw_encoder":true,
                          "engine.video.codec_type":"3"]).rawString() ?? ""
         let rt = agoraKit.setParameters(json)
@@ -227,7 +152,7 @@ extension HDR:AgoraRtcEngineDelegate{
      */
     func rtcEngine(_ engine: AgoraRtcEngineKit, localVideoStats stats: AgoraRtcLocalVideoStats, sourceType: AgoraVideoSourceType) {
         if stats.uid ==  AgoraLabsUser.sendUid {
-            localVideoView.subTitle = "Bitrate".localized+": \(stats.sentBitrate) kbps"
+            //localVideoView.subTitle = "Bitrate".localized+": \(stats.sentBitrate) kbps"
             //print("send - sentBitrate=\(stats.sentBitrate) sentFrameRate=\(stats.sentFrameRate)")
         }
     }
@@ -243,7 +168,7 @@ extension HDR:AgoraRtcEngineDelegate{
      */
     func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStats stats: AgoraRtcRemoteVideoStats) {
         if stats.uid ==  AgoraLabsUser.sendUid {
-            remoteVideoView.subTitle = "Bitrate".localized+": \(stats.receivedBitrate) kbps"
+            //remoteVideoView.subTitle = "Bitrate".localized+": \(stats.receivedBitrate) kbps"
             //print("recv - receivedBitrate=\(stats.receivedBitrate) receivedFrameRate=\(stats.receivedFrameRate)")
         }
     }

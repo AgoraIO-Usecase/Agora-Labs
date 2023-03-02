@@ -63,7 +63,7 @@ class VirtualBackground: BaseViewController {
                                                                              bitrate: AgoraVideoBitrateStandard,
                                                                              orientationMode: orientation, mirrorMode: .auto))
         agoraKit.enableVideo()
-        agoraKit.enableAudio()
+        //agoraKit.enableAudio()
         
         // set up local video to render your local camera preview
         let videoCanvas = AgoraRtcVideoCanvas()
