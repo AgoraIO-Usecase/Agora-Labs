@@ -26,8 +26,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>NSCameraUsageDescription</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>NSMicrophoneUsageDescription</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>NSPhotoLibraryUsageDescription</string>
 	<key>UIBackgroundModes</key>
@@ -55,6 +53,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportsDocumentBrowser</key>
-	<true/>
+	<false/>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

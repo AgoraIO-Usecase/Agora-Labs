@@ -25,6 +25,13 @@ static AFHTTPSessionManager *_sessionManager;
     return _allSessionTask;
 }
 
++ (void)closeSharedCache{
+    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0
+                                                  diskCapacity:0
+                                                  diskPath:nil];
+    [NSURLCache setSharedURLCache:sharedCache];
+}
+
 + (void)load{
     [super load];
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VLAPIRequest : VLRequestRoute
 
++ (void)closeSharedCache;
 #pragma mark--网络请求
 + (void)getRequestURL:(NSString *)url parameter:(id)parameter showHUD:(BOOL)show success:(completeBlock_success)success failure:(errorBlock_fail)failure;
 

@@ -18,10 +18,10 @@ extension HDR {
         self.setupShowContentView()
         self.setupBottomContentView()
         
-        if !UIDevice().phone12Model() {
-            AGHUD.showFaild(info: "该设备暂不支持HDR")
-            self.openSwitch.isEnabled = false
-        }
+//        if !UIDevice().phone12Model() {
+//            AGHUD.showFaild(info: "该设备暂不支持HDR")
+//            self.openSwitch.isEnabled = false
+//        }
     }
     
     func setupNavigation() {
@@ -258,7 +258,6 @@ extension HDR {
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
         self.remoteVideoView.titleSelected = sender.isOn
-        self.setupHDR(enabled: sender.isOn)
-        self.setupResolution(videoConfig: self.videoConfig)
+        self.reJoinChannel(sender.isOn)
     }
 }

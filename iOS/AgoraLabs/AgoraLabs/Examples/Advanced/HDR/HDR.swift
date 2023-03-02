@@ -71,7 +71,7 @@ class HDR: BaseViewController {
         self.setupRecvData()
     }
     
-    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 720, height: 1280), frameRate: .fps15, bitrate: 2200, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
+    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 720, height: 1280), frameRate: .fps15, bitrate: 2200, orientationMode: .fixedPortrait, mirrorMode: .auto),_ isOpen:Bool = false) {
         
         self.videoConfig = videoConfig
         
@@ -86,7 +86,7 @@ class HDR: BaseViewController {
         config.areaCode = GlobalSettings.shared.area
         config.channelProfile = .liveBroadcasting
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: nil)
-        self.setupHDR(enabled: false)
+        self.setupHDR(enabled: isOpen)
         agoraKit.setLogFile(LogUtils.sdkLogPath())
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
         
@@ -172,6 +172,14 @@ class HDR: BaseViewController {
         AgoraRtcEngineKit.destroy()
     }
     
+    func reJoinChannel(_ isOpen:Bool) {
+        self.agoraKit.leaveChannel(nil)
+        AgoraRtcEngineKit.destroy()
+        
+        self.setupSendData(self.videoConfig!, isOpen)
+        self.setupRecvData()
+    }
+    
     //切换摄像头
     @objc func switchBtnDidClick() {
         agoraKit.switchCamera()
@@ -190,13 +198,13 @@ class HDR: BaseViewController {
         if isOpenHDR == enabled {
             return
         }
-        let json = JSON(["che.video.enable_hdr_capture":enabled,
+        let json = JSON(["che.video.enable_hdr_capture":true,
                          "engine.video.enable_hw_encoder":true,
-                         "engine.video.codec_type":3]).rawString() ?? ""
+                         "engine.video.codec_type":"3"]).rawString() ?? ""
         let rt = agoraKit.setParameters(json)
         self.isOpenHDR = enabled
         if rt != 0 {
-            AGHUD.showFaild(info: "ROIEnable False:\(rt)")
+            AGHUD.showFaild(info: "HDR Enable False:\(rt)")
             self.openSwitch.isOn = false
             self.isOpenHDR = false
             self.switchOpenChange(self.openSwitch)
