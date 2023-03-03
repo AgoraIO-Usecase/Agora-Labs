@@ -4,7 +4,6 @@
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 target 'AgoraLabs' do
   use_frameworks!
-  pod 'OpenSSL-Universal', '1.0.2.17'
   pod 'Floaty', '~> 4.2.0'
   pod 'AGEVideoLayout', '~> 1.0.2'
   pod 'CocoaAsyncSocket', '7.6.5'

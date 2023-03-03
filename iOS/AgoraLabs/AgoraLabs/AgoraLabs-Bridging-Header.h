@@ -20,5 +20,4 @@
 #import "VLPrivacyCustomView.h"
 #import "VLUserCenter.h"
 #import "VLAPIRequest.h"
-#import "RtmTokenTool.h"
 #import <YYText/YYText.h>

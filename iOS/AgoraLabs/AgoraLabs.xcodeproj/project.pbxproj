@@ -316,9 +316,6 @@
 		A6EAA8892990A86B008D9ECE /* ALLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8882990A86B008D9ECE /* ALLoginViewController.m */; };
 		A6EAA8962991025F008D9ECE /* VLCommonWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8932991025F008D9ECE /* VLCommonWebViewController.m */; };
 		A6EAA8972991025F008D9ECE /* VLLocalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EAA8942991025F008D9ECE /* VLLocalWebViewController.m */; };
-		A6F651E429B196CE00BA1EAC /* TokenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F651D029B196CE00BA1EAC /* TokenBuilder.swift */; };
-		A6F651E529B196CE00BA1EAC /* RtmTokenTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6F651D329B196CE00BA1EAC /* RtmTokenTool.mm */; };
-		A6F651E629B196CE00BA1EAC /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6F651D729B196CE00BA1EAC /* md5.cpp */; };
 		A7847F922458062900469187 /* StatisticsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7847F912458062900469187 /* StatisticsInfo.swift */; };
 		A7847F942458089E00469187 /* AgoraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7847F932458089E00469187 /* AgoraExtension.swift */; };
 		A7BD7660247CC6920062A6B3 /* UITypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BD765F247CC6920062A6B3 /* UITypeAlias.swift */; };
@@ -731,23 +728,6 @@
 		A6EAA8942991025F008D9ECE /* VLLocalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLLocalWebViewController.m; sourceTree = "<group>"; };
 		A6EAA8952991025F008D9ECE /* VLCommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLCommonWebViewController.h; sourceTree = "<group>"; };
 		A6EAA8982991047B008D9ECE /* VLURLPathConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLURLPathConfig.h; sourceTree = "<group>"; };
-		A6F651D029B196CE00BA1EAC /* TokenBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenBuilder.swift; sourceTree = "<group>"; };
-		A6F651D229B196CE00BA1EAC /* RtmTokenTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtmTokenTool.h; sourceTree = "<group>"; };
-		A6F651D329B196CE00BA1EAC /* RtmTokenTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RtmTokenTool.mm; sourceTree = "<group>"; };
-		A6F651D529B196CE00BA1EAC /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
-		A6F651D729B196CE00BA1EAC /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
-		A6F651D829B196CE00BA1EAC /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
-		A6F651D929B196CE00BA1EAC /* DynamicKey5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey5.h; sourceTree = "<group>"; };
-		A6F651DA29B196CE00BA1EAC /* Packer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Packer.h; sourceTree = "<group>"; };
-		A6F651DB29B196CE00BA1EAC /* generatorSignalToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generatorSignalToken.h; sourceTree = "<group>"; };
-		A6F651DC29B196CE00BA1EAC /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessToken.h; sourceTree = "<group>"; };
-		A6F651DD29B196CE00BA1EAC /* DynamicKey2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey2.h; sourceTree = "<group>"; };
-		A6F651DE29B196CE00BA1EAC /* RtmTokenBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtmTokenBuilder.h; sourceTree = "<group>"; };
-		A6F651DF29B196CE00BA1EAC /* DynamicKey3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey3.h; sourceTree = "<group>"; };
-		A6F651E029B196CE00BA1EAC /* generatorSignalToken-Linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "generatorSignalToken-Linux.h"; sourceTree = "<group>"; };
-		A6F651E129B196CE00BA1EAC /* RtcTokenBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtcTokenBuilder.h; sourceTree = "<group>"; };
-		A6F651E229B196CE00BA1EAC /* DynamicKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey.h; sourceTree = "<group>"; };
-		A6F651E329B196CE00BA1EAC /* DynamicKey4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicKey4.h; sourceTree = "<group>"; };
 		A7847F912458062900469187 /* StatisticsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsInfo.swift; sourceTree = "<group>"; };
 		A7847F932458089E00469187 /* AgoraExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraExtension.swift; sourceTree = "<group>"; };
 		A7BD765F247CC6920062A6B3 /* UITypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITypeAlias.swift; sourceTree = "<group>"; };
@@ -937,7 +917,6 @@
 		03D13BFF24488F1E00B599B3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A6F651CF29B196CE00BA1EAC /* TokenBuilder */,
 				A68E426C299A1DC500E298DF /* Cache */,
 				A6EAA8912991025F008D9ECE /* WebView */,
 				A62469162952AA0800DFB5BA /* BeautyTool */,
@@ -1649,54 +1628,6 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
-		A6F651CF29B196CE00BA1EAC /* TokenBuilder */ = {
-			isa = PBXGroup;
-			children = (
-				A6F651D029B196CE00BA1EAC /* TokenBuilder.swift */,
-				A6F651D129B196CE00BA1EAC /* RtmTokenTool */,
-			);
-			path = TokenBuilder;
-			sourceTree = "<group>";
-		};
-		A6F651D129B196CE00BA1EAC /* RtmTokenTool */ = {
-			isa = PBXGroup;
-			children = (
-				A6F651D229B196CE00BA1EAC /* RtmTokenTool.h */,
-				A6F651D329B196CE00BA1EAC /* RtmTokenTool.mm */,
-				A6F651D429B196CE00BA1EAC /* src */,
-			);
-			path = RtmTokenTool;
-			sourceTree = "<group>";
-		};
-		A6F651D429B196CE00BA1EAC /* src */ = {
-			isa = PBXGroup;
-			children = (
-				A6F651D529B196CE00BA1EAC /* utils.h */,
-				A6F651D629B196CE00BA1EAC /* md5 */,
-				A6F651D929B196CE00BA1EAC /* DynamicKey5.h */,
-				A6F651DA29B196CE00BA1EAC /* Packer.h */,
-				A6F651DB29B196CE00BA1EAC /* generatorSignalToken.h */,
-				A6F651DC29B196CE00BA1EAC /* AccessToken.h */,
-				A6F651DD29B196CE00BA1EAC /* DynamicKey2.h */,
-				A6F651DE29B196CE00BA1EAC /* RtmTokenBuilder.h */,
-				A6F651DF29B196CE00BA1EAC /* DynamicKey3.h */,
-				A6F651E029B196CE00BA1EAC /* generatorSignalToken-Linux.h */,
-				A6F651E129B196CE00BA1EAC /* RtcTokenBuilder.h */,
-				A6F651E229B196CE00BA1EAC /* DynamicKey.h */,
-				A6F651E329B196CE00BA1EAC /* DynamicKey4.h */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		A6F651D629B196CE00BA1EAC /* md5 */ = {
-			isa = PBXGroup;
-			children = (
-				A6F651D729B196CE00BA1EAC /* md5.cpp */,
-				A6F651D829B196CE00BA1EAC /* md5.h */,
-			);
-			path = md5;
-			sourceTree = "<group>";
-		};
 		A75A56D324A0603000D0089E /* Basic */ = {
 			isa = PBXGroup;
 			children = (
@@ -2113,9 +2044,7 @@
 				A6EAA87B29909E85008D9ECE /* VLPrivacyCustomView.m in Sources */,
 				A667E29B2955A0120053E0B5 /* PVC+UI.swift in Sources */,
 				A6EAA87A29909E85008D9ECE /* VLLoginInputVerifyCodeView.m in Sources */,
-				A6F651E429B196CE00BA1EAC /* TokenBuilder.swift in Sources */,
 				A6246BE32952BA3400DFB5BA /* AGContrastView.swift in Sources */,
-				A6F651E529B196CE00BA1EAC /* RtmTokenTool.mm in Sources */,
 				A68E42352993896000E298DF /* HDR+UI.swift in Sources */,
 				A6246BE02952B26900DFB5BA /* Resolution+UI.swift in Sources */,
 				E721600F28D3314B006431BD /* AlertManager.swift in Sources */,
@@ -2138,7 +2067,6 @@
 				A68E4261299A1CBF00E298DF /* VLBaseModel.m in Sources */,
 				A68E4260299A1CBF00E298DF /* VLResponseDataModel.m in Sources */,
 				03D13C0124488F1F00B599B3 /* KeyCenter.swift in Sources */,
-				A6F651E629B196CE00BA1EAC /* md5.cpp in Sources */,
 				E74877B728A23B8B00CA2F58 /* NetworkManager.swift in Sources */,
 				03D13BD02448758900B599B3 /* AppDelegate.swift in Sources */,
 				0385768225224A88003C369A /* JoinChannelVideo.swift in Sources */,

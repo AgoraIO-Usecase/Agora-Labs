@@ -37,15 +37,6 @@ struct AgoraLabsUser {
         return  String("\(AgoraLabsUser.time+10000)".suffix(5))
     }
     
-    static func sendToken() -> String{
-        
-       return TokenBuilder().buildByAppId(KeyCenter.AppId, appCertificate: KeyCenter.Certificate ?? "", userUuid: "\(AgoraLabsUser.sendUid)")
-    }
-    
-    static func recvToken() -> String{
-        return TokenBuilder().buildByAppId(KeyCenter.AppId, appCertificate: KeyCenter.Certificate ?? "", userUuid: "\(AgoraLabsUser.recvUid)")
-    }
-    
     static func generateToken(channelName: String,
                        uid: UInt,
                        tokenType: TokenGeneratorType,
