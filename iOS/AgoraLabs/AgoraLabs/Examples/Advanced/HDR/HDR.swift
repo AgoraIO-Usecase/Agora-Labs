@@ -13,7 +13,7 @@ import UIKit
 class HDR: BaseViewController {
     
     var currentModel:SubCellModel?
-    
+    var isFrontCamera = true
     var isOpenHDR:Bool = false
     var blurSlider:UISlider?
     lazy var contentView: UIView = {
@@ -93,7 +93,9 @@ class HDR: BaseViewController {
         // 2. If app certificate is turned on at dashboard, token is needed
         // when joining channel. The channel name and uid used to calculate
         // the token has to match the ones used for channel join
-        
+        if !self.isFrontCamera {
+            agoraKit.switchCamera()
+        }
     }
     
     @objc func backBtnDidClick() {
@@ -116,6 +118,7 @@ class HDR: BaseViewController {
     
     //切换摄像头
     @objc func switchBtnDidClick() {
+        self.isFrontCamera = !self.isFrontCamera
         agoraKit.switchCamera()
     }
     

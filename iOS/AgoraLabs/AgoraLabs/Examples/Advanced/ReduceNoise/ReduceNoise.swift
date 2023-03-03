@@ -62,8 +62,6 @@ class ReduceNoise: BaseViewController {
         self.setupUI()
         //发送端设置
         self.setupSendData()
-        //接收端设置
-        self.setupRecvData()
     }
     
     func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 540, height: 960), frameRate: .fps15, bitrate: 1450, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
@@ -100,17 +98,22 @@ class ReduceNoise: BaseViewController {
         option.publishMicrophoneTrack = true
         option.clientRoleType = .broadcaster
 
-
-        let result = agoraKit.joinChannelEx(byToken: KeyCenter.Token, connection: connection, delegate: self, mediaOptions: option) {  channel, uid, elapsed in
-            print("sendAgoraKit uid=\(uid) joinChannel channel=\(channel)")
-        }
-
-        if result != 0 {
-            // Usually happens with invalid parameters
-            // Error code description can be found at:
-            // en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-            // cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-            self.showAlert(title: "Error", message: "sendAgoraKit joinChannel call failed: \(result), please check your params")
+        AgoraLabsUser.generateToken(channelName: AgoraLabsUser.channelName, uid: AgoraLabsUser.sendUid, tokenType: .token007, type: .rtc) { sendToken in
+            
+            let result = self.agoraKit.joinChannelEx(byToken: sendToken, connection: connection, delegate: self, mediaOptions: option) {  channel, uid, elapsed in
+                print("sendAgoraKit uid=\(uid) joinChannel channel=\(channel)")
+            }
+            
+            if result != 0 {
+                // Usually happens with invalid parameters
+                // Error code description can be found at:
+                // en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
+                // cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
+                self.showAlert(title: "Error", message: "sendAgoraKit joinChannel call failed: \(result), please check your params")
+            }
+            
+            //接收端设置
+            self.setupRecvData()
         }
         
     }
@@ -126,22 +129,26 @@ class ReduceNoise: BaseViewController {
         connection.localUid = AgoraLabsUser.recvUid
         connection.channelId = AgoraLabsUser.channelName
         
-        let result = agoraKit.joinChannelEx(byToken: KeyCenter.Token, connection: connection, delegate: self, mediaOptions: option) {  channel, uid, elapsed in
-            print("recvAgoraKit uid=\(uid) joinChannel channel=\(channel)")
-            let videoCanvas = AgoraRtcVideoCanvas()
-            videoCanvas.uid = AgoraLabsUser.sendUid
-            videoCanvas.view = self.remoteVideoView.showView
-            videoCanvas.mirrorMode = .enabled
-            videoCanvas.renderMode = .hidden
-            self.agoraKit.setupRemoteVideoEx(videoCanvas, connection: connection)
-        }
-        
-        if result != 0 {
-            // Usually happens with invalid parameters
-            // Error code description can be found at:
-            // en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-            // cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-            self.showAlert(title: "Error", message: "recv joinChannel call failed: \(result), please check your params")
+        AgoraLabsUser.generateToken(channelName: AgoraLabsUser.channelName, uid: AgoraLabsUser.recvUid, tokenType: .token007, type: .rtc) { recvToken in
+            
+            let result = self.agoraKit.joinChannelEx(byToken: recvToken, connection: connection, delegate: self, mediaOptions: option) {  channel, uid, elapsed in
+                print("recvAgoraKit uid=\(uid) joinChannel channel=\(channel)")
+                let videoCanvas = AgoraRtcVideoCanvas()
+                videoCanvas.uid = AgoraLabsUser.sendUid
+                videoCanvas.view = self.remoteVideoView.showView
+                videoCanvas.mirrorMode = .enabled
+                videoCanvas.renderMode = .hidden
+                self.agoraKit.setupRemoteVideoEx(videoCanvas, connection: connection)
+            }
+            
+            if result != 0 {
+                // Usually happens with invalid parameters
+                // Error code description can be found at:
+                // en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
+                // cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
+                self.showAlert(title: "Error", message: "recv joinChannel call failed: \(result), please check your params")
+            }
+            
         }
     }
     

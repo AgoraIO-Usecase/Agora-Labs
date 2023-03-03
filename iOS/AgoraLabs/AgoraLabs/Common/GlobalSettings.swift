@@ -10,6 +10,19 @@ import Foundation
 import AgoraRtcKit
 
 struct AgoraLabsUser {
+    
+    @objc public enum TokenGeneratorType: Int {
+        case token006 = 0
+        case token007 = 1
+    }
+    
+    @objc public enum AgoraTokenType: Int {
+        case rtc = 1
+        case rtm = 2
+        case chat = 3
+    }
+
+    
     static var time  = Int(Date().timeIntervalSince1970)
     
     static var sendUid: UInt {
@@ -22,6 +35,47 @@ struct AgoraLabsUser {
     }
     static var channelName: String {
         return  String("\(AgoraLabsUser.time+10000)".suffix(5))
+    }
+    
+    static func sendToken() -> String{
+        
+       return TokenBuilder().buildByAppId(KeyCenter.AppId, appCertificate: KeyCenter.Certificate ?? "", userUuid: "\(AgoraLabsUser.sendUid)")
+    }
+    
+    static func recvToken() -> String{
+        return TokenBuilder().buildByAppId(KeyCenter.AppId, appCertificate: KeyCenter.Certificate ?? "", userUuid: "\(AgoraLabsUser.recvUid)")
+    }
+    
+    static func generateToken(channelName: String,
+                       uid: UInt,
+                       tokenType: TokenGeneratorType,
+                       type: AgoraTokenType,
+                       success: @escaping (String?) -> Void){
+        
+        if KeyCenter.Certificate == nil || KeyCenter.Certificate?.isEmpty == true {
+            success(nil)
+            return
+        }
+        let params = ["appCertificate": KeyCenter.Certificate ?? "",
+                      "appId": KeyCenter.AppId,
+                      "channelName": channelName,
+                      "expire": 1500,
+                      "src": "iOS",
+                      "ts": "".timeStamp,
+                      "type": type.rawValue,
+                      "uid": uid] as [String: Any]
+        let url = tokenType == .token006 ? "\(KeyCenter.BaseServerUrl)token006/generate" : "\(KeyCenter.BaseServerUrl)token/generate"
+        NetworkManager.shared.postRequest(urlString: url,
+                                          params: params,
+                                          success: { response in
+            let data = response["data"] as? [String: String]
+            let token = data?["token"]
+            print(response)
+            success(token)
+        }, failure: { error in
+            print(error)
+            success(nil)
+        })
     }
 }
 

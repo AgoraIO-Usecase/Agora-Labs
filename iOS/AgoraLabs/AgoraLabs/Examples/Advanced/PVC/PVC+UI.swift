@@ -327,7 +327,6 @@ extension PVC:AAChartViewDelegate{
             .style(AAStyle().color("#FFFFFF").fontSize(12))
         
         aaChartView.isScrollEnabled = false
-//        aaChartView.aa_drawChartWithChartModel(aaChartModel)
         aaChartView.aa_drawChartWithChartOptions(aaOptions)
     }
 }
