@@ -1,5 +1,5 @@
 //
-//  Resolution.swift
+//  SuperResolution.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2022/12/15.
@@ -10,7 +10,7 @@ import AgoraRtcKit
 import SwiftyJSON
 import UIKit
 
-class Resolution: BaseViewController {
+class SuperResolution: BaseViewController {
     
     var currentModel:SubCellModel?
     
@@ -84,6 +84,11 @@ class Resolution: BaseViewController {
         connection.localUid = AgoraLabsUser.sendUid
         connection.channelId = AgoraLabsUser.channelName
         
+        LBXPermission.authorize(with: .camera) { granted, firstTime in
+            if !firstTime && !granted {
+                LBXPermissionSetting.showAlertToDislayPrivacySetting(withTitle: "", msg: "xjqx".localized, cancel: "qx".localized, setting: "sz".localized)
+            }
+        }
         // set up agora instance when view loadedlet config = AgoraRtcEngineConfig()
         // set up agora instance when view loaded
         let config = AgoraRtcEngineConfig()
@@ -209,7 +214,7 @@ class Resolution: BaseViewController {
     }
 }
 
-extension Resolution:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
+extension SuperResolution:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStateChangedOfUid uid: UInt, state: AgoraVideoRemoteState, reason: AgoraVideoRemoteReason, elapsed: Int) {
         
     }

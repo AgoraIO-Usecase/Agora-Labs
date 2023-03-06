@@ -1,5 +1,5 @@
 //
-//  BeautifyFilter+UI.swift
+//  BeautifyTheFace+UI.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2022/12/8.
@@ -10,7 +10,7 @@ import ASValueTrackingSlider
 import JXSegmentedView
 import UIKit
 
-extension BeautifyFilter {
+extension BeautifyTheFace {
     
     func setupUI() {
         self.setupNavigation()
@@ -26,7 +26,7 @@ extension BeautifyFilter {
         button.frame = CGRect(x:0, y:0, width:65, height:30)
         button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
-        button.setTitle("Beautify Filter".localized, for: .normal)
+        button.setTitle("Beautify The Face".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
         button.titleLabel?.setupShadow()
         let leftBarBtn = UIBarButtonItem(customView: button)
@@ -137,7 +137,7 @@ extension BeautifyFilter {
 }
 
 // MARK: - 相芯美颜
-extension BeautifyFilter{
+extension BeautifyTheFace{
     
     private func setupFaceUnityView()  {
 
@@ -263,7 +263,7 @@ extension BeautifyFilter{
 }
 
 // MARK: - Agora美颜
-extension BeautifyFilter{
+extension BeautifyTheFace{
     
     private func setupAgoraView()  {
 
@@ -389,7 +389,7 @@ extension BeautifyFilter{
 }
 
 // MARK: - 火山美颜
-extension BeautifyFilter:JXSegmentedViewDelegate{
+extension BeautifyTheFace:JXSegmentedViewDelegate{
     
     func setupVolcEngineView() {
         
@@ -588,7 +588,7 @@ extension BeautifyFilter:JXSegmentedViewDelegate{
 }
 
 // MARK: - ASValueTrackingSliderDataSource ASValueTrackingSliderDelegate
-extension BeautifyFilter:ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate{
+extension BeautifyTheFace:ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate{
     
     func slider(_ slider: ASValueTrackingSlider!, stringForValue value: Float) -> String! {
         
@@ -634,7 +634,7 @@ extension BeautifyFilter:ASValueTrackingSliderDataSource,ASValueTrackingSliderDe
 }
 
 
-extension BeautifyFilter{
+extension BeautifyTheFace{
     //选择对应的美颜模块
     private func filterItemViewClick(index:Int)  {
         AGHUD.touchFeedback()

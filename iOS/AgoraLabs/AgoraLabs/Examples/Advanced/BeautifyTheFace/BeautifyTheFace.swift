@@ -1,5 +1,5 @@
 //
-//  BeautifyFilter.swift
+//  BeautifyTheFace.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2022/12/8.
@@ -11,7 +11,7 @@ import AgoraRtcKit
 import JXSegmentedView
 import UIKit
 
-class BeautifyFilter: BaseViewController {
+class BeautifyTheFace: BaseViewController {
     
     let filterList:[SubCellModel] = [
         SubCellModel(name: "Faceunity",tag: 0),
@@ -64,10 +64,19 @@ class BeautifyFilter: BaseViewController {
     }
     
     func setupAgoraRtcEngine() {
-        
+        LBXPermission.authorize(with: .camera) { granted, firstTime in
+            if !firstTime && !granted {
+                LBXPermissionSetting.showAlertToDislayPrivacySetting(withTitle: "", msg: "xjqx".localized, cancel: "qx".localized, setting: "sz".localized)
+            }
+        }
         // set up agora instance when view loadedlet config = AgoraRtcEngineConfig()
-        // set up agora instance when view loade
-        agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
+        // set up agora instance when view loaded
+        let config = AgoraRtcEngineConfig()
+        config.appId = KeyCenter.AppId
+        config.areaCode = GlobalSettings.shared.area
+        config.channelProfile = .liveBroadcasting
+        agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: nil)
+        agoraKit.setLogFile(LogUtils.sdkLogPath())
         
         // set up agora enableExtension FaceUnityEffect and ByteDanceEffect true
         //let faceUnityRet = agoraKit.enableExtension(withVendor: "FaceUnity", extension:"Effect", enabled: true)
@@ -131,7 +140,7 @@ class BeautifyFilter: BaseViewController {
 }
 
 // MARK: - 声网美颜
-extension BeautifyFilter{
+extension BeautifyTheFace{
     
     //设置相芯-美形参数
     func setAgoraBeauty(_ model: BeautyFuncModel) {
@@ -191,7 +200,7 @@ extension BeautifyFilter{
 
 
 // MARK: - 相芯美颜
-extension BeautifyFilter{
+extension BeautifyTheFace{
 
     func setupFaceUnityBeauty(){
         //1. 设置相芯美颜鉴权
@@ -266,7 +275,7 @@ extension BeautifyFilter{
 
 
 // MARK: - 火山美颜-相关方法
-extension BeautifyFilter {
+extension BeautifyTheFace {
     
     //开启火山美颜-初始化
     func setupByteDanceBeauty(){

@@ -1,5 +1,5 @@
 //
-//  DimEnvironment+UI.swift
+//  ReduceTheNoise+UI.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2023/2/10.
@@ -10,7 +10,7 @@ import AgoraRtcKit
 import SnapKitExtend
 import UIKit
 
-extension DimEnvironment {
+extension ReduceTheNoise {
     
     func setupUI() {
         self.setupNavigation()
@@ -26,7 +26,7 @@ extension DimEnvironment {
         button.frame = CGRect(x:0, y:0, width:65, height:30)
         button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
-        button.setTitle("Dim Environment".localized, for: .normal)
+        button.setTitle("Reduce The Noise".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
         let leftBarBtn = UIBarButtonItem(customView: button)
         self.navigationItem.leftBarButtonItem = leftBarBtn
@@ -54,8 +54,8 @@ extension DimEnvironment {
             make.edges.equalToSuperview()
         }
         
-        contentView.addSubview(localVideoView)
-        localVideoView.snp.makeConstraints { make in
+        contentView.addSubview(remoteVideoView)
+        remoteVideoView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(contentView.snp.top)
             make.height.equalTo(contentView.snp.height)
@@ -109,7 +109,7 @@ extension DimEnvironment {
         
     func setupBottomContentView() {
         let funNameLabel = UILabel()
-        funNameLabel.text = "qyagzq".localized
+        funNameLabel.text = "qyspjz".localized
         funNameLabel.textColor = .white
         funNameLabel.font = UIFont.boldSystemFont(ofSize: 15)
         bottomView.addSubview(funNameLabel)
@@ -176,7 +176,7 @@ extension DimEnvironment {
     
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
-        self.localVideoView.titleSelected = sender.isOn
+        self.remoteVideoView.titleSelected = sender.isOn
         self.multipleModelList.forEach { model in
             guard let itemView = model.subView as? SubButton  else { return  }
             itemView.isEnabled = sender.isOn
@@ -196,4 +196,3 @@ extension DimEnvironment {
     }
     
 }
-

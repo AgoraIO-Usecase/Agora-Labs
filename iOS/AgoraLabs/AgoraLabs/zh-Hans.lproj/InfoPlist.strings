@@ -9,8 +9,6 @@
 
 NSCameraUsageDescription ="请点击“好”以开启摄像头权限，用于你使用时体验视频功能";
 
-NSMicrophoneUsageDescription ="APP需要您的允许才能录制";
-
 NSPhotoLibraryAddUsageDescription ="APP需要您的允许才能将照片保存到相册 ";
 
 NSPhotoLibraryUsageDescription ="APP需要您的允许才能访问相册";

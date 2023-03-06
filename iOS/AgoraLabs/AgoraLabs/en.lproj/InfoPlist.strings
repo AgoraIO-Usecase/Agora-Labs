@@ -8,7 +8,6 @@
 
 
 NSCameraUsageDescription ="Please click “OK” to enable the camera permission, which is used the video function when you use the App";
-NSMicrophoneUsageDescription ="App requires your consent to record";
 NSPhotoLibraryAddUsageDescription ="App needs your permission to save photos to album";
 NSPhotoLibraryUsageDescription ="App needs your permission to access the album";
 

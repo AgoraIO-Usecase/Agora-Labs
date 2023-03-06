@@ -39,7 +39,7 @@ class ViewController: UIViewController {
                 "key":"Effects",
                 "content":[
                     "Virtual Background",
-                    "Beautify Filter"
+                    "Beautify The Face"
                 ]
             ],
             [
@@ -47,12 +47,12 @@ class ViewController: UIViewController {
                 "content":[
                     "PVC",
                     "ROI",
-                    "Resolution",
-                    "Reduce Noise",
-                    "Dim Environment",
-                    "Enhance Saturation",
+                    "SuperResolution",
+                    "Reduce The Noise",
+                    "Dark Light",
+                    "Color Enhancement",
                     "HDR",
-                    "Image",
+                    "Super Picture Quality",
                 ]
             ]
         ],
@@ -89,9 +89,9 @@ class ViewController: UIViewController {
     ]
     
     var doneMap = ["Virtual Background",
-                   "Beautify Filter",
-                   "Resolution","ROI","PVC","HDR",
-                   "Enhance Saturation","Reduce Noise","Dim Environment"]
+                   "Beautify The Face",
+                   "SuperResolution","ROI","PVC","HDR",
+                   "Color Enhancement","Reduce The Noise","Dark Light"]
     
     private var segmentedDataSource: JXSegmentedTitleDataSource!
     private var segmentedView: JXSegmentedView!

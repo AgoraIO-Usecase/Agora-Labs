@@ -107,7 +107,6 @@
 "This app requires world tracking, which is available only on iOS devices with the A9 processor or later." = "AR功能仅在内置A9处理器后的iOS机型支持";
 "Move Camera to find a planar\n(Shown as Red Rectangle)" = "移动相机以找到一个平面\n(以红色方块显示)";
 "Tap to place remote video canvas" = "点击屏幕以放置视频画布";
-//"Resolution" = "分辨率";
 "Frame Rate" = "帧率";
 "Orientation" = "视频朝向";
 "Broadcaster" = "主播";
@@ -133,22 +132,24 @@
 
 "Stay Tuned"="敬请期待";
 "ggnzbzcjqqd"="该功能暂不支持，敬请期待！";
+
 "Video"="视频";
 "Audio"="音频";
 "Network"="网络优化";
 "Algorithms"="基础算法";
 "Effects"="特效";
+
 "Virtual Background"="虚拟背景";
-"Beautify Filter"="美颜";
+"Beautify The Face"="美颜";
 "Image Quality"="画质";
-"Reduce Noise"="降噪";
-"Dim Environment"="暗光";
+"Reduce The Noise"="降噪";
+"Dark Light"="暗光";
 "Sharpen"="自适应锐化";
-"Enhance Saturation"="色彩增强";
+"Color Enhancement"="色彩增强";
 "PVC"="感知视频编码";
 "ROI"="感兴趣区域算法";
-"Resolution"="超分";
-"Image"="超级画质";
+"SuperResolution"="超分";
+"Super Picture Quality"="超级画质";
 "HDR"="HDR";
 
 "Noise Suppression"="Al降噪";
@@ -323,3 +324,6 @@
 "yzsb"="验证失败";
 "tdxfhkwcpt"="拖动下方滑块完成拼图";
 "cxhq"="重新获取";
+
+"sz"="设置";
+"xjqx"="点击“设置”去开启摄像头权限，用于你使用时体验视频功能";

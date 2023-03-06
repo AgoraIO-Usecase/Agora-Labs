@@ -1,22 +1,20 @@
 //
-//  DimEnvironment.swift
+//  ColorEnhancement.swift
 //  AgoraLabs
 //
-//  Created by LiaoChenliang on 2023/2/10.
+//  Created by LiaoChenliang on 2023/2/8.
 //  Copyright © 2023 Agora Corp. All rights reserved.
 //
 
 import AgoraRtcKit
 import UIKit
-//暗光
-class DimEnvironment: BaseViewController {
+//色彩增强
+class ColorEnhancement: BaseViewController {
     
-    var currentModel:SubCellModel?
-    
-    let multipleModelList:[SubCellModel] = [
-        SubCellModel(name: "xnyx".localized,tag: 0,value: 1),
-        SubCellModel(name: "hzyx".localized,tag: 1,value: 0)
-    ]
+    var strengthSlider:UISlider?
+    var strengthValueL:UILabel?
+    var skinSlider:UISlider?
+    var skinValueL:UILabel?
     
     lazy var contentView: UIView = {
         let _contentView = UIView()
@@ -68,6 +66,11 @@ class DimEnvironment: BaseViewController {
         connection.localUid = AgoraLabsUser.sendUid
         connection.channelId = AgoraLabsUser.channelName
         
+        LBXPermission.authorize(with: .camera) { granted, firstTime in
+            if !firstTime && !granted {
+                LBXPermissionSetting.showAlertToDislayPrivacySetting(withTitle: "", msg: "xjqx".localized, cancel: "qx".localized, setting: "sz".localized)
+            }
+        }
         // set up agora instance when view loadedlet config = AgoraRtcEngineConfig()
         // set up agora instance when view loaded
         let config = AgoraRtcEngineConfig()
@@ -93,7 +96,6 @@ class DimEnvironment: BaseViewController {
         agoraKit.startPreview()
         // Set audio route to speaker
         agoraKit.setDefaultAudioRouteToSpeakerphone(true)
-        
     }
     
     @objc func backBtnDidClick() {
@@ -119,15 +121,15 @@ class DimEnvironment: BaseViewController {
         agoraKit.setVideoEncoderConfigurationEx(videoConfig, connection: connection)
     }
     
-    func setupVideoDenoiser(enabled:Bool) {
-        let options = AgoraLowlightEnhanceOptions()
-        let level = self.currentModel?.value as? UInt
-        options.level = AgoraLowlightEnhanceLevel(rawValue: level ?? 0) ?? .quality
-        agoraKit.setLowlightEnhanceOptions(enabled, options: options)
+    func setupColorEnhancement(enabled:Bool) {
+        let options = AgoraColorEnhanceOptions()
+        options.skinProtectLevel = self.skinSlider?.value ?? 0.5
+        options.strengthLevel = self.strengthSlider?.value ?? 0.5
+        agoraKit.setColorEnhanceOptions(enabled, options: options)
     }
 }
 
-extension DimEnvironment:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
+extension ColorEnhancement:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
         print("onEvent ------------ provider:\(provider ?? "")")
     }
@@ -136,5 +138,9 @@ extension DimEnvironment:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
         print("videoSizeChangedOf ------------ ")
     }
     
+    
+//    func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStats stats: AgoraRtcRemoteVideoStats) {
+//        print("AgoraRtcRemoteVideoStats------------\(stats.superResolutionType)")
+//    }
+    
 }
-

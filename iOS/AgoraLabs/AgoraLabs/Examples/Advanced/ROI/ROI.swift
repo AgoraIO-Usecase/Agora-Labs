@@ -76,6 +76,11 @@ class ROI: BaseViewController {
         connection.localUid = AgoraLabsUser.sendUid
         connection.channelId = AgoraLabsUser.channelName
         
+        LBXPermission.authorize(with: .camera) { granted, firstTime in
+            if !firstTime && !granted {
+                LBXPermissionSetting.showAlertToDislayPrivacySetting(withTitle: "", msg: "xjqx".localized, cancel: "qx".localized, setting: "sz".localized)
+            }
+        }
         // set up agora instance when view loadedlet config = AgoraRtcEngineConfig()
         // set up agora instance when view loaded
         let config = AgoraRtcEngineConfig()

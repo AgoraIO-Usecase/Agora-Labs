@@ -20,4 +20,5 @@
 #import "VLPrivacyCustomView.h"
 #import "VLUserCenter.h"
 #import "VLAPIRequest.h"
+#import "LBXPermission.h"
 #import <YYText/YYText.h>

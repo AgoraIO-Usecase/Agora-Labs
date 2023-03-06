@@ -1,5 +1,5 @@
 //
-//  Resolution+UI.swift
+//  SuperResolution+UI.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2022/12/15.
@@ -10,7 +10,7 @@ import AgoraRtcKit
 import SnapKitExtend
 import UIKit
 
-extension Resolution {
+extension SuperResolution {
     
     func setupUI() {
         self.setupNavigation()
@@ -26,7 +26,7 @@ extension Resolution {
         button.frame = CGRect(x:0, y:0, width:65, height:30)
         button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
-        button.setTitle("Resolution".localized, for: .normal)
+        button.setTitle("SuperResolution".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
         let leftBarBtn = UIBarButtonItem(customView: button)
         self.navigationItem.leftBarButtonItem = leftBarBtn

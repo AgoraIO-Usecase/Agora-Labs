@@ -1,5 +1,5 @@
 //
-//  ReduceNoise.swift
+//  ReduceTheNoise.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2023/2/10.
@@ -9,7 +9,7 @@
 import AgoraRtcKit
 import UIKit
 //降噪
-class ReduceNoise: BaseViewController {
+class ReduceTheNoise: BaseViewController {
     
     var currentModel:SubCellModel?
     
@@ -69,6 +69,11 @@ class ReduceNoise: BaseViewController {
         connection.localUid = AgoraLabsUser.sendUid
         connection.channelId = AgoraLabsUser.channelName
         
+        LBXPermission.authorize(with: .camera) { granted, firstTime in
+            if !firstTime && !granted {
+                LBXPermissionSetting.showAlertToDislayPrivacySetting(withTitle: "", msg: "xjqx".localized, cancel: "qx".localized, setting: "sz".localized)
+            }
+        }
         // set up agora instance when view loadedlet config = AgoraRtcEngineConfig()
         // set up agora instance when view loaded
         let config = AgoraRtcEngineConfig()
@@ -184,7 +189,7 @@ class ReduceNoise: BaseViewController {
     }
 }
 
-extension ReduceNoise:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
+extension ReduceTheNoise:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
         print("onEvent ------------ provider:\(provider ?? "")")
     }

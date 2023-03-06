@@ -1,5 +1,5 @@
 //
-//  EnhanceSaturation+UI.swift
+//  ColorEnhancement+UI.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2023/2/8.
@@ -10,7 +10,7 @@ import AgoraRtcKit
 import SnapKitExtend
 import UIKit
 
-extension EnhanceSaturation {
+extension ColorEnhancement {
     
     func setupUI() {
         self.setupNavigation()
@@ -26,7 +26,7 @@ extension EnhanceSaturation {
         button.frame = CGRect(x:0, y:0, width:65, height:30)
         button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
-        button.setTitle("Enhance Saturation".localized, for: .normal)
+        button.setTitle("Color Enhancement".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
         let leftBarBtn = UIBarButtonItem(customView: button)
         self.navigationItem.leftBarButtonItem = leftBarBtn
@@ -221,17 +221,17 @@ extension EnhanceSaturation {
         self.localVideoView.titleSelected = sender.isOn
         self.skinSlider?.isEnabled = sender.isOn
         self.strengthSlider?.isEnabled = sender.isOn
-        self.setupEnhanceSaturation(enabled: sender.isOn)
+        self.setupColorEnhancement(enabled: sender.isOn)
     }
     
 }
 
-extension EnhanceSaturation{
+extension ColorEnhancement{
     @objc func skinSliderEventValueChanged(_ sender:UISlider){
         let value = "\(Int(sender.value * 100))"
         if self.skinValueL?.text != value {
             self.skinValueL?.text = value
-            self.setupEnhanceSaturation(enabled: self.openSwitch.isOn)
+            self.setupColorEnhancement(enabled: self.openSwitch.isOn)
         }
         
     }
@@ -240,7 +240,7 @@ extension EnhanceSaturation{
         let value = "\(Int(sender.value * 100))"
         if self.strengthValueL?.text != value {
             self.strengthValueL?.text = value
-            self.setupEnhanceSaturation(enabled: self.openSwitch.isOn)
+            self.setupColorEnhancement(enabled: self.openSwitch.isOn)
         }
     }
     
