@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import io.agora.api.example.App;
 import io.agora.api.example.common.server.ApiManager;
 import io.agora.api.example.common.server.model.User;
+import io.agora.api.example.utils.AESUtils;
 import io.agora.api.example.utils.GsonUtil;
 import io.agora.api.example.utils.SPUtils;
 
@@ -40,14 +41,14 @@ public class UserManager {
             mUser = null;
             SPUtils.getInstance(App.getInstance()).put(Constant.CURRENT_USER, "");
         } else {
-            SPUtils.getInstance(App.getInstance()).put(Constant.CURRENT_USER, getUserInfoJson());
+            SPUtils.getInstance(App.getInstance()).put(Constant.CURRENT_USER, AESUtils.encrypt(getUserInfoJson()));
         }
     }
 
     private void readingUserInfoFromPrefs() {
         String userInfo = SPUtils.getInstance(App.getInstance()).getString(Constant.CURRENT_USER, "");
         if (!TextUtils.isEmpty(userInfo)) {
-            mUser = GsonUtil.getInstance().fromJson(userInfo, User.class);
+            mUser = GsonUtil.getInstance().fromJson(AESUtils.decrypt(userInfo), User.class);
             if (TextUtils.isEmpty(ApiManager.token)) {
                 ApiManager.token = mUser.token;
             }

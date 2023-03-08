@@ -1,5 +1,6 @@
 package io.agora.api.example.examples.video.beauty;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import io.agora.api.example.common.widget.slidingmenu.SlidingMenuLayout;
 import io.agora.api.example.databinding.FragmentBeautyBinding;
 import io.agora.api.example.common.widget.slidingmenu.OptionItem;
 import io.agora.api.example.utils.FileUtils;
+import io.agora.api.example.utils.PermissionUtils;
 import io.agora.api.example.utils.SPUtils;
 import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
@@ -35,6 +37,7 @@ import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rte.extension.faceunity.ExtensionManager;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -130,6 +133,61 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
 
     @Override public void onStart() {
         super.onStart();
+        requestMorePermissions();
+    }
+
+    private final String[] PERMISSIONS = new String[]{Manifest.permission.CAMERA};
+    private final int REQUEST_CODE_PERMISSIONS = 1;
+    private void requestMorePermissions() {
+        PermissionUtils.checkMorePermissions(getActivity(), PERMISSIONS, new PermissionUtils.PermissionCheckCallBack() {
+            @Override
+            public void onHasPermission() {
+                startBeauty();
+            }
+
+            @Override
+            public void onUserHasAlreadyTurnedDown(String... permission) {
+                PermissionUtils.showExplainDialog(getActivity(),permission, (dialog, which) -> requestPermissions(PERMISSIONS, REQUEST_CODE_PERMISSIONS));
+            }
+
+            @Override
+            public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                requestPermissions(PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            PermissionUtils.onRequestMorePermissionsResult(getActivity(), PERMISSIONS,
+                new PermissionUtils.PermissionCheckCallBack() {
+                    @Override
+                    public void onHasPermission() {
+                        startBeauty();
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDown(String... permission) {
+                        /*
+                        Toast.makeText(getActivity(), getString(R.string.need_permissions, Arrays.toString(permission)), Toast.LENGTH_SHORT)
+                            .show();*/
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                        /*
+                        Toast.makeText(getActivity(), getString(R.string.need_permissions, Arrays.toString(permission)), Toast.LENGTH_SHORT)
+                            .show();*/
+                        PermissionUtils.showToAppSettingDialog(getActivity());
+                    }
+                });
+        }
+    }
+
+
+    private void startBeauty(){
         initializeEngine();
         enableExtension(true);
         initExtension();
@@ -139,8 +197,8 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
 
     @Override public void onDestroy() {
         super.onDestroy();
-        rtcEngine.stopPreview();
         if(rtcEngine!=null){
+            rtcEngine.stopPreview();
             RtcEngineEx.destroy();
             rtcEngine=null;
         }

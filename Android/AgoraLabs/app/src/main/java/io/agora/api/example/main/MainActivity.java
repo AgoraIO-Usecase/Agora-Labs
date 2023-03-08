@@ -1,13 +1,22 @@
 package io.agora.api.example.main;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import io.agora.api.example.R;
 import io.agora.api.example.databinding.ActivityMainBinding;
+import io.agora.api.example.utils.PermissionUtils;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -47,11 +56,40 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    /*
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            PermissionUtils.onRequestMorePermissionsResult(MainActivity.this, PERMISSIONS,
+                new PermissionUtils.PermissionCheckCallBack() {
+                    @Override
+                    public void onHasPermission() {
+                        initFragment();
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDown(String... permission) {
+                        Toast.makeText(MainActivity.this,
+                                getString(R.string.need_permissions, Arrays.toString(permission)), Toast.LENGTH_SHORT)
+                            .show();
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                        Toast.makeText(MainActivity.this,
+                                getString(R.string.need_permissions, Arrays.toString(permission)), Toast.LENGTH_SHORT)
+                            .show();
+                        showToAppSettingDialog();
+                    }
+                });
+        }
+    }*/
+
 
     @Override
     public boolean onSupportNavigateUp() {
         getOnBackPressedDispatcher().onBackPressed();
         return true;
     }
-
 }

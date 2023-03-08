@@ -179,7 +179,7 @@
     <string name="settings">设置</string>
     <string name="user_agreement">用户协议</string>
     <string name="privacy_policy">隐私政策</string>
-    <string name="sign_out">退出登陆</string>
+    <string name="sign_out">退出登录</string>
     <string name="logout">注销账号</string>
 
     <string name="enable_color_enhancement">启用色彩增强</string>
@@ -226,17 +226,25 @@
     <string name="complete_validation">完成验证</string>
     <string name="drag_complete">拖动下方滑块完成拼图</string>
     <string name="cancel">取消</string>
-    <string name="app_logoff">注销</string>
+    <string name="app_logoff">确认注销</string>
+    <string name="app_logoff_cancel">暂不注销</string>
     <string name="logout_tips_title">确定退出登录吗？</string>
     <string name="logout_tips_msg">退出登录后，我们还会继续保留您的账户数据，记得再来体验哦～</string>
     <string name="logoff_tips_title">确定注销账号？</string>
-    <string name="logoff_tips_msg">注销账号后，您将暂时无法使用该账号体验我们的服务，真的要注销吗？</string>
+    <string name="logoff_tips_msg">注销后，您将无法用当前账号体验我们的服务，请谨慎考虑</string>
     <string name="reacquire">重新获取</string>
     <string name="please_enter_the_correct_phone_number">请输入正确的手机号</string>
     <string name="please_agree_to_our_privacy_policy_and_user_agreement">请同意我们的隐私政策与用户协议</string>
     <string name="agree_and_continue">同意并继续</string>
-    <string name="disagree_and_exit">不同意并退出</string>
+    <string name="disagree_and_exit">不同意</string>
     <string name="verification_code_sent_successfully">验证码发送成功</string>
     <string name="verification_code_sent_failed">验证码发送失败</string>
-    <string name="login_successful">登陆成功</string>
+    <string name="login_successful">登录成功</string>
+
+    <string name="request_permission">权限需求</string>
+    <string name="need_permissions">我们需要 %s 权限</string>
+    <string name="action_ok">确定</string>
+    <string name="action_cancel">取消</string>
+    <string name="go">前往</string>
+    <string name="go_app_permission_settings_tip">我们需要相关权限以实现功能，点击前往，你将会被重定向到应用设置页，请在权限设置页开启相关的权限。</string>
 </resources>

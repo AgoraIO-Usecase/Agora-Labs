@@ -2,13 +2,17 @@ package io.agora.api.example.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import io.agora.api.example.R;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PermissionUtils {
@@ -242,5 +246,20 @@ public class PermissionUtils {
         void onUserHasAlreadyTurnedDownAndDontAsk(String... permission);
     }
 
+    public static  void showToAppSettingDialog(Context context) {
+        new AlertDialog.Builder(context)
+            .setTitle(R.string.request_permission)
+            .setMessage(R.string.go_app_permission_settings_tip)
+            .setPositiveButton(R.string.go, (dialog, which) -> PermissionUtils.toAppSetting(context))
+            .setNegativeButton(R.string.action_cancel, null).show();
+    }
+
+    public static void showExplainDialog(Context context,String[] permission, DialogInterface.OnClickListener onClickListener) {
+        new AlertDialog.Builder(context)
+            .setTitle(R.string.request_permission)
+            .setMessage(context.getString(R.string.need_permissions, Arrays.toString(permission)))
+            .setPositiveButton(R.string.action_ok, onClickListener)
+            .show();
+    }
 
 }

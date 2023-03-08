@@ -27,6 +27,7 @@ import io.agora.api.example.common.widget.indicator.buildins.navigator.abs.IPage
 import io.agora.api.example.common.widget.indicator.buildins.navigator.abs.IPagerTitleView;
 import io.agora.api.example.common.widget.indicator.buildins.navigator.indicators.LinePagerIndicator;
 import io.agora.api.example.common.widget.indicator.buildins.navigator.titles.ClipPagerTitleView;
+import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.UIUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +49,8 @@ public class MainFragment extends Fragment {
 
     @Override public void onStart() {
         super.onStart();
-        runOnPermissionGranted(() -> {
-        });
+        //runOnPermissionGranted(() -> {
+        //});
     }
 
     private void initIndicator(){
@@ -121,13 +122,13 @@ public class MainFragment extends Fragment {
             NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
             navController.navigate(R.id.action_homeFragment_to_settings);
         });
+        binding.ivSettings.setVisibility(SystemUtil.getCountry().equalsIgnoreCase("cn")?View.VISIBLE:View.GONE);
     }
-
+    /*
     @SuppressLint("WrongConstant")
     private void runOnPermissionGranted(@NonNull Runnable runnable) {
         List<String> permissionList = new ArrayList<>();
         permissionList.add(Permission.READ_EXTERNAL_STORAGE);
-        permissionList.add(Permission.WRITE_EXTERNAL_STORAGE);
         permissionList.add(Permission.RECORD_AUDIO);
         permissionList.add(Permission.CAMERA);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -145,6 +146,6 @@ public class MainFragment extends Fragment {
             permissionArray
         ).onGranted(permissions ->
             runnable.run()).start();
-    }
+    }*/
 
 }

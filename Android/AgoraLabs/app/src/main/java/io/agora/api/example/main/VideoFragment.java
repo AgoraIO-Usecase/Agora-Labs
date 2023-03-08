@@ -39,7 +39,7 @@ public class VideoFragment extends BaseListFragment {
         data.add(new Feature(ID_SUPER_RES,R.mipmap.super_res,R.string.super_res,true));
         data.add(new Feature(ID_COLOR_ENHANCE,R.mipmap.saturation,R.string.color_enhance,true));
         data.add(new Feature(ID_DARK_LIGHT,R.mipmap.light_dark,R.string.light_dark,true));
-        data.add(new Feature(ID_DENOISE,R.mipmap.noise,R.string.denoise,true));
+        //data.add(new Feature(ID_DENOISE,R.mipmap.noise,R.string.denoise,true));
 
         //data.add(new Feature(ID_SHARPEN,R.mipmap.sharpen,R.string.adaptive_sharpen));
 

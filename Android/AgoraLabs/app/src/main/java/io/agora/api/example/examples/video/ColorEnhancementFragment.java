@@ -1,5 +1,6 @@
 package io.agora.api.example.examples.video;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import io.agora.api.example.App;
 import io.agora.api.example.R;
+import io.agora.api.example.common.TokenGenerator;
 import io.agora.api.example.common.widget.VideoFeatureMenu;
 import io.agora.api.example.databinding.FragmentColorEnhancementBinding;
+import io.agora.api.example.utils.PermissionUtils;
 import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
 import io.agora.rtc2.ChannelMediaOptions;
@@ -28,6 +31,8 @@ import io.agora.rtc2.video.ColorEnhanceOptions;
 import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VideoEncoderConfiguration;
 import java.math.BigDecimal;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 public class ColorEnhancementFragment extends Fragment implements View.OnClickListener {
     private final String TAG="AgoraLab";
@@ -175,10 +180,63 @@ public class ColorEnhancementFragment extends Fragment implements View.OnClickLi
 
     @Override public void onStart() {
         super.onStart();
+        requestMorePermissions();
+    }
+
+    private final String[] PERMISSIONS = new String[]{ Manifest.permission.CAMERA};
+    private final int REQUEST_CODE_PERMISSIONS = 1;
+    private void requestMorePermissions() {
+        PermissionUtils.checkMorePermissions(getActivity(), PERMISSIONS, new PermissionUtils.PermissionCheckCallBack() {
+            @Override
+            public void onHasPermission() {
+                startColorEnhancement();
+            }
+
+            @Override
+            public void onUserHasAlreadyTurnedDown(String... permission) {
+                PermissionUtils.showExplainDialog(getActivity(),permission, (dialog, which) -> requestPermissions(PERMISSIONS, REQUEST_CODE_PERMISSIONS));
+            }
+
+            @Override
+            public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                requestPermissions(PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            PermissionUtils.onRequestMorePermissionsResult(getActivity(), PERMISSIONS,
+                new PermissionUtils.PermissionCheckCallBack() {
+                    @Override
+                    public void onHasPermission() {
+                        startColorEnhancement();
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDown(String... permission) {
+                        /*
+                        Toast.makeText(getActivity(), getString(R.string.need_permissions, Arrays.toString(permission)), Toast.LENGTH_SHORT)
+                            .show();*/
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                        /*
+                        Toast.makeText(getActivity(), getString(R.string.need_permissions, Arrays.toString(permission)), Toast.LENGTH_SHORT)
+                            .show();*/
+                        PermissionUtils.showToAppSettingDialog(getActivity());
+                    }
+                });
+        }
+    }
+
+
+    private void startColorEnhancement(){
         initializeEngine();
         startPreview();
-        setupSend();
-        setupReceiver();
     }
 
     protected void initializeEngine() {
@@ -204,8 +262,8 @@ public class ColorEnhancementFragment extends Fragment implements View.OnClickLi
 
     @Override public void onDestroy() {
         super.onDestroy();
-        rtcEngine.stopPreview();
         if(rtcEngine!=null){
+            rtcEngine.stopPreview();
             RtcEngineEx.destroy();
             rtcEngine=null;
         }
@@ -220,69 +278,6 @@ public class ColorEnhancementFragment extends Fragment implements View.OnClickLi
         addView();
     }
 
-    private void setupSend(){
-        rtcConnection=new RtcConnection();
-        rtcConnection.channelId=channelName;
-        rtcConnection.localUid= senderUid;
-        setVideoConfig();
-        rtcEngine.enableVideo();
-        rtcEngine.enableAudio();
-
-        ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
-        mediaOptions.channelProfile= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
-        mediaOptions.clientRoleType= Constants.CLIENT_ROLE_BROADCASTER;
-        mediaOptions.publishMicrophoneTrack = false;
-        mediaOptions.publishCameraTrack = true;
-
-        rtcEngine.joinChannelEx("", rtcConnection, mediaOptions, new IRtcEngineEventHandler() {
-
-            @Override
-            public void onUserJoined(int uid, int elapsed) {
-                Log.d(TAG,"agora onUserJoined:" + uid);
-            }
-
-            @Override
-            public void onUserOffline(final int uid, final int reason) {
-                Log.d(TAG,"onUserOffline:" + uid);
-                ThreadUtils.runOnUI(() -> {
-                    if(remoteView!=null&&remoteView.getParent()!=null){
-                        ((ViewGroup)remoteView.getParent()).removeAllViews();
-                    }
-                });
-            }
-        });
-        addView();
-    }
-
-    private void setupReceiver(){
-        RtcConnection rtcc=new RtcConnection();
-        rtcc.channelId=channelName;
-        rtcc.localUid=remoteUid;
-
-        ChannelMediaOptions mediaOptions=new ChannelMediaOptions();
-        mediaOptions.channelProfile= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
-        mediaOptions.clientRoleType= Constants.CLIENT_ROLE_BROADCASTER;
-        mediaOptions.publishMicrophoneTrack=false;
-
-        rtcEngine.joinChannelEx("", rtcc, mediaOptions, new IRtcEngineEventHandler() {
-            @Override
-            public void onUserJoined(int uid, int elapsed) {
-                ThreadUtils.runOnUI(() -> {
-                    remoteView= new SurfaceView(getContext()) ;
-                    rtcEngine.setupRemoteVideoEx(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_HIDDEN,1, uid),rtcc);
-                    addView();
-                });
-            }
-            @Override
-            public void onUserOffline(final int uid, final int reason) {
-                ThreadUtils.runOnUI(() -> {
-                    if(remoteView!=null&&remoteView.getParent()!=null){
-                        ((ViewGroup)remoteView.getParent()).removeAllViews();
-                    }
-                });
-            }
-        });
-    }
 
 
 
