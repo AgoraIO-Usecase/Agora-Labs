@@ -44,6 +44,7 @@ public class MainViewModel extends BaseRequestViewModel {
     /**
      * 获取用户信息
      */
+    /*
     public void requestUserInfo(String userNo) {
         ApiManager.getInstance().requestUserInfo(userNo)
             .compose(SchedulersUtil.INSTANCE.applyApiSchedulers()).subscribe(
@@ -67,11 +68,12 @@ public class MainViewModel extends BaseRequestViewModel {
                     }
                 }
             );
-    }
+    }*/
 
     /**
      * 修改用户信息
      */
+    /*
     public void requestEditUserInfo(String headUrl,
         String name,
         String sex) {
@@ -102,8 +104,8 @@ public class MainViewModel extends BaseRequestViewModel {
                         ToastUtils.showToast(t.getMessage());
                     }
                 });
-    }
-
+    }*/
+    /*
     public void updatePhoto(File file) {
         ApiManager.getInstance().requestUploadPhoto(file)
             .compose(SchedulersUtil.INSTANCE.applyApiSchedulers()).subscribe(
@@ -125,7 +127,7 @@ public class MainViewModel extends BaseRequestViewModel {
                     }
                 }
             );
-    }
+    }*/
 
     /**
      * 注销用户

@@ -60,19 +60,19 @@
     <string name="video_quality">Video Quality</string>
     <string name="virtul_bg">Virtual Background</string>
     <string name="beauty">Beauty Filter</string>
-    <string name="denoise">Reduce Noise</string>
-    <string name="light_dark">Dim Environment</string>
+    <string name="denoise">Noise Reduction</string>
+    <string name="light_dark">Darklight Enhancement</string>
     <string name="adaptive_sharpen">Sharpen</string>
-    <string name="color_enhance">Enhance Saturation</string>
+    <string name="color_enhance">Color Enhancement</string>
     <string name="pvc">PVC</string>
     <string name="roi">ROI</string>
-    <string name="super_res">Resolution</string>
-    <string name="super_quality">Image</string>
+    <string name="super_res">Super Resolution</string>
+    <string name="super_quality">Super Clarity</string>
     <string name="hdr">HDR</string>
 
     <string name="ai_noise_reduction">Noise Suppression</string>
     <string name="ai_echo_cancellation">AI AEC</string>
-    <string name="spacial_audio">Spacial audio</string>
+    <string name="spacial_audio">Spacial Audio</string>
     <string name="stt">STT</string>
     <string name="multi_link">Multipath</string>
     <string name="anti_weak_network">Weak Net</string>
@@ -84,11 +84,11 @@
     <string name="tab_net_optimize">Network</string>
     <string name="tab_algorithmic">Algorithms</string>
     <string name="stay_tuned">Stay Tuned</string>
-    <string name="original_image">Original Image</string>
-    <string name="background_blur">Background Blur</string>
+    <string name="original_image">Original</string>
+    <string name="background_blur">Blur</string>
     <string name="split_green_screen">Split Green Screen</string>
-    <string name="landscape">Landscape</string>
-    <string name="meeting_room">Meeting room</string>
+    <string name="landscape">Scenery</string>
+    <string name="meeting_room">Meeting</string>
     <string name="customize">Customize</string>
 
     <string name="beauty_sdk_xiangxin">Faceunity Technology</string>
@@ -215,7 +215,7 @@
     <string name="try_again_to_exit">Try again to exit</string>
     <string name="permission_leak_tip">The required permissions should be open firstly.</string>
     <string name="agree">Agree</string>
-    <string name="disagree">Dis agree</string>
+    <string name="disagree">Disagree</string>
 
     <string name="app_exit">Exit</string>
     <string name="app_user_agreement">User agreement</string>
@@ -239,6 +239,7 @@
     <string name="drag_complete">Drag the slider below to complete the puzzle</string>
     <string name="cancel">Cancel</string>
     <string name="app_logoff">Log off</string>
+    <string name="app_logoff_cancel">Cancel</string>
     <string name="logout_tips_title">Are you sure to log out?</string>
     <string name="logout_tips_msg">After logging out, we will continue to retain your account data, remember to experience it again~</string>
     <string name="logoff_tips_title">Are you sure to logoff?</string>
@@ -247,9 +248,17 @@
     <string name="please_enter_the_correct_phone_number">Please enter the correct phone number</string>
     <string name="please_agree_to_our_privacy_policy_and_user_agreement">Please agree to our Privacy Policy and User Agreement</string>
     <string name="agree_and_continue">Agree and continue</string>
-    <string name="disagree_and_exit">Disagree and exit</string>
+    <string name="disagree_and_exit">Disagree</string>
     <string name="verification_code_sent_successfully">Verification code sent successfully</string>
     <string name="verification_code_sent_failed">Verification code sent failed</string>
     <string name="login_successful">login successful</string>
+
+
+    <string name="request_permission">Request permission</string>
+    <string name="need_permissions">We need %s permission</string>
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="go">Go</string>
+    <string name="go_app_permission_settings_tip">We need related permissions to implement the function. Click Go, and you will be redirected to the settings  of the application. Please enable the related permissions of the application.</string>
 
 </resources>

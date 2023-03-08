@@ -78,13 +78,16 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
             if (logoffAccountDialog == null) {
                 logoffAccountDialog = new CommonDialog(requireContext());
                 logoffAccountDialog.setDialogTitle(getString(R.string.logoff_tips_title));
-                logoffAccountDialog.setDescText(getString(R.string.logout_tips_msg));
-                logoffAccountDialog.setDialogBtnText(getString(R.string.app_logoff), getString(R.string.cancel));
+                logoffAccountDialog.setDescText(getString(R.string.logoff_tips_msg));
+                logoffAccountDialog.setDialogBtnText(getString(R.string.app_logoff), getString(R.string.app_logoff_cancel));
                 logoffAccountDialog.setOnButtonClickListener(new OnButtonClickListener() {
                     @Override
                     public void onLeftButtonClick() {
-                        SPUtils.getInstance(App.getInstance()).put(Constant.IS_AGREE, false);
                         mainViewModel.requestCancellation(UserManager.getInstance().getUser().userNo);
+                        UserManager.getInstance().logout();
+                        Intent it=new Intent(getContext(),PhoneLoginRegisterActivity.class);
+                        startActivity(it);
+                        requireActivity().finish();
                     }
 
                     @Override

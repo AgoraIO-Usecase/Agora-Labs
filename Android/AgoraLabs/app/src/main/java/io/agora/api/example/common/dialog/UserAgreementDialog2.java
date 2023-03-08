@@ -37,7 +37,7 @@ public class UserAgreementDialog2 extends BaseDialog<DialogUserAgreementBinding>
             getOnButtonClickListener().onLeftButtonClick();
         });
         getBinding().btnAgree.setText("同意并继续");
-        getBinding().btnDisagree.setText("不同意并退出");
+        getBinding().btnDisagree.setText(getContext().getString(R.string.disagree));
         ClickableSpan protocolClickableSpan1 = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {

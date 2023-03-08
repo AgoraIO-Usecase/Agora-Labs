@@ -1,5 +1,6 @@
 package io.agora.api.example.examples.video;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -21,8 +22,10 @@ import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AAOptions;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AAStyle;
 import io.agora.api.example.App;
 import io.agora.api.example.R;
+import io.agora.api.example.common.TokenGenerator;
 import io.agora.api.example.common.widget.VideoFeatureMenu;
 import io.agora.api.example.databinding.FragmentPvcBinding;
+import io.agora.api.example.utils.PermissionUtils;
 import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
 import io.agora.api.example.utils.UIUtil;
@@ -38,6 +41,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 import static android.util.TypedValue.COMPLEX_UNIT_SP;
 
@@ -202,6 +207,61 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
 
     @Override public void onStart() {
         super.onStart();
+        requestMorePermissions();
+    }
+
+    private final String[] PERMISSIONS = new String[]{ Manifest.permission.CAMERA};
+    private final int REQUEST_CODE_PERMISSIONS = 1;
+    private void requestMorePermissions() {
+        PermissionUtils.checkMorePermissions(getActivity(), PERMISSIONS, new PermissionUtils.PermissionCheckCallBack() {
+            @Override
+            public void onHasPermission() {
+                startPVC();
+            }
+
+            @Override
+            public void onUserHasAlreadyTurnedDown(String... permission) {
+                PermissionUtils.showExplainDialog(getActivity(),permission, (dialog, which) -> requestPermissions( PERMISSIONS, REQUEST_CODE_PERMISSIONS));
+            }
+
+            @Override
+            public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                requestPermissions(PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            PermissionUtils.onRequestMorePermissionsResult(getActivity(), PERMISSIONS,
+                new PermissionUtils.PermissionCheckCallBack() {
+                    @Override
+                    public void onHasPermission() {
+                        startPVC();
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDown(String... permission) {
+                        /*
+                        Toast.makeText(getActivity(), getString(R.string.need_permissions, Arrays.toString(permission)), Toast.LENGTH_SHORT)
+                            .show();*/
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                        /*
+                        Toast.makeText(getActivity(), getString(R.string.need_permissions, Arrays.toString(permission)), Toast.LENGTH_SHORT)
+                            .show();*/
+                        PermissionUtils.showToAppSettingDialog(getActivity());
+                    }
+                });
+        }
+    }
+
+
+    private void startPVC(){
         initializeEngine();
         setupSend();
         setupReceiver();
@@ -231,8 +291,8 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
 
     @Override public void onDestroy() {
         super.onDestroy();
-        rtcEngine.stopPreview();
         if(rtcEngine!=null){
+            rtcEngine.stopPreview();
             RtcEngineEx.destroy();
             rtcEngine=null;
         }
@@ -253,26 +313,32 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         mediaOptions.clientRoleType= Constants.CLIENT_ROLE_BROADCASTER;
         mediaOptions.publishMicrophoneTrack = false;
         mediaOptions.publishCameraTrack = true;
+        TokenGenerator.INSTANCE.generateToken(rtcConnection.channelId, String.valueOf(rtcConnection.localUid),
+            TokenGenerator.TokenGeneratorType.token006, TokenGenerator.AgoraTokenType.rtc,
+            token -> {
+                joinChannel(token, rtcConnection, mediaOptions, new IRtcEngineEventHandler() {
+                    @Override
+                    public void onUserJoined(int uid, int elapsed) {
+                        Log.d(TAG,"agora onUserJoined:" + uid);
+                    }
 
-        rtcEngine.joinChannelEx("", rtcConnection, mediaOptions, new IRtcEngineEventHandler() {
-
-
-            @Override
-            public void onUserJoined(int uid, int elapsed) {
-                Log.d(TAG,"agora onUserJoined:" + uid);
-            }
-
-            @Override
-            public void onUserOffline(final int uid, final int reason) {
-                Log.d(TAG,"onUserOffline:" + uid);
-                ThreadUtils.runOnUI(() -> {
-                    if(remoteView!=null&&remoteView.getParent()!=null){
-                        ((ViewGroup)remoteView.getParent()).removeAllViews();
+                    @Override
+                    public void onUserOffline(final int uid, final int reason) {
+                        Log.d(TAG,"onUserOffline:" + uid);
+                        ThreadUtils.runOnUI(() -> {
+                            if(remoteView!=null&&remoteView.getParent()!=null){
+                                ((ViewGroup)remoteView.getParent()).removeAllViews();
+                            }
+                        });
                     }
                 });
-            }
-        });
+                return null;
+            }, exception -> null);
         addView();
+    }
+
+    private void joinChannel(String token,RtcConnection connection,ChannelMediaOptions mediaOptions,IRtcEngineEventHandler iRtcEngineEventHandler){
+        rtcEngine.joinChannelEx(token, connection, mediaOptions, iRtcEngineEventHandler);
     }
 
     private void setupReceiver(){
@@ -284,35 +350,43 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         mediaOptions.channelProfile= Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
         mediaOptions.clientRoleType= Constants.CLIENT_ROLE_BROADCASTER;
         mediaOptions.publishMicrophoneTrack=false;
+        TokenGenerator.INSTANCE.generateToken(rtcc.channelId, String.valueOf(rtcc.localUid),
+            TokenGenerator.TokenGeneratorType.token006, TokenGenerator.AgoraTokenType.rtc,
+            token -> {
+                joinChannel(token,rtcc,mediaOptions,new IRtcEngineEventHandler() {
+                    @Override
+                    public void onUserJoined(int uid, int elapsed) {
+                        ThreadUtils.runOnUI(() -> {
+                            remoteView = new SurfaceView(getContext());
+                            rtcEngine.setupRemoteVideoEx(
+                                new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_HIDDEN, 1, uid), rtcc);
+                            addView();
+                        });
+                    }
 
-        rtcEngine.joinChannelEx("", rtcc, mediaOptions, new IRtcEngineEventHandler() {
-            @Override
-            public void onUserJoined(int uid, int elapsed) {
-                ThreadUtils.runOnUI(() -> {
-                    remoteView= new SurfaceView(getContext()) ;
-                    rtcEngine.setupRemoteVideoEx(new VideoCanvas(remoteView, VideoCanvas.RENDER_MODE_HIDDEN,1, uid),rtcc);
-                    addView();
-                });
-            }
-            @Override
-            public void onUserOffline(final int uid, final int reason) {
-                ThreadUtils.runOnUI(() -> {
-                    if(remoteView!=null&&remoteView.getParent()!=null){
-                        ((ViewGroup)remoteView.getParent()).removeAllViews();
+                    @Override
+                    public void onUserOffline(final int uid, final int reason) {
+                        ThreadUtils.runOnUI(() -> {
+                            if (remoteView != null && remoteView.getParent() != null) {
+                                ((ViewGroup) remoteView.getParent()).removeAllViews();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onRtcStats(RtcStats stats) {
+                        ThreadUtils.runOnUI(() -> {
+                            int bitrate = stats.rxVideoKBitRate;
+                            updateBitrate(bitrate);
+                            binding.tvBitrate.setText(bitrate + " kbps");
+                            binding.tvBitrateContent.setText(getString(R.string.bitrate_value, bitrate));
+                        });
                     }
                 });
-            }
-            @Override
-            public void onRtcStats(IRtcEngineEventHandler.RtcStats stats) {
-                ThreadUtils.runOnUI(() -> {
-                    int bitrate=stats.rxVideoKBitRate;
-                    updateBitrate(bitrate);
-                    binding.tvBitrate.setText(bitrate+" kbps");
-                    binding.tvBitrateContent.setText(getString(R.string.bitrate_value,bitrate));
-                    //tvRemoteBitrate.setText(getContext().getResources().getString(R.string.bitrate_value,bitrate));
-                });
-            }
-        });
+                return null;
+
+            }, exception -> null);
+
 
     }
 

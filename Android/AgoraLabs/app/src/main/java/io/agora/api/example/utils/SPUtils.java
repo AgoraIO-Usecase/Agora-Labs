@@ -20,7 +20,7 @@ public class SPUtils {
     }
 
     public static SPUtils getInstance(Context context, String spName) {
-        if (isSpace(spName)) spName = "spUtils";
+        if (isSpace(spName)) spName = "AgoraLab";
         SPUtils sp = sSPMap.get(spName);
         if (sp == null) {
             sp = new SPUtils(context, spName);

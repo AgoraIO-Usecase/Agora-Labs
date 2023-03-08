@@ -1,10 +1,13 @@
 package io.agora.api.example.examples.video;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,7 +25,9 @@ import io.agora.api.example.common.adapter.MenuItemAdapter;
 import io.agora.api.example.databinding.FragmentVirtualBgBinding;
 import io.agora.api.example.common.widget.slidingmenu.OptionItem;
 import io.agora.api.example.common.widget.bubbleseekbar.BubbleSeekBar;
+import io.agora.api.example.main.MainActivity;
 import io.agora.api.example.utils.FileUtils;
+import io.agora.api.example.utils.PermissionUtils;
 import io.agora.api.example.utils.SPUtils;
 import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
@@ -35,6 +41,7 @@ import io.agora.rtc2.video.VideoCanvas;
 import io.agora.rtc2.video.VirtualBackgroundSource;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -229,6 +236,61 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
 
     @Override public void onStart() {
         super.onStart();
+        requestMorePermissions();
+    }
+
+    private final String[] PERMISSIONS = new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA};
+    private final int REQUEST_CODE_PERMISSIONS = 1;
+    private void requestMorePermissions() {
+        PermissionUtils.checkMorePermissions(getActivity(), PERMISSIONS, new PermissionUtils.PermissionCheckCallBack() {
+            @Override
+            public void onHasPermission() {
+                startVirtualBg();
+            }
+
+            @Override
+            public void onUserHasAlreadyTurnedDown(String... permission) {
+                PermissionUtils.showExplainDialog(getActivity(),permission, (dialog, which) -> requestPermissions( PERMISSIONS, REQUEST_CODE_PERMISSIONS));
+            }
+
+            @Override
+            public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                requestPermissions(PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            PermissionUtils.onRequestMorePermissionsResult(getActivity(), PERMISSIONS,
+                new PermissionUtils.PermissionCheckCallBack() {
+                    @Override
+                    public void onHasPermission() {
+                        startVirtualBg();
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDown(String... permission) {
+                        //Toast.makeText(getActivity(), getString(R.string.need_permissions, Arrays.toString(permission)), Toast.LENGTH_SHORT)
+                        //    .show();
+                    }
+
+                    @Override
+                    public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
+                        //Toast.makeText(getActivity(), getString(R.string.need_permissions, Arrays.toString(permission)), Toast.LENGTH_SHORT)
+                        //    .show();
+                        PermissionUtils.showToAppSettingDialog(getActivity());
+                    }
+                });
+        }
+    }
+
+
+
+
+    private void startVirtualBg(){
         initializeEngine();
         startPreview();
         copyResource();
@@ -256,8 +318,8 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
 
     @Override public void onDestroy() {
         super.onDestroy();
-        rtcEngine.stopPreview();
         if(rtcEngine!=null){
+            rtcEngine.stopPreview();
             RtcEngineEx.destroy();
             rtcEngine=null;
         }
