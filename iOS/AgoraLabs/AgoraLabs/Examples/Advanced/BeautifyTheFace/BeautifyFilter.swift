@@ -1,5 +1,5 @@
 //
-//  BeautifyTheFace.swift
+//  BeautifyFilter.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2022/12/8.
@@ -11,7 +11,7 @@ import AgoraRtcKit
 import JXSegmentedView
 import UIKit
 
-class BeautifyTheFace: BaseViewController {
+class BeautifyFilter: BaseViewController {
     
     let filterList:[SubCellModel] = [
         SubCellModel(name: "Faceunity",tag: 0),
@@ -140,7 +140,7 @@ class BeautifyTheFace: BaseViewController {
 }
 
 // MARK: - 声网美颜
-extension BeautifyTheFace{
+extension BeautifyFilter{
     
     //设置相芯-美形参数
     func setAgoraBeauty(_ model: BeautyFuncModel) {
@@ -200,7 +200,7 @@ extension BeautifyTheFace{
 
 
 // MARK: - 相芯美颜
-extension BeautifyTheFace{
+extension BeautifyFilter{
 
     func setupFaceUnityBeauty(){
         //1. 设置相芯美颜鉴权
@@ -275,7 +275,7 @@ extension BeautifyTheFace{
 
 
 // MARK: - 火山美颜-相关方法
-extension BeautifyTheFace {
+extension BeautifyFilter {
     
     //开启火山美颜-初始化
     func setupByteDanceBeauty(){

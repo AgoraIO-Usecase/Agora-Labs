@@ -1,5 +1,5 @@
 //
-//  ReduceTheNoise.swift
+//  VideoNoiseReduction.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2023/2/10.
@@ -9,7 +9,7 @@
 import AgoraRtcKit
 import UIKit
 //降噪
-class ReduceTheNoise: BaseViewController {
+class VideoNoiseReduction: BaseViewController {
     
     var currentModel:SubCellModel?
     
@@ -64,7 +64,7 @@ class ReduceTheNoise: BaseViewController {
         self.setupSendData()
     }
     
-    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 540, height: 960), frameRate: .fps15, bitrate: 1450, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
+    func setupSendData(_ videoConfig:AgoraVideoEncoderConfiguration = AgoraVideoEncoderConfiguration(size: CGSize(width: 720, height: 1280), frameRate: .fps30, bitrate: 1450, orientationMode: .fixedPortrait, mirrorMode: .auto)) {
         let connection = AgoraRtcConnection()
         connection.localUid = AgoraLabsUser.sendUid
         connection.channelId = AgoraLabsUser.channelName
@@ -189,7 +189,7 @@ class ReduceTheNoise: BaseViewController {
     }
 }
 
-extension ReduceTheNoise:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
+extension VideoNoiseReduction:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
         print("onEvent ------------ provider:\(provider ?? "")")
     }

@@ -34,7 +34,8 @@ class AGHUD: NSObject  {
     }
     
     class func touchFeedback() {
-        UINotificationFeedbackGenerator().notificationOccurred(.error)
+//        UINotificationFeedbackGenerator().notificationOccurred(.warning)
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
      }
     
     //显示文字和成功对号

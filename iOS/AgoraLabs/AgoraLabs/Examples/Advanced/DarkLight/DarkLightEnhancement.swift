@@ -1,5 +1,5 @@
 //
-//  DarkLight.swift
+//  DarkLightEnhancement.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2023/2/10.
@@ -9,7 +9,7 @@
 import AgoraRtcKit
 import UIKit
 //暗光
-class DarkLight: BaseViewController {
+class DarkLightEnhancement: BaseViewController {
     
     var currentModel:SubCellModel?
     
@@ -132,7 +132,7 @@ class DarkLight: BaseViewController {
     }
 }
 
-extension DarkLight:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
+extension DarkLightEnhancement:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
     func onEvent(_ provider: String?, extension: String?, key: String?, value: String?) {
         print("onEvent ------------ provider:\(provider ?? "")")
     }

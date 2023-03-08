@@ -136,20 +136,20 @@
 "Video"="视频";
 "Audio"="音频";
 "Network"="网络优化";
-"Algorithms"="基础算法";
+"Algorithm"="基础算法";
 "Effects"="特效";
 
 "Virtual Background"="虚拟背景";
-"Beautify The Face"="美颜";
+"Beautify Filter"="美颜";
 "Image Quality"="画质";
-"Reduce The Noise"="降噪";
-"Dark Light"="暗光";
+"Video Noise Reduction"="降噪";
+"DarkLight Enhancement"="暗光";
 "Sharpen"="自适应锐化";
 "Color Enhancement"="色彩增强";
 "PVC"="感知视频编码";
 "ROI"="感兴趣区域算法";
 "SuperResolution"="超分";
-"Super Picture Quality"="超级画质";
+"Super Clarity"="超级画质";
 "HDR"="HDR";
 
 "Noise Suppression"="Al降噪";
@@ -164,14 +164,14 @@
 "Motion Capture"="动作捕捉";
 "Avatar"="语音驱动";
 
-"Original Image"="原图";
-"Background Blur"="背景虚化";
+"Original"="原图";
+"Blur"="背景虚化";
 "Split Green Screen"="绿幕分割";
 "Video Background"="动态背景";
 "Gathering Mode"="会聚模式";
-"Customize Image"="自定义";
-"Scenery Image"="风景";
-"Meeting Image"="会议室";
+"Customize"="自定义";
+"Scenery"="风景";
+"Meeting"="会议室";
 
 "low"="低";
 "medium"="中";

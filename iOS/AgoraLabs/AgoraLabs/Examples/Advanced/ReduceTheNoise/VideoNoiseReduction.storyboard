@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Beautify The Face-->
+        <!--Video Noise Reduction-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="BeautifyTheFace" id="Y6W-OH-hqX" customClass="BeautifyTheFace" customModule="AgoraLabs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VideoNoiseReduction" id="Y6W-OH-hqX" customClass="VideoNoiseReduction" customModule="AgoraLabs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="128" y="88"/>
+            <point key="canvasLocation" x="93" y="74"/>
         </scene>
     </scenes>
     <resources>

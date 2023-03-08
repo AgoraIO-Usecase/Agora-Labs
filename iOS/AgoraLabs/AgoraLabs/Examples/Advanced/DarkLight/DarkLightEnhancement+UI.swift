@@ -1,5 +1,5 @@
 //
-//  DarkLight+UI.swift
+//  DarkLightEnhancement+UI.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2023/2/10.
@@ -10,7 +10,7 @@ import AgoraRtcKit
 import SnapKitExtend
 import UIKit
 
-extension DarkLight {
+extension DarkLightEnhancement {
     
     func setupUI() {
         self.setupNavigation()
@@ -26,7 +26,7 @@ extension DarkLight {
         button.frame = CGRect(x:0, y:0, width:65, height:30)
         button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
-        button.setTitle("Dark Light".localized, for: .normal)
+        button.setTitle("Dark Light Enhancement".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
         let leftBarBtn = UIBarButtonItem(customView: button)
         self.navigationItem.leftBarButtonItem = leftBarBtn

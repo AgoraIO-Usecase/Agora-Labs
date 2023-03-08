@@ -104,6 +104,8 @@ extension AGBasisViewController: UICollectionViewDataSource, UICollectionViewDel
             let contentList = dataList[indexPath.section]["content"] as? [String]
             let name = contentList?[indexPath.row] ?? ""
             _cell.titleLab.text = name.localized
+            _cell.titleLab.numberOfLines = 0
+            _cell.titleLab.lineBreakMode = .byWordWrapping
             _cell.icon.image = UIImage(named: contentList?[indexPath.row].removeAllSapce ?? "")
             _cell.stayTuned.isHidden = doneMap.contains(name)
         }

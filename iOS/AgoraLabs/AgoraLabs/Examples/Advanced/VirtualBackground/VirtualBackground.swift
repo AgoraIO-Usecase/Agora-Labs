@@ -13,16 +13,16 @@ class VirtualBackground: BaseViewController {
     
     var currentModel:SubCellModel?
     
-    let originalModel = SubCellModel(name: "Original Image",tag: -1,isSelected: true)
+    let originalModel = SubCellModel(name: "Original",tag: -1,isSelected: true)
     let greenModel = SubCellModel(name: "Split Green Screen",tag: 1)
     
     var stateProperty:AgoraSegmentationProperty? = nil
     
     let itemModelList:[SubCellModel] = [
-        SubCellModel(name: "Background Blur",tag: 0,value: 1),
-        SubCellModel(name: "Scenery Image",tag: 1, bgImageName: "Image1"),
-        SubCellModel(name: "Meeting Image",tag: 2, bgImageName: "Image2"),
-        SubCellModel(name: "Customize Image",tag: 3)
+        SubCellModel(name: "Blur",tag: 0,value: 1),
+        SubCellModel(name: "Scenery",tag: 1, bgImageName: "Image1"),
+        SubCellModel(name: "Meeting",tag: 2, bgImageName: "Image2"),
+        SubCellModel(name: "Customize",tag: 3)
     ]
     
     var blurSlider:UISlider?
@@ -125,17 +125,17 @@ class VirtualBackground: BaseViewController {
             self.closeVirtualBackground()
             return
         }
-        if model.name == "Background Blur" {
+        if model.name == "Blur" {
             self.setupBackgroundBlur(value: model.value as! Int)
-        }else if model.name == "Scenery Image" {
+        }else if model.name == "Scenery" {
             if let path = Bundle.main.path(forResource: "bg3", ofType: "jpeg") {
                 self.setVirtualImgBackground(imagePath: path)
             }
-        }else if model.name == "Meeting Image" {
+        }else if model.name == "Meeting" {
             if let path = Bundle.main.path(forResource: "bg4", ofType: "jpeg") {
                 self.setVirtualImgBackground(imagePath: path)
             }
-        }else if model.name == "Customize Image" {
+        }else if model.name == "Customize" {
             self.setVirtualImgBackground(imagePath: model.value as! String)
         }else if model.name == "Video Background" {
             self.closeVirtualBackground()
@@ -154,13 +154,13 @@ class VirtualBackground: BaseViewController {
 }
 
 extension VirtualBackground {
-    // Background Blur
+    // Blur
     func setupBackgroundBlur(value:Int) {
         let virtualBG = AgoraVirtualBackgroundSource()
         virtualBG.backgroundSourceType = .blur
         virtualBG.blurDegree = AgoraBlurDegree(rawValue: UInt(value))!
         let ret = agoraKit.enableVirtualBackground(true, backData: virtualBG, segData: stateProperty)
-        print("Background Blur ----设置返回值：\(ret)-----档位：\(index)")
+        print("Blur ----设置返回值：\(ret)-----档位：\(index)")
     }
     
     // Split Green Screen

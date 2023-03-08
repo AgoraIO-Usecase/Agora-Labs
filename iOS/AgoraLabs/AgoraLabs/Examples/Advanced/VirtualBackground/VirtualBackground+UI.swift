@@ -251,7 +251,7 @@ extension VirtualBackground {
     }
     
     private func configAddLocalImg(_ imagePath : String) {
-        if let model = self.itemModelList.filter({$0.name == "Customize Image"}).first {
+        if let model = self.itemModelList.filter({$0.name == "Customize"}).first {
             model.value = imagePath
             model.isSelected = true
             self.itemViewClick(model: model)

@@ -57,12 +57,12 @@
 		A68E423A2993ACD800E298DF /* ColorEnhancement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42392993ACD800E298DF /* ColorEnhancement.storyboard */; };
 		A68E423C2993ACE100E298DF /* ColorEnhancement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E423B2993ACE100E298DF /* ColorEnhancement.swift */; };
 		A68E423E2993ACEB00E298DF /* ColorEnhancement+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E423D2993ACEB00E298DF /* ColorEnhancement+UI.swift */; };
-		A68E42412995E13500E298DF /* ReduceTheNoise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42402995E13500E298DF /* ReduceTheNoise.swift */; };
-		A68E42432995E13D00E298DF /* ReduceTheNoise+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42422995E13D00E298DF /* ReduceTheNoise+UI.swift */; };
-		A68E42452995E14400E298DF /* ReduceTheNoise.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42442995E14400E298DF /* ReduceTheNoise.storyboard */; };
-		A68E42482995EE4700E298DF /* DarkLight.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42472995EE4700E298DF /* DarkLight.storyboard */; };
-		A68E424A2995EE5000E298DF /* DarkLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42492995EE5000E298DF /* DarkLight.swift */; };
-		A68E424C2995EE5900E298DF /* DarkLight+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E424B2995EE5900E298DF /* DarkLight+UI.swift */; };
+		A68E42412995E13500E298DF /* VideoNoiseReduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42402995E13500E298DF /* VideoNoiseReduction.swift */; };
+		A68E42432995E13D00E298DF /* VideoNoiseReduction+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42422995E13D00E298DF /* VideoNoiseReduction+UI.swift */; };
+		A68E42452995E14400E298DF /* VideoNoiseReduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42442995E14400E298DF /* VideoNoiseReduction.storyboard */; };
+		A68E42482995EE4700E298DF /* DarkLightEnhancement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A68E42472995EE4700E298DF /* DarkLightEnhancement.storyboard */; };
+		A68E424A2995EE5000E298DF /* DarkLightEnhancement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42492995EE5000E298DF /* DarkLightEnhancement.swift */; };
+		A68E424C2995EE5900E298DF /* DarkLightEnhancement+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E424B2995EE5900E298DF /* DarkLightEnhancement+UI.swift */; };
 		A68E42512995F6A900E298DF /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68E42502995F6A900E298DF /* Setting.swift */; };
 		A68E4260299A1CBF00E298DF /* VLResponseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E4256299A1CBF00E298DF /* VLResponseDataModel.m */; };
 		A68E4261299A1CBF00E298DF /* VLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A68E4259299A1CBF00E298DF /* VLBaseModel.m */; };
@@ -116,9 +116,9 @@
 		A6B30F8C29B04F8E005DB478 /* video_dec.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A6B30F4D29B04F7D005DB478 /* video_dec.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A6B30F8D29B04F8E005DB478 /* video_enc.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B30F4429B04F7D005DB478 /* video_enc.xcframework */; };
 		A6B30F8E29B04F8E005DB478 /* video_enc.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A6B30F4429B04F7D005DB478 /* video_enc.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A6C5B17D2941C7F90071FFBF /* BeautifyTheFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B17C2941C7F90071FFBF /* BeautifyTheFace.swift */; };
-		A6C5B17F2941C8C70071FFBF /* BeautifyTheFace.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C5B17E2941C8C70071FFBF /* BeautifyTheFace.storyboard */; };
-		A6C5B1812941C9630071FFBF /* BeautifyTheFace+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B1802941C9630071FFBF /* BeautifyTheFace+UI.swift */; };
+		A6C5B17D2941C7F90071FFBF /* BeautifyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */; };
+		A6C5B17F2941C8C70071FFBF /* BeautifyFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C5B17E2941C8C70071FFBF /* BeautifyFilter.storyboard */; };
+		A6C5B1812941C9630071FFBF /* BeautifyFilter+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B1802941C9630071FFBF /* BeautifyFilter+UI.swift */; };
 		A6C5B1832941E8190071FFBF /* BeautifyFilterModeI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B1822941E8190071FFBF /* BeautifyFilterModeI.swift */; };
 		A6C5B3152942E2310071FFBF /* virtualTools.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B30E2942E2310071FFBF /* virtualTools.m */; };
 		A6C5B3162942E2310071FFBF /* BDResourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C5B3112942E2310071FFBF /* BDResourceHelper.m */; };
@@ -471,12 +471,12 @@
 		A68E42392993ACD800E298DF /* ColorEnhancement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorEnhancement.storyboard; sourceTree = "<group>"; };
 		A68E423B2993ACE100E298DF /* ColorEnhancement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEnhancement.swift; sourceTree = "<group>"; };
 		A68E423D2993ACEB00E298DF /* ColorEnhancement+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorEnhancement+UI.swift"; sourceTree = "<group>"; };
-		A68E42402995E13500E298DF /* ReduceTheNoise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReduceTheNoise.swift; sourceTree = "<group>"; };
-		A68E42422995E13D00E298DF /* ReduceTheNoise+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReduceTheNoise+UI.swift"; sourceTree = "<group>"; };
-		A68E42442995E14400E298DF /* ReduceTheNoise.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReduceTheNoise.storyboard; sourceTree = "<group>"; };
-		A68E42472995EE4700E298DF /* DarkLight.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DarkLight.storyboard; sourceTree = "<group>"; };
-		A68E42492995EE5000E298DF /* DarkLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkLight.swift; sourceTree = "<group>"; };
-		A68E424B2995EE5900E298DF /* DarkLight+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DarkLight+UI.swift"; sourceTree = "<group>"; };
+		A68E42402995E13500E298DF /* VideoNoiseReduction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoNoiseReduction.swift; sourceTree = "<group>"; };
+		A68E42422995E13D00E298DF /* VideoNoiseReduction+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoNoiseReduction+UI.swift"; sourceTree = "<group>"; };
+		A68E42442995E14400E298DF /* VideoNoiseReduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoNoiseReduction.storyboard; sourceTree = "<group>"; };
+		A68E42472995EE4700E298DF /* DarkLightEnhancement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DarkLightEnhancement.storyboard; sourceTree = "<group>"; };
+		A68E42492995EE5000E298DF /* DarkLightEnhancement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkLightEnhancement.swift; sourceTree = "<group>"; };
+		A68E424B2995EE5900E298DF /* DarkLightEnhancement+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DarkLightEnhancement+UI.swift"; sourceTree = "<group>"; };
 		A68E42502995F6A900E298DF /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		A68E4254299A1CBF00E298DF /* VLNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLNetworkConfig.h; sourceTree = "<group>"; };
 		A68E4256299A1CBF00E298DF /* VLResponseDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLResponseDataModel.m; sourceTree = "<group>"; };
@@ -522,9 +522,9 @@
 		A6B30F4D29B04F7D005DB478 /* video_dec.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = video_dec.xcframework; sourceTree = "<group>"; };
 		A6B30F4E29B04F7D005DB478 /* AgoraAiEchoCancellationExtension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AgoraAiEchoCancellationExtension.xcframework; sourceTree = "<group>"; };
 		A6B30F4F29B04F7D005DB478 /* AgoraVideoQualityAnalyzerExtension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AgoraVideoQualityAnalyzerExtension.xcframework; sourceTree = "<group>"; };
-		A6C5B17C2941C7F90071FFBF /* BeautifyTheFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyTheFace.swift; sourceTree = "<group>"; };
-		A6C5B17E2941C8C70071FFBF /* BeautifyTheFace.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BeautifyTheFace.storyboard; sourceTree = "<group>"; };
-		A6C5B1802941C9630071FFBF /* BeautifyTheFace+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BeautifyTheFace+UI.swift"; sourceTree = "<group>"; };
+		A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyFilter.swift; sourceTree = "<group>"; };
+		A6C5B17E2941C8C70071FFBF /* BeautifyFilter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BeautifyFilter.storyboard; sourceTree = "<group>"; };
+		A6C5B1802941C9630071FFBF /* BeautifyFilter+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BeautifyFilter+UI.swift"; sourceTree = "<group>"; };
 		A6C5B1822941E8190071FFBF /* BeautifyFilterModeI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyFilterModeI.swift; sourceTree = "<group>"; };
 		A6C5B1842941EB560071FFBF /* authpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = authpack.h; sourceTree = "<group>"; };
 		A6C5B30E2942E2310071FFBF /* virtualTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = virtualTools.m; sourceTree = "<group>"; };
@@ -1051,9 +1051,9 @@
 		A68E423F2995E12600E298DF /* ReduceTheNoise */ = {
 			isa = PBXGroup;
 			children = (
-				A68E42442995E14400E298DF /* ReduceTheNoise.storyboard */,
-				A68E42402995E13500E298DF /* ReduceTheNoise.swift */,
-				A68E42422995E13D00E298DF /* ReduceTheNoise+UI.swift */,
+				A68E42442995E14400E298DF /* VideoNoiseReduction.storyboard */,
+				A68E42402995E13500E298DF /* VideoNoiseReduction.swift */,
+				A68E42422995E13D00E298DF /* VideoNoiseReduction+UI.swift */,
 			);
 			path = ReduceTheNoise;
 			sourceTree = "<group>";
@@ -1061,9 +1061,9 @@
 		A68E42462995EE3400E298DF /* DarkLight */ = {
 			isa = PBXGroup;
 			children = (
-				A68E42472995EE4700E298DF /* DarkLight.storyboard */,
-				A68E42492995EE5000E298DF /* DarkLight.swift */,
-				A68E424B2995EE5900E298DF /* DarkLight+UI.swift */,
+				A68E42472995EE4700E298DF /* DarkLightEnhancement.storyboard */,
+				A68E42492995EE5000E298DF /* DarkLightEnhancement.swift */,
+				A68E424B2995EE5900E298DF /* DarkLightEnhancement+UI.swift */,
 			);
 			path = DarkLight;
 			sourceTree = "<group>";
@@ -1178,10 +1178,10 @@
 		A6C5B17B2941C7DF0071FFBF /* BeautifyTheFace */ = {
 			isa = PBXGroup;
 			children = (
-				A6C5B17C2941C7F90071FFBF /* BeautifyTheFace.swift */,
-				A6C5B1802941C9630071FFBF /* BeautifyTheFace+UI.swift */,
+				A6C5B17C2941C7F90071FFBF /* BeautifyFilter.swift */,
+				A6C5B1802941C9630071FFBF /* BeautifyFilter+UI.swift */,
 				A6C5B1822941E8190071FFBF /* BeautifyFilterModeI.swift */,
-				A6C5B17E2941C8C70071FFBF /* BeautifyTheFace.storyboard */,
+				A6C5B17E2941C8C70071FFBF /* BeautifyFilter.storyboard */,
 			);
 			path = BeautifyTheFace;
 			sourceTree = "<group>";
@@ -1860,7 +1860,7 @@
 				A6E600312976513B00D9555C /* mu_style_eyeshadow_02.bundle in Resources */,
 				A6E6FFE32976513B00D9555C /* green_screen.bundle in Resources */,
 				A6E600402976513B00D9555C /* mu_style_eyeliner_04.bundle in Resources */,
-				A6C5B17F2941C8C70071FFBF /* BeautifyTheFace.storyboard in Resources */,
+				A6C5B17F2941C8C70071FFBF /* BeautifyFilter.storyboard in Resources */,
 				A6E600172976513B00D9555C /* douyin_01.mp3 in Resources */,
 				A6E600432976513B00D9555C /* makeup_icon_combination_supermodel.bundle in Resources */,
 				E728B85C28B8971200674A4A /* sample.yuv in Resources */,
@@ -1880,7 +1880,7 @@
 				7F93083A293DA89C00D3F00B /* VideoView.xib in Resources */,
 				A6D88D93294074E000806419 /* add.jpeg in Resources */,
 				A6E600212976513B00D9555C /* makeup_icon_combination_mermaid.bundle in Resources */,
-				A68E42482995EE4700E298DF /* DarkLight.storyboard in Resources */,
+				A68E42482995EE4700E298DF /* DarkLightEnhancement.storyboard in Resources */,
 				A6E600492976513B00D9555C /* makeup_icon_combination_paper_cranes.bundle in Resources */,
 				A6E6FFFF2976513B00D9555C /* boyfriend1.bundle in Resources */,
 				A6E600682976513B00D9555C /* nihongdeng.bundle in Resources */,
@@ -1931,7 +1931,7 @@
 				A6E6FFF92976513B00D9555C /* gufeng_zh_fu.bundle in Resources */,
 				A6E600732976513B00D9555C /* emotion_type.bundle in Resources */,
 				A6E6FFF22976513B00D9555C /* ai_face_processor.bundle in Resources */,
-				A68E42452995E14400E298DF /* ReduceTheNoise.storyboard in Resources */,
+				A68E42452995E14400E298DF /* VideoNoiseReduction.storyboard in Resources */,
 				A6E600302976513B00D9555C /* mu_style_eyelash_02.bundle in Resources */,
 				A6E6000D2976513B00D9555C /* picasso_e2.bundle in Resources */,
 				A6E6007E2976513B00D9555C /* face_makeup.bundle in Resources */,
@@ -2040,9 +2040,9 @@
 			files = (
 				A6EAA8822990A052008D9ECE /* VLHotSpotBtn.m in Sources */,
 				A6D88CF7293DE2A000806419 /* AGViewControllerHead.swift in Sources */,
-				A68E42432995E13D00E298DF /* ReduceTheNoise+UI.swift in Sources */,
+				A68E42432995E13D00E298DF /* VideoNoiseReduction+UI.swift in Sources */,
 				A667E22D295557300053E0B5 /* ROI+UI.swift in Sources */,
-				A68E424A2995EE5000E298DF /* DarkLight.swift in Sources */,
+				A68E424A2995EE5000E298DF /* DarkLightEnhancement.swift in Sources */,
 				A68E423C2993ACE100E298DF /* ColorEnhancement.swift in Sources */,
 				A68E42512995F6A900E298DF /* Setting.swift in Sources */,
 				036CBA47251990B400D74FAD /* AgoraCustomEncryption.h in Sources */,
@@ -2084,7 +2084,7 @@
 				A6D88D05293F422500806419 /* VirtualBackground+UI.swift in Sources */,
 				A6D88CF8293DE2A000806419 /* AGBasisViewController.swift in Sources */,
 				A68E4263299A1CBF00E298DF /* VLAPIRequest.m in Sources */,
-				A68E42412995E13500E298DF /* ReduceTheNoise.swift in Sources */,
+				A68E42412995E13500E298DF /* VideoNoiseReduction.swift in Sources */,
 				A6246BE12952B26900DFB5BA /* SuperResolution.swift in Sources */,
 				A68E426F299A1DC500E298DF /* VLCache.m in Sources */,
 				67B8C7B52805757200195106 /* MediaUtils.m in Sources */,
@@ -2094,17 +2094,17 @@
 				E74877B728A23B8B00CA2F58 /* NetworkManager.swift in Sources */,
 				03D13BD02448758900B599B3 /* AppDelegate.swift in Sources */,
 				0385768225224A88003C369A /* JoinChannelVideo.swift in Sources */,
-				A6C5B17D2941C7F90071FFBF /* BeautifyTheFace.swift in Sources */,
+				A6C5B17D2941C7F90071FFBF /* BeautifyFilter.swift in Sources */,
 				A7847F922458062900469187 /* StatisticsInfo.swift in Sources */,
 				A6D88D01293F1B8600806419 /* VirtualBackground.swift in Sources */,
 				03BCEC762449EB5000ED7177 /* LogViewController.swift in Sources */,
 				E74877CA28A2611C00CA2F58 /* ToastView.swift in Sources */,
-				A6C5B1812941C9630071FFBF /* BeautifyTheFace+UI.swift in Sources */,
+				A6C5B1812941C9630071FFBF /* BeautifyFilter+UI.swift in Sources */,
 				A6EAA8972991025F008D9ECE /* VLLocalWebViewController.m in Sources */,
 				A7847F942458089E00469187 /* AgoraExtension.swift in Sources */,
 				E74877BA28A23C1400CA2F58 /* JSONObject.swift in Sources */,
 				A66951C929B5909B005C664C /* LBXPermissionCamera.m in Sources */,
-				A68E424C2995EE5900E298DF /* DarkLight+UI.swift in Sources */,
+				A68E424C2995EE5900E298DF /* DarkLightEnhancement+UI.swift in Sources */,
 				A68E42332993895700E298DF /* HDR.swift in Sources */,
 				A66951CD29B590B2005C664C /* LBXPermissionSetting.m in Sources */,
 				A6D88D07293F44B900806419 /* Uiew+Tap.swift in Sources */,
@@ -2334,7 +2334,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 39;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = NEV4R2Q744;
 				ENABLE_BITCODE = NO;
@@ -2413,7 +2413,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_TEAM = YS397FG5PA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

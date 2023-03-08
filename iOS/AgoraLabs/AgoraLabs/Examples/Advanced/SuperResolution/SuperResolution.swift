@@ -14,7 +14,7 @@ class SuperResolution: BaseViewController {
     
     var currentModel:SubCellModel?
     
-    let originalModel = SubCellModel(name: "Original Image",tag: -1)
+    let originalModel = SubCellModel(name: "Original",tag: -1)
 
     let itemModelList:[SubCellModel] = [
         SubCellModel(name: "360P",tag: 0,value: AgoraVideoEncoderConfiguration(size: CGSize(width: 360, height: 640), frameRate: .fps15, bitrate: 800, orientationMode: .fixedPortrait, mirrorMode: .auto)),

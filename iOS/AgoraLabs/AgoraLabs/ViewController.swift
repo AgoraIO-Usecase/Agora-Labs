@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         "Video".localized,
         "Audio".localized,
         "Network".localized,
-        "Algorithms".localized
+        "Algorithm".localized
     ]
     
     private let demoMap:[[[String:Any]]] = [
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
                 "key":"Effects",
                 "content":[
                     "Virtual Background",
-                    "Beautify The Face"
+                    "Beautify Filter"
                 ]
             ],
             [
@@ -47,12 +47,11 @@ class ViewController: UIViewController {
                 "content":[
                     "PVC",
                     "ROI",
-                    "SuperResolution",
-                    "Reduce The Noise",
-                    "Dark Light",
+                    "Super Resolution",
+                    "DarkLight Enhancement",
                     "Color Enhancement",
                     "HDR",
-                    "Super Picture Quality",
+                    "Super Clarity",
                 ]
             ]
         ],
@@ -89,9 +88,9 @@ class ViewController: UIViewController {
     ]
     
     var doneMap = ["Virtual Background",
-                   "Beautify The Face",
-                   "SuperResolution","ROI","PVC","HDR",
-                   "Color Enhancement","Reduce The Noise","Dark Light"]
+                   "Beautify Filter",
+                   "Super Resolution","ROI","PVC","HDR",
+                   "Color Enhancement","Video Noise Reduction","DarkLight Enhancement"]
     
     private var segmentedDataSource: JXSegmentedTitleDataSource!
     private var segmentedView: JXSegmentedView!

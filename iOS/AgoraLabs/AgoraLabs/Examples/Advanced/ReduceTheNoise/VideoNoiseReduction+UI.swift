@@ -1,5 +1,5 @@
 //
-//  ReduceTheNoise+UI.swift
+//  VideoNoiseReduction+UI.swift
 //  AgoraLabs
 //
 //  Created by LiaoChenliang on 2023/2/10.
@@ -10,7 +10,7 @@ import AgoraRtcKit
 import SnapKitExtend
 import UIKit
 
-extension ReduceTheNoise {
+extension VideoNoiseReduction {
     
     func setupUI() {
         self.setupNavigation()
@@ -26,7 +26,7 @@ extension ReduceTheNoise {
         button.frame = CGRect(x:0, y:0, width:65, height:30)
         button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
-        button.setTitle("Reduce The Noise".localized, for: .normal)
+        button.setTitle("Video Noise Reduction".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
         let leftBarBtn = UIBarButtonItem(customView: button)
         self.navigationItem.leftBarButtonItem = leftBarBtn
