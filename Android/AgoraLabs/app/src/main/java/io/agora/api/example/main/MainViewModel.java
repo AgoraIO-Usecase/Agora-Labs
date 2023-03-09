@@ -143,7 +143,9 @@ public class MainViewModel extends BaseRequestViewModel {
 
                     @Override
                     public void onSuccess(BaseResponse<String> data) {
-                        getISingleCallback().onSingleCallback(Constant.CALLBACK_TYPE_USER_CANCEL_ACCOUNTS, null);
+                        if(getISingleCallback()!=null) {
+                            getISingleCallback().onSingleCallback(Constant.CALLBACK_TYPE_USER_CANCEL_ACCOUNTS, null);
+                        }
                     }
 
                     @Override
