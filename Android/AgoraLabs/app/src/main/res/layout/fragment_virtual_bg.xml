@@ -50,6 +50,7 @@
         app:layout_constraintRight_toRightOf="@+id/iv_switch_camera"
         android:textColor="@color/white"
         android:textSize="15sp"
+        style="@style/switch_style"
         />
 
     <io.agora.api.example.common.widget.bubbleseekbar.BubbleSeekBar
