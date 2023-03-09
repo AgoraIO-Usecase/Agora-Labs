@@ -83,16 +83,7 @@ extension HDR {
             make.bottom.equalToSuperview().offset(-SCREEN_BOTTOM_HEIGHT)
             make.height.equalTo(118)
         }
-        
-        let bottomHubView = UIView()
-        bottomHubView.backgroundColor = "FFFFFF".hexColor(alpha: 0.3)
-        bottomView.addSubview(bottomHubView)
-        bottomHubView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(8)
-            make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: 37, height: 3))
-        }
-            
+                    
         bottomView.rectCorner(corner: [.topLeft,.topRight], radii:  CGSize(width: 12, height: 12))
     }
         

@@ -192,16 +192,14 @@ extension ColorEnhancement {
             make.centerX.equalToSuperview()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
-            self.skinSlider?.isEnabled = false
-            self.strengthSlider?.isEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.sliderEnabled(isEnabled: false)
         }
         
     }
     
     @objc func handleSwipeFrom(_ recognizer:UISwipeGestureRecognizer){
         if recognizer.direction == .up {
-            
             bottomView.snp.updateConstraints{ make in
                 make.bottom.equalToSuperview()
             }
@@ -219,9 +217,31 @@ extension ColorEnhancement {
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
         self.localVideoView.titleSelected = sender.isOn
-        self.skinSlider?.isEnabled = sender.isOn
-        self.strengthSlider?.isEnabled = sender.isOn
+        self.sliderEnabled(isEnabled: sender.isOn)
         self.setupColorEnhancement(enabled: sender.isOn)
+    }
+    
+    func sliderEnabled(isEnabled:Bool) {
+        self.skinSlider?.isEnabled = isEnabled
+        self.strengthSlider?.isEnabled = isEnabled
+        
+        if isEnabled {
+            self.skinSlider?.minimumTrackTintColor = "#4ca7ff".hexColor()
+            self.skinSlider?.maximumTrackTintColor = "#aeafb5".hexColor()
+            self.strengthSlider?.minimumTrackTintColor = "#4ca7ff".hexColor()
+            self.strengthSlider?.maximumTrackTintColor = "#aeafb5".hexColor()
+        }else{
+            self.skinSlider?.minimumTrackTintColor = "#8f8b90".hexColor()
+            self.skinSlider?.maximumTrackTintColor = "#655f6d".hexColor()
+            self.strengthSlider?.minimumTrackTintColor = "#8f8b90".hexColor()
+            self.strengthSlider?.maximumTrackTintColor = "#655f6d".hexColor()
+        }
+        
+        bottomContentView.subviews.forEach { view in
+            if let _label = view as? UILabel {
+                _label.textColor = isEnabled ?.white:"#655f6d".hexColor()
+            }
+        }
     }
     
 }
