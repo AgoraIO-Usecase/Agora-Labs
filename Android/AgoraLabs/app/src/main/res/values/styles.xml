@@ -47,5 +47,9 @@
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
         <item name="android:backgroundDimAmount">0.6</item>
     </style>
+    <style name="switch_style">
+        <item name="android:thumb">@drawable/switch_thumb</item>
+        <item name="android:track">@drawable/switch_track</item>
+    </style>
 
 </resources>

@@ -21,6 +21,7 @@ import io.agora.api.example.databinding.FragmentColorEnhancementBinding;
 import io.agora.api.example.utils.PermissionUtils;
 import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ThreadUtils;
+import io.agora.api.example.utils.UIUtil;
 import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
 import io.agora.rtc2.IRtcEngineEventHandler;

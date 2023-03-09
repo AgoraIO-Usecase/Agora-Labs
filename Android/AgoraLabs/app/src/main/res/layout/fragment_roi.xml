@@ -57,6 +57,7 @@
         android:paddingBottom="14dp"
         android:paddingRight="16dp"
         android:textSize="15sp"
+        style="@style/switch_style"
         />
     <LinearLayout
         android:id="@+id/menu_controler"

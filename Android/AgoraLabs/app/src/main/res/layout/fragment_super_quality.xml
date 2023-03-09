@@ -93,6 +93,7 @@
         android:text="@string/enable_super_quality"
         android:textColor="@color/white"
         android:textSize="15sp"
+        style="@style/switch_style"
         app:layout_constraintBottom_toTopOf="@+id/option_menu"
         app:layout_constraintLeft_toLeftOf="parent" />
     <LinearLayout
