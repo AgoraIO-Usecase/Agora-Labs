@@ -13,4 +13,6 @@ NSPhotoLibraryAddUsageDescription ="APP需要您的允许才能将照片保存�
 
 NSPhotoLibraryUsageDescription ="APP需要您的允许才能访问相册";
 
+CFBundleDisplayName = "声网实验室";
 
+UILaunchStoryboardName = "LaunchScreen_CN";

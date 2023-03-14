@@ -99,7 +99,7 @@ class ViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let _titleLabel = UILabel()
-        _titleLabel.text = "Agora Labs"
+        _titleLabel.text = "Agora Labs".localized
         _titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         _titleLabel.textColor = "099DFD".hexColor()
         return _titleLabel
