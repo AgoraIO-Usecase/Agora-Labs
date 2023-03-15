@@ -24,10 +24,10 @@
     return url;
 }
 + (NSString*)getHostUrl {
-    return [NSString stringWithFormat:@"%@", @"https://gateway-fulldemo-staging.agoralab.co"];
+    return [NSString stringWithFormat:@"%@", @"https://gateway-fulldemo.agoralab.co"];
 }
 + (NSString*)getRequestUrl:(NSString *)url {
-    return [NSString stringWithFormat:@"%@%@", @"https://gateway-fulldemo-staging.agoralab.co", url];
+    return [NSString stringWithFormat:@"%@%@", @"https://gateway-fulldemo.agoralab.co", url];
 }
 
 + (NSString *)getToken {
