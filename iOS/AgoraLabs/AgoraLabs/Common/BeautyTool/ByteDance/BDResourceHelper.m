@@ -7,7 +7,7 @@
 
 #import "BDResourceHelper.h"
 
-static NSString *LICENSE_PATH = @"LicenseBag";
+static NSString *LICENSE_PATH = @"LicenseNewBag";
 static NSString *COMPOSER_PATH = @"ComposeMakeup";
 static NSString *FILTER_PATH = @"FilterResource";
 static NSString *STICKER_PATH = @"StickerResource";
