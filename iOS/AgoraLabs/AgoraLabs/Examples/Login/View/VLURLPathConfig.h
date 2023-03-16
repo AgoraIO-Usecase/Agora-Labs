@@ -22,8 +22,8 @@ static NSString * const kURLPathVerifyCode = @"/api-login/users/verificationCode
 static NSString * const kUserLogoutNotify = @"kUserLogoutNotify";
 
 #pragma mark - H5相关
-static NSString * const kURLPathH5UserAgreement = @"https://accktvpic.oss-cn-beijing.aliyuncs.com/pic/meta/demo/fulldemoStatic/privacy/service.html";
-static NSString * const kURLPathH5Privacy = @"https://accktvpic.oss-cn-beijing.aliyuncs.com/pic/meta/demo/fulldemoStatic/privacy/privacy.html";
+static NSString * const kURLPathH5UserAgreement = @"https://www.shengwang.cn/contracts/lab/service-term/";
+static NSString * const kURLPathH5Privacy = @"https://www.shengwang.cn/contracts/lab/privacy-term/";
 static NSString * const kURLPathH5AboutUS = @"https://www.agora.io/cn/about-us/";
 
 #endif /* VLURLPathConfig_h */
