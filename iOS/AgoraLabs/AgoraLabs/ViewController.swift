@@ -144,6 +144,12 @@ class ViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.fd_prefersNavigationBarHidden = true
         
+        let image = UIImageView(image: UIImage(named: "ic_main_bg"))
+        self.view.addSubview(image)
+        image.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         topView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

@@ -19,7 +19,18 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qY0-Qz-H36">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_main_bg.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="eUX-6h-zeN">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.95686274509803915" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="eUX-6h-zeN" secondAttribute="bottom" id="34C-Sp-An0"/>
+                                    <constraint firstItem="eUX-6h-zeN" firstAttribute="leading" secondItem="qY0-Qz-H36" secondAttribute="leading" id="dzE-2i-gcB"/>
+                                    <constraint firstItem="eUX-6h-zeN" firstAttribute="top" secondItem="qY0-Qz-H36" secondAttribute="top" id="egN-xc-mr6"/>
+                                    <constraint firstAttribute="trailing" secondItem="eUX-6h-zeN" secondAttribute="trailing" id="gpJ-go-1FL"/>
+                                </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="B0g-kT-4th">
                                 <rect key="frame" x="113.5" y="80" width="148" height="148"/>
@@ -229,6 +240,7 @@
     <resources>
         <image name="agreement" width="24" height="24"/>
         <image name="deactivate" width="24" height="24"/>
+        <image name="ic_main_bg.jpeg" width="296" height="640"/>
         <image name="launch_logo.png" width="148" height="148"/>
         <image name="logout" width="24" height="24"/>
         <image name="mine_rightArrow_icon" width="15" height="16"/>

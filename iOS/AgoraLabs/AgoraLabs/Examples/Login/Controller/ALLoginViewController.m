@@ -46,6 +46,12 @@
     _policyAgreed = NO;
     
     [self.view setBackgroundColor:[UIColor colorWithRGB:0xeff4ff]];
+    UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ic_main_bg"]];
+    [self.view addSubview:image];
+    [image mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+    }];
+    
     [self setupViews];
     [self setupLayout];
 }
@@ -112,7 +118,7 @@
     }];
     
     UILabel *versionLabel = [[UILabel alloc]init];
-    versionLabel.text = @"Powered by Agora.io \nv 2.0";
+    versionLabel.text = [NSString stringWithFormat:@"Powered by %@ \nv 2.0",AGLocalizedString(@"Agora.io")];
     versionLabel.textAlignment = NSTextAlignmentCenter;
     versionLabel.numberOfLines = 0;
     versionLabel.lineBreakMode = NSLineBreakByWordWrapping;

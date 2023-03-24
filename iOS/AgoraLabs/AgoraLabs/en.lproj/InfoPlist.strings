@@ -11,4 +11,4 @@ NSCameraUsageDescription ="Please click “OK” to enable the camera permission
 NSPhotoLibraryAddUsageDescription ="App needs your permission to save photos to album";
 NSPhotoLibraryUsageDescription ="App needs your permission to access the album";
 CFBundleDisplayName = "AgoraLabs";
-UILaunchStoryboardName = "LaunchScreen";
+//UILaunchStoryboardName = "LaunchScreen";

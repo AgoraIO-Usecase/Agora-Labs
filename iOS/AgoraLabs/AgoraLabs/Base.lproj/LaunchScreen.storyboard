@@ -17,15 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFE-dT-iOv">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_main_bg.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="Feb-ae-yBP">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" red="0.93708997959999996" green="0.96226721999999998" blue="0.99566966300000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </view>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3h-FE-8ad">
-                                <rect key="frame" x="145" y="830.5" width="124.5" height="31.5"/>
+                                <rect key="frame" x="126" y="830.5" width="162" height="31.5"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">Powered by Agora.io
+                                        <string key="content">Powered by shengwang.cn
 v 2.0</string>
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.80392156862745101" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -43,26 +42,18 @@ v 2.0</string>
                                     <constraint firstAttribute="height" constant="140" id="yIq-Px-wQF"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agora Labs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwI-uH-f9Q">
-                                <rect key="frame" x="161" y="454" width="92" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="0.27227473260000001" green="0.60705584290000003" blue="0.96224051710000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="eFE-dT-iOv" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="4zN-GC-dDR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Feb-ae-yBP" secondAttribute="trailing" id="4lQ-k2-xH8"/>
                             <constraint firstItem="lMX-D3-ffD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-80" id="6n8-kS-bRo"/>
+                            <constraint firstAttribute="bottom" secondItem="Feb-ae-yBP" secondAttribute="bottom" id="HrN-GX-lzE"/>
                             <constraint firstItem="B3h-FE-8ad" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LX7-HZ-l0m"/>
-                            <constraint firstItem="eFE-dT-iOv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bEj-xi-Ker"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="B3h-FE-8ad" secondAttribute="bottom" id="ezY-Fl-fjs"/>
-                            <constraint firstItem="WwI-uH-f9Q" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fLT-61-uad"/>
+                            <constraint firstItem="Feb-ae-yBP" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="h2Q-62-3iO"/>
+                            <constraint firstItem="Feb-ae-yBP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iEC-id-8m1"/>
                             <constraint firstItem="lMX-D3-ffD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="j6n-hA-w4Q"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eFE-dT-iOv" secondAttribute="trailing" id="my5-nc-OAH"/>
-                            <constraint firstAttribute="bottom" secondItem="eFE-dT-iOv" secondAttribute="bottom" id="rI5-nB-7A0"/>
-                            <constraint firstItem="WwI-uH-f9Q" firstAttribute="top" secondItem="lMX-D3-ffD" secondAttribute="bottom" constant="16" id="xkd-jo-BL9"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -72,6 +63,7 @@ v 2.0</string>
         </scene>
     </scenes>
     <resources>
+        <image name="ic_main_bg.jpeg" width="296" height="640"/>
         <image name="launch_logo.png" width="148" height="148"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
