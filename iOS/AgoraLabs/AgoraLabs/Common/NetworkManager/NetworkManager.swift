@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import AFNetworking
 
-class NetworkManager {
+@objc class NetworkManager: NSObject {
     enum HTTPMethods: String {
         case GET = "GET"
         case POST = "POST"
@@ -28,9 +29,18 @@ class NetworkManager {
         return config
     }()
     
-    static let shared = NetworkManager()
-    private init() { }
+    @objc static let shared = NetworkManager()
+    private override init() { }
+    var reachabilityState:AFNetworkReachabilityStatus = .notReachable
     private let baseUrl = "https://test-toolbox.bj2.agoralab.co/v1/token/generate"
+    
+    @objc  func getReachabilityState() -> Bool {
+        if NetworkManager.shared.reachabilityState == .notReachable {
+            AGHUD.showFaild(info: "Network Reachability Status Not Reachable")
+            return false
+        }
+        return true
+    }
     
     func generateToken(channelName: String, uid: UInt = 0, success: @escaping () -> Void) {
         generateToken(channelName: channelName, uid: uid) { _ in

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Thread.sleep(forTimeInterval: 2)
         VLAPIRequest.closeSharedCache()
         AGHUD.initializeHUD()
+        
+        let manager = AFNetworkReachabilityManager.shared()
+        manager.startMonitoring()
+        manager.setReachabilityStatusChange { state in
+            NetworkManager.shared.reachabilityState = state
+        }
+        
         return true
     }
 

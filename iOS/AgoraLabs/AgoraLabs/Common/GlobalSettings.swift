@@ -47,6 +47,10 @@ struct AgoraLabsUser {
             success(nil)
             return
         }
+        if NetworkManager.shared.getReachabilityState() == false {
+            return
+        }
+        
         let params = ["appCertificate": KeyCenter.Certificate ?? "",
                       "appId": KeyCenter.AppId,
                       "channelName": channelName,

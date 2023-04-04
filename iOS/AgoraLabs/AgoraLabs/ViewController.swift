@@ -283,7 +283,22 @@ extension ViewController{
     }
     
     func isCN() -> Bool {
-        return Locale.current.regionCode == "CN".localized
+        let preferredLang = Bundle.main.preferredLocalizations.first! as NSString
+        print("当前系统语言:\(preferredLang)")
+        var currentLang = "en"
+        switch String(describing: preferredLang) {
+        case "en-US", "en-CN":
+            currentLang = "en"
+        case "zh-Hans-US","zh-Hans-CN","zh-Hant-CN","zh-TW","zh-HK","zh-Hans":
+            currentLang = "cn"
+        default:
+            currentLang = "en"
+        }
+        if (currentLang == "cn" && Locale.current.regionCode == "CN".localized){
+            return true
+        }else{
+            return false
+        }
     }
 
     func even(name:String) {

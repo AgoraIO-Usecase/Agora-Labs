@@ -212,6 +212,9 @@
         @"phone":self.phoneView.phoneNo
     };
     [AGHUD showNetWork];
+    if ([NetworkManager shared].getReachabilityState == false){
+        return;
+    }
     [VLAPIRequest getRequestURL:kURLPathVerifyCode parameter:param showHUD:YES success:^(VLResponseDataModel * _Nonnull response) {
         if (response.code == 0) {
             [AGHUD disMiss];
@@ -341,6 +344,9 @@
         @"phone" : self.phoneView.phoneNo,
         @"code": self.verifyView.verifyCode
     };
+    if ([NetworkManager shared].getReachabilityState == false){
+        return;
+    }
     [VLAPIRequest getRequestURL:kURLPathLogin parameter:param showHUD:YES success:^(VLResponseDataModel * _Nonnull response) {
         if (response.code == 0) {
             VLLoginModel *model = [VLLoginModel vj_modelWithDictionary:response.data];
