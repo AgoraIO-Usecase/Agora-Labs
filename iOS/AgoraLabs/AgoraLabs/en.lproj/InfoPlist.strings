@@ -1,0 +1,15 @@
+/* 
+  InfoPlist.strings
+  AgoraLabs
+
+  Created by LiaoChenliang on 2023/1/4.
+  Copyright © 2023 Agora Corp. All rights reserved.
+*/
+
+
+NSCameraUsageDescription ="Please click 'OK' to allow access. If not allowed, you will not be able to use video experience related features such as VirtualBackground and SuperResolution
+";
+NSPhotoLibraryAddUsageDescription ="“Agora Labs“ wants to access your photos, in order to help you  customize background images in VirtualBackground ";
+NSPhotoLibraryUsageDescription ="“Agora Labs” wants to access your photos, in order to help you  customize background images in VirtualBackground ";
+CFBundleDisplayName = "AgoraLabs";
+//UILaunchStoryboardName = "LaunchScreen";

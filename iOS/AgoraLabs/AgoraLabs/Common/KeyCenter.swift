@@ -49,4 +49,6 @@ struct KeyCenter {
      注意：如果配置了agora_app_certificate，则这个字段会失效。
      */
     static var Token: String? = nil
+    
+    static var BaseServerUrl:String = ""
 }

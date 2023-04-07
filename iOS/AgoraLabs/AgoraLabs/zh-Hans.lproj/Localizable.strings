@@ -6,6 +6,8 @@
   Copyright © 2020 Agora Corp. All rights reserved.
 */
 
+"Agora Labs"="声网实验室";
+"Agora.io"="shengwang.cn";
 "Join a channel (Video)" = "实时视频通话/直播";
 "Join a channel (Audio)" = "实时语音通话/直播";
 "Live Streaming" = "RTC实时直播/主播/观众";
@@ -107,7 +109,6 @@
 "This app requires world tracking, which is available only on iOS devices with the A9 processor or later." = "AR功能仅在内置A9处理器后的iOS机型支持";
 "Move Camera to find a planar\n(Shown as Red Rectangle)" = "移动相机以找到一个平面\n(以红色方块显示)";
 "Tap to place remote video canvas" = "点击屏幕以放置视频画布";
-"Resolution" = "分辨率";
 "Frame Rate" = "帧率";
 "Orientation" = "视频朝向";
 "Broadcaster" = "主播";
@@ -130,3 +131,201 @@
 "remote user has not joined, and cannot take a screenshot" = "远端用户未加入, 无法截图";
 "Screenshot successful" = "截图成功";
 "Picture In Picture(require iOS15)" = "画中画(iOS15支持)";
+
+"Stay Tuned"="敬请期待";
+"ggnzbzcjqqd"="该功能暂不支持，敬请期待！";
+
+"Video"="视频";
+"Audio"="音频";
+"Network"="网络优化";
+"Algorithm"="基础算法";
+"Effects"="特效";
+
+"Virtual Background"="虚拟背景";
+"Beautify Filter"="美颜";
+"Image Quality"="画质";
+"Video Noise Reduction"="降噪";
+"DarkLight Enhancement"="暗光";
+"Sharpen"="自适应锐化";
+"Color Enhancement"="色彩增强";
+"PVC"="感知视频编码";
+"ROI"="感兴趣区域算法";
+"SuperResolution"="超分";
+"Super Clarity"="超级画质";
+"HDR"="HDR";
+
+"Noise Suppression"="Al降噪";
+"AI AEC"="Al 声学回声消除";
+"Spacial Audio"="空间音频";
+"Speach to Text"="语音转写";
+
+"Multipath"="多链路聚合传播";
+"Weak Net"="抗弱网机制";
+
+"Facial Capture"="面部捕捉";
+"Motion Capture"="动作捕捉";
+"Avatar"="语音驱动";
+
+"Original"="原图";
+"Blur"="背景虚化";
+"Split Green Screen"="绿幕分割";
+"Video Background"="动态背景";
+"Gathering Mode"="会聚模式";
+"Customize"="自定义";
+"Scenery"="风景";
+"Meeting"="会议室";
+
+"low"="低";
+"medium"="中";
+"high"="高";
+
+
+"yuantu" = "原图";
+"mopi" = "磨皮";
+"meibai" = "美白";
+"hongrun" = "红润";
+"shoulian" = "瘦脸";
+"dayan" = "大眼";
+"quheiyanquan" = "去黑眼圈";
+"meiya" = "美牙";
+"qufalingwen" = "去法令纹";
+
+"qiangdu" = "强度";
+
+"meifu" = "美肤";
+"weizhengxing" = "微整形";
+"fenggezhuang" = "风格妆";
+"tiezhi" = "贴纸";
+"meizhuang" = "美妆";
+
+"zhailian" = "窄脸";
+"ruihua" = "锐化";
+"kouhong" = "口红";
+"saihong" = "腮红";
+"xiurong" = "修容";
+"jiemao" = "睫毛";
+"meimao" = "眉毛";
+"meitong" = "美瞳";
+
+"duibidu" = "对比度";
+
+"aidou" = "爱豆";
+"baica" = "白茶";
+"baixi" = "白皙";
+"bingchuan"="冰川";
+"Cwei"="C位";
+"duanmei"="断眉";
+"hanxi"="韩系";
+"meiyouxiaoxiong"="没有小熊";
+"nuannan"="暖男";
+"oumei"="欧美";
+"qise"="气色";
+"shensui"="深邃";
+"tianmei"="甜美";
+"wennuan"="温暖";
+"youya"="优雅";
+"yuanqi"="元气";
+"zhigan"="质感";
+
+"beibei"="贝贝";
+"biaobaiqixi"="表白七夕";
+"chitushaonü"="吃土少女";
+"dianjita"="电吉他";
+"gongzhumianju"="公主面具";
+"heimaoyanjing"="黑猫眼镜";
+"jiamian"="假面";
+"zhaocaimao"="招财猫";
+"meihaoxinqing"="美好心情";
+"konglongceshi"="恐龙测试";
+"shenshi"="绅士";
+"tiaowuhuoji"="跳舞火鸡";
+"zhutouzhuer"="猪头猪耳";
+"zisemeihuo"="紫色魅惑";
+
+
+//百度翻译部分
+"quangu" = "颧骨";
+"xiahe" = "下颌";
+"yanjing" = "眼睛";
+"bizi" = "鼻子";
+"zuiba" = "嘴巴";
+
+"Faceunity"="相芯";
+"Agora"="声网";
+"Volcengine"="火山引擎";
+
+"skinCare"="美肤";
+"microShap"="微整形";
+"oneKeyDress"="风格妆";
+"sticker"="贴纸";
+"dressUp"="美妆";
+
+"Bitrate"="码率";
+"Enabled"="效果";
+"Disabled"="效果未开启";
+"Original Video"="原视频";
+
+"chaofenxiaoguo"="超分效果";
+"chaofenxiaoguoweikaiqi"="超分效果未开启";
+
+"PVCxiaoguo"="PVC效果";
+"PVCweikaiqi"="PVC效果未开启";
+
+"ROIxiaoguo"="ROI效果";
+"ROIxiaoguoweikaiqi"="ROI效果未开启";
+
+"qiyongchaofen"="启用超分";
+"qiyongganzhishipinbianma"="启用感知视频编码";
+"qiyongganxingququyusuanfa"="启用感兴趣区域算法";
+
+"jqxnpj"="机器性能瓶颈，自动关闭超分";
+
+"HDRxiaoguo"="HDR效果";
+"HDRxiaoguoweikaiqi"="HDR效果未开启";
+"qiyongHDR"="启用HDR";
+
+"qysczq"="启用色彩增强";
+"sczqqd"="色彩增强强度";
+"fsbhqd"="肤色保护强度";
+
+"qyagzq"="启用暗光增强";
+"xnyx"="性能优先";
+"hzyx"="画质优先";
+
+"qyspjz"="启用视频降噪";
+"dghms"="低功耗模式";
+"jhms"="均衡模式";
+"qjzms"="强降噪模式";
+
+
+"ty"="同意";
+"bty"="不同意";
+"wyydbtyfwtkhystk"="我已阅读并同意服务条款和隐私条款";
+"yhxy1"="服务条款";
+"yszc1"="隐私条款";
+
+"yhxy2"="用户协议";
+"yszc2"="隐私政策";
+"tcdl"="退出登录";
+"zxzh"="注销账号";
+"tcdlh"="退出登录后，我们将保留您的数据信息，期待下次与您相遇";
+"zxh"="注销后，您将无法使用当前账号体验我们的服务，请谨慎考虑";
+
+"qx"="取消";
+"qrtc"="确认退出";
+"qrzx"="确认注销";
+"zbzx"="暂不注销";
+
+"hytyswfw"="欢迎体验声网服务";
+"sjh"="手机号";
+"yzm"="验证码";
+"fsyzm"="发送验证码";
+"qsryyzm"="请输入验验证码";
+"dl"="登录";
+"wcyz"="完成验证";
+"yzsb"="验证失败";
+"tdxfhkwcpt"="拖动下方滑块完成拼图";
+"cxhq"="重新获取";
+
+"sz"="设置";
+"xjqx"="点击“设置”去开启摄像头权限，用于你使用时体验视频功能";

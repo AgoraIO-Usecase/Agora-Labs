@@ -9,6 +9,7 @@
 #if os(iOS)
 import UIKit
 import WebKit
+import CommonCrypto
 #else
 import Cocoa
 #endif
@@ -17,8 +18,135 @@ typealias Color = UIColor
 
 typealias MainFont = Font.HelveticaNeue
 
+extension NSString {
+    @objc func toSceneLocalization() -> NSString {
+        return NSLocalizedString(self as String, comment: "") as NSString
+    }
+}
+extension String {
+    /// 原生md5
+    public var md5: String {
+        guard let data = data(using: .utf8) else {
+            return self
+        }
+        var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+#if swift(>=5.0)
+        _ = data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
+            return CC_MD5(bytes.baseAddress, CC_LONG(data.count), &digest)
+        }
+#else
+        _ = data.withUnsafeBytes { bytes in
+            return CC_MD5(bytes, CC_LONG(data.count), &digest)
+        }
+#endif
+        return digest.map { String(format: "%02x", $0) }.joined()
+        
+    }
+}
 extension String {
     var localized: String { NSLocalizedString(self, comment: "") }
+    
+    var removeAllSapce: String {
+        return self.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
+    }
+    
+    func hexColor(alpha: CGFloat = 1.0) -> UIColor {
+        
+        var red: UInt64 = 0, green: UInt64 = 0, blue: UInt64 = 0
+        var hex = self
+        if hex.hasPrefix("0x") || hex.hasPrefix("0X") {
+            hex = String(hex[hex.index(hex.startIndex, offsetBy: 2)...])
+        } else if hex.hasPrefix("#") {
+            hex = String(hex[hex.index(hex.startIndex, offsetBy: 1)...])
+        }
+        if hex.count < 6 {
+            for _ in 0..<6-hex.count {
+                hex += "0"
+            }
+        }
+        Scanner(string: String(hex[..<hex.index(hex.startIndex, offsetBy: 2)])).scanHexInt64(&red)
+        Scanner(string: String(hex[hex.index(hex.startIndex, offsetBy: 2)..<hex.index(hex.startIndex, offsetBy: 4)])).scanHexInt64(&green)
+        Scanner(string: String(hex[hex.index(startIndex, offsetBy: 4)...])).scanHexInt64(&blue)
+        return UIColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: alpha)
+    }
+    
+    /// 时间戳转换时间字符串
+    /// - Parameters:
+    ///   - timeStamp: 时间戳
+    ///   - dateFormat: 自定义日期格式（如：yyyy-MM-dd HH:mm:ss）
+    /// - Returns: 时间字符串
+    static func getTimeString(timeStamp: Int, dateFormat: String) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval.init(timeStamp))
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = dateFormat
+        return dateformatter.string(from: date)
+    }
+}
+
+extension UIColor {
+    func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+        return UIGraphicsImageRenderer(size: size).image { rendererContext in
+            self.setFill()
+            rendererContext.fill(CGRect(origin: .zero, size: size))
+        }
+    }
+}
+
+extension UILabel{
+    @discardableResult
+    func setupShadow() -> UILabel {
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
+        self.layer.shadowRadius = 1
+        return self
+    }
+}
+
+//平方-简-中黑体 和大小
+func FontPFMediumSize(_ fontSize:CGFloat) -> UIFont {
+    return UIFont.init(name: "PingFangSC-Medium", size: fontSize)!
+}
+//平方-简-标准字体 和大小
+func FontPFRegularSize(_ fontSize:CGFloat) -> UIFont {
+    return UIFont.init(name: "PingFangSC-Regular", size: fontSize)!
+}
+
+
+public extension UIDevice {
+
+    func phone12Model() -> Bool {
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8 , value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        
+        if identifier.contains("iPhone") {
+            let infoList = identifier.dropFirst(6).components(separatedBy: ",")
+            if let numb = infoList.first, Int(numb) ?? 0 >= 13 {
+                return true
+            }else{
+                return false
+            }
+        }else{
+            return false
+        }
+        
+    }
+    
+    func identifier() -> String {
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8 , value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        return identifier
+    }
 }
 
 enum Font {
@@ -99,6 +227,27 @@ extension UIView {
         self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0).isActive = true
 
     }
+    
+    func colorGradient(color0:UIColor,color1:UIColor,point0:CGPoint,point1:CGPoint)  {
+        self.layoutIfNeeded()
+        let gradient = CAGradientLayer()
+        let colors = [color0.cgColor, color1.cgColor]
+        gradient.startPoint = point0
+        gradient.endPoint = point1
+        gradient.colors = colors.compactMap { $0 }
+        gradient.locations = [NSNumber(value: 0.0), NSNumber(value: 1.0)]
+        gradient.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height)
+        self.layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func rectCorner(corner: UIRectCorner, radii: CGSize){
+        self.layoutIfNeeded()
+        let maskPath = UIBezierPath.init(roundedRect: self.bounds, byRoundingCorners: corner, cornerRadii: radii)
+        let maskLayer = CAShapeLayer.init()
+        maskLayer.frame = self.bounds
+        maskLayer.path = maskPath.cgPath
+        self.layer.mask = maskLayer
+    }
 }
 
 //MARK: - Color
@@ -118,6 +267,10 @@ extension AGColor {
                   green: transform(hex, offset: 8),
                   blue: transform(hex),
                   alpha: alpha)
+    }
+    
+    func setRgba(_ r:CGFloat,_ g:CGFloat,_ b:CGFloat,_ a:CGFloat)-> AGColor {
+        return AGColor.init(red: r/255, green: g/255,  blue:b/255, alpha: a)
     }
     
     func rgbValue() -> (red: CGFloat, green: CGFloat, blue: CGFloat) {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HWc-eV-zrm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u0m-Qw-eqM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,48 +12,23 @@
         <!--Agora API Examples-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Agora API Examples" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="APIExample" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewController title="Agora API Examples" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="AgoraLabs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="htU-l3-pCj">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <sections/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="hnT-g3-d6x"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="O3Q-cA-Mvc"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="htU-l3-pCj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4ij-mK-fOj"/>
-                            <constraint firstItem="htU-l3-pCj" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4oQ-QU-Vvu"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="htU-l3-pCj" secondAttribute="trailing" id="AZi-fH-NXC"/>
-                            <constraint firstItem="htU-l3-pCj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="egL-0x-0hb"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Agora API Example" id="Ygc-Og-WKK">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="492-pb-Xmc">
-                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-6"/>
-                            <color key="tintColor" systemColor="labelColor"/>
-                            <connections>
-                                <action selector="onSettings:" destination="BYZ-38-t0r" id="ylP-aR-Gij"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Ygc-Og-WKK"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="151" y="226"/>
+            <point key="canvasLocation" x="1060.8695652173915" y="225.66964285714283"/>
         </scene>
         <!--Log View Controller-->
         <scene sceneID="prb-6k-LdD">
             <objects>
-                <viewController storyboardIdentifier="LogViewController" title="Log View Controller" id="ekP-NH-UjU" customClass="LogViewController" customModule="APIExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogViewController" title="Log View Controller" id="ekP-NH-UjU" customClass="LogViewController" customModule="AgoraLabs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WvU-Rl-wN2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,12 +54,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nif-Rn-0tq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1122" y="226"/>
+            <point key="canvasLocation" x="2031.8840579710147" y="225.66964285714283"/>
         </scene>
         <!--Entry View Controller-->
         <scene sceneID="x72-3b-GCg">
             <objects>
-                <viewController storyboardIdentifier="EntryViewController" id="O0d-ef-mTa" customClass="EntryViewController" customModule="APIExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EntryViewController" id="O0d-ef-mTa" customClass="EntryViewController" customModule="AgoraLabs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iRI-aA-06F">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,13 +121,13 @@
         <!--Settings View Controller-->
         <scene sceneID="JqK-GV-FYn">
             <objects>
-                <tableViewController storyboardIdentifier="settings" id="Ey4-v0-GaJ" customClass="SettingsViewController" customModule="APIExample" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="settings" id="Ey4-v0-GaJ" customClass="SettingsViewController" customModule="AgoraLabs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="GdE-Rv-pWi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SliderCell" id="G0g-5t-oRK" customClass="SettingsSliderCell" customModule="APIExample" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SliderCell" id="G0g-5t-oRK" customClass="SettingsSliderCell" customModule="AgoraLabs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="49.5" width="414" height="54.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G0g-5t-oRK" id="8Yv-dJ-Q4d">
@@ -202,7 +177,7 @@
                                     <outlet property="settingValue" destination="GRE-S2-EUw" id="h0q-ao-f68"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="YOS-Tx-FSj" userLabel="LabelCell" customClass="SettingsLabelCell" customModule="APIExample" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="YOS-Tx-FSj" userLabel="LabelCell" customClass="SettingsLabelCell" customModule="AgoraLabs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="104" width="414" height="54.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YOS-Tx-FSj" id="Ezh-hI-UFS">
@@ -244,7 +219,7 @@
                                     <outlet property="settingValue" destination="fY0-HR-SHv" id="S8x-zc-bb6"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectCell" id="wPb-Hp-Lzk" customClass="SettingsSelectCell" customModule="APIExample" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectCell" id="wPb-Hp-Lzk" customClass="SettingsSelectCell" customModule="AgoraLabs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="158.5" width="414" height="54.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wPb-Hp-Lzk" id="xjH-Qx-gt4">
@@ -296,26 +271,10 @@
             </objects>
             <point key="canvasLocation" x="1369.5652173913045" y="1935.9375"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="7gL-ce-PXb">
-            <objects>
-                <navigationController id="HWc-eV-zrm" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vmp-9P-d9j">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="BAD-Sj-ZuE"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OnS-Oy-inp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-791" y="226"/>
-        </scene>
         <!--Quick Switch Channel-->
         <scene sceneID="5D2-2i-zm0">
             <objects>
-                <viewController storyboardIdentifier="QuickSwitchChannel" title="Join Channel Video" id="iib-g5-GmB" userLabel="Quick Switch Channel" customClass="QuickSwitchChannel" customModule="APIExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuickSwitchChannel" title="Join Channel Video" id="iib-g5-GmB" userLabel="Quick Switch Channel" customClass="QuickSwitchChannel" customModule="AgoraLabs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k6C-Db-Vrt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -328,11 +287,27 @@
             </objects>
             <point key="canvasLocation" x="2275" y="1936"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="RCJ-Tc-QWX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u0m-Qw-eqM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8GZ-lP-rR4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="TYP-J5-AyN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SAQ-Kx-8qd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="150.72463768115944" y="225.66964285714283"/>
+        </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

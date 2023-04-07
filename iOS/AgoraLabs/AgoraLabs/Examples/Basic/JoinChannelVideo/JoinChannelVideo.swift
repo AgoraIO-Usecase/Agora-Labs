@@ -128,12 +128,12 @@ class JoinChannelVideoMain: BaseViewController {
         // make myself a broadcaster
         agoraKit.setClientRole(GlobalSettings.shared.getUserRole())
         // enable video module and set up video encoding configs
-        agoraKit.enableVideo()
-        agoraKit.enableAudio()
         agoraKit.setVideoEncoderConfiguration(AgoraVideoEncoderConfiguration(size: resolution,
                 frameRate: AgoraVideoFrameRate(rawValue: fps) ?? .fps30,
                 bitrate: AgoraVideoBitrateStandard,
                 orientationMode: orientation, mirrorMode: .auto))
+        agoraKit.enableVideo()
+        agoraKit.enableAudio()
 
         // set up local video to render your local camera preview
         let videoCanvas = AgoraRtcVideoCanvas()

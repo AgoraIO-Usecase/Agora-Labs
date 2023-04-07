@@ -4,11 +4,34 @@
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 target 'AgoraLabs' do
   use_frameworks!
-  
   pod 'Floaty', '~> 4.2.0'
   pod 'AGEVideoLayout', '~> 1.0.2'
   pod 'CocoaAsyncSocket', '7.6.5'
-  pod 'AgoraRtcEngine_iOS', '4.0.1'
-#    pod 'sdk', :path => 'sdk.podspec'
+  pod 'AgoraRtcKit_iOS', :path => './libs-iOS'
+# 布局
+  pod 'Masonry', '~> 1.1.0'
+  pod 'JXSegmentedView', '1.3.0'
+  pod 'SnapKit', '4.2.0'
+  pod 'SnapKitExtend', '1.1.0'
+  
+  pod 'SVProgressHUD', '2.2.5'
+  pod 'FDFullscreenPopGesture', '1.1'
+  pod 'ZLPhotoBrowser','4.3.1'
+  pod 'ASValueTrackingSlider', :git => 'https://github.com/liaochenliang/ASValueTrackingSlider.git'
+  pod 'XMMenuPopover', :git => 'https://github.com/liaochenliang/XMMenuPopover.git'
+
+  pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git'
+
+  
+  pod 'SwiftyJSON', '5.0.1'
+  pod 'LEEAlert', '1.6.4'
+  pod 'LSTPopView', '0.3.10'
+  
+  pod 'YYModel', '1.0.4'
+  pod 'YYText','1.0.7'
+  pod 'YYCategories','1.0.4'
+  pod 'YYCache', '1.0.4'
+  
+  pod 'AFNetworking', '4.0.1'
 end
 

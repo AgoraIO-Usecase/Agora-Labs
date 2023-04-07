@@ -1,0 +1,160 @@
+/* 
+  Localization.strings
+  APIExample
+
+  Created by 张乾泽 on 2020/10/7.
+  Copyright © 2020 Agora Corp. All rights reserved.
+*/
+
+"Agora Labs"="Agora Labs";
+"Agora.io"="Agora.io";
+//相芯美颜面板
+"yuantu" = "Original";
+"mopi" = "Fine Blur";
+"meibai" = "Whiten";
+"hongrun" = "Ruddy";
+"shoulian" = "Cheek Thin";
+"dayan" = "Eye Enlarge";
+"quheiyanquan" = "Circles";
+"meiya" = "Tooth Whiten";
+"qufalingwen" = "Wrinkles";
+
+"qiangdu" = "Strength";
+
+"meifu" = "Skin";
+"weizhengxing" = "Reshape";
+"fenggezhuang" = "MakeupStyle";
+"tiezhi" = "Stickers";
+"meizhuang" = "Makeup";
+
+"zhailian" = "Narrow Face";
+"ruihua" = "Sharpen";
+"kouhong" = "Lipstick";
+"saihong" = "Blusher";
+"xiurong" = "Contour";
+"jiemao" = "Eyelash";
+"meimao" = "Eyebrows";
+"meitong" = "Pupil";
+"duibidu" = "Contrast";
+
+
+"aidou" = "Idol";
+"baica" = "white tea";
+"baixi" = "white";
+"bingchuan"="glacier";
+"Cwei"="center location";
+"duanmei"="broken eyebrow";
+"hanxi"="Korean";
+"meiyouxiaoxiong"="no cubs";
+"nuannan"="warm man";
+"oumei"="European and American";
+"qise"="complexion";
+"shensui"="profound";
+"tianmei"="sweet";
+"wennuan"="warmth";
+"youya"="grace";
+"yuanqi"="vitality";
+"zhigan"="texture";
+
+"beibei"="babe";
+"biaobaiqixi"="Confession Tanabata";
+"chitushaonü"="Dirt girl";
+"dianjita"="electric guitar";
+"gongzhumianju"="princess mask";
+"heimaoyanjing"="black cat glasses";
+"jiamian"="mask";
+"zhaocaimao"="Lucky Cat";
+"meihaoxinqing"="good mood";
+"konglongceshi"="dinosaur test";
+"shenshi"="gentleman";
+"tiaowuhuoji"="dancing turkey";
+"zhutouzhuer"="pig head pig ear";
+"zisemeihuo"="purple charm";
+
+//百度翻译部分
+"quangu" = "Cheekbones";
+"xiahe" = "Mandible";
+"yanjing" = "Eye";
+"bizi" = "Nose";
+"zuiba" = "Mouth";
+
+"Faceunity"="Faceunity";
+"Agora"="Agora";
+"Volcengine"="Volcengine";
+
+"skinCare"="SKIN";
+"microShap"="RESHAPE";
+"oneKeyDress"="MAKEUP";
+"sticker"="STICKERA";
+"dressUp"="DRESSUP";
+
+"Stay Tuned"="Stay Tuned";
+"ggnzbzcjqqd"="Stay Tuned ！";
+
+"Enabled"="Enabled";
+"Disabled"="Disabled";
+"Original Video"="Original Video";
+
+"chaofenxiaoguo"="Super resolution effect";
+"chaofenxiaoguoweikaiqi"="Super resolution not open";
+
+"PVCxiaoguo"="PVC effect";
+"PVCweikaiqi"="PVC not open";
+
+"ROIxiaoguo"="ROI effect";
+"ROIxiaoguoweikaiqi"="ROI not open";
+
+"qiyongchaofen"="Enable super resolution";
+"qiyongganzhishipinbianma"="Enable PVC";
+"qiyongganxingququyusuanfa"="Enable ROI";
+
+
+"jqxnpj"="Poor equipment performance, super resolution has been automatically turned off";
+
+"HDRxiaoguo"="HDR effect";
+"HDRxiaoguoweikaiqi"="HDR not open";
+"qiyongHDR"="Enable HDR";
+
+"qysczq"="Enable color enhancement";
+"sczqqd"="Color enhancement intensity";
+"fsbhqd"="Skin color protection intensity";
+
+"qyagzq"="Enable Dark light enhancement";
+"xnyx"="Performance priority";
+"hzyx"="Picture quality first";
+
+"qyspjz"="Enable Video noise reduction";
+"dghms"="Low power mode";
+"jhms"="Equilibrium mode";
+"qjzms"="Strong noise reduction mode";
+
+"yhxy2"="User agreement";
+"yszc2"="Privacy policy";
+"tcdl"="Log out";
+"zxzh"="Cancel an account";
+"tcdlh"="After logging out, we will keep your data information and look forward to meeting you next time.";
+"zxh"="After cancellation, you will not be able to experience our service with your current account. Please consider it carefully.";
+
+"qx"="Cancel";
+"qrtc"="Exit";
+"qrzx"="Confirm";
+"zbzx"="Cancel";
+
+"ty"="Agree";
+"bty"="Disagree";
+"wyydbtyfwtkhystk"="I have read and agreed to the terms of service and privacy terms";
+"yhxy1"="service";
+"yszc1"="privacy";
+"hytyswfw"="Welcome to Agora";
+"sjh"="cell-phone number";
+"yzm"="Verification code";
+"fsyzm"="Send verification code";
+"yzsb"="Authentication failed";
+"qsryyzm"="verification code";
+"dl"="Log in";
+"wcyz"="Complete the verification";
+"tdxfhkwcpt"="Drag the lower slider to complete the puzzle";
+"cxhq"="Reacquire";
+
+"sz"="Setting";
+"xjqx"="Please click “Setting” to enable the camera permission, which is used the video function when you use the App";

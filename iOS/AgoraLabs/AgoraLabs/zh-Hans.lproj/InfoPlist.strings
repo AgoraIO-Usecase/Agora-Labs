@@ -1,0 +1,18 @@
+/* 
+  InfoPlist.strings
+  AgoraLabs
+
+  Created by LiaoChenliang on 2023/1/4.
+  Copyright © 2023 Agora Corp. All rights reserved.
+*/
+
+
+NSCameraUsageDescription ="请点击”允许”以允许访问。如果不允许,你将无法使用虚拟背景、超分等视频体验相关功能";
+
+NSPhotoLibraryAddUsageDescription ="“声网实验室”想访问您的照片，为了帮您实现虚拟背景设置自定义背景图片";
+
+NSPhotoLibraryUsageDescription ="“声网实验室”想访问您的照片，为了帮您实现虚拟背景设置自定义背景图片";
+
+CFBundleDisplayName = "声网实验室";
+
+//UILaunchStoryboardName = "LaunchScreen_CN";
