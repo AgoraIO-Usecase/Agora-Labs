@@ -48,9 +48,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
         if(v.getId()== R.id.iv_back){
             Navigation.findNavController(v).popBackStack();
         }else if(v.getId()==R.id.user_agreement){
-            openUrl("https://accktvpic.oss-cn-beijing.aliyuncs.com/pic/meta/demo/fulldemoStatic/privacy/service.html");
+            openUrl("https://www.shengwang.cn/contracts/lab/service-term/");
         }else if(v.getId()==R.id.user_privacy_policy){
-            openUrl("https://accktvpic.oss-cn-beijing.aliyuncs.com/pic/meta/demo/fulldemoStatic/privacy/privacy.html");
+            openUrl("https://www.shengwang.cn/contracts/lab/privacy-term/");
         } else if(v.getId()==R.id.user_sign_out){
             if (logoutDialog == null) {
                 logoutDialog = new CommonDialog(requireContext());

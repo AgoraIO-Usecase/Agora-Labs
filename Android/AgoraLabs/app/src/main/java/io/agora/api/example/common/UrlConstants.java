@@ -2,7 +2,7 @@ package io.agora.api.example.common;
 
 public class UrlConstants {
     //    public static final String BASE_URL = "http://124.220.20.196:8006";
-    public static final String BASE_URL = "https://gateway-fulldemo-staging.agoralab.co";
+    public static final String BASE_URL = "https://gateway-fulldemo.agoralab.co";
     public static final String BASE_REQUEST_LOGIN_BY_TOKEN = "/api-login";//
     public static final String BASE_REQUEST_ROOM_BY_TOKEN = "/api-room";//
 
