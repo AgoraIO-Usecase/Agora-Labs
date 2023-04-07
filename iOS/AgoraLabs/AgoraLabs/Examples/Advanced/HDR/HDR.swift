@@ -131,17 +131,8 @@ class HDR: BaseViewController {
         if isOpenHDR == enabled {
             return
         }
-        let json = JSON(["che.video.enable_hdr_capture":enabled,
-                         "engine.video.enable_hw_encoder":true,
-                         "engine.video.codec_type":"3"]).rawString() ?? ""
-        let rt = agoraKit.setParameters(json)
+
         self.isOpenHDR = enabled
-        if rt != 0 {
-            AGHUD.showFaild(info: "HDR Enable False:\(rt)")
-            self.openSwitch.isOn = false
-            self.isOpenHDR = false
-            self.switchOpenChange(self.openSwitch)
-        }
     }
 }
 
@@ -186,4 +177,3 @@ extension HDR:AgoraRtcEngineDelegate{
     }
     
 }
-

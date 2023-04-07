@@ -7,11 +7,11 @@
 */
 
 
-NSCameraUsageDescription ="请点击“好”以开启摄像头权限，用于你使用时体验视频功能";
+NSCameraUsageDescription ="请点击”允许”以允许访问。如果不允许,你将无法使用虚拟背景、超分等视频体验相关功能";
 
-NSPhotoLibraryAddUsageDescription ="APP需要您的允许才能将照片保存到相册 ";
+NSPhotoLibraryAddUsageDescription ="“声网实验室”想访问您的照片，为了帮您实现虚拟背景设置自定义背景图片";
 
-NSPhotoLibraryUsageDescription ="APP需要您的允许才能访问相册";
+NSPhotoLibraryUsageDescription ="“声网实验室”想访问您的照片，为了帮您实现虚拟背景设置自定义背景图片";
 
 CFBundleDisplayName = "声网实验室";
 

@@ -198,19 +198,7 @@ class SuperResolution: BaseViewController {
     }
     
     func setupSuperResolution(enabled:Bool) {
-        let json = JSON([
-            "rtc.video.enable_sr":[
-                "uid":AgoraLabsUser.sendUid,
-                "enabled":enabled,
-                "mode":1
-            ]
-        ]).rawString() ?? ""
-        let rt = agoraKit.setParameters(json)
-        if rt != 0 {
-            AGHUD.showFaild(info: "Enable SR False:\(rt)")
-            self.openSwitch.isOn = false
-            self.switchOpenChange(self.openSwitch)
-        }
+
     }
 }
 
@@ -259,4 +247,3 @@ extension SuperResolution:AgoraMediaFilterEventDelegate,AgoraRtcEngineDelegate{
 //    }
     
 }
-

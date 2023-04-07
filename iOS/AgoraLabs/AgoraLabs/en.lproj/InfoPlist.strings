@@ -7,8 +7,9 @@
 */
 
 
-NSCameraUsageDescription ="Please click “OK” to enable the camera permission, which is used the video function when you use the App";
-NSPhotoLibraryAddUsageDescription ="App needs your permission to save photos to album";
-NSPhotoLibraryUsageDescription ="App needs your permission to access the album";
+NSCameraUsageDescription ="Please click 'OK' to allow access. If not allowed, you will not be able to use video experience related features such as VirtualBackground and SuperResolution
+";
+NSPhotoLibraryAddUsageDescription ="“Agora Labs“ wants to access your photos, in order to help you  customize background images in VirtualBackground ";
+NSPhotoLibraryUsageDescription ="“Agora Labs” wants to access your photos, in order to help you  customize background images in VirtualBackground ";
 CFBundleDisplayName = "AgoraLabs";
 //UILaunchStoryboardName = "LaunchScreen";

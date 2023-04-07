@@ -229,15 +229,9 @@ class PVC: BaseViewController {
         if isOpenPVC == enabled {
             return
         }
-        let json = JSON(["rtc.video.enable_pvc":enabled]).rawString() ?? ""
-        let rt = agoraKit.setParameters(json)
+
         self.isOpenPVC = enabled
-        if rt != 0 {
-            AGHUD.showFaild(info: "Enable PVC False:\(rt)")
-            self.openSwitch.isOn = false
-            self.isOpenPVC = false
-            self.switchOpenChange(self.openSwitch)
-        }
+
     }
 }
 

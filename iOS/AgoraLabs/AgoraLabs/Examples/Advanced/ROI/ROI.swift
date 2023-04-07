@@ -206,18 +206,8 @@ class ROI: BaseViewController {
             return
         }
         
-        let json = JSON(["che.video.roiEnable":enabled,
-                         "engine.video.enable_hw_encoder":false,
-                         "rtc.video.roi_max_qp":1000,
-                         "rtc.video.roi_qp_offset":2]).rawString() ?? ""
-        let rt = agoraKit.setParameters(json)
         self.isOpenROI = enabled
-        if rt != 0 {
-            AGHUD.showFaild(info: "ROIEnable False:\(rt)")
-            self.openSwitch.isOn = false
-            self.isOpenROI = false
-            self.switchOpenChange(self.openSwitch)
-        }
+        
     }
     
     func setupDebuglog(){
