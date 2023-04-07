@@ -143,12 +143,7 @@ public class ROIFragment extends Fragment implements View.OnClickListener{
         tvROI.setText(roiEnabled ?R.string.roi_enabled:R.string.roi_disabled);
         tvROI.setBackgroundResource(roiEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
         if(roiEnabled){
-            rtcEngine.setParameters("{\"che.video.roiEnable\":true}");
-            rtcEngine.setParameters("{\"engine.video.enable_hw_encoder\":false}");
-            rtcEngine.setParameters("{\"rtc.video.roi_max_qp\":1000}");
-            rtcEngine.setParameters("{\"rtc.video.roi_qp_offset\":3}");
         }else{
-            rtcEngine.setParameters("{\"che.video.roiEnable\":false}");
         }
     }
 

@@ -203,7 +203,7 @@ public class VirtualBgFragment extends Fragment implements View.OnClickListener{
     private void setSplitGreenScreen(boolean enabled){
         if(enabled) {
             segmentationProperty.modelType = SegmentationProperty.SEG_MODEL_GREEN;
-            segmentationProperty.greenCapacity = 0.8f;
+            segmentationProperty.greenCapacity = 0.5f;
         }else{
             segmentationProperty.modelType = SegmentationProperty.SEG_MODEL_AI;
         }

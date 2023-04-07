@@ -155,11 +155,7 @@ public class SuperResolutionFragment extends Fragment implements View.OnClickLis
 
     private void setSRValue(){
         if(srEnabled) {
-            rtcEngine.setParameters("{\"rtc.video.enable_sr\":{\"uid\":"+senderUid+
-                ",\"enabled\":true,\"mode\":1}}");
         }else{
-            rtcEngine.setParameters("{\"rtc.video.enable_sr\":{\"uid\":"+senderUid+
-                ",\"enabled\":false,\"mode\":1}}");
         }
     }
 

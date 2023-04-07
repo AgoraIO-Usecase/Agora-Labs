@@ -20,6 +20,7 @@ import io.agora.api.example.common.dialog.SwipeCaptchaDialog;
 import io.agora.api.example.databinding.AppActivityPhoneLoginBinding;
 import io.agora.api.example.login.LoginViewModel;
 import io.agora.api.example.utils.CountDownTimerUtils;
+import io.agora.api.example.utils.SystemUtil;
 import io.agora.api.example.utils.ToastUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -65,6 +66,7 @@ public class PhoneLoginRegisterActivity  extends BaseViewBindingActivity<AppActi
         //            }
         //        }
         countDownTimerUtils = new CountDownTimerUtils(getBinding().tvSendVCode, 300000, 1000);
+        getBinding().version.setText(SystemUtil.getVersionName(this));
     }
 
     /**
@@ -85,10 +87,10 @@ public class PhoneLoginRegisterActivity  extends BaseViewBindingActivity<AppActi
     @Override
     public void initListener() {
         getBinding().tvUserAgreement.setOnClickListener(view -> {
-            openUrl("https://accktvpic.oss-cn-beijing.aliyuncs.com/pic/meta/demo/fulldemoStatic/privacy/service.html");
+            openUrl("https://www.shengwang.cn/contracts/lab/service-term/");
         });
         getBinding().tvPrivacyAgreement.setOnClickListener(view -> {
-            openUrl("https://accktvpic.oss-cn-beijing.aliyuncs.com/pic/meta/demo/fulldemoStatic/privacy/privacy.html");
+            openUrl("https://www.shengwang.cn/contracts/lab/privacy-term/");
         });
         getBinding().btnLogin.setOnClickListener(view -> {
             if (getBinding().cvIAgree.isChecked()) {

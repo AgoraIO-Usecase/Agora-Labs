@@ -199,9 +199,7 @@ public class PVCFragment extends Fragment implements View.OnClickListener{
         tvPVC.setText(pvcEnabled?R.string.pvc_enabled:R.string.pvc_disabled);
         tvPVC.setBackgroundResource(pvcEnabled?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
         if(pvcEnabled){
-            rtcEngine.setParameters("{\"rtc.video.enable_pvc\":true}");
         }else{
-            rtcEngine.setParameters("{\"rtc.video.enable_pvc\":false}");
         }
     }
 
