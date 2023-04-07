@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 iOS/AgoraLabs/AgoraLabs/Common/BeautyTool/BeautyResource/
 iOS/libs
 git.sh
@@ -8,6 +9,8 @@ iOS/AgoraLabs/AgoraLabs/Common/BeautyTool/ByteDance/LicenseNewBag.bundle
 sh
 iOS/AgoraLabs/libs-iOS
 =======
+=======
+>>>>>>> 45f09708db5112b2c4a6e969c3d9b569b0ee585a
 *.iml
 .gradle
 /local.properties
@@ -36,4 +39,7 @@ Android/AgoraLabs/app/src/main/res/values/string_configs.xml
 Android/AgoraLabs/app/build.gradle
 Android/AgoraLabs/app/agoralab.keystore
 iOS
+<<<<<<< HEAD
 >>>>>>> add gitignore
+=======
+>>>>>>> 45f09708db5112b2c4a6e969c3d9b569b0ee585a
