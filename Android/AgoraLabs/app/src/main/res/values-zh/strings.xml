@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">声网实验室</string>
+    <string name="channel_id">频道ID</string>
+    <string name="join">加入</string>
+    <string name="leave">离开</string>
+    <string name="earpiece">听筒</string>
+    <string name="speaker">扬声器</string>
+    <string name="openmicrophone">打开麦克风</string>
+    <string name="closemicrophone">关闭麦克风</string>
+    <string name="resolution">分辨率</string>
+    <string name="framerate">帧率</string>
+    <string name="video_orientation">视频朝向</string>
+
+
+    <string name="setting">设置</string>
+    <string name="sdkversion">SDK版本</string>
+    <string name="sdkversion1">V%s</string>
+    <string name="enable_publish">开启连麦</string>
+    <string name="disnable_publish">关闭连麦</string>
+    <string name="enable_low_latency">开启极速直播</string>
+    <string name="disable_low_latency">关闭极速直播</string>
+    <string name="next">下一步</string>
+
+    <string name="item_joinaudio">音频互动直播</string>
+    <string name="item_joinvideo">视频互动直播</string>
+    <string name="item_joinvideo_by_token">视频互动直播(Token验证)</string>
+    <string name="item_livestreaming">RTC实时直播</string>
+
+    <string name="joinchannelaudio">此示例演示了如何使用SDK加入频道进行纯语音通话的功能。</string>
+    <string name="joinchannelvideo">此示例演示了如何使用SDK加入频道进行音视频通话的功能。</string>
+    <string name="joinchannelvideoByToken">此示例演示了如何使用SDK加入带token的频道进行音视频通话的功能。</string>
+    <string name="livestreaming">此示例演示了如何使用极速直播功能再音视频通话中进行连麦。</string>
+
+    <string name="switch_camera">切换摄像头</string>
+
+    <string name="remote_screenshot">远端截图</string>
+    <string name="remote_screenshot_tip">当前没有远端用户，请加入频道并等待远端用户加入</string>
+    <string name="area">区域</string>
+    <string name="watermark">水印</string>
+    <string name="low_stream">小流</string>
+    <string name="float_window_confirm_dialog_msg">您的手机没有授予悬浮窗权限，请开启后再试</string>
+    <string name="float_window_confirm_dialog_confirm">现在去开启</string>
+    <string name="float_window_confirm_dialog_cancel">暂不开启</string>
+    <string name="token_invalid">Token不存在</string>
+    <string name="token_expired">Token已过期</string>
+    <string name="open_in_browser">在默认浏览器打开</string>
+    <string name="refresh">刷新</string>
+    <string name="save">保存</string>
+    <string name="app_id_empty">AppID为空！</string>
+
+    
+    <string name="special_effect">特效</string>
+    <string name="video_quality">画质</string>
+    <string name="virtul_bg">虚拟背景</string>
+    <string name="beauty">美颜</string>
+    <string name="denoise">降噪</string>
+    <string name="light_dark">暗光</string>
+    <string name="adaptive_sharpen">自适应锐化</string>
+    <string name="color_enhance">色彩增强</string>
+    <string name="pvc">感知视频编码</string>
+    <string name="roi">感兴趣区域算法</string>
+    <string name="super_res">超分</string>
+    <string name="super_quality">超级画质</string>
+    <string name="hdr">HDR</string>
+    <string name="ai_noise_reduction">AI降噪</string>
+    <string name="ai_echo_cancellation">AI声学回声消除</string>
+    <string name="spacial_audio">空间音频</string>
+    <string name="stt">语音转写</string>
+    <string name="multi_link">多链路聚合传播</string>
+    <string name="anti_weak_network">抗弱网机制</string>
+    <string name="face_capture">脸部捕捉</string>
+    <string name="motion_capture">动作捕捉</string>
+    <string name="voice_drive">语音驱动</string>
+
+    <string name="tab_video">视频</string>
+    <string name="tab_audio">音频</string>
+    <string name="tab_net_optimize">网络优化</string>
+    <string name="tab_algorithmic">基础算法</string>
+    <string name="stay_tuned">敬请期待</string>
+
+    <string name="original_image">原图</string>
+    <string name="background_blur">背影虚化</string>
+    <string name="split_green_screen">绿幕分割</string>
+    <string name="landscape">风景</string>
+    <string name="meeting_room">会议室</string>
+    <string name="customize">自定义</string>
+
+    <string name="beauty_sdk_xiangxin">相芯科技</string>
+    <string name="beauty_sdk_agora">声网</string>
+    <string name="beauty_sdk_volc">火山引擎</string>
+
+    <string name="beauty_skin">美肤</string>
+    <string name="micro_plastic">微整形</string>
+    <string name="style_makeup">风格妆</string>
+    <string name="sticker">贴纸</string>
+    <string name="makeups">美妆</string>
+
+    <string name="sharpen">锐化</string>
+    <string name="buffing">磨皮</string>
+    <string name="whiten">美白</string>
+    <string name="ruddy">红润</string>
+    <string name="thin_face">瘦脸</string>
+    <string name="big_eye">大眼</string>
+    <string name="remove_dark_circles">去黑眼圈</string>
+    <string name="beauty_tooth">美牙</string>
+    <string name="nasolabial_folds">去法令纹</string>
+    <string name="narrow_face">窄脸</string>
+    <string name="cheekbone">颧骨</string>
+    <string name="lower_jaw">下颌</string>
+    <string name="eye">眼晴</string>
+    <string name="nose">鼻子</string>
+    <string name="mouth">嘴巴</string>
+    <string name="love_beans">爱豆</string>
+    <string name="white_tea">白茶</string>
+    <string name="white">白皙</string>
+    <string name="glacier">冰川</string>
+    <string name="core">C位</string>
+    <string name="broken_eyebrow">断眉</string>
+    <string name="korean">韩系</string>
+    <string name="no_cubs">没有小熊</string>
+    <string name="warm_man">暖男</string>
+    <string name="occident">欧美</string>
+    <string name="look">气色</string>
+    <string name="profound">深邃</string>
+    <string name="sweet">甜美</string>
+    <string name="warmth">温暖</string>
+    <string name="grace">优雅</string>
+    <string name="vitality">元气</string>
+    <string name="texture">质感</string>
+    <string name="babe">贝贝</string>
+    <string name="confession_tanabata">表白七夕</string>
+    <string name="dirt_girl">吃土少女</string>
+    <string name="electric_guitar">电吉它</string>
+    <string name="princess_mask">公主面具</string>
+    <string name="black_cat_glasses">黑猫眼镜</string>
+    <string name="mask">假面</string>
+    <string name="luck_cat">招财猫</string>
+    <string name="good_mood">美好心情</string>
+    <string name="dinosaur_test">恐龙测试</string>
+    <string name="gentleman">绅士</string>
+    <string name="dancing_turkey">跳舞火鸡</string>
+    <string name="pig_head_pig_ears">猪头猪耳</string>
+    <string name="purple_charm">紫色魅惑</string>
+    <string name="lip_stick">口红</string>
+    <string name="blush">腮红</string>
+    <string name="trimming">修容</string>
+    <string name="eyelash">睫毛</string>
+    <string name="eyebrow">眉毛</string>
+    <string name="circle_lenses">美瞳</string>
+
+    <string name="lighten">亮度</string>
+    <string name="contrast">对比度</string>
+    <string name="enable_super_quality">启用超级画质</string>
+    <string name="enable_pvc">启用感知视频编码</string>
+    <string name="original_video">原视频</string>
+    <string name="bitrate_value">码率: %d kbps</string>
+    <string name="bitrate">码率</string>
+    <string name="pvc_enabled">PVC效果</string>
+    <string name="pvc_disabled">PVC未开启</string>
+    <string name="super_quality_enabled">超级画质效果</string>
+    <string name="super_quality_disabled">超级画质未开启</string>
+    <string name="feature_not_supported">该功能暂不支持,敬请期待</string>
+    <string name="resource_preparing">资源准备中，请稍候</string>
+
+    <string name="enable_roi">启用感兴趣区域算法</string>
+    <string name="roi_enabled">ROI效果</string>
+    <string name="roi_disabled">ROI效果未开启</string>
+
+    <string name="enable_sr">启用超分</string>
+    <string name="sr_enabled">超分效果</string>
+    <string name="sr_disabled">超分未开启</string>
+    <string name="sr_enabled_failed">机器性能瓶颈，自动关闭超分</string>
+    <string name="sr_1">1倍</string>
+    <string name="sr_1_33">1.33倍</string>
+    <string name="sr_1_5">1.5倍</string>
+    <string name="sr_2">2.0倍</string>
+    <string name="imge_type_not_support">暂不支持该图片类型!</string>
+    <string name="settings">设置</string>
+    <string name="user_agreement">用户协议</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="sign_out">退出登录</string>
+    <string name="logout">注销账号</string>
+
+    <string name="enable_color_enhancement">启用色彩增强</string>
+    <string name="skin_tone_protection_intensity">肤色保护强度</string>
+    <string name="color_enhancement_intensity">色彩增强强度</string>
+
+    <string name="dark_light_enhancement">暗光增强</string>
+    <string name="enable_dark_light_enhancement">启用暗光增强</string>
+    <string name="performance_priority">性能优先</string>
+    <string name="picture_quality_first">画质优先</string>
+    <string name="turn_on_or_off_dark_light_enhancement">启用/关闭 暗光增强</string>
+
+    <string name="video_noise_reduction">视频降噪</string>
+    <string name="turn_on_off_video_noise_reduction">启用视频降噪</string>
+
+    <string name="low_power_mode">低功耗模式</string>
+    <string name="equilibrium_mode">均衡模式</string>
+    <string name="strong_noise_reduction_mode">强降噪模式</string>
+    <string name="noise_reduction_effect">降噪效果</string>
+    <string name="try_again_to_exit">再按一次退出应用</string>
+    <string name="permission_leak_tip">需要相应权限，请打开</string>
+
+    <string name="agree">同意</string>
+    <string name="disagree">不同意</string>
+
+    <string name="app_exit">退出</string>
+    <string name="app_user_agreement">用户协议</string>
+    <string name="app_privacy_agreement">隐私政策</string>
+    <string name="app_about_us">关于我们</string>
+    <string name="privacy_protection_tip1">声网实验室软件是一款用于向声网客户展示产品使用效果的测试产品，仅用于测试产品的功能、性能和可用性，而非提供给大众使用的正式产品。\n1.我们将依据《用户协议》及《隐私政策》来帮助您了解我们在收集、使用、存储您个人信息的情况以及您享有的相关权利。\n2.在您使用本测试软件时，我们将收集您的设备信息、日志信息等，同时根据不同使用场景，你可以授予我们获取您设备的麦克风权限、摄像头权限等信息。\n\n您可通过阅读完整的《用户协议》及《隐私政策》来了解详细信息。</string>
+    <string name="privacy_protection_tip2">同意 用户协议 及 隐私政策 后，声网实验室才能为您提供协作服务。</string>
+
+    <string name="app_register_account">注册账号</string>
+    <string name="app_welcome_experience">欢迎体验声网服务</string>
+    <string name="app_mobile_number">手机号</string>
+    <string name="app_v_code">验证码</string>
+    <string name="send_v_code">发送验证码</string>
+    <string name="app_please_input_v_code">请输入验证码</string>
+    <string name="app_please_input_account">请输入手机号</string>
+    <string name="app_plus_86">+86</string>
+    <string name="i_agree">我已阅读并同意</string>
+    <string name="app_and">及</string>
+    <string name="app_login">登录</string>
+    <string name="complete_validation">完成验证</string>
+    <string name="drag_complete">拖动下方滑块完成拼图</string>
+    <string name="cancel">取消</string>
+    <string name="app_logoff">确认注销</string>
+    <string name="app_logoff_cancel">暂不注销</string>
+    <string name="logout_tips_title">确定退出登录吗？</string>
+    <string name="logout_tips_msg">退出登录后，我们还会继续保留您的账户数据，记得再来体验哦～</string>
+    <string name="logoff_tips_title">确定注销账号？</string>
+    <string name="logoff_tips_msg">注销后，您将无法用当前账号体验我们的服务，请谨慎考虑</string>
+    <string name="reacquire">重新获取</string>
+    <string name="please_enter_the_correct_phone_number">请输入正确的手机号</string>
+    <string name="please_agree_to_our_privacy_policy_and_user_agreement">请同意我们的隐私政策与用户协议</string>
+    <string name="agree_and_continue">同意并继续</string>
+    <string name="disagree_and_exit">不同意</string>
+    <string name="verification_code_sent_successfully">验证码发送成功</string>
+    <string name="verification_code_sent_failed">验证码发送失败</string>
+    <string name="login_successful">登录成功</string>
+
+    <string name="request_permission">权限需求</string>
+    <string name="need_permissions">我们需要 %s 权限</string>
+    <string name="action_ok">确定</string>
+    <string name="action_cancel">取消</string>
+    <string name="go">前往</string>
+    <string name="go_app_permission_settings_tip">我们需要相关权限以实现功能，点击前往，你将会被重定向到应用设置页，请在权限设置页开启相关的权限。</string>
+    <string name="powered_by_agora">Powered by Shengwang.cn</string>
+</resources>
