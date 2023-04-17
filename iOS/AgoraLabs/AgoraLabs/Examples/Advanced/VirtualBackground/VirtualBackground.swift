@@ -22,7 +22,8 @@ class VirtualBackground: BaseViewController {
         SubCellModel(name: "Blur",tag: 0,value: 1),
         SubCellModel(name: "Scenery",tag: 1, bgImageName: "Image1"),
         SubCellModel(name: "Meeting",tag: 2, bgImageName: "Image2"),
-        SubCellModel(name: "Customize",tag: 3)
+        SubCellModel(name: "Video",tag: 3, bgImageName: "Image2"),
+        SubCellModel(name: "Customize",tag: 4)
     ]
     
     var blurSlider:UISlider?
@@ -135,6 +136,10 @@ class VirtualBackground: BaseViewController {
             if let path = Bundle.main.path(forResource: "bg4", ofType: "jpeg") {
                 self.setVirtualImgBackground(imagePath: path)
             }
+        }else if model.name == "Video" {
+            if let path = Bundle.main.path(forResource: "vd1", ofType: "mp4") {
+                self.setVirtualVideoBackground(videoPath: path)
+            }
         }else if model.name == "Customize" {
             self.setVirtualImgBackground(imagePath: model.value as! String)
         }else if model.name == "Video Background" {
@@ -187,6 +192,15 @@ extension VirtualBackground {
         let virtualBG = AgoraVirtualBackgroundSource()
         virtualBG.backgroundSourceType = .img
         virtualBG.source = imagePath
+        let ret = agoraKit.enableVirtualBackground(true, backData: virtualBG, segData: stateProperty)
+        print("Gathering Mode ----设置返回值：\(ret)")
+    }
+    
+    // Gathering Mode
+    func setVirtualVideoBackground(videoPath:String) {
+        let virtualBG = AgoraVirtualBackgroundSource()
+        virtualBG.backgroundSourceType = .video
+        virtualBG.source = videoPath
         let ret = agoraKit.enableVirtualBackground(true, backData: virtualBG, segData: stateProperty)
         print("Gathering Mode ----设置返回值：\(ret)")
     }

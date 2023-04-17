@@ -39,7 +39,8 @@ class ViewController: UIViewController {
                 "key":"Effects",
                 "content":[
                     "Virtual Background",
-                    "Beautify Filter"
+                    "Beautify Filter",
+                    "Alpha Virtual Background"
                 ]
             ],
             [
@@ -90,7 +91,8 @@ class ViewController: UIViewController {
     var doneMap = ["Virtual Background",
                    "Beautify Filter",
                    "Super Resolution","ROI","PVC","HDR",
-                   "Color Enhancement","Video Noise Reduction","DarkLight Enhancement"]
+                   "Color Enhancement","Video Noise Reduction",
+                   "DarkLight Enhancement","Super Clarity","Alpha Virtual Background"]
     
     private var segmentedDataSource: JXSegmentedTitleDataSource!
     private var segmentedView: JXSegmentedView!

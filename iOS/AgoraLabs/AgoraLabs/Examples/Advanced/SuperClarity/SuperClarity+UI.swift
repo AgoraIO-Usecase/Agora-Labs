@@ -1,22 +1,24 @@
 //
-//  DarkLightEnhancement+UI.swift
+//  SuperClarity+UI.swift
 //  AgoraLabs
 //
-//  Created by LiaoChenliang on 2023/2/10.
+//  Created by LiaoChenliang on 2023/2/6.
 //  Copyright © 2023 Agora Corp. All rights reserved.
 //
 
 import AgoraRtcKit
 import SnapKitExtend
+import ASValueTrackingSlider
 import UIKit
 
-extension DarkLightEnhancement {
+extension SuperClarity {
     
     func setupUI() {
         self.setupNavigation()
         self.setupBottom()
         self.setupShowContentView()
         self.setupBottomContentView()
+        self.setupMultipleView()
     }
     
     func setupNavigation() {
@@ -26,7 +28,7 @@ extension DarkLightEnhancement {
         button.frame = CGRect(x:0, y:0, width:65, height:30)
         button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
-        button.setTitle("DarkLight Enhancement".localized, for: .normal)
+        button.setTitle("Super Clarity".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
         let leftBarBtn = UIBarButtonItem(customView: button)
         self.navigationItem.leftBarButtonItem = leftBarBtn
@@ -52,8 +54,8 @@ extension DarkLightEnhancement {
             make.edges.equalToSuperview()
         }
         
-        contentView.addSubview(localVideoView)
-        localVideoView.snp.makeConstraints { make in
+        contentView.addSubview(remoteVideoView)
+        remoteVideoView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(contentView.snp.top)
             make.height.equalTo(contentView.snp.height)
@@ -62,20 +64,19 @@ extension DarkLightEnhancement {
         self.view.bringSubviewToFront(bottomView)
     }
     
-    
     func setupBottom() {
         
         self.view.addSubview(bottomView)
         bottomView.snp.makeConstraints { make in
             make.bottom.left.right.equalToSuperview()
-            make.height.equalTo(SCREEN_BOTTOM_HEIGHT+62+62)
+            make.height.equalTo(SCREEN_BOTTOM_HEIGHT+62+118)
         }
         
         bottomView.addSubview(bottomContentView)
         bottomContentView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview().offset(-SCREEN_BOTTOM_HEIGHT)
-            make.height.equalTo(62)
+            make.height.equalTo(118)
         }
         
         self.view.addSubview(multipleView)
@@ -107,7 +108,7 @@ extension DarkLightEnhancement {
         
     func setupBottomContentView() {
         let funNameLabel = UILabel()
-        funNameLabel.text = "qyagzq".localized
+        funNameLabel.text = "超级画质"
         funNameLabel.textColor = .white
         funNameLabel.font = UIFont.boldSystemFont(ofSize: 15)
         bottomView.addSubview(funNameLabel)
@@ -122,36 +123,50 @@ extension DarkLightEnhancement {
             make.right.equalToSuperview().offset(-16)
         }
         
-        for i in 0..<multipleModelList.count {
-            let itemModel = multipleModelList[i]
-            let button = SubButton(alphaNormal: 0.9)
-            itemModel.subView = button
-            itemModel.isSelected = i == 1
-            itemModel.isEnabled = false
-            button.tag = i
-            button.cornerRadius = 8
-            button.masksToBounds = true
-            button.alphaSelected = 0.9
-            button.isSelected = itemModel.isSelected
-            button.isEnabled = itemModel.isEnabled
-            button.addBlurEffect(style: .systemThinMaterialDark)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
-            button.setTitleColor(.lightGray, for: .disabled)
-            button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            button.setTitle(itemModel.name, for: .normal)
-            button.clickView {[weak self] sender in
-                self?.switchMultipleChange(sender as! SubButton)
+        for i in 0..<itemModelList.count {
+            let itemModel = itemModelList[i]
+            let itemView = SubCellView()
+            itemModel.subView = itemView
+            itemModel.isSelected = i == 0
+            itemView.tag = i
+            itemView.setupSubCellModel(itemModelList[i])
+            bottomContentView.addSubview(itemView)
+            itemView.clickView {[weak self] sender in
+                AGHUD.touchFeedback()
+                self?.switchResolution(tag: sender.tag)
             }
-            if i == 1 {
-                self.currentModel = itemModel
-            }
-            bottomContentView.addSubview(button)
         }
-        let buttonArr = multipleModelList.compactMap({$0.subView})
-        buttonArr.snp.distributeViewsAlong(axisType: .horizontal, fixedSpacing: 10, leadSpacing: 10, tailSpacing: 10)
+        
+        let buttonArr = itemModelList.compactMap({$0.subView})
+        buttonArr.snp.distributeViewsAlong(axisType: .horizontal, fixedSpacing: 39, leadSpacing: 31, tailSpacing: 31)
         buttonArr.snp.makeConstraints{
             $0.centerY.equalToSuperview()
-            $0.height.equalTo(40)
+            $0.height.equalTo(70)
+        }
+    }
+    
+    func setupMultipleView()  {
+        self.view.bringSubviewToFront(multipleView)
+        self.multipleView.isHidden = true
+        let rangeSlider = ASValueTrackingSlider()
+        rangeSlider.isHidden = false
+        rangeSlider.minimumTrackTintColor = "#4ca7ff".hexColor()
+        rangeSlider.maximumTrackTintColor = "#aeafb5".hexColor()
+        rangeSlider.dataSource = self
+        rangeSlider.delegate = self
+        rangeSlider.popUpViewWidthPaddingFactor = 1.5
+        rangeSlider.popUpViewHeightPaddingFactor = 1.5
+        rangeSlider.popUpViewColor = UIColor().setRgba(24, 25, 27, 0.6)
+        rangeSlider.popUpViewArrowLength = 0
+        rangeSlider.showPopUpView(animated: true)
+        rangeSlider.value = 1
+        rangeSlider.font = UIFont.systemFont(ofSize: 12)
+        self.blurSlider = rangeSlider
+        multipleView.addSubview(rangeSlider)
+        rangeSlider.snp.makeConstraints { make in
+            make.bottom.equalTo(bottomView.snp.top).offset(-16)
+            make.width.equalTo(SCREEN_WIDTH-60)
+            make.centerX.equalToSuperview()
         }
     }
     
@@ -165,33 +180,53 @@ extension DarkLightEnhancement {
         }else if recognizer.direction == .down {
             
             bottomView.snp.updateConstraints { make in
-                make.bottom.equalToSuperview().offset(62)
+                make.bottom.equalToSuperview().offset(118)
             }
             bottomContentView.isHidden = true
         }
     }
     
+    func switchResolution(tag:Int) {
+//        if openSwitch.isOn == false { return }
+        self.itemModelList.forEach { model in
+            model.isSelected = model.tag == tag
+            guard let itemView = model.subView as? SubCellView  else { return  }
+            itemView.setupSubCellModel(model)
+        }
+        guard let videoConfig = self.itemModelList[tag].value as? AgoraVideoEncoderConfiguration else { return }
+        self.setupResolution(videoConfig: videoConfig)
+        self.setupSuperResolution(enabled: openSwitch.isOn)
+    }
     
     @objc func switchOpenChange(_ sender:UISwitch)  {
         print("switchOpenChange - \(sender.isOn)")
-        self.localVideoView.titleSelected = sender.isOn
-        self.multipleModelList.forEach { model in
-            guard let itemView = model.subView as? SubButton  else { return  }
-            itemView.isEnabled = sender.isOn
+        self.remoteVideoView.titleSelected = sender.isOn
+        self.multipleView.isHidden = !sender.isOn
+        if sender.isOn == false {
+            self.isSharpenType = false
+            self.isSrType = false
         }
-        self.setupVideoDenoiser(enabled: sender.isOn)
+        self.setupSuperResolution(enabled: sender.isOn)
     }
     
-    func switchMultipleChange(_ sender:SubButton)  {
-        AGHUD.touchFeedback()
+    @objc func switchMultipleChange(_ sender:SubButton)  {
+        if openSwitch.isOn == false { return }
         self.multipleModelList.forEach { model in
             model.isSelected = model.tag == sender.tag
             guard let itemView = model.subView as? SubButton  else { return  }
             itemView.isSelected = model.isSelected
             if model.tag == sender.tag { self.currentModel = model }
         }
-        self.setupVideoDenoiser(enabled: self.openSwitch.isOn)
+        self.setupSuperResolution(enabled: true)
     }
-    
 }
 
+extension SuperClarity:ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate{
+    func sliderWillDisplayPopUpView(_ slider: ASValueTrackingSlider!) { }
+    
+    func slider(_ slider: ASValueTrackingSlider!, stringForValue value: Float) -> String! {
+        let blend = Int(slider.value*256)
+        self.setupSuperResolutionBlend(blend:blend)
+        return "\(blend)"
+    }
+}

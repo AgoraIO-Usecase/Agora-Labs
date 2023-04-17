@@ -1,33 +1,30 @@
 //
-//  VirtualBackground+UI.swift
+//  AlphaVirtualBackground+UI.swift
 //  AgoraLabs
 //
-//  Created by LiaoChenliang on 2022/12/6.
-//  Copyright © 2022 Agora Corp. All rights reserved.
+//  Created by LiaoChenliang on 2023/4/14.
+//  Copyright © 2023 Agora Corp. All rights reserved.
 //
-
-import UIKit
 import ZLPhotoBrowser
 import ASValueTrackingSlider
 import Photos
 
-extension VirtualBackground {
+extension AlphaVirtualBackground {
     
     func setupUI() {
         self.setupNavigation()
-        self.setupContentView()
-        self.setupGreenSwitch()
         self.setupBottom()
+        self.setupContentView()
     }
     
     func setupNavigation() {
         self.view.backgroundColor = SCREEN_CCC_COLOR.hexColor()
-
+        
         let button = UIButton(type: .custom)
         button.frame = CGRect(x:0, y:0, width:65, height:30)
         button.setImage(UIImage(named:"ChevronLeft"), for: .normal)
         button.setImage(UIImage(named:"ChevronLeft"), for: .highlighted)
-        button.setTitle("Virtual Background".localized, for: .normal)
+        button.setTitle("Alpha Virtual Background".localized, for: .normal)
         button.addTarget(self, action: #selector(backBtnDidClick), for: .touchUpInside)
         button.titleLabel?.setupShadow()
         let leftBarBtn = UIBarButtonItem(customView: button)
@@ -47,44 +44,40 @@ extension VirtualBackground {
         navigationItem.rightBarButtonItem = barItemOne
     }
     
-    func setupGreenSwitch()  {
-        let greenSwitch = UISwitch()
-        greenSwitch.addTarget(self, action: #selector(switchOpenGreenChange(_:)), for: .valueChanged)
-        greenSwitch.onTintColor = "099DFD".hexColor()
-        greenSwitch.isOn = false
-        greenModel.subView = greenSwitch
-        self.view.addSubview(greenSwitch)
-        greenSwitch.snp.makeConstraints { (make) in
-            make.right.equalToSuperview().offset(-16)
-            make.top.equalToSuperview().offset(Int(SCREEN_NAV_FULL_HEIGHT)+16)
-        }
-        
-        let greenlabel = UILabel().setupShadow()
-        greenlabel.text = "Split Green Screen".localized
-        greenlabel.textColor = .white
-        greenlabel.font = UIFont.systemFont(ofSize: 14)
-        self.view.addSubview(greenlabel)
-        greenlabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(greenSwitch)
-            make.right.equalTo(greenSwitch.snp.left).offset(-4)
-        }
-        
-    }
     
     func setupContentView() {
-        let localView = UIView()
-        localView.backgroundColor = UIColor.black
-        self.localVideoView = localView
-        self.view.addSubview(localView)
-        localView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        self.view.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(bottomView.snp.top).offset(SCREEN_RECT_CORNER)
+        }
+        
+        remoteVideoView.cornerRadius = 0
+        contentView.addSubview(remoteVideoView)
+        remoteVideoView.snp.remakeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(contentView.snp.height)
+        }
+        
+        localVideoView.reloadPosition(type: .outside)
+        localVideoView.cornerRadius = 8
+        contentView.addSubview(localVideoView)
+        contentView.bringSubviewToFront(localVideoView)
+        localVideoView.snp.remakeConstraints { make in
+            make.right.equalToSuperview().offset(-16)
+            make.bottom.equalTo(bottomView.snp.top).offset(-16)
+            make.size.equalTo(CGSize(width: 160, height: 200))
+        }
+        
+        self.view.addSubview(touchView)
+        touchView.snp.remakeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(touchRect.size)
         }
     }
-
+    
     
     func setupBottom() {
-        let bottomView = UIView()
-        bottomView.backgroundColor = SCREEN_MASK_COLOR.hexColor()
         self.view.addSubview(bottomView)
         bottomView.snp.makeConstraints { make in
             make.bottom.left.right.equalToSuperview()
@@ -104,7 +97,7 @@ extension VirtualBackground {
         subView.clickView {[weak self] sender in
             self?.itemViewClick(index: -1)
         }
-
+        
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
         bottomView.addSubview(scrollView)
@@ -125,7 +118,7 @@ extension VirtualBackground {
             let itemModel = itemModelList[i]
             let itemView = SubCellView()
             itemModel.subView = itemView
-            itemView.tag = i
+            itemView.tag = itemModel.tag
             itemView.setupSubCellModel(itemModel)
             contentV.addSubview(itemView)
             itemView.snp.makeConstraints { (make) in
@@ -146,7 +139,7 @@ extension VirtualBackground {
             make.left.equalTo(subView.snp.right)
             make.width.equalTo(16)
         }
-    
+        
         let c0 = SCREEN_MASK_COLOR.hexColor().withAlphaComponent(0.0)
         let c1 = SCREEN_MASK_COLOR.hexColor().withAlphaComponent(1)
         maskView.colorGradient(color0: c0, color1: c1, point0: CGPoint(x: 1, y: 0.5), point1: CGPoint(x: 0, y: 0.5))
@@ -171,15 +164,25 @@ extension VirtualBackground {
             make.width.equalTo(SCREEN_WIDTH-60)
             make.centerX.equalToSuperview()
         }
-
+        
     }
     
-   
-    
+    @objc func didPan(_ gesture: UIPanGestureRecognizer) {
+        // 获取当前的位置
+        let translation = gesture.translation(in: view)
+        // 更新视图的 frame
+        self.touchView.frame.origin.x += translation.x
+        self.touchView.frame.origin.y += translation.y
+        // 重置手势的偏移量
+        gesture.setTranslation(CGPoint.zero, in: view)
+        self.touchRect = CGRect(origin: self.touchView.frame.origin, size: self.touchRect.size)
+        let trconfig = self.setupLocalTranscoderConfiguration()
+        agoraKit.updateLocalTranscoderConfiguration(trconfig)
+    }
 }
 
-extension VirtualBackground {
-      
+extension AlphaVirtualBackground {
+    
     private func itemViewClick(index:Int) {
         
         if index == -1 {
@@ -195,10 +198,6 @@ extension VirtualBackground {
                 itemView.setupSubCellModel(self.originalModel)
             }
             
-            if let itemView = self.greenModel.subView as? UISwitch {
-                itemView.isOn = false
-                self.switchOpenGreenChange(itemView)
-            }
             AGHUD.touchFeedback()
             self.originalViewClick()
         }else {
@@ -231,7 +230,7 @@ extension VirtualBackground {
 }
 
 //添加自定义背景图
-extension VirtualBackground {
+extension AlphaVirtualBackground {
     private func showImagePickerVC(){
         let config = ZLPhotoConfiguration.default()
         config.allowSelectVideo = false
@@ -239,12 +238,13 @@ extension VirtualBackground {
         config.maxSelectCount = 1
         let ps = ZLPhotoPreviewSheet()
         ps.selectImageBlock = { [weak self] (images, assets, isOriginal) in
-            let path = NSHomeDirectory() + "/Documents/CustomizeImage.png"
+            let timestamp = Date().timeIntervalSince1970
+            let path = NSHomeDirectory() + "/Documents/CustomizeImage\(timestamp).jpeg"
             do {
-                try images.first?.pngData()?.write(to: URL(fileURLWithPath: path))
+                try images.first?.jpegData(compressionQuality: 1)?.write(to: URL(fileURLWithPath: path))
                 self?.configAddLocalImg(path)
             }catch {
-                        
+                
             }
         }
         ps.showPhotoLibrary(sender: self)
@@ -259,7 +259,7 @@ extension VirtualBackground {
     }
 }
 
-extension VirtualBackground:ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate {
+extension AlphaVirtualBackground:ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate {
     func sliderWillDisplayPopUpView(_ slider: ASValueTrackingSlider!) { }
     
     func sliderViewWillEndTouch(_ slider: ASValueTrackingSlider!) {
@@ -300,5 +300,6 @@ extension VirtualBackground:ASValueTrackingSliderDataSource,ASValueTrackingSlide
         return newString
     }
     
-
+    
 }
+

@@ -69,6 +69,8 @@ class AGContrastView: UIView {
         _subTitleBtn.titleLabel?.layer.shadowColor = UIColor.black.cgColor
         _subTitleBtn.titleLabel?.layer.shadowOffset = CGSize(width: 1, height: 1)
         _subTitleBtn.titleLabel?.layer.shadowRadius = 1
+        _subTitleBtn.titleLabel?.numberOfLines = 0
+        _subTitleBtn.titleLabel?.lineBreakMode = .byWordWrapping
         return _subTitleBtn
     }()
     
