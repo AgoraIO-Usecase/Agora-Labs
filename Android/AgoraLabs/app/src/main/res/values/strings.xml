@@ -1,0 +1,307 @@
+<resources>
+    <string name="app_name">声网实验室</string>
+    <string name="channel_id">Channel ID</string>
+    <string name="token" translatable="false">Token</string>
+    <string name="app_id" translatable="false">App ID</string>
+    <string name="join">Join</string>
+    <string name="leave">Leave</string>
+    <string name="earpiece">Earpiece</string>
+    <string name="speaker">Speaker</string>
+    <string name="openmicrophone">OpenMicrophone</string>
+    <string name="closemicrophone">CloseMicrophone</string>
+    <string name="resolution">Resolution</string>
+    <string name="framerate">Frame Rate</string>
+    <string name="video_orientation">Video Orientation</string>
+
+    <string name="chanel_support_char" translatable="false">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890 !#$%()+-:;&lt;=.>?@[]^_{}|~,&amp;</string>
+
+    <string name="setting">Setting</string>
+    <string name="sdkversion">SDK Version</string>
+    <string name="sdkversion1">V%s</string>
+    <string name="enable_publish">Start Co-host</string>
+    <string name="disnable_publish">Stop Co-host</string>
+    <string name="enable_low_latency">Enable Ultra Low Latency</string>
+    <string name="disable_low_latency">Disable Ultra Low Latency</string>
+    <string name="next">Next Step</string>
+
+    <string name="item_joinaudio">Live Interactive Audio Streaming</string>
+    <string name="item_joinvideo">Live Interactive Video Streaming</string>
+    <string name="item_joinvideo_by_token">Live Interactive Video Streaming(Token Verify)</string>
+
+    <string name="item_livestreaming">RTC Live Streaming</string>
+
+    <string name="joinchannelaudio">This example demonstrates how to use the SDK to join channels for voice only calls.</string>
+    <string name="joinchannelvideo">This example demonstrates how to use the SDK to join channels for audio and video calls.</string>
+    <string name="joinchannelvideoByToken">This example demonstrates how to use the SDK to join channels by token for audio and video calls.</string>
+    <string name="livestreaming">This example demonstrates how to use live streaming api to switch client role in channel.</string>
+
+    <string name="switch_camera">Switch Camera</string>
+
+    <string name="remote_screenshot">Remote screenshot</string>
+    <string name="remote_screenshot_tip">There is not remote user, please join channel and wait for remote user joining.</string>
+
+    <string name="area">Area</string>
+    <string name="watermark">Watermark</string>
+    <string name="low_stream">Low Stream</string>
+    <string name="float_window_confirm_dialog_msg">Your mobile phone does not grant the permission of the floating window, please turn it on and try again</string>
+    <string name="float_window_confirm_dialog_confirm">Open Now</string>
+    <string name="float_window_confirm_dialog_cancel">Not Now</string>
+    <string name="token_invalid">The token is invalid.</string>
+    <string name="token_expired">The token is expired.</string>
+    <string name="open_in_browser">Open in default browser</string>
+    <string name="refresh">Refresh</string>
+    <string name="save">Save</string>
+    <string name="app_id_empty">The App ID is empty!</string>
+    <string name="ORIENTATION_MODE_ADAPTIVE" translatable="false">ORIENTATION_MODE_ADAPTIVE</string>
+    <string name="ORIENTATION_MODE_FIXED_LANDSCAPE" translatable="false">ORIENTATION_MODE_FIXED_LANDSCAPE</string>
+    <string name="ORIENTATION_MODE_FIXED_PORTRAIT" translatable="false">ORIENTATION_MODE_FIXED_PORTRAIT</string>
+
+    <string name="special_effect">Effects</string>
+    <string name="video_quality">Video Quality</string>
+    <string name="virtul_bg">Virtual Background</string>
+    <string name="beauty">Beauty Filter</string>
+    <string name="transparent_background_transfer">Alpha Transmission</string>
+    <string name="alpha_transparent_transfer">Alpha Transparent transfer</string>
+    <string name="denoise">Noise Reduction</string>
+    <string name="light_dark">Darklight Enhancement</string>
+    <string name="adaptive_sharpen">Sharpen</string>
+    <string name="color_enhance">Color Enhancement</string>
+    <string name="pvc">PVC</string>
+    <string name="roi">ROI</string>
+    <string name="super_res">Super Resolution</string>
+    <string name="super_quality">Super Clarity</string>
+    <string name="hdr">HDR</string>
+    
+
+    <string name="ai_noise_reduction">AINS</string>
+    <string name="ai_echo_cancellation">AI AEC</string>
+    <string name="spacial_audio">Spacial Audio</string>
+    <string name="stt">STT</string>
+    <string name="multi_link">Multipath</string>
+    <string name="anti_weak_network">Weak Net</string>
+    <string name="face_capture">Facial Capture</string>
+    <string name="motion_capture">Motion Capture</string>
+    <string name="voice_drive">Avatar</string>
+    <string name="tab_video">Video</string>
+    <string name="tab_audio">Audio</string>
+    <string name="tab_net_optimize">Network</string>
+    <string name="tab_metaverse">AI Special Effects</string>
+    <string name="stay_tuned">Stay Tuned</string>
+    <string name="original_image">Original</string>
+    <string name="background_blur">Blur</string>
+    <string name="split_green_screen">Split Green Screen</string>
+    <string name="landscape">Scenery</string>
+    <string name="meeting_room">Meeting</string>
+    <string name="customize">Customize</string>
+
+    <string name="beauty_sdk_xiangxin">Faceunity Technology</string>
+    <string name="beauty_sdk_agora">Agora</string>
+    <string name="beauty_sdk_volc">Volcano Engine</string>
+
+    <string name="beauty_skin">Beauty skin</string>
+    <string name="micro_plastic">Micro plastic</string>
+    <string name="style_makeup">Style makeup</string>
+    <string name="sticker">Sticker</string>
+    <string name="makeups">Makeups</string>
+
+    <string name="buffing">Buffing</string>
+    <string name="whiten">Whiten</string>
+    <string name="ruddy">Ruddy</string>
+    <string name="thin_face">Thin face</string>
+    <string name="big_eye">Big eye</string>
+    <string name="remove_dark_circles">dark circles</string>
+    <string name="beauty_tooth">Beauty tooth</string>
+    <string name="nasolabial_folds">Nasolabial folds</string>
+    <string name="sharpen">Sharpen</string>
+    <string name="narrow_face">Narrow face</string>
+    <string name="cheekbone">Cheekbone</string>
+    <string name="lower_jaw">Lower jaw</string>
+    <string name="eye">Eye</string>
+    <string name="nose">Nose</string>
+    <string name="mouth">Mouth</string>
+    <string name="love_beans">Love beans</string>
+    <string name="white_tea">White_tea</string>
+    <string name="white">White</string>
+    <string name="glacier">Glacier</string>
+    <string name="core">Core</string>
+    <string name="broken_eyebrow">Broken eyebrow</string>
+    <string name="korean">Korean</string>
+    <string name="no_cubs">No cubs</string>
+    <string name="warm_man">Warm_man</string>
+    <string name="occident">Occident</string>
+    <string name="look">Look</string>
+    <string name="profound">Profound</string>
+    <string name="sweet">Sweet</string>
+    <string name="warmth">Warmth</string>
+    <string name="grace">Grace</string>
+    <string name="vitality">Vitality</string>
+    <string name="texture">Texture</string>
+    <string name="babe">Babe</string>
+    <string name="confession_tanabata">Confession tanabata</string>
+    <string name="dirt_girl">Dirt girl</string>
+    <string name="electric_guitar">Electric guitar</string>
+    <string name="princess_mask">Princess mask</string>
+    <string name="black_cat_glasses">Black cat glasses</string>
+    <string name="mask">Mask</string>
+    <string name="luck_cat">Luck_cat</string>
+    <string name="good_mood">Good mood</string>
+    <string name="dinosaur_test">Dinosaur Test</string>
+    <string name="gentleman">Gentleman</string>
+    <string name="dancing_turkey">Dancing turkey</string>
+    <string name="pig_head_pig_ears">Pig head pig ears</string>
+    <string name="purple_charm">Purple charm</string>
+    <string name="lip_stick">Lip stick</string>
+    <string name="blush">Blush</string>
+    <string name="trimming">Trimming</string>
+    <string name="eyelash">Eyelash</string>
+    <string name="eyebrow">Eyebrow</string>
+    <string name="circle_lenses">Circle lenses</string>
+
+    <string name="lighten">Lighten</string>
+    <string name="contrast">Contrast</string>
+    <string name="enable_super_quality">Enable Super Clarity</string>
+    <string name="enable_pvc">Enable PVC</string>
+    <string name="resolutoion_360p" translatable="false">360p</string>
+    <string name="resolutoion_480p" translatable="false">480p</string>
+    <string name="resolutoion_540p" translatable="false">540p</string>
+    <string name="resolutoion_720p" translatable="false">720p</string>
+    <string name="resolutoion_1080p" translatable="false">1080p</string>
+    <string name="original_video">Origin video</string>
+    <string name="bitrate_value">Bitrate: %d kbps</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="pvc_enabled">PVC effect</string>
+    <string name="pvc_disabled">PVC not open</string>
+    <string name="super_quality_enabled">Super Quality effect</string>
+    <string name="super_quality_disabled">Super Quality not open</string>
+    <string name="feature_not_supported">stay tuned</string>
+    <string name="resource_preparing">Resources preparing, please wait</string>
+
+    <string name="enable_ai_noise_reduction">Enable AINS</string>
+
+    <string name="enable_ai_echo_cancellation">Enable AI AEC</string>
+
+
+    <string name="enable_roi">Enable ROI</string>
+    <string name="roi_enabled">ROI effect</string>
+    <string name="roi_disabled">ROI not open</string>
+
+
+
+    <string name="enable_sr">Enable Super Resolution</string>
+    <string name="sr_enabled">Super Resolution effect</string>
+    <string name="sr_disabled">Super Resolution not open</string>
+    <string name="sr_enabled_failed">Machine performance bottleneck, automatic shutdown of super resolution</string>
+    <string name="sr_1">1.0x</string>
+    <string name="sr_1_33">1.33x</string>
+    <string name="sr_1_5">1.5x</string>
+    <string name="sr_2">2.0x</string>
+    <string name="imge_type_not_support">This image type is not supported yet!</string>
+    <string name="video_type_not_support">This video type is not supported yet!</string>
+    <string name="media_type_not_support">This media type is not supported yet!</string>
+    <string name="powered_by_agora">Powered by Agora.io</string>
+    <string name="version" translatable="false">v %s</string>
+    <string name="settings">Settings</string>
+    <string name="user_agreement">User Agreement</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="sign_out">Sign out</string>
+    <string name="logout">Logout</string>
+
+    <string name="enable_color_enhancement">Enable color enhancement</string>
+    <string name="skin_tone_protection_intensity">Skin color protection intensity</string>
+    <string name="color_enhancement_intensity">Color enhancement intensity</string>
+
+    <string name="dark_light_enhancement">Dark light enhancement</string>
+    <string name="enable_dark_light_enhancement">Enable Dark light enhancement</string>
+    <string name="performance_priority">Performance priority</string>
+    <string name="picture_quality_first">Picture quality first</string>
+    <string name="turn_on_or_off_dark_light_enhancement">turn on/off Dark light enhancement</string>
+
+    <string name="video_noise_reduction">Video noise reduction</string>
+    <string name="turn_on_off_video_noise_reduction">Turn on/off Video noise reduction</string>
+    <string name="low_power_mode">Low power mode</string>
+    <string name="equilibrium_mode">Equilibrium mode</string>
+    <string name="strong_noise_reduction_mode">Strong noise reduction mode</string>
+    <string name="noise_reduction_effect">Noise reduction effect</string>
+
+    <string name="try_again_to_exit">Try again to exit</string>
+    <string name="permission_leak_tip">The required permissions should be open firstly.</string>
+    <string name="agree">Agree</string>
+    <string name="disagree">Disagree</string>
+
+    <string name="app_exit">Exit</string>
+    <string name="app_user_agreement">User agreement</string>
+    <string name="personal_info_collect_checklist">Personal information collection checklist</string>
+    <string name="third_party_data_sharing_list">Third party data sharing list</string>
+    <string name="app_privacy_agreement">Privacy agreement</string>
+    <string name="app_about_us">About us</string>
+    <string name="privacy_protection_tip1">AgoraLabs是一款用于向声网客户展示产品使用效果的测试产品，仅用于测试产品的功能、性能和可用性，而非提供给大众使用的正式产品。\n1.我们将依据《用户协议》及《隐私政策》来帮助您了解我们在收集、使用、存储您个人信息的情况以及您享有的相关权利。\n2.在您使用本测试软件时，我们将收集您的设备信息、日志信息等，同时根据不同使用场景，你可以授予我们获取您设备的麦克风权限、摄像头权限等信息。\n\n您可通过阅读完整的《用户协议》及《隐私政策》来了解详细信息。</string>
+    <string name="privacy_protection_tip2">AgoraLabs can provide you with collaboration services only after agreeing to the User Agreement and Privacy Policy.</string>
+
+    <string name="app_register_account">Register account</string>
+    <string name="app_welcome_experience">Welcome to Agora service</string>
+    <string name="app_mobile_number">Phone number</string>
+    <string name="app_v_code">Verification code</string>
+    <string name="send_v_code">Send captcha</string>
+    <string name="app_please_input_v_code">Captcha</string>
+    <string name="app_please_input_account">Enter phone number</string>
+    <string name="app_plus_86">+86</string>
+    <string name="i_agree">I have read and agree</string>
+    <string name="app_and">And</string>
+    <string name="app_login">Login</string>
+    <string name="complete_validation">Complete verification</string>
+    <string name="drag_complete">Drag the slider below to complete the puzzle</string>
+    <string name="cancel">Cancel</string>
+    <string name="app_logoff">Log off</string>
+    <string name="app_logoff_cancel">Cancel</string>
+    <string name="logout_tips_title">Are you sure to log out?</string>
+    <string name="logout_tips_msg">After logging out, we will continue to retain your account data, remember to experience it again~</string>
+    <string name="logoff_tips_title">Are you sure to logoff?</string>
+    <string name="logoff_tips_msg">After logoff, you will not be able to use the account to experience our services temporarily. Do you really want to logoff?</string>
+    <string name="reacquire">reacquire</string>
+    <string name="please_enter_the_correct_phone_number">Please enter the correct phone number</string>
+    <string name="please_agree_to_our_privacy_policy_and_user_agreement">Please agree to our Privacy Policy and User Agreement</string>
+    <string name="agree_and_continue">Agree and continue</string>
+    <string name="disagree_and_exit">Disagree</string>
+    <string name="verification_code_sent_successfully">Verification code sent successfully</string>
+    <string name="verification_code_sent_failed">Verification code sent failed</string>
+    <string name="login_successful">login successful</string>
+
+
+    <string name="request_permission">Request permission</string>
+    <string name="need_permissions">We need %s permission</string>
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="go">Go</string>
+    <string name="go_app_permission_settings_tip">We need related permissions to implement the function. Click Go, and you will be redirected to the settings  of the application. Please enable the related permissions of the application.</string>
+    <string name="video_file_too_large">Video file too large</string>
+    
+    <string name="rhythm">AI Rhythm</string>
+    <string name="effects_3d">3D Special Effects</string>
+    <string name="lighting_3d">3D Lighting</string>
+    <string name="background_360">360 Degrees Background</string>
+    <string name="virtual_headgear">Virtual Headsets</string>
+
+    <string name="dog">Dog</string>
+    <string name="girl">Girl</string>
+    <string name="enable_ai_rhythm">Enable AI Rhythm</string>
+    <string name="enable_3d_special_effects">Enable 3D Special Effects</string>
+    <string name="enable_3d_lighting">Enable 3D Lighting</string>
+    <string name="enable_360_degrees_background">Enable 360 Degrees Background</string>
+    <string name="enable_virtual_headsets">Enable Virtual Headsets</string>
+    <string name="virtual_headgear_mask">Mask</string>
+    <string name="rhythm_face">Face focus mode</string>
+    <string name="rhythm_light_shadow">Shadow mode</string>
+    <string name="rhythm_heat_beat">Heartbeat mode</string>
+    <string name="rhythm_front_after">Front-back rhythm mode</string>
+    <string name="rhythm_left_right">Left-right rhythm mode</string>
+    <string name="rhythm_up_down">Up-down rhythm mode</string>
+
+    <string name="lighting_3d_light">3D Lights</string>
+    <string name="lighting_mood">Atmosphere Lamp</string>
+    <string name="lighting_ad">Advertising Lights</string>
+
+    <string name="effect_3d_flame">Flame</string>
+    <string name="effect_3d_aurora">Aurora</string>
+    <string name="effect_3d_ripple">Ripple</string>
+    <string name="device_performance_limitations">The device does not support Virtual Background</string>
+</resources>

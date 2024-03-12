@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_ai_audio"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <FrameLayout
+        android:id="@+id/video_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+    <io.agora.api.example.common.widget.WaveformView
+        android:id="@+id/wave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/video_container"
+        app:layout_constraintBottom_toBottomOf="@id/video_container"
+        app:space="6dp"
+        app:waveStokeWidth="3dp"
+        />
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_chevron_left"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ai_echo_cancellation"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/iv_back"
+        app:layout_constraintTop_toTopOf="@id/iv_back"
+        app:layout_constraintBottom_toBottomOf="@id/iv_back"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        />
+
+
+
+
+
+    <Switch
+        android:id="@+id/feature_switch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#D9151325"
+        android:text="@string/enable_ai_echo_cancellation"
+        android:textColor="@color/white"
+        android:paddingLeft="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:paddingRight="16dp"
+        android:textSize="15sp"
+        style="@style/switch_style"
+        />
+    <LinearLayout
+        android:id="@+id/menu_controler"
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:background="@drawable/bg_rectangle_top"
+        app:layout_constraintBottom_toTopOf="@+id/feature_switch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center">
+        <View
+            android:layout_width="37dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:background="#ffffff"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/feature_switch" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

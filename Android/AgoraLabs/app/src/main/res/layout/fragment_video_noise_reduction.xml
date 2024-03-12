@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/ic_chevron_left"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:text="@string/video_noise_reduction"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_back"
+        app:layout_constraintLeft_toRightOf="@id/iv_back"
+        app:layout_constraintTop_toTopOf="@id/iv_back" />
+
+    <ImageView
+        android:id="@+id/iv_switch_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/ic_camera_flip"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Switch
+        android:id="@+id/feature_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D9151325"
+        android:paddingLeft="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:paddingRight="16dp"
+        android:text="@string/turn_on_off_video_noise_reduction"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        style="@style/switch_style"
+        app:layout_constraintBottom_toTopOf="@+id/video_noise_reduction_setting_group"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <LinearLayout
+        android:id="@+id/menu_controler"
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:background="@drawable/bg_rectangle_top"
+        app:layout_constraintBottom_toTopOf="@+id/feature_switch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center">
+        <View
+            android:layout_width="37dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:background="#ffffff"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/feature_switch" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/video_noise_reduction_setting_group"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="#D9151325"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:id="@+id/tv_low_power_mode"
+            android:layout_width="103.5dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/white"
+            android:text="@string/low_power_mode"
+            android:background="@drawable/bg_dark_light_button"
+            android:layout_marginLeft="16dp"/>
+        <TextView
+            android:id="@+id/tv_equilibrium_mode"
+            android:layout_width="103.5dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="16dp"
+            android:text="@string/equilibrium_mode"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_dark_light_button"
+            />
+        <TextView
+            android:id="@+id/tv_strong_noise_reduction_mode"
+            android:layout_width="103.5dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="16dp"
+            android:text="@string/strong_noise_reduction_mode"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_dark_light_button"
+            android:layout_marginRight="16dp"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
