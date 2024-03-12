@@ -77,7 +77,12 @@ public class AiEchoCancellationFragment extends Fragment implements View.OnClick
 
     private void updateAiEchoCancellation(){
         String params;
-
+        if(aiEchoCancellationEnabled){
+            params = "{\"che.audio.aiaec.working_mode\":1}";
+        }else{
+            params = "{\"che.audio.aiaec.working_mode\":0}";
+        }
+        rtcEngine.setParameters(params);
     }
 
     @Override public void onStart() {

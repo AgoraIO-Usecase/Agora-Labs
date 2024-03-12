@@ -80,8 +80,11 @@ public class AiNoiseReductionFragment extends Fragment implements View.OnClickLi
         //todo
         String params;
         if (aiNoiseReductionEnabled) {
+            params = "{\"che.audio.enable.nsng\":true,\"che.audio.ains_mode\":2,\"che.audio.ns.mode\":2,\"che.audio.ans.enable\":true}";
         } else {
+            params = "{\"che.audio.enable.nsng\":false,\"che.audio.ains_mode\":0,\"che.audio.ns.mode\":0,\"che.audio.ans.enable\":false}";
         }
+        rtcEngine.setParameters(params);
     }
 
     @Override public void onStart() {

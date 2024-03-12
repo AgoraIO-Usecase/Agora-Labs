@@ -244,6 +244,7 @@ public class Effect3DFragment extends Fragment implements View.OnClickListener{
             rtcEngine = RtcEngine.create(config);
             metaEngineHandler.setRtcEngine(rtcEngine);
 
+            rtcEngine.setParameters("{\"rtc.video.seg_before_exts\":true}");
             metaEngineHandler.enableSegmentation();
             rtcEngine.enableExtension("agora_video_filters_face_capture", "face_capture", true);
             rtcEngine.enableExtension("agora_video_filters_metakit", "metakit", true);

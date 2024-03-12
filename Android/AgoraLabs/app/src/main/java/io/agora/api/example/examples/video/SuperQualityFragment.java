@@ -167,7 +167,11 @@ public class SuperQualityFragment extends Fragment implements View.OnClickListen
         tvSuperQuality.setBackgroundResource(superQualityEnabled ?R.drawable.bg_rectangle_blue:R.drawable.bg_rectangle_grey);
 
         if(superQualityEnabled){
+            rtcEngine.setParameters("{\"rtc.video.enable_sr\" : {\"enabled\":true, \"mode\":1}}");
+            rtcEngine.setParameters("{\"rtc.video.sr_type\" : 20}");
+            rtcEngine.setParameters("{\"rtc.video.ve_alpha_blending\":256}");
         }else{
+            rtcEngine.setParameters("{\"rtc.video.enable_sr\" : {\"enabled\":false, \"mode\":1}}");
         }
     }
 
@@ -244,6 +248,7 @@ public class SuperQualityFragment extends Fragment implements View.OnClickListen
         try {
             rtcEngine = (RtcEngineEx)RtcEngineEx.create(config);
             rtcEngine.disableAudio();
+            rtcEngine.setParameters("\"rtc.video.enable_sr\" : {\"enabled\":false, \"mode\":1}");
         } catch (Exception e) {
             e.printStackTrace();
         }
