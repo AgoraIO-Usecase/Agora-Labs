@@ -302,10 +302,8 @@ public class MetaEngineHandler implements AGExtensionHandler{
         rtcEngine.enableExtension("agora_video_filters_face_capture", "face_capture", true);
         rtcEngine.setExtensionProperty("agora_video_filters_face_capture","face_capture", "authentication_information",
             "{\"company_id\":\"agoraDemo\"," +
-                "\"license\":\"" +
-                "PFeVRXMZ1hJd075NSZtrZD3tYYl154QTs1Ui2i5ztvOcgOhklZcZdl2f5dYmf6GuLUebbBs1xp5I" +
-                "crywJ+NaZ8ncYAfekfg3oR34cYJ8Pe3z4EVzw+CshGOfL0hcSYmtXjkXxG298c64+SGZdP6/UBVJ" +
-                "/wIOYJRMgEUTBTqewcQ=\"}", Constants.MediaSourceType.PRIMARY_CAMERA_SOURCE);
+                "\"license\":" +
+                "\"Sws6k3XjgrBHcH6aoP0/BODti+arMbhufk2fIxeC12gOdFDGO61JnIZYnkNrHV5jOCI45uQsy9v498QINi+Z9b9t3bIpjjb/Nfb6il9UJ/hBSYVdMX2GUIAObK5EPywEohHjqMuslIVpJ+rLpnqXP7tzX/GN7vC4BgDhf/WDBGc=\"}", Constants.MediaSourceType.PRIMARY_CAMERA_SOURCE);
         JSONObject valueObj = new JSONObject();
         try {
             long address = getContextHandler(context);

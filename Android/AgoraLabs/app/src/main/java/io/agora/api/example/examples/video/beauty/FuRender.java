@@ -80,7 +80,7 @@ public class FuRender {
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("data", modelDir.getAbsolutePath());
-            jsonObject.put("type", 1 << 10);
+            jsonObject.put("type", 1 << 8);
 
             setExtensionProperty("fuLoadAIModelFromPackage", jsonObject.toString());
         } catch (JSONException e) {
@@ -127,7 +127,7 @@ public class FuRender {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("obj_handle", modelDir);
                 jsonObject.put("name", "aitype");
-                jsonObject.put("value", 1 << 10 | 1 << 21 | 1 << 3);
+                jsonObject.put("value", 1 << 8 | 16777216 | 1 << 4 | 1 << 9 | 1 << 30 | 1 << 3);
                 setExtensionProperty("fuItemSetParam", jsonObject.toString());
             }
         } catch (JSONException e) {
@@ -245,7 +245,7 @@ public class FuRender {
         setBeautyParamsValue("remove_pouch_strength",REMOVE_POUCH_STRENGTH_MAX*map.get(ID_FACE_UNITY_REMOVE_DARK_CIRCLES)/100);
         setBeautyParamsValue("tooth_whiten",TOOTH_WHITEN_MAX*map.get(ID_FACE_UNITY_BEAUTY_TOOTH)/100);
         setBeautyParamsValue("remove_nasolabial_folds_strength",REMOVE_NASOLABIAL_FOLDS_STRENGTH_MAX*(map.get(ID_FACE_UNITY_NASOLABIAL_FOLDS))/100);
-        setFaceShape("cheek_thinning",THINFACE_MAX*(map.get(ID_FACE_UNITY_THIN_FACE))/100);
+        setFaceShape("cheek_thinning_mode2",THINFACE_MAX*(map.get(ID_FACE_UNITY_THIN_FACE))/100);
         setFaceShape("eye_enlarging",EYE_ENLARGING_MAX*map.get(ID_FACE_UNITY_BIG_EYE)/100);
     }
 
@@ -266,7 +266,7 @@ public class FuRender {
         } else if (selectedFeatureID == ID_FACE_UNITY_RUDDY) {
             setBeautyParamsValue("red_level",RED_LEVEL_MAX*progress/100);
         } else if (selectedFeatureID == ID_FACE_UNITY_THIN_FACE) {
-            setFaceShape("cheek_thinning",THINFACE_MAX*progress/100);
+            setFaceShape("cheek_thinning_mode2",THINFACE_MAX*progress/100);
         } else if (selectedFeatureID == ID_FACE_UNITY_BIG_EYE) {
             setFaceShape("eye_enlarging",EYE_ENLARGING_MAX*progress/100);
         } else if (selectedFeatureID == ID_FACE_UNITY_REMOVE_DARK_CIRCLES) {

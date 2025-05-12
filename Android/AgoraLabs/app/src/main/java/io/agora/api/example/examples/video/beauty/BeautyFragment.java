@@ -54,7 +54,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
     private SlidingMenuLayout volcBeautyMenu;
     private Map<String,Integer> faceUnityMap=new HashMap<>();
     private FuRender fuRender;
-    private VolcRender volcRender;
+//    private VolcRender volcRender;
     private AgoraRender agoraRender;
     private String KEY_FACEUNITY_RESOURCE="faceunity_resource";
     private String KEY_VOLC_RESOURCE="volc_resource";
@@ -105,6 +105,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
         binding.tvAgora.setOnClickListener(this);
         binding.tvXiangxin.setOnClickListener(this);
         binding.tvVolc.setOnClickListener(this);
+        binding.tvVolc.setVisibility(View.INVISIBLE);
         binding.seekbar.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListenerAdapter() {
             @Override public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat,
                 boolean fromUser) {
@@ -112,7 +113,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
                 if(binding.tvXiangxin.isSelected()){
                     fuRender.setCurrentProgress(progress);
                 }else if(binding.tvVolc.isSelected()){
-                    volcRender.setCurrentProgress(progress);
+//                    volcRender.setCurrentProgress(progress);
                 }else if(binding.tvAgora.isSelected()){
                     agoraRender.setCurrentProgress(progress);
                 }
@@ -203,10 +204,10 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
             fuRender=new FuRender(getContext().getApplicationContext(),rtcEngine);
             fuRender.initExtension();
         }
-        if(volcRender==null){
-            volcRender=new VolcRender(getContext().getApplicationContext(),rtcEngine);
-            volcRender.initExtension();
-        }
+//        if(volcRender==null){
+//            volcRender=new VolcRender(getContext().getApplicationContext(),rtcEngine);
+//            volcRender.initExtension();
+//        }
         if(agoraRender==null){
             agoraRender=new AgoraRender(getContext().getApplicationContext(),rtcEngine);
         }
@@ -215,8 +216,8 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
     private  void enableExtension(boolean enabled) {
         ExtensionManager.getInstance(rtcEngine).initialize();
         rtcEngine.enableExtension("FaceUnity", "Effect", enabled);
-        io.agora.rte.extension.bytedance.ExtensionManager.getInstance(rtcEngine).initialize(getContext());
-        rtcEngine.enableExtension("ByteDance", "Effect", enabled);
+//        io.agora.rte.extension.bytedance.ExtensionManager.getInstance(rtcEngine).initialize(getContext());
+//        rtcEngine.enableExtension("ByteDance", "Effect", enabled);
     }
 
     private void startPreview() {
@@ -255,7 +256,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
 
     private void showAgoraMenu(){
         fuRender.disableExtension();
-        volcRender.disableExtension();
+//        volcRender.disableExtension();
 
         binding.seekbar.setVisibility(View.GONE);
         if(agoraMenu==null) {
@@ -288,7 +289,7 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
             return;
         }
         rtcEngine.setBeautyEffectOptions(false,new BeautyOptions());
-        volcRender.disableExtension();
+//        volcRender.disableExtension();
         binding.seekbar.setVisibility(View.GONE);
         fuRender.enableExtension();
         fuRender.loadAIModels();
@@ -325,11 +326,11 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
         fuRender.disableExtension();
         rtcEngine.setBeautyEffectOptions(false,new BeautyOptions());
         binding.seekbar.setVisibility(View.GONE);
-        volcRender.enableExtension();
+//        volcRender.enableExtension();
         if(volcBeautyMenu==null) {
             volcBeautyMenu=new SlidingMenuLayout(getContext());
             volcBeautyMenu.addFixMenuItem(new OptionItem(-1, R.mipmap.ic_ban, R.string.original_image));
-            volcBeautyMenu.setData(volcRender.generatorOptionItems());
+//            volcBeautyMenu.setData(volcRender.generatorOptionItems());
             List<String> titles=new ArrayList<>();
             titles.add(getResources().getString(R.string.beauty_skin));
             titles.add(getResources().getString(R.string.micro_plastic));
@@ -345,17 +346,17 @@ public class BeautyFragment extends Fragment implements View.OnClickListener, IM
                 }
             });
             volcBeautyMenu.setOnItemClickListener((v, optionItem, position) -> {
-                SystemUtil.vibrator(getContext());
-                rtcEngine.enableExtension("ByteDance", "Effect", optionItem.getId() != -1);
-                volcBeautyMenu.setSelected(optionItem);
-                volcRender.setSelectedFeatureID(optionItem.getId());
-                int progress=volcRender.getProgress(optionItem.getId());
-                if(progress<0){
-                    binding.seekbar.setVisibility(View.GONE);
-                }else {
-                    binding.seekbar.setVisibility(View.VISIBLE);
-                    binding.seekbar.setProgress(progress);
-                }
+//                SystemUtil.vibrator(getContext());
+//                rtcEngine.enableExtension("ByteDance", "Effect", optionItem.getId() != -1);
+//                volcBeautyMenu.setSelected(optionItem);
+//                volcRender.setSelectedFeatureID(optionItem.getId());
+//                int progress=volcRender.getProgress(optionItem.getId());
+//                if(progress<0){
+//                    binding.seekbar.setVisibility(View.GONE);
+//                }else {
+//                    binding.seekbar.setVisibility(View.VISIBLE);
+//                    binding.seekbar.setProgress(progress);
+//                }
             });
          }
         binding.menuContainer.setVisibility(View.VISIBLE);

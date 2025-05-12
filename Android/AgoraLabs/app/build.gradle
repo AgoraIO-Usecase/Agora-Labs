@@ -19,6 +19,11 @@ android {
             keyPassword '888888'
         }
     }
+
+    packagingOptions {
+        exclude 'lib/*/libagora_screen_capture_extension.so'
+    }
+
     compileSdk 33
 
     defaultConfig {
@@ -105,9 +110,9 @@ dependencies {
         implementation fileTree(dir: "${localSdkPath}", include: ['*.jar', '*.aar'])
     }
     else{
-        def agora_sdk_version = "4.0.1"
+        def agora_sdk_version = "4.2.6.5"
         // case 1: full single lib
-        //implementation "io.agora.rtc:full-sdk:${agora_sdk_version}"
+        implementation "io.agora.rtc:agora-special-full:${agora_sdk_version}"
         //implementation "io.agora.rtc:full-screen-sharing:${agora_sdk_version}"
         // case 2: partial libs
         // implementation "io.agora.rtc:full-rtc-basic:${agora_sdk_version}"
@@ -123,6 +128,9 @@ dependencies {
         // implementation "io.agora.rtc:full-screen-sharing:${agora_sdk_version}"
     }
 
+    def agora_sdk_version = "4.2.6.5"
+    // case 1: full single lib
+    implementation "io.agora.rtc:agora-special-full:${agora_sdk_version}"
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
